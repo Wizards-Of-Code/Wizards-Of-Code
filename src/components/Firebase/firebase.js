@@ -1,4 +1,6 @@
-import app from 'firebase/app'
+import app from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
 // Your web app's Firebase configuration
 var devConfig = {
@@ -16,8 +18,35 @@ var devConfig = {
 // Initialize Firebase
 class Firebase {
   constructor() {
-    app.initializeApp(devConfig)
+    app.initializeApp(devConfig);
+
+    this.auth = app.auth();
+    this.db = app.database();
   }
+
+  // auth API
+  doCreateUserWithEmailAndPassword = (email, password) => {
+    return this.auth.createUserWithEmailAndPassword(email, password);
+  };
+
+  doSignInWithEmailAndPassword = (email, password) => {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  };
+
+  doSignOut = () => this.auth.signOut();
+
+  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+
+  doPasswordUpdate = password => {
+    return this.auth.currentUser.updatePassword(password)
+  };
+
+  // User API
+
+  user = uid => this.db.ref(`users/${uid}`);
+
+  users = () => this.db.ref('users');
+
 }
 
 export default Firebase;
