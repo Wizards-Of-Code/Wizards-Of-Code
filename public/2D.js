@@ -2,7 +2,7 @@
 //   width: window.innerWidth,
 //   height: window.innerHeight / 1.5
 // });
-const canvas = document.getElementById("mycanvas");
+// const canvas = document.getElementById("mycanvas");
 
 let _w = window.innerWidth;
 let _h = window.innerHeight;
