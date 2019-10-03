@@ -1,11 +1,11 @@
 import CodeMirror from 'react-codemirror'
+import 'codemirror/mode/javascript/javascript'
 import React, {Component} from 'react'
 
 export default class CodeArea extends Component {
-  getInitialState = function() {
-    return {
-      code: '// Code'
-    }
+  constructor() {
+    super()
+    this.state = {code: ''}
   }
   updateCode = function(newCode) {
     this.setState({
@@ -14,13 +14,14 @@ export default class CodeArea extends Component {
   }
   render() {
     let options = {
-      lineNumbers: true
+      lineNumbers: true,
+      mode: 'javascript',
+      autoFocus: true
     }
     return (
-      <CodeMirror
-        // value={this.state.code}
-        // onchange={this.updateCode}
-        mode="javascript"
+      <CodeMirror 
+        value={this.state.code}
+        onchange={this.updateCode}
         options={options}
       />
     )
