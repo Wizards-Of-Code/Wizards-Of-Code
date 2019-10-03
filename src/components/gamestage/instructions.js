@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function Instructions() {
     return (
-'instruction here'
+      <div>
+        <h2>'instruction here'</h2>
+      </div>
     )
 }

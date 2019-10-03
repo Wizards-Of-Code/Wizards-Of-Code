@@ -17,9 +17,9 @@ const GameStage = () => (
       </Container>
     </Stage>
     <div className="taskbox">
-      <Instructions />
+      <Instructions className="instructions"/>
       <CodeArea className="texteditor" />
-      {/* <Result /> */}
+      <Result className="result" />
     </div>
   </div>
 )
