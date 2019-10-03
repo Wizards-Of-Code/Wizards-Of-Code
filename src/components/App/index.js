@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Navigation from '../Navigation';
+import GameStage from '../gamestage'
 // import LandingPage from '../Landing';
 // import SignUpPage from '../SignUp';
 // import SignInPage from '../SignIn';
@@ -24,6 +25,9 @@ const App = () => (
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} /> */}
+    </div>
+    <div>
+      <GameStage />
     </div>
   </Router>
 );
