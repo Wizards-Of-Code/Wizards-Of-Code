@@ -16,3 +16,15 @@ code {
   display: flex;
   justify-content: space-evenly
 }
+
+.taskbox {
+  /* display: flex;
+  justify-content: column;
+  align-content: space-between */
+  column-count: 2
+} 
+
+.texteditor {
+  width: 33
+
+}
