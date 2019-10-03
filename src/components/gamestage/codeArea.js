@@ -16,7 +16,8 @@ export default class CodeArea extends Component {
     let options = {
       lineNumbers: true,
       mode: 'javascript',
-      autoFocus: true
+      autoFocus: true,
+      className: 'texteditor'
     }
     return (
       <CodeMirror 
