@@ -1,0 +1,102 @@
+Problem 1 (easy)
+prompt: 
+
+Write a function that returns the string: "I am a wizard!"
+Output: "I am a wizard"
+
+**********************************************************************************************************
+Problem 2 (easy)
+prompt: 
+
+Write a function, given an integer, returns true if that number is even.
+Example Input: 6
+Example Result: True
+
+**********************************************************************************************************
+Problem 3 (easy)
+prompt: 
+
+Write a function, given an integer, returns true if that number is odd.
+Example Input: 7
+Example Result: True
+
+**********************************************************************************************************
+Problem 4  (medium)
+prompt: 
+
+Write a function that takes an array of strings and concatenates them into 
+a single string separated by commas.
+
+Example Input: ['I', 'am', 'the', 'best', 'wizard', 'in' ,'all', 'the', 'land'];
+Example Result: "I, am, the, best, wizard, in, all, the, land"
+
+**********************************************************************************************************
+Problem 5 (easy)
+prompt:
+
+Write a function that takes an array of numbers and adds 500 to the last element and returns that number
+
+Example Input: [1, 4, -13, 77, 99]
+Example Result: 599
+
+**********************************************************************************************************
+Problem 6  (easy)
+prompt: 
+
+Write a function that takes an array and returns the length of that array minus 5
+
+Example Input: [4, 5, 2, 9, 10, 55]
+Example Result: 1
+
+**********************************************************************************************************
+Problem 7 (hard)
+prompt: 
+
+Write a function that takes an array of numbers and 2 other numbers as input, and adds the first number to 
+the front of the array and the second number to the end of the array.
+
+Example Input: ([4, 2, 8, 9], 6, 10)
+Example Result: [6, 2, 8, 9, 10]
+
+**********************************************************************************************************
+Problem 8  (hard)
+prompt: 
+
+Write a function, given a string, returns the number of vowels (exclude 'y').
+
+Example Input: 'Wizards of Code'
+Example Output: 4
+
+**********************************************************************************************************
+Problem 9 (medium)
+prompt: 
+
+Write a function, given a string, returns the string in reverse.
+
+Example Input: 'Wizards of Code'
+Example Output: 'edoC fo sdraziW'
+
+**********************************************************************************************************
+Problem 10 (medium)
+prompt: 
+
+Write a function, given an array of numbers, returns a concatenated string of these numbers
+
+Example Input: [1, 5, 6, 8, 8, 2]
+Example Output: "156882"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
