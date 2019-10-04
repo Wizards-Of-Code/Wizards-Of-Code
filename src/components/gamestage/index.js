@@ -1,26 +1,27 @@
 import React from "react";
 import { Stage, Sprite, Container } from "@inlet/react-pixi";
-import background from "./green_forest.png";
-import mage from "./mage.png";
-import mage2 from "./mage2.png";
+import background from "./images/green_forest(resized).png";
+import mage from "./images/mage.png";
+import mage2 from "./images/mage2.png";
 import CodeArea from "./codeArea";
 import Instructions from "./instructions";
 import Result from "./result";
 
+// adjust image size to 1920x540 pixels 
+
 const GameStage = props => {
-  console.log(props);
+  const innerWidth = window.innerWidth
+  const innerHeight = window.innerHeight
   return (
     <div>
       <Stage
-        width={window.innerWidth}
-        height={window.innerHeight / 1.75}
-        options={{ backgroundColor: 0xf5f5f5 }}
-        // image={background}
+        width={innerWidth}
+        height={innerHeight/1.75}
       >
-        <Container position={[150, 150]}>
-          <Sprite anchor={0.5} x={550} image={background} scale={0.75} />
-          <Sprite anchor={0.5} x={100} y={90} image={mage} scale={2} />
-          <Sprite anchor={0.5} x={800} y={100} image={mage2} scale={0.5} />
+        <Container>
+          <Sprite anchor={0.5} x={innerWidth/2} y={innerHeight/3.5} image={background} scale={1} />
+          <Sprite anchor={0.5} x={innerWidth/3} y={innerHeight/3} image={mage} scale={2} />
+          <Sprite anchor={0.5} x={innerWidth/1.5} y={innerHeight/3} image={mage2} scale={0.5} />
         </Container>
       </Stage>
       <div className="taskbox">
