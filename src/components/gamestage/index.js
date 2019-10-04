@@ -1,8 +1,8 @@
 import React from "react";
 import { Stage, Sprite, Container } from "@inlet/react-pixi";
-import background from "./green_forest(resized).png";
-import mage from "./mage.png";
-import mage2 from "./mage2.png";
+import background from "./images/green_forest(resized).png";
+import mage from "./images/mage.png";
+import mage2 from "./images/mage2.png";
 import CodeArea from "./codeArea";
 import Instructions from "./instructions";
 import Result from "./result";
