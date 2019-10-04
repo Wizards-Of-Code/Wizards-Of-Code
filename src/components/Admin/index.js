@@ -12,21 +12,25 @@ class AdminPage extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    this.props.firebase.users().on('value', snapshot => {
-      const usersObject = snapshot.val();
-      const usersList = Object.keys(usersObject).map(key => ({
-        ...usersObject[key],
-        uid: key,
-      }));
+    this.unsubscribe = this.props.firebase.users().onSnapshot(snapshot => {
+      let usersList = [];
+      let changes = snapshot.docChanges();
+      changes.forEach(change => {
+        console.log(change.doc.data());
+        usersList.push(change.doc.data());
+      })
+
+      console.log(usersList);
       this.setState({
         users: usersList,
         loading: false,
       });
+
     });
   }
 
   componentWillUnmount() {
-    this.props.firebase.users().off();
+    this.unsubscribe();
   }
 
   render() {

@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/database';
+// import 'firebase/database';
+import 'firebase/firestore';
 
 // Your web app's Firebase configuration
 var devConfig = {
@@ -21,7 +22,8 @@ class Firebase {
     app.initializeApp(devConfig);
 
     this.auth = app.auth();
-    this.db = app.database();
+    this.db = app.firestore();
+
   }
 
   // auth API
@@ -43,9 +45,9 @@ class Firebase {
 
   // User API
 
-  user = uid => this.db.ref(`users/${uid}`);
+  user = uid => this.db.collection('users').doc(uid);
 
-  users = () => this.db.ref('users');
+  users = () => this.db.collection('users');
 
 }
 
