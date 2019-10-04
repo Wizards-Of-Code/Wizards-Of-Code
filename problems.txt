@@ -56,7 +56,7 @@ Write a function that takes an array of numbers and 2 other numbers as input, an
 the front of the array and the second number to the end of the array.
 
 Example Input: ([4, 2, 8, 9], 6, 10)
-Example Result: [6, 2, 8, 9, 10]
+Example Result: [6, 4, 2, 8, 9, 10]
 
 **********************************************************************************************************
 Problem 8  (hard)
