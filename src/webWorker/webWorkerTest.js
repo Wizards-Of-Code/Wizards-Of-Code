@@ -9,8 +9,8 @@ if (window.Worker) {
   // })
 
   evaluator.postMessage({
-    inputs: [[2, 3], [4, 5]],
-    userFunction: 'function (a, b) { return a + b };'
+    inputs: {input1: [5], input2: [3]},
+    userFunction: 'function (a) { return a * 2 };'
   })
 
   evaluator.onmessage = function(event) {

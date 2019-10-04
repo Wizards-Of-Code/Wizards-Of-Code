@@ -6,18 +6,20 @@ const DisconnectedResult = props => {
   return (
     <div className="result">
       <div className="title">Result</div>
-      <button className="buttonFont" onClick={() => props.submitCode()}>
+      <button className="buttonFont" onClick={() => props.submitCode(props.code)}>
         SUBMIT CODE
       </button>
     </div>
   );
 };
+
 const mapDispatchToProps = dispatch => ({
   submitCode: code => dispatch(submitCode(code))
 });
-const mapStateToProps = state => {
-  return { state: state };
-};
+const mapStateToProps = state => ({
+  result: state.game.result,
+  code: state.game.code
+});
 
 export default connect(
   mapStateToProps,
