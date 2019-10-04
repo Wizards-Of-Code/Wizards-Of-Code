@@ -8,17 +8,21 @@ import Instructions from "./instructions";
 import Result from "./result";
 
 const GameStage = props => {
-  console.log(props);
+  console.log('innerWidth', window.innerWidth,'outerWidth', window.outerWidth, 'background', background, 'innerHeight', window.innerHeight);
+  const innerWidth = window.innerWidth
+  const innerHeight = window.innerHeight
   return (
     <div>
       <Stage
-        width={window.innerWidth}
-        height={window.innerHeight / 1.75}
-        options={{ backgroundColor: 0xf5f5f5 }}
-        // image={background}
+        // width={window.innerWidth}
+        // height={window.innerHeight / 1.75}
+        width={innerWidth}
+        height={innerHeight/2}
+        // options={{ backgroundColor: 0xf5f5f5 }}
       >
-        <Container position={[150, 150]}>
-          <Sprite anchor={0.5} x={550} image={background} scale={0.75} />
+        {/* position={[150, 150]} */}
+        <Container>
+          <Sprite anchor={0.5} x={innerWidth/2} y={innerHeight/2} image={background} scale={1} />
           <Sprite anchor={0.5} x={100} y={90} image={mage} scale={2} />
           <Sprite anchor={0.5} x={800} y={100} image={mage2} scale={0.5} />
         </Container>
