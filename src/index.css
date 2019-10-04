@@ -11,3 +11,46 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.taskbox {
+  display: flex;
+  justify-content: row;
+  align-content: space-evenly;
+  width: 100%;
+  height: 50%;
+}
+
+.ReactCodeMirror {
+  width: 60%;
+  word-wrap: break-word;
+}
+
+.instructions {
+  display: block;
+  width: 20%;
+  background-color: blanchedalmond;
+  border-style: solid;
+  border-width: 1px;
+  border-color: blue;
+  border-radius: 2%;
+}
+
+.result {
+  display: block;
+  width: 20%;
+  background-color: blanchedalmond;
+  border-style: solid;
+  border-width: 1px;
+  border-color: blue;
+  border-radius: 2%;
+}
+.title {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
