@@ -1,11 +1,10 @@
-import app from 'firebase/app';
-import 'firebase/auth';
+import app from "firebase/app";
+import "firebase/auth";
 // import 'firebase/database';
-import 'firebase/firestore';
+import "firebase/firestore";
 
 // Your web app's Firebase configuration
 var devConfig = {
-
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -14,7 +13,6 @@ var devConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID
-
 };
 // Initialize Firebase
 class Firebase {
@@ -23,7 +21,6 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.firestore();
-
   }
 
   // auth API
@@ -40,15 +37,16 @@ class Firebase {
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
   doPasswordUpdate = password => {
-    return this.auth.currentUser.updatePassword(password)
+    return this.auth.currentUser.updatePassword(password);
   };
 
   // User API
 
-  user = uid => this.db.collection('users').doc(uid);
+  user = uid => this.db.collection("users").doc(uid);
 
-  users = () => this.db.collection('users');
+  users = () => this.db.collection("users");
 
+  problem = probId => this.db.collection("problems").doc(probId);
 }
 
 export default Firebase;
