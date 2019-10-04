@@ -1,42 +1,56 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .nav {
   display: flex;
   justify-content: space-evenly;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .taskbox {
   display: flex;
   justify-content: row;
-  align-content: space-between;
+  align-content: space-evenly;
   width: 100%;
+  height: 50%;
 }
 
 .ReactCodeMirror {
-  width: 50%;
+  width: 60%;
   word-wrap: break-word;
 }
 
 .instructions {
-  width: 35%;
+  display: block;
+  width: 20%;
+  background-color: blanchedalmond;
   border-style: solid;
-  border-width: 5px;
-  border-color: green;
-  background: black;
+  border-width: 1px;
+  border-color: blue;
+  border-radius: 2%;
 }
 
 .result {
-  width: 15%;
+  display: block;
+  width: 20%;
+  background-color: blanchedalmond;
+  border-style: solid;
+  border-width: 1px;
+  border-color: blue;
+  border-radius: 2%;
+}
+.title {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
 }

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function Result() {
   return (
-    <div>
-      <h2>result</h2>
+    <div className="result">
+      <div className="title">Result</div>
     </div>
-  )
+  );
 }
