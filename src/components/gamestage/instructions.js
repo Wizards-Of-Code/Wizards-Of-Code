@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function Instructions() {
-    return (
-      <div>
-        <h2>'instruction here'</h2>
-      </div>
-    )
+  return (
+    <div className="instructions">
+      <div className="title">Question</div>
+    </div>
+  );
 }
