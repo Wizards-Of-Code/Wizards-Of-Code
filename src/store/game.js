@@ -45,9 +45,9 @@ export const getProblem = id => {
 };
 
 export const submitCode = code => {
+  return async dispatch => {
     const webWorker = new Worker('../webWorker/webWorker.js');
 
-    console.log(code);
 
     webWorker.postMessage({
       inputs: {input1: [4], input2: [3]},
@@ -55,9 +55,11 @@ export const submitCode = code => {
     })
 
     webWorker.onmessage = function(event) {
-      gotResult(event.data);
+      dispatch(gotResult(event.data));
       webWorker.terminate();
     }
+
+  };
 };
 
 
