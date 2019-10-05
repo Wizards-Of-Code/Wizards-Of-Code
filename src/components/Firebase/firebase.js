@@ -46,7 +46,14 @@ class Firebase {
 
   users = () => this.db.collection("users");
 
+  // Problem API
   problem = probId => this.db.collection("problems").doc(probId);
+
+
+  // Spells API
+
+  skill = (skillId) => this.db.collection("skills").doc(skillId);
+
 }
 
 export default Firebase;
