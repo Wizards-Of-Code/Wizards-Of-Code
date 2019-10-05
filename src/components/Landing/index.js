@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const LandingPage = props => (
   <div className="landing-page-container">
     <div className="create-battle">
-      <button>Create new Battle</button>
+      <button className="create-battle-btn">Create new Battle</button>
     </div>
     <div className="join-random-btl">
       <Link to={`/gamestage`}>
