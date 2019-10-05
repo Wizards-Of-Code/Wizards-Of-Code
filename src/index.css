@@ -87,7 +87,7 @@ code {
   padding-right: 20%;
 }
 
-.user-history-btn, .go-to-battle, .list-skills, .change-profile-pic {
+.user-history-btn, .go-to-battle, .list-skills, .change-profile-pic, .create-battle-btn, .join-random-btl-btn {
  font-size: 25px;
   color: white;
   background: rgb(125, 131, 214);
