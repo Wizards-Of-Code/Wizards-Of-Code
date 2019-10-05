@@ -56,9 +56,17 @@ export const submitCode = (code, inputs) => {
       userFunction: code
     })
 
+    const timeoutId = setTimeout(() => {
+      dispatch(gotResult('Your function failed!  :('));
+      webWorker.terminate();
+    }, 5000);
+
+    console.log(timeoutId);
+
     webWorker.onmessage = await function(event) {
       dispatch(gotResult(event.data));
       webWorker.terminate();
+      clearTimeout(timeoutId);
     }
 
   };
