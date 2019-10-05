@@ -7,8 +7,9 @@ const GOT_CODE = "GOT_CODE"
 
 const initialState = {
   code: "",
+  problem: "",
+  inputs: "",
   result: "",
-  problem: ""
 };
 
 // ACTION CREATOR
@@ -16,9 +17,10 @@ const gotResult = result => ({
   type: GOT_RESULT,
   result
 });
-const gotProblem = problem => ({
+const gotProblem = (problem, inputs) => ({
   type: GOT_PROBLEM,
-  problem
+  problem,
+  inputs
 });
 const gotCode = code => ({
   type: GOT_CODE,
@@ -39,22 +41,22 @@ export const getProblem = id => {
     // console.log(firebase.problem(id));
 
     data.get().then(doc => {
-      dispatch(gotProblem(doc.data().prompt));
+      dispatch(gotProblem(doc.data().prompt, JSON.parse(doc.data().inputs)));
     });
   };
 };
 
-export const submitCode = code => {
-  return async dispatch => {
-    const webWorker = new Worker('../webWorker/webWorker.js');
+export const submitCode = (code, inputs) => {
 
+  return async dispatch => {
+    const webWorker = new Worker('webWorker.js');
 
     webWorker.postMessage({
-      inputs: {input1: [4], input2: [3]},
+      inputs: inputs,
       userFunction: code
     })
 
-    webWorker.onmessage = function(event) {
+    webWorker.onmessage = await function(event) {
       dispatch(gotResult(event.data));
       webWorker.terminate();
     }
@@ -68,7 +70,7 @@ const gameReducer = (state = initialState, action) => {
     case GOT_RESULT:
       return { ...state, result: action.result };
     case GOT_PROBLEM:
-      return { ...state, problem: action.problem };
+      return { ...state, problem: action.problem, inputs: action.inputs };
     case GOT_CODE:
       return { ...state, code: action.code};
     default:
