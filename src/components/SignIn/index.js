@@ -17,11 +17,13 @@ const SignInPage = () => (
     <SignUpLink />
   </div>
 );
+
 const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
 };
+
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
