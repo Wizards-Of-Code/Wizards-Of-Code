@@ -1,28 +1,33 @@
 import React from 'react'
-import {Container} from '@inlet/react-pixi'
-import {Stage} from 'react-pixi-fiber'
+import {Stage, Sprite} from 'react-pixi-fiber'
+import Player from './Player'
 import CodeArea from './codeArea'
 import Instructions from './instructions'
 import Result from './result'
-import Player1 from './player1'
-import Player2 from './player2'
-import Background from './background'
-import RotatingBunny from "./RotatingRedPlayer";
-// adjust image size to 1920x540 pixels
+import mage from './images/mage.png'
+import mage2 from './images/mage2.png'
+import * as PIXI from 'pixi.js'
+import greenForest from './images/green_forest(resized).png'
+
+const height = 450
+const width = 600
+const OPTIONS = {
+  height: window.innerHeight / 2,
+  width: window.innerWidth
+}
 
 const GameStage = props => {
-  const innerWidth = window.innerWidth
-  const innerHeight = window.innerHeight
   return (
     <div>
-      <Stage width={innerWidth} height={innerHeight / 1.75}>
-        <Container>
-          <Background />
-          <Player1 />
-          <Player2 />
-          <RotatingBunny x={300} y={225} />
-        </Container>
-      </Stage>
+      <div>
+        <Stage options={OPTIONS}>
+          <Sprite
+            texture={PIXI.Texture.from(greenForest)}
+          />
+          <Player x={width / 2} y={height / 2} image={mage} />
+          <Player x={width} y={height} image={mage2} />
+        </Stage>
+      </div>
       <div className="taskbox">
         <Instructions />
         <CodeArea />
