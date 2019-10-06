@@ -1,11 +1,13 @@
 import React from 'react'
-import {Stage, Container} from '@inlet/react-pixi'
+import {Container} from '@inlet/react-pixi'
+import {Stage} from 'react-pixi-fiber'
 import CodeArea from './codeArea'
 import Instructions from './instructions'
 import Result from './result'
 import Player1 from './player1'
 import Player2 from './player2'
 import Background from './background'
+import RotatingBunny from "./RotatingRedPlayer";
 // adjust image size to 1920x540 pixels
 
 const GameStage = props => {
@@ -18,6 +20,7 @@ const GameStage = props => {
           <Background />
           <Player1 />
           <Player2 />
+          <RotatingBunny x={300} y={225} />
         </Container>
       </Stage>
       <div className="taskbox">
