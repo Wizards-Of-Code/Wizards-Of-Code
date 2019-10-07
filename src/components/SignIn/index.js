@@ -47,7 +47,7 @@ class SignInFormBase extends Component {
       .catch(error => {
         this.setState({ error });
       });
-    event.preventDefault();
+    event.preventDefault(); // surprised this works with this at the bottom? 🤔
   };
 
   onChange = event => {

@@ -7,7 +7,9 @@ const GOT_CODE = 'GOT_CODE';
 
 const CREATE_BATTLE = 'CREATE_BATTLE';
 
+// might be worth thinking about removing the redux store as a whole and using Firebase to handle the state of your application.
 
+// don't initialize with null. use empty strings & empty objects instead
 const initialState = {
   openBattles: [],
   history: [],
@@ -32,7 +34,6 @@ const createBattle = battle => ({
 
 
 // THUNK CREATORS
-
 
 
 const gameReducer = (state = initialState, action) => {

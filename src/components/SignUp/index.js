@@ -83,7 +83,7 @@ class SignUpFormBase extends Component {
       error,
     } = this.state;
 
-    const isInvalid = (
+    const isInvalid = ( // make stronger form validations here & make sure password isn't less than 6 characters 
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
