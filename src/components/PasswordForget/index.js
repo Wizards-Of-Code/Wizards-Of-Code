@@ -42,7 +42,7 @@ class PasswordForgetFormBase extends Component {
 
   render() {
     const { email, error } = this.state;
-    const isInvalid = email === '';
+    const isInvalid = email === ''; // consider using email.trim()
     return (
       <form onSubmit={this.onSubmit}>
         <input

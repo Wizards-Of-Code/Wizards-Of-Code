@@ -1,5 +1,4 @@
 import React from 'react';
-
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
 
@@ -8,7 +7,7 @@ const withAuthentication = Component => {
 
     constructor(props) {
       super(props);
-      this.state = {
+      this.state = { // don't initialize state with null
         authUser: null,
       };
     }
@@ -20,11 +19,6 @@ const withAuthentication = Component => {
           : this.setState({ authUser: null });
       });
     }
-
-    componentWillUnmount() {
-      this.listener();
-    }
-
     render() {
       return (
         <AuthUserContext.Provider value={this.state.authUser}>

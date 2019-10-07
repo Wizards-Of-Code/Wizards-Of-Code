@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { connect } from 'react-redux'
-
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-import { gotUser } from '../../store/users'
 
-const SignUpPage = () => (
+const SignUpPage = (props) => (
   <div>
     <h1>SignUp</h1>
-    <SignUpForm />
+    <SignUpForm login={props.login} />
   </div>
 );
 
@@ -54,10 +51,7 @@ class SignUpFormBase extends Component {
           });
       })
       .then(() => {
-        return this.props.firebase.user(this.state.uid).get();
-      })
-      .then(user => {
-        this.props.gotUser(user.data(), user.id);
+        this.props.login(this.state.uid)
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
@@ -83,7 +77,7 @@ class SignUpFormBase extends Component {
       error,
     } = this.state;
 
-    const isInvalid = (
+    const isInvalid = ( // make stronger form validations here & make sure password isn't less than 6 characters 
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
@@ -137,14 +131,14 @@ const SignUpLink = () => (
   </p>
 );
 
-const mapDispatchToProps = dispatch => ({
-  gotUser: (user, userId) => dispatch(gotUser(user, userId))
-})
+// const mapDispatchToProps = dispatch => ({
+//   gotUser: (user, userId) => dispatch(gotUser(user, userId))
+// })
 
 const SignUpForm = compose(
   withRouter,
-  withFirebase,
-  connect(null, mapDispatchToProps)
+  withFirebase
+  // connect(null, mapDispatchToProps)
 )(SignUpFormBase);
 
 export default SignUpPage;
