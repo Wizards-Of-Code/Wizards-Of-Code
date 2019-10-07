@@ -5,7 +5,6 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-import { gotUser }from '../../store/users';
 
 const SignInPage = (props) => (
   <div>
@@ -78,9 +77,6 @@ class SignInFormBase extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  gotUser: (user, userId) => dispatch(gotUser(user, userId))
-})
 
 const SignInForm = compose(
   withRouter,
