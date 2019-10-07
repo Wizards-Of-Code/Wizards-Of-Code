@@ -1,9 +1,7 @@
 import React from "react";
 import { withAuthorization } from "../Session";
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { gotUser } from '../../store/users';
 
 const HomePage = (props) => {
   return (
