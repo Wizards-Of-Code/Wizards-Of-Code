@@ -10,10 +10,10 @@ import * as PIXI from 'pixi.js'
 import greenForest from './images/green_forest(resized).png'
 import Explosion from './Bunnymark'
 
-const height = 450
-const width = 600
+const height = window.innerHeight
+const width = window.innerWidth
 const OPTIONS = {
-  height: window.innerHeight / 2,
+  height: window.innerHeight / 1.75,
   width: window.innerWidth
 }
 
@@ -21,12 +21,12 @@ const GameStage = props => {
   return (
     <div>
       <div>
-        <Stage options={OPTIONS}>
+        <Stage options={OPTIONS} >
           <Sprite
-            texture={PIXI.Texture.from(greenForest)}
+            texture={PIXI.Texture.from(greenForest)} scale={1}
           />
-          <Player x={width / 2} y={height / 2} image={mage} />
-          <Player x={width*1.5} y={height / 2} image={mage2} />
+          <Player x={width / 3} y={height / 3} image={mage} scale={0.5} />
+          <Player x={width / 1.5} y={height / 3} image={mage2} scale={0.5} />
           <Explosion />
         </Stage>
       </div>
