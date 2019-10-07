@@ -19,7 +19,7 @@ class Player extends Component {
 
   animate = delta => {
     this.setState(state => ({
-      ...state
+      ...state,
       // rotation: state.rotation + 0.1 * delta
     }))
   }

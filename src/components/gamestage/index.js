@@ -8,6 +8,7 @@ import mage from './images/mage.png'
 import mage2 from './images/mage2.png'
 import * as PIXI from 'pixi.js'
 import greenForest from './images/green_forest(resized).png'
+import Explosion from './Bunnymark'
 
 const height = 450
 const width = 600
@@ -25,7 +26,8 @@ const GameStage = props => {
             texture={PIXI.Texture.from(greenForest)}
           />
           <Player x={width / 2} y={height / 2} image={mage} />
-          <Player x={width} y={height} image={mage2} />
+          <Player x={width*1.5} y={height / 2} image={mage2} />
+          <Explosion />
         </Stage>
       </div>
       <div className="taskbox">
