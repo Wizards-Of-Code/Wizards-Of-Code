@@ -31,9 +31,9 @@ const GameStage = props => {
         </Stage>
       </div>
       <div className="taskbox">
-        <Instructions />
-        <CodeArea />
-        <Result />
+        <Instructions prompt={props.problem.prompt} getProblem={props.getProblem} />
+        <CodeArea userCode={props.userCode} updateCode={props.updateCode} />
+        <Result submitCode={props.submitCode} userCode={props.userCode} problem={props.problem} result={props.result}/>
       </div>
     </div>
   )

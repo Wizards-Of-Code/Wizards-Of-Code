@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { getProblem } from "../../store/game";
 
-class disconnectedInstructions extends Component {
+class Instructions extends Component {
+  constructor(props) {
+    super(props)
+  }
   componentDidMount() {
     this.props.getProblem("b0FL15GLthEMS3mXfBTZ");
   }
@@ -11,21 +12,9 @@ class disconnectedInstructions extends Component {
     return (
       <div className="instructions">
         <div className="title">Question</div>
-        <p>{this.props.game.problem}</p>
+        <p>{this.props.prompt}</p>
       </div>
     );
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  getProblem: id => dispatch(getProblem(id))
-});
-
-const mapStateToProps = state => ({
-  game: state.game
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(disconnectedInstructions);
+export default Instructions

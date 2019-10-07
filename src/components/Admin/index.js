@@ -13,7 +13,7 @@ class AdminPage extends Component {
   componentDidMount() {
     this.setState({ loading: true });
     this.unsubscribe = this.props.firebase.users().onSnapshot(snapshot => {
-      let usersList = [];
+      let usersList = []; // might be a way to get info from firebase without having to loop through like this
       let changes = snapshot.docChanges();
       changes.forEach(change => {
         console.log(change.doc.data());

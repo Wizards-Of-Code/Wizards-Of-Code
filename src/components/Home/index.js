@@ -6,7 +6,6 @@ import { compose } from 'recompose';
 import { gotUser } from '../../store/users';
 
 const HomePage = (props) => {
-  console.log(props)
   return (
     <div className="home-page-container">
       <div className="home-page-navbar">
@@ -28,22 +27,15 @@ const HomePage = (props) => {
         <button className="change-profile-pic">Change Profile Picture</button>
         <div className="user-stats">
           <h1>Stats</h1>
-          <h3>User name: {props.users.username}</h3>
-          <h3>User email: {props.users.username}</h3>
-          <h3>Experience: {props.users.experiense}</h3>
-          <h3>Health: {props.users.maxHealth}%</h3>
+          <h3>User name: {props.user.username}</h3>
+          <h3>User email: {props.user.username}</h3>
+          <h3>Experience: {props.user.experiense}</h3>
+          <h3>Health: {props.user.maxHealth}%</h3>
         </div>
       </div>
     </div>
   );
   };
 
- const mapStateToProps = state => ({
-   users: state.users
- });
-
-
 const condition = authUser => !!authUser;
-export default compose(withAuthorization(condition),
-connect(mapStateToProps, null)
-)(HomePage);
+export default compose(withAuthorization(condition))(HomePage);

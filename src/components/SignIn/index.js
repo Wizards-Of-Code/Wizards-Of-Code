@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { connect } from 'react-redux';
-
 import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { gotUser }from '../../store/users';
 
-const SignInPage = () => (
+const SignInPage = (props) => (
   <div>
     <h1>Sign In</h1>
-    <SignInForm />
+    <SignInForm login={props.login} />
     <PasswordForgetLink />
     <SignUpLink />
   </div>
@@ -35,10 +33,7 @@ class SignInFormBase extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
-        return this.props.firebase.user(authUser.user.uid).get();
-      })
-      .then(user => {
-        this.props.gotUser(user.data(), user.id);
+        this.props.login(authUser.user.uid)
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
@@ -47,7 +42,7 @@ class SignInFormBase extends Component {
       .catch(error => {
         this.setState({ error });
       });
-    event.preventDefault();
+    event.preventDefault(); // surprised this works with this at the bottom? 🤔
   };
 
   onChange = event => {
@@ -90,7 +85,6 @@ const mapDispatchToProps = dispatch => ({
 const SignInForm = compose(
   withRouter,
   withFirebase,
-  connect(null, mapDispatchToProps)
 )(SignInFormBase);
 
 export default SignInPage;

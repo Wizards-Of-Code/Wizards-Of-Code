@@ -1,12 +1,6 @@
-
-
-
 onmessage = function(event) {
 
   let outputs = [];
-
-  console.log(event.data.userFunction);
-
   let userFunction;
 
   eval('userFunction =' + event.data.userFunction)

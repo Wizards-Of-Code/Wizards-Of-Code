@@ -1,14 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
-import { submitCode } from "../../store/game";
 
-const DisconnectedResult = props => {
+const Result = props => {
 
   return (
     <div className="result">
       <div className="title">Result:</div>
       <p>{JSON.stringify(props.result)}</p>
-      <button className="buttonFont" onClick={() => handleClick(props)}>
+      <button className="buttonFont" onClick={() => props.submitCode(props.userCode, JSON.parse(props.problem.inputs))}>
         SUBMIT CODE
       </button>
     </div>
@@ -16,20 +14,4 @@ const DisconnectedResult = props => {
 
 };
 
-const handleClick = (props) => {
-  props.submitCode(props.code, props.inputs);
-}
-
-const mapDispatchToProps = dispatch => ({
-  submitCode: (code, inputs) => dispatch(submitCode(code, inputs))
-});
-const mapStateToProps = state => ({
-  result: state.game.result,
-  code: state.game.code,
-  inputs: state.game.inputs,
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DisconnectedResult);
+export default Result

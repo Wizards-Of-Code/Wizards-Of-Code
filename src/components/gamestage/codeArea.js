@@ -1,20 +1,12 @@
 import CodeMirror from "react-codemirror";
 import "codemirror/mode/javascript/javascript";
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { getCode } from "../../store/game";
 
 class CodeArea extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { code: "" };
   }
-
-  updateCode = function(newCode) {
-    this.setState({
-      code: newCode
-    });
-  };
 
   render() {
     let options = {
@@ -27,9 +19,9 @@ class CodeArea extends Component {
     };
     return (
       <CodeMirror
-        value={this.state.code}
+        value={this.props.userCode}
         onChange={(event) => {
-          this.props.getCode(event)
+          this.props.updateCode(event)
         }}
         options={options}
       />
@@ -37,8 +29,4 @@ class CodeArea extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  getCode: (code) => dispatch(getCode(code))
-})
-
-export default connect(null, mapDispatchToProps)(CodeArea);
+export default CodeArea
