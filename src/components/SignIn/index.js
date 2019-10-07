@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import { connect } from 'react-redux';
 
 import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import { gotUser }from '../../store/users';
 
 const SignInPage = () => (
   <div>
@@ -15,11 +17,13 @@ const SignInPage = () => (
     <SignUpLink />
   </div>
 );
+
 const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
 };
+
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +34,12 @@ class SignInFormBase extends Component {
     const { email, password } = this.state;
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
+      .then(authUser => {
+        return this.props.firebase.user(authUser.user.uid).get();
+      })
+      .then(user => {
+        this.props.gotUser(user.data(), user.id);
+      })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
@@ -73,9 +83,14 @@ class SignInFormBase extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  gotUser: (user, userId) => dispatch(gotUser(user, userId))
+})
+
 const SignInForm = compose(
   withRouter,
   withFirebase,
+  connect(null, mapDispatchToProps)
 )(SignInFormBase);
 
 export default SignInPage;

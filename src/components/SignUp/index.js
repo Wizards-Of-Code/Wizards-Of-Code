@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import { connect } from 'react-redux'
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import { gotUser } from '../../store/users'
 
 const SignUpPage = () => (
   <div>
@@ -18,6 +20,7 @@ const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   error: null,
+  uid: null,
 };
 
 class SignUpFormBase extends Component {
@@ -32,13 +35,29 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
+
+        const iceArrowRef = this.props.firebase.skill('UfEUBPa6SjEWLEKirF1Y');
+
+        this.setState( {uid: authUser.user.uid} )
+
         // Create a user in your Firebase realtime database
         return this.props.firebase
           .user(authUser.user.uid)
           .set({
             username,
             email,
+            experience: 0,
+            maxHealth: 100,
+            skills: [
+              iceArrowRef
+            ]
           });
+      })
+      .then(() => {
+        return this.props.firebase.user(this.state.uid).get();
+      })
+      .then(user => {
+        this.props.gotUser(user.data(), user.id);
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
@@ -118,9 +137,14 @@ const SignUpLink = () => (
   </p>
 );
 
+const mapDispatchToProps = dispatch => ({
+  gotUser: (user, userId) => dispatch(gotUser(user, userId))
+})
+
 const SignUpForm = compose(
   withRouter,
   withFirebase,
+  connect(null, mapDispatchToProps)
 )(SignUpFormBase);
 
 export default SignUpPage;

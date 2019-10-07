@@ -41,12 +41,22 @@ class Firebase {
   };
 
   // User API
-
   user = uid => this.db.collection("users").doc(uid);
 
   users = () => this.db.collection("users");
 
+  // Problem API
   problem = probId => this.db.collection("problems").doc(probId);
+
+
+  // Skills API
+  skill = skillId => this.db.collection("skills").doc(skillId);
+
+  // Battles API
+  battle = battleId => this.db.collection("battles").doc(battleId);
+
+  battles = () => this.db.collection("battles");
+
 }
 
 export default Firebase;
