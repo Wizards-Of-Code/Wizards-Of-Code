@@ -1,36 +1,42 @@
-import React from "react";
-import { Stage, Sprite, Container } from "@inlet/react-pixi";
-import background from "./images/green_forest(resized).png";
-import mage from "./images/mage.png";
-import mage2 from "./images/mage2.png";
-import CodeArea from "./codeArea";
-import Instructions from "./instructions";
-import Result from "./result";
+import React from 'react'
+import {Stage, Sprite} from 'react-pixi-fiber'
+import Player from './Player'
+import CodeArea from './codeArea'
+import Instructions from './instructions'
+import Result from './result'
+import mage from './images/mage.png'
+import mage2 from './images/mage2.png'
+import * as PIXI from 'pixi.js'
+import greenForest from './images/green_forest(resized).png'
+import Explosion from './Bunnymark'
 
-// adjust image size to 1920x540 pixels 
+const height = window.innerHeight
+const width = window.innerWidth
+const OPTIONS = {
+  height: window.innerHeight / 1.75,
+  width: window.innerWidth
+}
 
 const GameStage = props => {
-  const innerWidth = window.innerWidth
-  const innerHeight = window.innerHeight
   return (
     <div>
-      <Stage
-        width={innerWidth}
-        height={innerHeight/1.75}
-      >
-        <Container>
-          <Sprite anchor={0.5} x={innerWidth/2} y={innerHeight/3.5} image={background} scale={1} />
-          <Sprite anchor={0.5} x={innerWidth/3} y={innerHeight/3} image={mage} scale={2} />
-          <Sprite anchor={0.5} x={innerWidth/1.5} y={innerHeight/3} image={mage2} scale={0.5} />
-        </Container>
-      </Stage>
+      <div>
+        <Stage options={OPTIONS} >
+          <Sprite
+            texture={PIXI.Texture.from(greenForest)} scale={1}
+          />
+          <Player x={width / 3} y={height / 3} image={mage} scale={0.5} />
+          <Player x={width / 1.5} y={height / 3} image={mage2} scale={0.5} />
+          <Explosion />
+        </Stage>
+      </div>
       <div className="taskbox">
         <Instructions />
         <CodeArea />
         <Result />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GameStage;
+export default GameStage

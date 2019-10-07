@@ -6,6 +6,6 @@ import users from "./users";
 
 const store = createStore(
   combineReducers({ game, users }),
-  applyMiddleware(logger, thunk)
+  applyMiddleware(thunk, logger)
 );
 export default store;
