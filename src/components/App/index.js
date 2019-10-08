@@ -35,6 +35,7 @@ class App extends React.Component {
       console.log("SNAPSHOT", snapshot);
     });
   };
+
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
     problemRef
@@ -95,7 +96,6 @@ class App extends React.Component {
       { merge: true }
     );
     battleRef.onSnapshot(querySnapshot => {
-      console.log(querySnapshot.data(), battleRef);
       this.setState({ myBattle: querySnapshot.data(), battleRef });
     });
   };
@@ -104,15 +104,14 @@ class App extends React.Component {
     if (this.state.user.username === this.state.myBattle.user1) {
       this.state.battleRef.set(
         {
-          user2_health: this.state.myBattle.user2_health + amount
+          user2_health: this.state.myBattle.user2_health - amount
         },
         { merge: true }
       );
     } else {
-      console.log(this.state);
       this.state.battleRef.set(
         {
-          user1_health: this.state.myBattle.user1_health + amount
+          user1_health: this.state.myBattle.user1_health - amount
         },
         { merge: true }
       );
@@ -152,10 +151,8 @@ class App extends React.Component {
 
     webWorker.onmessage = event => {
       this.setState({ result: event.data });
-      console.log("EVEENT.DATA.CORRECT", event.data.correct);
       if (event.data.correct) {
-        console.log("EVEENT.DATA.CORRECT", event.data.correct);
-        this.doDamage(-10);
+        this.doDamage(10);
       }
       webWorker.terminate();
       clearTimeout(timeoutId);
