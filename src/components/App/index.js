@@ -117,6 +117,15 @@ class App extends React.Component {
     });
   };
 
+  getRandomProblem = difficulty => {
+    this.props.firebase
+      .getRandomProblem(difficulty)
+      .then(problemRef => problemRef.get())
+      .then(doc => this.setState({ problem: doc.data() }));
+
+    // this.setState({ problem: probRef.data() });
+  };
+
   updateCode = event => {
     this.setState({
       userCode: event
@@ -205,6 +214,7 @@ class App extends React.Component {
                 result={this.state.result}
                 submitCode={this.submitCode}
                 doDamage={this.doDamage}
+                getRandomProblem={this.getRandomProblem}
               />
             )}
           />

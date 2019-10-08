@@ -14,6 +14,15 @@ class Instructions extends Component {
         <div className="title">Question</div>
         <p>{this.props.prompt}</p>
         <button onClick={this.props.doDamage}>DO DAMAGE</button>
+        <button onClick={() => this.props.getRandomProblem(1)}>
+          Easy Problem Spell
+        </button>
+        <button onClick={() => this.props.getRandomProblem(2)}>
+          Medium Problem Spell
+        </button>
+        <button onClick={() => this.props.getRandomProblem(3)}>
+          Hard Problem Spell
+        </button>
       </div>
     );
   }

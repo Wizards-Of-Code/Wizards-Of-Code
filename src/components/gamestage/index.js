@@ -33,6 +33,7 @@ const GameStage = props => {
           prompt={props.problem.prompt}
           getProblem={props.getProblem}
           doDamage={props.doDamage}
+          getRandomProblem={props.getRandomProblem}
         />
         <CodeArea userCode={props.userCode} updateCode={props.updateCode} />
         <Result

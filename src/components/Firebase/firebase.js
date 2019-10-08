@@ -75,6 +75,15 @@ class Firebase {
         docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
       );
 
+  getRandomProblem = difficulty =>
+    this.db
+      .collection("problems")
+      .where("difficulty", "==", difficulty)
+      .get()
+      .then(
+        docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
+      );
+
   battles = () => this.db.collection("battles");
   openBattles = () => this.db.collection("battles");
 
