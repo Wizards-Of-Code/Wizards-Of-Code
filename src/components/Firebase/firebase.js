@@ -56,8 +56,7 @@ class Firebase {
   battle = battleId => this.db.collection("battles").doc(battleId);
 
   battles = () => this.db.collection("battles");
-  openBattles = () =>
-    this.db.collection("battles").where("status", "==", "open");
+  openBattles = () => this.db.collection("battles");
 
   // David's suggestion
   // Have parent component hold all the state for the application & subscribe to parts of firestore depending on user's progress
