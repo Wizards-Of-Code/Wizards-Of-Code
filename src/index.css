@@ -92,14 +92,12 @@ a:hover {
   width: 100%;
   height: 100%;
 }
-.landing-page-container {
+.container {
   display: flex;
   flex-direction: column;
-  padding-left: 5%;
   min-height: fill-available;
   background: #a2e8f5
     url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
-
   background-size: cover;
 }
 

@@ -21,25 +21,14 @@ class App extends React.Component {
       problems: [],
       problem: [],
       skills: [],
-<<<<<<< HEAD
       userCode: "",
-      result: ""
+      result: {}
     };
     this.login = this.login.bind(this);
     this.getProblem = this.getProblem.bind(this);
     this.updateCode = this.updateCode.bind(this);
     this.submitCode = this.submitCode.bind(this);
     this.getOpenBattles = this.getOpenBattles.bind(this);
-=======
-      userCode: '',
-      result: {}
-    }
-    this.login = this.login.bind(this)
-    this.getProblem = this.getProblem.bind(this)
-    this.updateCode = this.updateCode.bind(this)
-    this.submitCode = this.submitCode.bind(this)
-
->>>>>>> b266c30151b36591dff894f8ca96e6f28944fcc8
   }
 
   login(userId) {
@@ -86,18 +75,20 @@ class App extends React.Component {
   };
 
   submitCode = function(code, inputs, expectedOutputs) {
-    const webWorker = new Worker('webWorker.js')
+    const webWorker = new Worker("webWorker.js");
 
     webWorker.postMessage({
       userFunction: code,
       inputs: inputs,
       expectedOutputs: expectedOutputs
-    })
+    });
 
     const timeoutId = setTimeout(() => {
-      this.setState({result: {userOutputs: 'Your function failed!  :(', correct: false}} );
-      webWorker.terminate()
-    }, 5000)
+      this.setState({
+        result: { userOutputs: "Your function failed!  :(", correct: false }
+      });
+      webWorker.terminate();
+    }, 5000);
 
     webWorker.onmessage = event => {
       this.setState({ result: event.data });
@@ -109,9 +100,8 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className='container'>
+        <div className="container">
           <Navigation />
-<<<<<<< HEAD
           <hr />
           <Route
             exact
@@ -124,9 +114,6 @@ class App extends React.Component {
               />
             )}
           />
-=======
-          <Route exact path={ROUTES.LANDING} component={LandingPage} />
->>>>>>> b266c30151b36591dff894f8ca96e6f28944fcc8
           <Route
             path={ROUTES.SIGN_UP}
             render={props => <SignUpPage {...props} login={this.login} />}

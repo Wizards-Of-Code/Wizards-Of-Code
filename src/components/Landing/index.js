@@ -8,7 +8,6 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    console.log(this.props.openBattles);
     return (
       <div className="landing-page-container">
         <div className="join-random-btl">
