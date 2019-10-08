@@ -49,7 +49,6 @@ class Firebase {
   // Problem API
   problem = probId => this.db.collection("problems").doc(probId);
 
-
   // Skills API
   skill = skillId => this.db.collection("skills").doc(skillId);
 
@@ -57,11 +56,12 @@ class Firebase {
   battle = battleId => this.db.collection("battles").doc(battleId);
 
   battles = () => this.db.collection("battles");
-
+  openBattles = () =>
+    this.db.collection("battles").where("status", "==", "open");
 
   // David's suggestion
   // Have parent component hold all the state for the application & subscribe to parts of firestore depending on user's progress
-    // i.e. I'm user1 battling against user2. We both subscribe to the same battle to get updates for it. When user2 solves a problem, the battle gets updated in the database. Since I'm subscribed to the battle, I automatically get the update & can then update my state thanks to the listener
+  // i.e. I'm user1 battling against user2. We both subscribe to the same battle to get updates for it. When user2 solves a problem, the battle gets updated in the database. Since I'm subscribed to the battle, I automatically get the update & can then update my state thanks to the listener
   // When updates happen to the battle, it gets updated in the parent component's state & then trickles down into whatever components need it
 
   // documentation: https://firebase.google.com/docs/database/admin/retrieve-data

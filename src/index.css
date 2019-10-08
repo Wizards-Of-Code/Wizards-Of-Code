@@ -68,6 +68,16 @@ code {
   width: 100%;
   height: 100%;
 }
+.landing-page-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+  min-height: fill-available;
+  background: #a2e8f5
+    url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
+
+  background-size: cover;
+}
 
 .home-page-navbar {
   display: flex;
@@ -87,13 +97,26 @@ code {
   padding-right: 20%;
 }
 
-.user-history-btn, .go-to-battle, .list-skills, .change-profile-pic, .create-battle-btn, .join-random-btl-btn {
- font-size: 25px;
+.user-history-btn,
+.go-to-battle,
+.list-skills,
+.change-profile-pic,
+.create-battle-btn,
+.join-random-btl-btn {
+  font-size: 25px;
   color: white;
   background: rgb(125, 131, 214);
   border-radius: 10px;
   margin-top: 20px;
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
-
+}
+.openGame {
+  font-size: 25px;
+  color: black;
+  background: rgba(109, 248, 2, 0.562);
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
