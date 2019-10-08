@@ -12,10 +12,18 @@ class LandingPage extends React.Component {
       <div className="landing-page-container">
         <div className="join-random-btl">
           <div className="create-battle">
-            <button className="create-battle-btn">Create New Battle</button>
+            <button
+              className="create-battle-btn"
+              onClick={this.props.createBattle}
+            >
+              Create New Battle
+            </button>
           </div>
           <Link to={`/gamestage`}>
-            <button className="join-random-btl-btn">
+            <button
+              onClick={this.props.joinRandomBattle}
+              className="join-random-btl-btn"
+            >
               Join A Random Battle
             </button>
           </Link>
@@ -23,7 +31,7 @@ class LandingPage extends React.Component {
             <button className="join-random-btl-btn" disabled>
               Open Battles
             </button>
-            <OpenBattles openBattles={this.props.openBattles} />
+            <OpenBattles openBattles={this.props.openBattles} joinOpenBattle={this.props.joinOpenBattle}/>
           </div>
         </div>
       </div>

@@ -16,8 +16,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: [],
+      user: {},
       battles: [],
+      myBattle: {},
       problems: [],
       problem: [],
       skills: [],
@@ -29,6 +30,9 @@ class App extends React.Component {
     this.updateCode = this.updateCode.bind(this);
     this.submitCode = this.submitCode.bind(this);
     this.getOpenBattles = this.getOpenBattles.bind(this);
+    this.createBattle = this.createBattle.bind(this);
+    this.joinRandomBattle = this.joinRandomBattle.bind(this);
+    this.joinOpenBattle = this.joinOpenBattle.bind(this);
   }
 
   login(userId) {
@@ -47,9 +51,8 @@ class App extends React.Component {
 
   getOpenBattles() {
     const openBattlesRef = this.props.firebase.openBattles();
-
+    let allOpenBattles = [];
     openBattlesRef.onSnapshot(querySnapshot => {
-      let allOpenBattles = [...this.state.battles];
       querySnapshot.docChanges().forEach(change => {
         let status = change.doc.data().status;
         let doc = change.doc.data();
@@ -65,6 +68,42 @@ class App extends React.Component {
         }
       });
       this.setState({ battles: allOpenBattles });
+    });
+  }
+
+  createBattle() {
+    this.props.firebase.createBattle(this.state.user).then(battleRef =>
+      battleRef.onSnapshot(querySnapshot => {
+        this.setState({ myBattle: querySnapshot });
+      })
+    );
+  }
+
+  joinRandomBattle() {
+    this.props.firebase.joinRandomBattle(this.state.user).then(battleRef => {
+      console.log(battleRef.id);
+      this.joinBattle(battleRef);
+    });
+  };
+
+  joinOpenBattle(battleId) {
+    let battleRef =  this.props.firebase.battle(battleId)
+    this.joinBattle(battleRef);
+
+  }
+
+  joinBattle (battleRef) {
+    const user = this.state.user;
+    battleRef.set(
+      {
+        user2: user.username,
+        user2_health: user.maxHealth,
+        status: "closed"
+      },
+      { merge: true }
+    );
+    battleRef.onSnapshot(querySnapshot => {
+      this.setState({ myBattle: querySnapshot });
     });
   }
 
@@ -97,6 +136,14 @@ class App extends React.Component {
     };
   };
 
+  componentDidMount() {
+    this.props.firebase.auth.onAuthStateChanged(authUser => {
+      if (authUser) {
+        this.login(authUser.uid);
+      }
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -109,8 +156,11 @@ class App extends React.Component {
             render={props => (
               <LandingPage
                 {...props}
+                createBattle={this.createBattle}
                 openBattles={this.state.battles}
                 getOpenBattles={this.getOpenBattles}
+                joinRandomBattle={this.joinRandomBattle}
+                joinOpenBattle={this.joinOpenBattle}
               />
             )}
           />
