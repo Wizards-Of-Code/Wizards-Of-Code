@@ -4,9 +4,13 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-const SignUpPage = (props) => (
-  <div>
-    <h1>SignUp</h1>
+const SignUpPage = props => (
+  <div className="sign-up">
+    <img className="sign-up-img"
+      src="https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg"
+      alt=""
+    />
+    <h1 className="sign-up-logo">Sign Up</h1>
     <SignUpForm login={props.login} />
   </div>
 );
@@ -86,59 +90,64 @@ class SignUpFormBase extends Component {
 
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
+      <div>
+        <form onSubmit={this.onSubmit} className="sign-up-form">
+          <input
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Full Name"
+            className="input-fields"
+          />
 
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
+          <input
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+            className="input-fields"
+          />
 
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
+          <input
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+            className="input-fields"
+          />
 
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
+          <input
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+            className="input-fields"
+          />
 
-        <button disabled={isInvalid} type="submit">Sign Up</button>
-        {error && <p>{error.message}</p>}
-      </form>
+          <button disabled={isInvalid} type="submit" className="sign-up-btn">
+            Sign Up
+          </button>
+          {error && <p>{error.message}</p>}
+        </form>
+      </div>
     );
   }
 }
 const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+  <p className='no-account'>
+    Don't have an account? <Link to={ROUTES.SIGN_UP} className="sp-link">Sign Up</Link>
   </p>
 );
 
-// const mapDispatchToProps = dispatch => ({
-//   gotUser: (user, userId) => dispatch(gotUser(user, userId))
-// })
+
 
 const SignUpForm = compose(
   withRouter,
   withFirebase
-  // connect(null, mapDispatchToProps)
 )(SignUpFormBase);
 
 export default SignUpPage;

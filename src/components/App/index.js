@@ -72,9 +72,8 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className='container'>
           <Navigation />
-          <hr />
           <Route exact path={ROUTES.LANDING} component={LandingPage} />
           <Route
             path={ROUTES.SIGN_UP}
