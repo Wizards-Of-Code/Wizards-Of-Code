@@ -47,7 +47,8 @@ a:hover {
   justify-content: row;
   align-content: space-evenly;
   width: 100%;
-  height: 50%;
+  height: 100%;
+  background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
 }
 
 .ReactCodeMirror {
@@ -58,11 +59,12 @@ a:hover {
 .instructions {
   display: block;
   width: 20%;
-  background-color: blanchedalmond;
+  background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
   border-style: solid;
-  border-width: 1px;
-  border-color: blue;
-  border-radius: 2%;
+  border-width: 3px;
+  border-color: rgb(44, 66, 47);
+  border-radius: 5%;
+  padding: 10px;
 }
 
 .result {
@@ -74,13 +76,14 @@ a:hover {
   background-color: blanchedalmond;
   border-style: solid;
   border-width: 1px;
-  border-color: blue;
+  border-color: rgb(23, 23, 32);
   border-radius: 2%;
 }
 .title {
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: fantasy;
   font-weight: bolder;
+  font-size: 20px;
 }
 .buttonFont {
   font-family: 'Courier New', Courier, monospace;
@@ -103,9 +106,10 @@ a:hover {
 .join-random-btl {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 500px;
   height: 100%;
-  margin:50px;
+  margin: 50px;
+  position: relative;
 }
 
 .join-btl {
@@ -130,8 +134,9 @@ a:hover {
   margin: 30px;
   padding: 5px;
   width: 300px;
+  height: 200px;
+  align-content: flex-end;
 }
-
 
 .home-page-navbar {
   display: flex;
@@ -151,6 +156,7 @@ a:hover {
   border-radius: 5px;
   border-color: #ffffff;
   border-width: 2px;
+  padding: 20px;
 }
 
 .profile-info {
@@ -250,29 +256,9 @@ a:hover {
   border-radius: 6px;
   display: inline-block;
   transition: all 0.3s ease 0s;
-}
-/* .openGame {
-  font-size: 25px;
-  color: black;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
-  font-weight: 100;
-  font-size: 20px;
   padding: 5px;
-  text-transform: uppercase;
-  border-radius: 6px;
-  display: inline-block;
-  transition: all 0.3s ease 0s;
-  margin-left: 20px;
-  margin-top: 7px;
-  font-family: fantasy;
-  border: 2px solid rgb(184, 180, 180);
-  z-index: 10;
-   font-family: fantasy;
-} */
+}
+
 .sign-up-btn:hover,
 .user-history-btn:hover,
 .go-to-battle:hover,
@@ -288,6 +274,10 @@ a:hover {
   -webkit-box-shadow: 0px 5px 40px -5px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 0px 5px 40px -5px rgba(0, 0, 0, 0.57);
   transition: all 0.3s ease 0s;
+}
+
+.join-random-btl-btn, .create-battle-btn {
+  width: 400px;
 }
 
 .error {
@@ -333,4 +323,17 @@ a:hover {
   z-index: -3;
   position: absolute;
   opacity: 0.9;
+}
+
+.sign-out-btn {
+  color: white;
+  border: 2px solid rgb(184, 180, 180);
+  z-index: 10;
+  font-family: fantasy;
+  padding: 5px;
+   background-image: linear-gradient(rgb(58, 58, 28), rgb(29, 49, 34));
+   height: 40px;
+   width: 100px;
+   border-radius: 10px;
+   font-size: 18px;
 }
