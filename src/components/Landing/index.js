@@ -20,7 +20,10 @@ class LandingPage extends React.Component {
             </button>
           </div>
           <Link to={`/gamestage`}>
-            <button className="join-random-btl-btn">
+            <button
+              onClick={this.props.joinRandomBattle}
+              className="join-random-btl-btn"
+            >
               Join A Random Battle
             </button>
           </Link>

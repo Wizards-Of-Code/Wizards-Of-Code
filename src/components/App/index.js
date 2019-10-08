@@ -31,6 +31,7 @@ class App extends React.Component {
     this.submitCode = this.submitCode.bind(this);
     this.getOpenBattles = this.getOpenBattles.bind(this);
     this.createBattle = this.createBattle.bind(this);
+    this.joinRandomBattle = this.joinRandomBattle.bind(this);
   }
 
   login(userId) {
@@ -75,6 +76,16 @@ class App extends React.Component {
         this.setState({ myBattle: querySnapshot });
       })
     );
+  }
+  joinRandomBattle() {
+    this.props.firebase
+      .joinRandomBattle()
+      .get()
+      .then(docs =>
+        console.log(
+          docs.docs[Math.floor(Math.random() * docs.docs.length)].data()
+        )
+      );
   }
 
   updateCode = function(event) {
@@ -121,6 +132,7 @@ class App extends React.Component {
                 createBattle={this.createBattle}
                 openBattles={this.state.battles}
                 getOpenBattles={this.getOpenBattles}
+                joinRandomBattle={this.joinRandomBattle}
               />
             )}
           />

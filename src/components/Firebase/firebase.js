@@ -62,6 +62,9 @@ class Firebase {
     });
   };
 
+  joinRandomBattle = () =>
+    this.db.collection("battles").where("status", "==", "open");
+
   battles = () => this.db.collection("battles");
   openBattles = () => this.db.collection("battles");
 
