@@ -38,32 +38,38 @@ class AdminPage extends Component {
 
     return (
       <div>
-        <h1>Admin</h1>
+        <img
+          className="sign-up-img"
+          src="https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg"
+          alt=""
+        />
+        <h1 className="sign-up-logo">Admin</h1>
 
         {loading && <div>Loading ...</div>}
         <UserList users={users} />
-
       </div>
     );
   }
 }
 
 const UserList = ({ users }) => (
-  <ul>
-    {users.map(user => (
-      <li key={user.uid}>
-        <span>
-          <strong>ID:</strong> {user.uid}
-        </span>
-        <span>
-          <strong>E-Mail:</strong> {user.email}
-        </span>
-        <span>
-          <strong>Username:</strong> {user.username}
-        </span>
-      </li>
-    ))}
-  </ul>
+  <div className="connected-users">
+    <ul>
+      {users.map(user => (
+        <li key={user.uid}>
+          <span>
+            <strong>ID:</strong> {user.uid}
+          </span>
+          <span>
+            <strong>E-Mail:</strong> {user.email}
+          </span>
+          <span>
+            <strong>Username:</strong> {user.username}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
 );
 
 export default withFirebase(AdminPage);

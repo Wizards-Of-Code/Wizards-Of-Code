@@ -8,12 +8,12 @@ const OpenBattles = props => {
     <ol className="join-btl">
       {battles.map(battle => (
         <div className="single-game" key={battle.id}>
-          <div>
-            Opponent: {battle.user1} -
+          
+            <div className="opponent">Opponent: {battle.user1}</div>
             <button className="openGame" onClick={() => props.joinOpenBattle(battle.id)}>
               Joinable Game
             </button>
-          </div>
+       
 
         </div>
       ))}
