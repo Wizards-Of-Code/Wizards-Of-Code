@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,7 +10,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 a {
@@ -21,10 +21,10 @@ a {
   font-family: fantasy;
 }
 
-a:hover{
-  color:rgb(42, 58, 44) !important;
+a:hover {
+  color: rgb(42, 58, 44) !important;
   font-weight: 700 !important;
-   -webkit-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
   transition-duration: 100ms;
@@ -33,12 +33,12 @@ a:hover{
 .nav {
   display: flex;
   justify-content: space-around;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   background-image: linear-gradient(rgb(197, 197, 153), rgb(150, 170, 155));
   height: 100%;
   margin: 0;
   padding-top: 10px;
-   box-shadow: 0 12px 16px 0 rgba(157, 158, 156, 0.24),
+  box-shadow: 0 12px 16px 0 rgba(157, 158, 156, 0.24),
     0 17px 50px 0 rgba(249, 250, 248, 0.19);
 }
 
@@ -79,11 +79,11 @@ a:hover{
 }
 .title {
   text-align: center;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: bolder;
 }
 .buttonFont {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
 }
 .home-page-container {
@@ -96,10 +96,21 @@ a:hover{
 .home-page-navbar {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin-top: 20px;
   width: 50%;
   align-content: center;
   padding-left: 20%;
+}
+.home-page-navbar-container {
+    background: rgba(161, 159, 159, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    border-radius: 5px;
+    border-color: #ffffff;
+    border-width: 2px;
 }
 
 .profile-info {
@@ -109,24 +120,24 @@ a:hover{
   width: 50%;
   align-content: center;
   padding-right: 20%;
+  
+}
+.profile-info-container {
+   background: rgba(161, 159, 159, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 5px;
+    border-color: #ffffff;
+    border-width: 2px;
 }
 
-.user-history-btn, .go-to-battle, .list-skills, .change-profile-pic, .create-battle-btn, .join-random-btl-btn {
- font-size: 25px;
-  color: white;
-  background: rgb(125, 131, 214);
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-
-}
 
 .home-page-container {
   height: 100%;
-  
 }
-
 
 .container {
   width: 100%;
@@ -135,12 +146,13 @@ a:hover{
   flex-direction: column;
 }
 
-.sign-in{
+.sign-in {
   display: flex;
   flex-direction: column;
 }
 
-.sign-up, .sign-in {
+.sign-up,
+.sign-in {
   display: flex;
   flex-direction: column;
 
@@ -149,11 +161,12 @@ a:hover{
 }
 
 .sign-up-logo {
- text-align: center;
+  text-align: center;
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 80px;
   font-family: fantasy;
+  margin-bottom: 0;
 }
 
 .sign-up-form {
@@ -164,7 +177,7 @@ a:hover{
   align-content: center;
 }
 
-.input-fields{
+.input-fields {
   line-height: 35px;
   width: 100%;
   border-radius: 7px;
@@ -177,7 +190,13 @@ a:hover{
   opacity: 0.9;
 }
 
-.sign-up-btn {
+.sign-up-btn,
+.user-history-btn,
+.go-to-battle,
+.list-skills,
+.change-profile-pic,
+.create-battle-btn,
+.join-random-btl-btn {
   border: none;
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
   color: #ffffff;
@@ -189,16 +208,24 @@ a:hover{
   display: inline-block;
   transition: all 0.3s ease 0s;
   margin-left: 20px;
+  margin-top: 7px;
   font-family: fantasy;
   border: 2px solid rgb(184, 180, 180);
+  z-index: 10;
 }
-.sign-up-btn:hover {
+.sign-up-btn:hover,
+.user-history-btn:hover,
+.go-to-battle:hover,
+.list-skills:hover,
+.change-profile-pic:hover,
+.create-battle-btn:hover,
+.join-random-btl-btn:hover {
   color: #242222 !important;
   font-weight: 700 !important;
   letter-spacing: 3px;
   background: none;
-  -webkit-box-shadow: 0px 5px 40px -5px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -5px rgba(0,0,0,0.57);
+  -webkit-box-shadow: 0px 5px 40px -5px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -5px rgba(0, 0, 0, 0.57);
   transition: all 0.3s ease 0s;
 }
 
@@ -206,7 +233,7 @@ a:hover{
   color: red;
 }
 
-.no-account{
+.no-account {
   text-align: center;
   color: rgb(250, 247, 246);
   text-decoration: none;
@@ -222,8 +249,9 @@ a:hover{
   text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
 }
 
-.forgot-password:hover, .sp-link:hover{
-  color:rgb(34, 36, 35) !important;
+.forgot-password:hover,
+.sp-link:hover {
+  color: rgb(34, 36, 35) !important;
   font-weight: 700 !important;
   background: none;
   -webkit-transform: scale(1.1);
@@ -232,8 +260,16 @@ a:hover{
   transition-duration: 100ms;
 }
 
-.sp-link{
+.sp-link {
   color: rgb(30, 31, 29);
   font-size: 37px;
   text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
+}
+
+.home-img {
+  height: 100%;
+  width: 100%;
+  z-index: -3;
+  position: absolute;
+  opacity: 0.9;
 }
