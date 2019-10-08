@@ -49,9 +49,8 @@ class App extends React.Component {
 
   getOpenBattles() {
     const openBattlesRef = this.props.firebase.openBattles();
-
+    let allOpenBattles = [];
     openBattlesRef.onSnapshot(querySnapshot => {
-      let allOpenBattles = [...this.state.battles];
       querySnapshot.docChanges().forEach(change => {
         let status = change.doc.data().status;
         let doc = change.doc.data();
