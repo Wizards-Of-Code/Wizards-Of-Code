@@ -6,6 +6,7 @@ class LandingPage extends React.Component {
   componentDidMount() {
     this.props.getOpenBattles();
   }
+
   render() {
     return (
       <div className="landing-page-container">

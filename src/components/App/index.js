@@ -47,15 +47,14 @@ class App extends React.Component {
 
   getOpenBattles() {
     const openBattlesRef = this.props.firebase.openBattles();
-    let allOpenBattles = [];
-    openBattlesRef
-      .get()
-      .then(battles =>
-        battles.forEach(doc => {
-          allOpenBattles.push(doc.data());
-        })
-      )
-      .then(() => this.setState({ battles: allOpenBattles }));
+
+    openBattlesRef.onSnapshot(querySnapshot => {
+      let allOpenBattles = [];
+      querySnapshot.docChanges().forEach(change => {
+        allOpenBattles.push(change.doc.data());
+      });
+      this.setState({ battles: allOpenBattles });
+    });
   }
 
   updateCode = function(event) {
