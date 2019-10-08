@@ -1,13 +1,21 @@
 onmessage = function(event) {
 
-  let outputs = [];
+  let userOutputs = [];
   let userFunction;
 
-  eval('userFunction =' + event.data.userFunction)
+  const inputs = JSON.parse(event.data.inputs);
+  const expectedOutputs = JSON.parse(event.data.expectedOutputs);
 
-  Object.values(event.data.inputs).forEach(input => {
-    outputs.push(userFunction(...input))
+
+  eval('userFunction =' + event.data.userFunction);
+
+  inputs.forEach(input => {
+    userOutputs.push(userFunction(...input));
   })
 
-  postMessage(outputs);
-}
+  let correct = userOutputs.every((userOutput, index) => {
+    return JSON.stringify(userOutput) === JSON.stringify(expectedOutputs[index]);
+  });
+
+  postMessage({ correct, userOutputs });
+};
