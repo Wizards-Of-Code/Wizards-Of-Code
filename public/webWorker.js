@@ -13,7 +13,9 @@ onmessage = function(event) {
     userOutputs.push(userFunction(...input));
   })
 
-  let correct = userOutputs.every((userOutput, index) => JSON.stringify(userOutput) === JSON.stringify(expectedOutputs[index]));
+  let correct = userOutputs.every((userOutput, index) => {
+    return JSON.stringify(userOutput) === JSON.stringify(expectedOutputs[index]);
+  });
 
   postMessage({ correct, userOutputs });
-}
+};
