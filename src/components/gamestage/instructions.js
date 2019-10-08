@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Instructions extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
   componentDidMount() {
     this.props.getProblem("b0FL15GLthEMS3mXfBTZ");
@@ -13,8 +13,18 @@ class Instructions extends Component {
       <div className="instructions">
         <div className="title">Question</div>
         <p>{this.props.prompt}</p>
+        <button onClick={this.props.doDamage}>DO DAMAGE</button>
+        <button onClick={() => this.props.getRandomProblem(1)}>
+          Easy Problem Spell
+        </button>
+        <button onClick={() => this.props.getRandomProblem(2)}>
+          Medium Problem Spell
+        </button>
+        <button onClick={() => this.props.getRandomProblem(3)}>
+          Hard Problem Spell
+        </button>
       </div>
     );
   }
 }
-export default Instructions
+export default Instructions;
