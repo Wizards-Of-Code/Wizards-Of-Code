@@ -4,9 +4,9 @@ const OpenBattles = props => {
   const battles = props.openBattles;
   console.log(battles);
   return (
-    <ol>
+    <ol className="join-btl">
       {battles.map((battle, i) => (
-        <div>
+        <div className="single-game">
           <button key={i} className="openGame">
             {/* {battle.status} Game */}
             Joinable Game

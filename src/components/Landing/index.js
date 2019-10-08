@@ -10,6 +10,11 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing-page-container">
+        <img
+          className="home-img"
+          src="https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg"
+          alt=""
+        />
         <div className="join-random-btl">
           <div className="create-battle">
             <button className="create-battle-btn">Create New Battle</button>
@@ -19,12 +24,12 @@ class LandingPage extends React.Component {
               Join A Random Battle
             </button>
           </Link>
-          <div>
-            <button className="join-random-btl-btn" disabled>
-              Open Battles
-            </button>
-            <OpenBattles openBattles={this.props.openBattles} />
-          </div>
+          <button className="join-random-btl-btn" disabled>
+            Open Battles
+          </button>
+        </div>
+        <div className="join-btl">
+          <OpenBattles openBattles={this.props.openBattles} />
         </div>
       </div>
     );
