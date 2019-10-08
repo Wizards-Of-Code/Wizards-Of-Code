@@ -22,7 +22,7 @@ class App extends React.Component {
       problem: [],
       skills: [],
       userCode: '',
-      result: ''
+      result: {}
     }
     this.login = this.login.bind(this)
     this.getProblem = this.getProblem.bind(this)
@@ -49,16 +49,17 @@ class App extends React.Component {
     })
   }
 
-  submitCode = function(code, inputs) {
+  submitCode = function(code, inputs, expectedOutputs) {
     const webWorker = new Worker('webWorker.js')
 
     webWorker.postMessage({
+      userFunction: code,
       inputs: inputs,
-      userFunction: code
+      expectedOutputs: expectedOutputs
     })
 
     const timeoutId = setTimeout(() => {
-      this.setState({result: 'Your function failed!  :('})
+      this.setState({result: {userOutputs: 'Your function failed!  :(', correct: false}} );
       webWorker.terminate()
     }, 5000)
 
