@@ -24,6 +24,7 @@ class CodeArea extends Component {
           this.props.updateCode(event)
         }}
         options={options}
+        className="code-mirror"
       />
     );
   }

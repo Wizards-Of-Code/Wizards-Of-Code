@@ -54,12 +54,21 @@ a:hover {
 .ReactCodeMirror {
   width: 60%;
   word-wrap: break-word;
+
 }
 
-.instructions {
+.CodeMirror {
+  border-color: rgb(44, 66, 47);
+    border-radius: 5%;
+  padding: 10px;
+    border-style: solid;
+  border-width: 5px;
+}
+
+.instructions, .result {
   display: block;
   width: 20%;
-  background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
+  background-image: linear-gradient(rgb(212, 212, 207), rgb(108, 134, 115));
   border-style: solid;
   border-width: 3px;
   border-color: rgb(44, 66, 47);
@@ -67,23 +76,13 @@ a:hover {
   padding: 10px;
 }
 
-.result {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 20%;
-  background-color: blanchedalmond;
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgb(23, 23, 32);
-  border-radius: 2%;
-}
 .title {
+  color: rgb(30, 31, 29);
   text-align: center;
   font-family: fantasy;
   font-weight: bolder;
   font-size: 20px;
+  text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
 }
 .buttonFont {
   font-family: 'Courier New', Courier, monospace;
@@ -276,8 +275,20 @@ a:hover {
   transition: all 0.3s ease 0s;
 }
 
-.join-random-btl-btn, .create-battle-btn {
+.join-random-btl-btn,
+.create-battle-btn {
   width: 400px;
+}
+.openGame {
+  text-align: center;
+}
+
+.opponent {
+   color: rgb(255, 255, 255);
+  text-decoration: none;
+  text-shadow: 2px 2px 2px #1b1b1b;
+  font-size: 25px;
+  font-family: fantasy;
 }
 
 .error {
@@ -331,9 +342,9 @@ a:hover {
   z-index: 10;
   font-family: fantasy;
   padding: 5px;
-   background-image: linear-gradient(rgb(58, 58, 28), rgb(29, 49, 34));
-   height: 40px;
-   width: 100px;
-   border-radius: 10px;
-   font-size: 18px;
+  background-image: linear-gradient(rgb(58, 58, 28), rgb(29, 49, 34));
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  font-size: 18px;
 }
