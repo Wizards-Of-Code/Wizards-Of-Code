@@ -5,12 +5,15 @@ const OpenBattles = props => {
   console.log(battles);
   return (
     <ol>
-      {battles.map((battle, i) => (
-        <div>
-          <button key={i} className="openGame">
-            {/* {battle.status} Game */}
-            Joinable Game
-          </button>
+      {battles.map(battle => (
+        <div key={battle.id}>
+          <div>
+            Opponent: {battle.user1} -
+            <button className="openGame" onClick={() => props.joinOpenBattle(battle.id)}>
+              Joinable Game
+            </button>
+          </div>
+
         </div>
       ))}
     </ol>
