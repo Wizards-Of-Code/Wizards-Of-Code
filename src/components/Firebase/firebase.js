@@ -54,6 +54,16 @@ class Firebase {
 
   // Battles API
   battle = battleId => this.db.collection("battles").doc(battleId);
+  createBattle = user => {
+    console.log(user);
+    return this.db
+      .collection("battles")
+      .add({
+        user1: user.username,
+        user1_health: user.maxHealth,
+        status: "open"
+      });
+  };
 
   battles = () => this.db.collection("battles");
   openBattles = () => this.db.collection("battles");

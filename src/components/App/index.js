@@ -16,8 +16,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: [],
+      user: {},
       battles: [],
+      myBattle: {},
       problems: [],
       problem: [],
       skills: [],
@@ -29,6 +30,7 @@ class App extends React.Component {
     this.updateCode = this.updateCode.bind(this);
     this.submitCode = this.submitCode.bind(this);
     this.getOpenBattles = this.getOpenBattles.bind(this);
+    this.createBattle = this.createBattle.bind(this);
   }
 
   login(userId) {
@@ -66,6 +68,14 @@ class App extends React.Component {
       });
       this.setState({ battles: allOpenBattles });
     });
+  }
+
+  createBattle() {
+    this.props.firebase.createBattle(this.state.user).then(battleRef =>
+      battleRef.onSnapshot(querySnapshot => {
+        this.setState({ myBattle: querySnapshot });
+      })
+    );
   }
 
   updateCode = function(event) {
@@ -109,6 +119,7 @@ class App extends React.Component {
             render={props => (
               <LandingPage
                 {...props}
+                createBattle={this.createBattle}
                 openBattles={this.state.battles}
                 getOpenBattles={this.getOpenBattles}
               />
