@@ -30,6 +30,10 @@ a:hover {
   transition-duration: 100ms;
 }
 
+li {
+  margin: 10px;
+  font-size: 25px
+}
 .nav {
   display: flex;
   justify-content: space-around;
@@ -57,26 +61,31 @@ a:hover {
 
 }
 
-.CodeMirror {
-  border-color: rgb(44, 66, 47);
-    border-radius: 5%;
-  padding: 10px;
-    border-style: solid;
-  border-width: 5px;
+.CodeMirror { 
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+   border:solid 5px rgb(44, 66, 47);
+   z-index: 2;
+     margin-bottom: 30px;
+  margin-top: 20px;
 }
 
 .instructions, .result {
   display: block;
   width: 20%;
   background-image: linear-gradient(rgb(212, 212, 207), rgb(108, 134, 115));
-  border-style: solid;
-  border-width: 3px;
-  border-color: rgb(44, 66, 47);
-  border-radius: 5%;
+   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+   border:solid 5px rgb(44, 66, 47);
   padding: 10px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.title {
+.title, .title-result {
   color: rgb(30, 31, 29);
   text-align: center;
   font-family: fantasy;
@@ -84,6 +93,11 @@ a:hover {
   font-size: 20px;
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
 }
+
+.title-result {
+  height: 90%;
+}
+
 .buttonFont {
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
@@ -240,7 +254,8 @@ a:hover {
 .change-profile-pic,
 .create-battle-btn,
 .join-random-btl-btn,
-.openGame {
+.openGame,
+.submit-result {
   font-size: 25px;
   color: rgb(12, 11, 11);
   border-radius: 10px;
@@ -256,6 +271,7 @@ a:hover {
   display: inline-block;
   transition: all 0.3s ease 0s;
   padding: 5px;
+  outline:0 !important; 
 }
 
 .sign-up-btn:hover,
@@ -265,7 +281,8 @@ a:hover {
 .change-profile-pic:hover,
 .create-battle-btn:hover,
 .join-random-btl-btn:hover,
-.openGame:hover {
+.openGame:hover,
+.submit-result:hover {
   color: #f8f4f4 !important;
   font-weight: 700 !important;
   letter-spacing: 3px;
@@ -273,7 +290,9 @@ a:hover {
   -webkit-box-shadow: 0px 5px 40px -5px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 0px 5px 40px -5px rgba(0, 0, 0, 0.57);
   transition: all 0.3s ease 0s;
+  outline:0 !important; 
 }
+
 
 .join-random-btl-btn,
 .create-battle-btn {
@@ -283,6 +302,12 @@ a:hover {
   text-align: center;
 }
 
+.submit-result {
+  width: 200px;
+  height: 40px;
+  font-size: 15px;
+}
+
 .opponent {
    color: rgb(255, 255, 255);
   text-decoration: none;
@@ -290,6 +315,7 @@ a:hover {
   font-size: 25px;
   font-family: fantasy;
 }
+
 
 .error {
   color: red;
@@ -347,4 +373,16 @@ a:hover {
   width: 100px;
   border-radius: 10px;
   font-size: 18px;
+}
+
+.connected-users{
+   background: rgba(161, 159, 159, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 5px;
+  border-color: #ffffff;
+  border-width: 2px;
 }
