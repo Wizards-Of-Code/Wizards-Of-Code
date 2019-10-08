@@ -13,7 +13,7 @@ class Instructions extends Component {
       <div className="instructions">
         <div className="title">Question</div>
         <p>{this.props.prompt}</p>
-        <button onClick={this.props.doDamage}>DO DAMAGE</button>
+        <button onClick={this.props.doDamage(-10)}>DO DAMAGE</button>
         <button onClick={() => this.props.getRandomProblem(1)}>
           Easy Problem Spell
         </button>
