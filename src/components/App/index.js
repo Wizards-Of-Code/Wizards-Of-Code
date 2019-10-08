@@ -149,7 +149,6 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <Navigation />
-          <hr />
           <Route
             exact
             path={ROUTES.LANDING}
