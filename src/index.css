@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,7 +10,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 a {
@@ -33,7 +33,7 @@ a:hover {
 .nav {
   display: flex;
   justify-content: space-around;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   background-image: linear-gradient(rgb(197, 197, 153), rgb(150, 170, 155));
   height: 100%;
   margin: 0;
@@ -79,11 +79,11 @@ a:hover {
 }
 .title {
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: bolder;
 }
 .buttonFont {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: bold;
 }
 .home-page-container {
@@ -91,6 +91,14 @@ a:hover {
   flex-direction: row;
   width: 100%;
   height: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: fill-available;
+  background: #a2e8f5
+    url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
+  background-size: cover;
 }
 
 .home-page-navbar {
@@ -102,15 +110,15 @@ a:hover {
   padding-left: 20%;
 }
 .home-page-navbar-container {
-    background: rgba(161, 159, 159, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    border-radius: 5px;
-    border-color: #ffffff;
-    border-width: 2px;
+  background: rgba(161, 159, 159, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  border-radius: 5px;
+  border-color: #ffffff;
+  border-width: 2px;
 }
 
 .profile-info {
@@ -120,20 +128,18 @@ a:hover {
   width: 50%;
   align-content: center;
   padding-right: 20%;
-  
 }
 .profile-info-container {
-   background: rgba(161, 159, 159, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border-radius: 5px;
-    border-color: #ffffff;
-    border-width: 2px;
+  background: rgba(161, 159, 159, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 5px;
+  border-color: #ffffff;
+  border-width: 2px;
 }
-
 
 .home-page-container {
   height: 100%;
@@ -197,6 +203,22 @@ a:hover {
 .change-profile-pic,
 .create-battle-btn,
 .join-random-btl-btn {
+  font-size: 25px;
+  color: white;
+  background: rgb(125, 131, 214);
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.openGame {
+  font-size: 25px;
+  color: black;
+  background: rgba(109, 248, 2, 0.562);
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
   border: none;
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
   color: #ffffff;
