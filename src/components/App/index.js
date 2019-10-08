@@ -124,7 +124,20 @@ class App extends React.Component {
     };
   };
 
+  componentDidMount () {
+    this.props.firebase.auth.onAuthStateChanged(authUser => {
+      console.log(authUser);
+      if (authUser) {
+        this.login(authUser.uid);
+      }
+    });
+  }
+
+
+
+
   render() {
+
     return (
       <Router>
         <div className="container">
