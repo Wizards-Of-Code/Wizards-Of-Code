@@ -78,14 +78,21 @@ class App extends React.Component {
     );
   }
   joinRandomBattle() {
-    this.props.firebase
-      .joinRandomBattle()
-      .get()
-      .then(docs =>
-        console.log(
-          docs.docs[Math.floor(Math.random() * docs.docs.length)].data()
-        )
+    const user = this.state.user;
+    this.props.firebase.joinRandomBattle(this.state.user).then(doc => {
+      console.log(doc.id);
+      doc.set(
+        {
+          user2: user.username,
+          user2_health: user.maxHealth,
+          status: "closed"
+        },
+        { merge: true }
       );
+      doc.onSnapshot(querySnapshot => {
+        this.setState({ myBattle: querySnapshot });
+      });
+    });
   }
 
   updateCode = function(event) {
