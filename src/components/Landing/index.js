@@ -19,7 +19,7 @@ class LandingPage extends React.Component {
           <div className="create-battle">
             <button className="create-battle-btn">Create New Battle</button>
           </div>
-          <Link to={`/gamestage`}>
+          <Link to={`/gamestage`} >
             <button className="join-random-btl-btn">
               Join A Random Battle
             </button>
