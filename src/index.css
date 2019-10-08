@@ -76,7 +76,7 @@ a:hover {
   background-color: blanchedalmond;
   border-style: solid;
   border-width: 1px;
-  border-color: blue;
+  border-color: rgb(99, 99, 124);
   border-radius: 2%;
 }
 .title {
