@@ -10,7 +10,7 @@ const OpenBattles = props => {
         <div className="single-game" key={battle.id}>
           <div>
             Opponent: {battle.user1} -
-            <Link to={"/"}>
+            <Link to={"/gamestage"}>
               <button
                 className="openGame"
                 onClick={() => props.joinOpenBattle(battle.id)}
