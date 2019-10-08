@@ -54,6 +54,22 @@ class Firebase {
 
   // Battles API
   battle = battleId => this.db.collection("battles").doc(battleId);
+  createBattle = user => {
+    return this.db.collection("battles").add({
+      user1: user.username,
+      user1_health: user.maxHealth,
+      status: "open"
+    });
+  };
+
+  joinRandomBattle = user =>
+    this.db
+      .collection("battles")
+      .where("status", "==", "open")
+      .get()
+      .then(
+        docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
+      );
 
   battles = () => this.db.collection("battles");
   openBattles = () => this.db.collection("battles");
