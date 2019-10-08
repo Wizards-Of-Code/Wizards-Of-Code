@@ -84,24 +84,6 @@ class App extends React.Component {
     this.joinBattle(battleRef);
   };
 
-  doDamage = amount => {
-    if (this.state.user.username === this.state.myBattle.user1) {
-      this.state.battleRef.set(
-        {
-          user2_health: this.state.myBattle.user2_health + amount
-        },
-        { merge: true }
-      );
-    } else {
-      this.state.battleRef.set(
-        {
-          user1_health: this.state.myBattle.user1_health + amount
-        },
-        { merge: true }
-      );
-    }
-  };
-
   joinBattle = battleRef => {
     const user = this.state.user;
     battleRef.set(
@@ -113,8 +95,28 @@ class App extends React.Component {
       { merge: true }
     );
     battleRef.onSnapshot(querySnapshot => {
+      console.log(querySnapshot.data(), battleRef);
       this.setState({ myBattle: querySnapshot.data(), battleRef });
     });
+  };
+
+  doDamage = amount => {
+    if (this.state.user.username === this.state.myBattle.user1) {
+      this.state.battleRef.set(
+        {
+          user2_health: this.state.myBattle.user2_health + amount
+        },
+        { merge: true }
+      );
+    } else {
+      console.log(this.state);
+      this.state.battleRef.set(
+        {
+          user1_health: this.state.myBattle.user1_health + amount
+        },
+        { merge: true }
+      );
+    }
   };
 
   getRandomProblem = difficulty => {
