@@ -8,7 +8,12 @@ const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
       <div>
-        <h1>Account: {authUser.email}</h1>
+        <img
+          className="home-img"
+          src="https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg"
+          alt=""
+        />
+        <h1 className="sign-up-logo">Account: {authUser.email}</h1>
         <PasswordForgetForm />
         <PasswordChangeForm />
       </div>

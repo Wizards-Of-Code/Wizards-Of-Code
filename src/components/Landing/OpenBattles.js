@@ -9,7 +9,7 @@ const OpenBattles = props => {
       {battles.map(battle => (
         <div className="single-game" key={battle.id}>
           <div>
-            Opponent: {battle.user1} -
+            <div className="opponent">Opponent: {battle.user1}</div>
             <Link to={"/gamestage"}>
               <button
                 className="openGame"
