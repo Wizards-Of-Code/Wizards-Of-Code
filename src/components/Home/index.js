@@ -1,9 +1,9 @@
 import React from "react";
 import { withAuthorization } from "../Session";
-import { Link } from 'react-router-dom';
-import { compose } from 'recompose';
+import { Link } from "react-router-dom";
+import { compose } from "recompose";
 
-const HomePage = (props) => {
+const HomePage = props => {
   return (
     <div className="home-page-container">
       <img
@@ -18,7 +18,7 @@ const HomePage = (props) => {
             <button className="user-history-btn">Battle History</button>
           </div>
           <div className="go-battle">
-            <Link to={'/'}>
+            <Link to={"/"}>
               <button className="go-to-battle">Go To Battle</button>
             </Link>
           </div>
@@ -34,15 +34,15 @@ const HomePage = (props) => {
           <div className="user-stats">
             <h1>Stats</h1>
             <h3>User name: {props.user.username}</h3>
-            <h3>User email: {props.user.username}</h3>
-            <h3>Experience: {props.user.experiense}</h3>
+            <h3>User email: {props.user.email}</h3>
+            <h3>Experience: {props.user.experience}</h3>
             <h3>Health: {props.user.maxHealth}%</h3>
           </div>
         </div>
       </div>
     </div>
   );
-  };
+};
 
 const condition = authUser => !!authUser;
 export default compose(withAuthorization(condition))(HomePage);
