@@ -2,12 +2,12 @@ import React, { Component } from "react";
 
 class Player1 extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
-      <div className="player1" ></div>
+      <div className="box" ></div>
     );
   }
 }

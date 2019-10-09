@@ -7,10 +7,9 @@ import Player2 from './player2'
 import Attacking from './attacking'
 
 const GameStage = props => {
-
   return (
-    <div>
-      <div className="gamepage">
+    <div className="gamepage">
+      <div className="gamestage">
       <Player1 />
       <Attacking  />
       <Player2 />
