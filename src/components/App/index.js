@@ -24,17 +24,30 @@ class App extends React.Component {
       skills: [],
       userCode: "",
       result: {},
-      battleRef: {}
+      battleRef: {},
+      userRef: {},
     };
   }
 
   login = userId => {
     let userRef = this.props.firebase.user(userId);
-    userRef.get().then(user => this.setState({ user: user.data() }));
+    this.setState({ userRef });
+    userRef.get().then(user => {
+      const userData= user.data();
+      this.setState({ user: userData })
+      if (userData.activeBattle !== '') {
+        let battleRef = this.props.firebase.battle(userData.activeBattle);
+        battleRef.onSnapshot(querySnapshot => {
+          this.setState({ myBattle: querySnapshot.data() });
+        });
+      }
+    });
+
     userRef.onSnapshot(snapshot => {
-      console.log("SNAPSHOT", snapshot);
+      this.setState({ user: snapshot.data() });
     });
   };
+
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
     problemRef
@@ -65,11 +78,16 @@ class App extends React.Component {
   };
 
   createBattle = () => {
-    this.props.firebase.createBattle(this.state.user).then(battleRef =>
+    this.props.firebase.createBattle(this.state.user).then(battleRef => {
       battleRef.onSnapshot(querySnapshot => {
-        this.setState({ myBattle: querySnapshot });
+        this.setState({ myBattle: querySnapshot.data() });
       })
-    );
+      this.state.userRef.set({
+        activeBattle: battleRef.id
+      },
+      { merge: true }
+      )
+    });
   };
 
   joinRandomBattle = () => {
@@ -84,26 +102,9 @@ class App extends React.Component {
     this.joinBattle(battleRef);
   };
 
-  doDamage = amount => {
-    if (this.state.user.username === this.state.myBattle.user1) {
-      this.state.battleRef.set(
-        {
-          user2_health: this.state.myBattle.user2_health + amount
-        },
-        { merge: true }
-      );
-    } else {
-      this.state.battleRef.set(
-        {
-          user1_health: this.state.myBattle.user1_health + amount
-        },
-        { merge: true }
-      );
-    }
-  };
-
   joinBattle = battleRef => {
     const user = this.state.user;
+    console.log(user);
     battleRef.set(
       {
         user2: user.username,
@@ -115,6 +116,29 @@ class App extends React.Component {
     battleRef.onSnapshot(querySnapshot => {
       this.setState({ myBattle: querySnapshot.data(), battleRef });
     });
+    this.state.userRef.set({
+      activeBattle: battleRef.id
+    },
+    { merge: true }
+    )
+  };
+
+  doDamage = amount => {
+    if (this.state.user.username === this.state.myBattle.user1) {
+      this.state.battleRef.set(
+        {
+          user2_health: this.state.myBattle.user2_health - amount
+        },
+        { merge: true }
+      );
+    } else {
+      this.state.battleRef.set(
+        {
+          user1_health: this.state.myBattle.user1_health - amount
+        },
+        { merge: true }
+      );
+    }
   };
 
   getRandomProblem = difficulty => {
@@ -150,10 +174,8 @@ class App extends React.Component {
 
     webWorker.onmessage = event => {
       this.setState({ result: event.data });
-      console.log("EVEENT.DATA.CORRECT", event.data.correct);
       if (event.data.correct) {
-        console.log("EVEENT.DATA.CORRECT", event.data.correct);
-        this.doDamage(-10);
+        this.doDamage(10);
       }
       webWorker.terminate();
       clearTimeout(timeoutId);
@@ -169,6 +191,9 @@ class App extends React.Component {
   }
 
   render() {
+
+    console.log(this.state);
+
     return (
       <Router>
         <div className="container">
@@ -207,6 +232,7 @@ class App extends React.Component {
             render={props => (
               <GameStage
                 {...props}
+                myBattle={this.state.myBattle}
                 problem={this.state.problem}
                 getProblem={this.getProblem}
                 userCode={this.state.userCode}

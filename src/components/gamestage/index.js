@@ -18,6 +18,7 @@ const OPTIONS = {
 };
 
 const GameStage = props => {
+
   return (
     <div>
       <div>

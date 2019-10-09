@@ -51,7 +51,8 @@ class SignUpFormBase extends Component {
             maxHealth: 100,
             skills: [
               iceArrowRef
-            ]
+            ],
+            activeBattle: ''
           });
       })
       .then(() => {
@@ -81,7 +82,7 @@ class SignUpFormBase extends Component {
       error,
     } = this.state;
 
-    const isInvalid = ( // make stronger form validations here & make sure password isn't less than 6 characters 
+    const isInvalid = ( // make stronger form validations here & make sure password isn't less than 6 characters
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
