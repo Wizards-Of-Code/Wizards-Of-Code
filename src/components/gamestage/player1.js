@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
-class Player extends Component {
+class Player1 extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
-      <div className="box"></div>
+      <div className="box" ></div>
     );
   }
 }
-export default Player
+export default Player1
