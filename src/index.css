@@ -472,11 +472,11 @@ li {
   position: absolute;
   top: 30%;
   left: 45%;
-  transform: translate(-50%,10%);
-  width: calc(1298px / 20);
-  height: 99px;
+  transform: translate(10%,10%) scale(1.5);
+  width: calc(3814px / 20);
+  height: 175px;
   background: url(iceball.png);
-  animation: ice-attack 3s steps(20) infinite;
+  animation: ice-attack 1s steps(20) infinite;
 }
 
 @keyframes ice-attack { 
@@ -484,7 +484,7 @@ li {
     background-position: 0;
   }
   to {
-    background-position: -1298px
+    background-position: 3814px
   }
 }
 .gamepage {
