@@ -2,6 +2,7 @@ import React from "react";
 import { withAuthorization } from "../Session";
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
+import { BATTLE } from "../../constants/routes";
 
 
 
@@ -21,7 +22,7 @@ const HomePage = props => {
             <button className="user-history-btn">Battle History</button>
           </div>
           <div className="go-battle">
-            <Link to={'/'}>
+            <Link to={BATTLE}>
               <button className="go-to-battle">Go To Battle</button>
             </Link>
           </div>
