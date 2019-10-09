@@ -199,19 +199,13 @@ class App extends React.Component {
 
   doDamage = amount => {
     if (this.state.user.username === this.state.myBattle.user1) {
-      this.state.battleRef.set(
-        {
-          user2_health: this.state.myBattle.user2_health - amount
-        },
-        { merge: true }
-      );
+      this.state.battleRef.update({
+        user2_health: this.props.firebase.increment(-10)
+      });
     } else {
-      this.state.battleRef.set(
-        {
-          user1_health: this.state.myBattle.user1_health - amount
-        },
-        { merge: true }
-      );
+      this.state.battleRef.update({
+        user1_health: this.props.firebase.increment(-10)
+      });
     }
   };
 

@@ -19,7 +19,6 @@ var devConfig = {
 class Firebase {
   constructor() {
     app.initializeApp(devConfig);
-
     this.auth = app.auth();
     this.db = app.firestore();
   }
@@ -42,32 +41,31 @@ class Firebase {
   };
 
   // User API
-  user = uid => this.db.collection('users').doc(uid);
+  user = uid => this.db.collection("users").doc(uid);
 
-  users = () => this.db.collection('users');
+  users = () => this.db.collection("users");
 
   // Problem API
-  problem = probId => this.db.collection('problems').doc(probId);
+  problem = probId => this.db.collection("problems").doc(probId);
 
   // Skills API
-  skill = skillId => this.db.collection('skills').doc(skillId);
+  skill = skillId => this.db.collection("skills").doc(skillId);
 
   // Battles API
-  battle = battleId => this.db.collection('battles').doc(battleId);
+  battle = battleId => this.db.collection("battles").doc(battleId);
   createBattle = user => {
-    return this.db.collection('battles').add({
+    return this.db.collection("battles").add({
       user1: user.username,
       user1_health: user.maxHealth,
-      status: 'open',
+      status: "open"
     });
   };
 
   // avatars API
   avatars = () => {
-    console.log('here');
-    return this.db.collection('avatars')
+    console.log("here");
+    return this.db.collection("avatars");
   };
-
 
   increment = amount => {
     this.db.FieldValue.increment(amount);
@@ -75,8 +73,8 @@ class Firebase {
 
   joinRandomBattle = user =>
     this.db
-      .collection('battles')
-      .where('status', '==', 'open')
+      .collection("battles")
+      .where("status", "==", "open")
       .get()
       .then(
         docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
@@ -84,15 +82,15 @@ class Firebase {
 
   getRandomProblem = difficulty =>
     this.db
-      .collection('problems')
-      .where('difficulty', '==', difficulty)
+      .collection("problems")
+      .where("difficulty", "==", difficulty)
       .get()
       .then(
         docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
       );
 
-  battles = () => this.db.collection('battles');
-  openBattles = () => this.db.collection('battles');
+  battles = () => this.db.collection("battles");
+  openBattles = () => this.db.collection("battles");
 
   // David's suggestion
   // Have parent component hold all the state for the application & subscribe to parts of firestore depending on user's progress
