@@ -20,7 +20,7 @@ class App extends React.Component {
     this.state = {
       user: {},
       battles: [],
-      myBattle: {},
+
       problems: [],
       problem: [],
       skills: [],
@@ -158,7 +158,8 @@ class App extends React.Component {
       this.setBattleState(battleRef);
       this.state.userRef.set(
         {
-          activeBattle: battleRef.id
+          activeBattle: battleRef.id,
+          role: "user1"
         },
         { merge: true }
       );
@@ -191,14 +192,15 @@ class App extends React.Component {
     this.setBattleState(battleRef);
     this.state.userRef.set(
       {
-        activeBattle: battleRef.id
+        activeBattle: battleRef.id,
+        role: "user2"
       },
       { merge: true }
     );
   };
 
   doDamage = amount => {
-    if (this.state.user.username === this.state.myBattle.user1) {
+    if (this.state.user.role === "user1") {
       this.state.battleRef.update({
         user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -10
