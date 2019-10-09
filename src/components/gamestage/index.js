@@ -3,8 +3,13 @@ import CodeArea from './codeArea'
 import Instructions from './instructions'
 import Result from './result'
 import Player from './Player'
+import { LANDING } from '../../constants/routes'
 
 const GameStage = props => {
+
+  if (props.activeBattle === '') {
+    props.history.push(LANDING);
+  }
 
   return (
     <div className="gamepage">

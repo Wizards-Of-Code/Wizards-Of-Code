@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Navigation from "../Navigation";
 import GameStage from "../gamestage";
 import LandingPage from "../Landing";
@@ -9,6 +9,7 @@ import PasswordForgetPage from "../PasswordForget";
 import HomePage from "../Home";
 import AccountPage from "../Account";
 import AdminPage from "../Admin";
+import GameOver from "../GameOver";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 
@@ -26,20 +27,20 @@ class App extends React.Component {
       result: {},
       battleRef: {},
       userRef: {},
+      endBattleSubscription: {}
     };
   }
 
   login = userId => {
     let userRef = this.props.firebase.user(userId);
     this.setState({ userRef });
+
     userRef.get().then(user => {
       const userData= user.data();
       this.setState({ user: userData })
       if (userData.activeBattle !== '') {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
-        battleRef.onSnapshot(querySnapshot => {
-          this.setState({ myBattle: querySnapshot.data() });
-        });
+        this.setBattleState(battleRef);
       }
     });
 
@@ -47,6 +48,45 @@ class App extends React.Component {
       this.setState({ user: snapshot.data() });
     });
   };
+
+  setBattleState = (battleRef) => {
+    let endBattleSubscription = battleRef.onSnapshot(querySnapshot => {
+      this.setState({ myBattle: querySnapshot.data(), battleRef }, this.damageDealt);
+    });
+    this.setState( { endBattleSubscription });
+  }
+
+  damageDealt = () => {
+
+    if (this.state.myBattle.user1_health > 0 && this.state.myBattle.user2_health > 0) {
+      return;
+    }
+
+    if (this.state.myBattle.status === 'closed') {
+      let [winner, loser] = this.state.user1_health <= 0 ? ['user2', 'user1'] : ['user1', 'user2'];
+      console.log(`${loser} died!!!!!!`);
+
+      this.state.battleRef.set({
+        status: 'completed',
+        winner
+      },
+      { merge: true }
+      );
+
+      this.state.endBattleSubscription()
+
+      this.state.userRef.set({
+        activeBattle: ''
+      },
+      { merge: true}
+      );
+
+      this.setState({ battleRef: {} });
+
+      return <Redirect to={ROUTES.GAMEOVER} />
+
+    }
+  }
 
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
@@ -79,9 +119,7 @@ class App extends React.Component {
 
   createBattle = () => {
     this.props.firebase.createBattle(this.state.user).then(battleRef => {
-      battleRef.onSnapshot(querySnapshot => {
-        this.setState({ myBattle: querySnapshot.data() });
-      })
+      this.setBattleState(battleRef);
       this.state.userRef.set({
         activeBattle: battleRef.id
       },
@@ -113,9 +151,7 @@ class App extends React.Component {
       },
       { merge: true }
     );
-    battleRef.onSnapshot(querySnapshot => {
-      this.setState({ myBattle: querySnapshot.data(), battleRef });
-    });
+    this.setBattleState(battleRef);
     this.state.userRef.set({
       activeBattle: battleRef.id
     },
@@ -209,6 +245,7 @@ class App extends React.Component {
                 getOpenBattles={this.getOpenBattles}
                 joinRandomBattle={this.joinRandomBattle}
                 joinOpenBattle={this.joinOpenBattle}
+                activeBattle={this.state.user.activeBattle}
               />
             )}
           />
@@ -241,6 +278,16 @@ class App extends React.Component {
                 submitCode={this.submitCode}
                 doDamage={this.doDamage}
                 getRandomProblem={this.getRandomProblem}
+                activeBattle={this.state.user.activeBattle}
+              />
+            )}
+          />
+          <Route
+            path={ROUTES.GAMEOVER}
+            render={props => (
+              <GameOver
+                {...props}
+                battleInfo ={this.props.myBattle}
               />
             )}
           />
