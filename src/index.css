@@ -399,11 +399,11 @@ li {
   font-size: 18px;
 }
 
-.box {
-  /* position: sticky;
-  top: 27%;
+.player1 {
+  position: absolute;
+  top: 35%;
   left: 20%;
-  transform: translate(-50%, -50%); */
+  transform: translate(-30%, -20%) scale(0.5); 
   width: calc(1795px / 5);
   height: 350px;
   background: url(wizard-die.png);
@@ -420,13 +420,14 @@ li {
 
 .player2 {
   position: absolute;
-  top: 25%;
+  top: 30%;
   left: 70%;
-  transform: translate(-50%,-50%);
+  transform: translate(-70%,-20%) scale(0.5);
   width: calc(7941px/20);
   height: 400px;
   background: url(greenChar.png);
   animation: castASpell 3s steps(20) infinite;
+  scale: 
 }
 @keyframes castASpell { 
   from {
@@ -437,23 +438,34 @@ li {
   }
 }
 
-.attacking {
+.fireball-right {
   position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%,10%) scaleX(-1);
   width: calc(6217px / 13);
   height: 110px;
   background: url(firesprite.png);
-  animation: attack 3s steps(20) infinite;
+  animation: fireball 3s steps(20) infinite;
 }
-@keyframes attack { 
+@keyframes fireball { 
   from {
     background-position: 0;
   }
   to {
-    background-position: 6217px
+    background-position: 50%
   }
+}
+
+.fireball-left {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%,10%);
+  width: calc(6217px / 13);
+  height: 110px;
+  background: url(firesprite.png);
+  animation: fireball 3s steps(20) infinite;
 }
 
 .gamepage {

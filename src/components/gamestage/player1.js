@@ -7,7 +7,7 @@ class Player1 extends Component {
 
   render() {
     return (
-      <div className="box" ></div>
+      <div className="player1" ></div>
     );
   }
 }

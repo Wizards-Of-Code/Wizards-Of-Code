@@ -6,7 +6,7 @@ class Attacking extends Component {
   }
 
   render() {
-    return <div className="attacking"></div>
+    return <div className="fireball-right"></div>
   }
 }
 export default Attacking
