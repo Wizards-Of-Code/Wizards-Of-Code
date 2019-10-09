@@ -28,7 +28,7 @@ class App extends React.Component {
       battleRef: {},
       avatars: [],
       userRef: {},
-      endBattleSubscription: {}
+      endBattleSubscription: {},
     };
   }
 
@@ -39,7 +39,8 @@ class App extends React.Component {
     userRef.get().then(user => {
       const userData = user.data();
       this.setState({ user: userData });
-      if (userData.activeBattle !== "") {
+
+      if (userData.activeBattle !== '') {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
         this.setBattleState(battleRef);
       }
@@ -51,6 +52,7 @@ class App extends React.Component {
   };
 
   setBattleState = battleRef => {
+
     this.setState({ battleRef });
     let endBattleSubscription = battleRef.onSnapshot(querySnapshot => {
       let battle = querySnapshot.data();
@@ -82,41 +84,9 @@ class App extends React.Component {
         );
       }
     });
+
   };
 
-  // damageDealt = () => {
-  //   if (
-  //     this.state.myBattle.user1_health > 0 &&
-  //     this.state.myBattle.user2_health > 0
-  //   ) {
-  //     return;
-  //   }
-
-  //   if (this.state.myBattle.status === "closed") {
-  //     let [winner, loser] =
-  //       this.state.myBattle.user1_health <= 0
-  //         ? ["user2", "user1"]
-  //         : ["user1", "user2"];
-  //     console.log(`${loser} died!!!!!!`);
-  //     this.state.battleRef.set(
-  //       {
-  //         status: "completed",
-  //         winner
-  //       },
-  //       { merge: true }
-  //     );
-
-  //     this.state.endBattleSubscription();
-  //     this.state.userRef.set(
-  //       {
-  //         activeBattle: ""
-  //       },
-  //       { merge: true }
-  //     );
-
-  //     this.setState({ battleRef: {} });
-  //   }
-  // };
 
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
@@ -131,6 +101,15 @@ class App extends React.Component {
       .get()
       .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
   };
+
+  setAvatar = (imgUrl) => {
+    this.state.userRef.set(
+      {
+        imgUrl: imgUrl,
+      },
+      { merge: true }
+    );
+  }
 
   getOpenBattles = () => {
     const openBattlesRef = this.props.firebase.openBattles();
@@ -161,6 +140,7 @@ class App extends React.Component {
         {
           activeBattle: battleRef.id,
           role: "user1"
+
         },
         { merge: true }
       );
@@ -186,7 +166,7 @@ class App extends React.Component {
       {
         user2: user.username,
         user2_health: user.maxHealth,
-        status: "closed"
+        status: 'closed',
       },
       { merge: true }
     );
@@ -195,12 +175,14 @@ class App extends React.Component {
       {
         activeBattle: battleRef.id,
         role: "user2"
+
       },
       { merge: true }
     );
   };
 
   doDamage = amount => {
+
     if (this.state.user.role === "user1") {
       this.state.battleRef.update({
         user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -213,6 +195,7 @@ class App extends React.Component {
           -10
         )
       });
+
     }
   };
 
@@ -264,11 +247,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-
-    // if (this.state.myBattle.winner) {
-    //   return <GameOver battleInfo={this.props.myBattle} />;
-    // }
 
     return (
       <Router>
@@ -332,6 +310,8 @@ class App extends React.Component {
                 {...props}
                 getAvatars={this.getAvatars}
                 avatars={this.state.avatars}
+                user={this.state.user}
+                setAvatar={this.setAvatar}
               />
             )}
           />
