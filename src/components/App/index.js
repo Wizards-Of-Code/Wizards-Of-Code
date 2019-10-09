@@ -9,6 +9,7 @@ import PasswordForgetPage from "../PasswordForget";
 import HomePage from "../Home";
 import AccountPage from "../Account";
 import AdminPage from "../Admin";
+import ImgCollection from "../Home/imgCollection"
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 
@@ -22,9 +23,10 @@ class App extends React.Component {
       problems: [],
       problem: [],
       skills: [],
-      userCode: "",
+      userCode: '',
       result: {},
       battleRef: {},
+      avatars: [],
       userRef: {},
     };
   }
@@ -55,6 +57,14 @@ class App extends React.Component {
       .then(problem => this.setState({ problem: problem.data() }));
   };
 
+  getAvatars = () => {
+    const avatarsRef = this.props.firebase.avatars();
+      avatarsRef
+        .get()
+        .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
+      
+  };
+
   getOpenBattles = () => {
     const openBattlesRef = this.props.firebase.openBattles();
     let allOpenBattles = [];
@@ -63,12 +73,12 @@ class App extends React.Component {
         let status = change.doc.data().status;
         let doc = change.doc.data();
         let id = change.doc.id;
-        if (change.type === "added") {
-          if (status === "open") {
+        if (change.type === 'added') {
+          if (status === 'open') {
             allOpenBattles.push({ ...doc, id });
           }
-        } else if (change.type === "modified") {
-          if (status === "closed") {
+        } else if (change.type === 'modified') {
+          if (status === 'closed') {
             allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
           }
         }
@@ -152,22 +162,22 @@ class App extends React.Component {
 
   updateCode = event => {
     this.setState({
-      userCode: event
+      userCode: event,
     });
   };
 
   submitCode = (code, inputs, expectedOutputs) => {
-    const webWorker = new Worker("webWorker.js");
+    const webWorker = new Worker('webWorker.js');
 
     webWorker.postMessage({
       userFunction: code,
       inputs: inputs,
-      expectedOutputs: expectedOutputs
+      expectedOutputs: expectedOutputs,
     });
 
     const timeoutId = setTimeout(() => {
       this.setState({
-        result: { userOutputs: "Your function failed!  :(", correct: false }
+        result: { userOutputs: 'Your function failed!  :(', correct: false },
       });
       webWorker.terminate();
     }, 5000);
@@ -223,7 +233,12 @@ class App extends React.Component {
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
           <Route
             path={ROUTES.HOME}
-            render={props => <HomePage {...props} user={this.state.user} />}
+            render={props => (
+              <HomePage
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
@@ -242,6 +257,12 @@ class App extends React.Component {
                 doDamage={this.doDamage}
                 getRandomProblem={this.getRandomProblem}
               />
+            )}
+          />
+          <Route
+            path={ROUTES.SETAVATAR}
+            render={props => (
+              <ImgCollection {...props} getAvatars={this.getAvatars} avatars={this.state.avatars}/>
             )}
           />
         </div>
