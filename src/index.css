@@ -378,7 +378,7 @@ li {
   padding: 0;
 } */
 
-.box {
+.player1 {
   position: sticky;
   top: 27%;
   left: 20%; 
@@ -386,9 +386,9 @@ li {
   width: calc(1795px / 5);
   height: 350px;
   background: url(wizard-die.png);
-  animation: animate 2.5s steps(5);
+  animation: die 2.5s steps(5) infinite;
 }
-@keyframes animate {
+@keyframes die {
   from {
     background-position: 0;
   }
@@ -397,10 +397,49 @@ li {
   }
 }
 
+.player2 {
+  position: absolute;
+  top: 25%;
+  left: 70%;
+  transform: translate(-50%,-50%);
+  width: calc(7941px/20);
+  height: 400px;
+  background: url(greenChar.png);
+  animation: castASpell 3s steps(20) infinite;
+}
+@keyframes castASpell { 
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 7941px
+  }
+}
+
+.attacking {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: calc(500px);
+  height: 125px;
+  background: url(fireball.png);
+  animation: attack 3s steps(20) infinite;
+}
+@keyframes attack { 
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 125px
+  }
+}
+
 .gamepage {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  background-image: url(greenforest.png)
 }
 
 .connected-users{

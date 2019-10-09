@@ -2,13 +2,19 @@ import React from 'react'
 import CodeArea from './codeArea'
 import Instructions from './instructions'
 import Result from './result'
-import Player from './Player'
+import Player1 from './player1'
+import Player2 from './player2'
+import Attacking from './attacking'
 
 const GameStage = props => {
 
   return (
-    <div className="gamepage">
-      <Player />
+    <div>
+      <div className="gamepage">
+      <Player1 />
+      <Attacking  />
+      <Player2 />
+      </div>
       <div className="taskbox">
         <Instructions
           prompt={props.problem.prompt}
