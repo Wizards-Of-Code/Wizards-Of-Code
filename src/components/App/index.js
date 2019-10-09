@@ -23,33 +23,39 @@ class App extends React.Component {
       problem: [],
       skills: [],
       userCode: "",
-      result: {}
+      result: {},
+      battleRef: {},
+      userRef: {},
     };
-    this.login = this.login.bind(this);
-    this.getProblem = this.getProblem.bind(this);
-    this.updateCode = this.updateCode.bind(this);
-    this.submitCode = this.submitCode.bind(this);
-    this.getOpenBattles = this.getOpenBattles.bind(this);
-    this.createBattle = this.createBattle.bind(this);
-    this.joinRandomBattle = this.joinRandomBattle.bind(this);
-    this.joinOpenBattle = this.joinOpenBattle.bind(this);
   }
 
-  login(userId) {
+  login = userId => {
     let userRef = this.props.firebase.user(userId);
-    userRef.get().then(user => this.setState({ user: user.data() }));
-    userRef.onSnapshot(snapshot => {
-      console.log("SNAPSHOT", snapshot);
+    this.setState({ userRef });
+    userRef.get().then(user => {
+      const userData= user.data();
+      this.setState({ user: userData })
+      if (userData.activeBattle !== '') {
+        let battleRef = this.props.firebase.battle(userData.activeBattle);
+        battleRef.onSnapshot(querySnapshot => {
+          this.setState({ myBattle: querySnapshot.data() });
+        });
+      }
     });
-  }
-  getProblem(problemId) {
+
+    userRef.onSnapshot(snapshot => {
+      this.setState({ user: snapshot.data() });
+    });
+  };
+
+  getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
     problemRef
       .get()
       .then(problem => this.setState({ problem: problem.data() }));
-  }
+  };
 
-  getOpenBattles() {
+  getOpenBattles = () => {
     const openBattlesRef = this.props.firebase.openBattles();
     let allOpenBattles = [];
     openBattlesRef.onSnapshot(querySnapshot => {
@@ -69,31 +75,36 @@ class App extends React.Component {
       });
       this.setState({ battles: allOpenBattles });
     });
-  }
+  };
 
-  createBattle() {
-    this.props.firebase.createBattle(this.state.user).then(battleRef =>
+  createBattle = () => {
+    this.props.firebase.createBattle(this.state.user).then(battleRef => {
       battleRef.onSnapshot(querySnapshot => {
-        this.setState({ myBattle: querySnapshot });
+        this.setState({ myBattle: querySnapshot.data() });
       })
-    );
-  }
+      this.state.userRef.set({
+        activeBattle: battleRef.id
+      },
+      { merge: true }
+      )
+    });
+  };
 
-  joinRandomBattle() {
+  joinRandomBattle = () => {
     this.props.firebase.joinRandomBattle(this.state.user).then(battleRef => {
       console.log(battleRef.id);
       this.joinBattle(battleRef);
     });
   };
 
-  joinOpenBattle(battleId) {
-    let battleRef =  this.props.firebase.battle(battleId)
+  joinOpenBattle = battleId => {
+    let battleRef = this.props.firebase.battle(battleId);
     this.joinBattle(battleRef);
+  };
 
-  }
-
-  joinBattle (battleRef) {
+  joinBattle = battleRef => {
     const user = this.state.user;
+    console.log(user);
     battleRef.set(
       {
         user2: user.username,
@@ -103,17 +114,49 @@ class App extends React.Component {
       { merge: true }
     );
     battleRef.onSnapshot(querySnapshot => {
-      this.setState({ myBattle: querySnapshot });
+      this.setState({ myBattle: querySnapshot.data(), battleRef });
     });
-  }
+    this.state.userRef.set({
+      activeBattle: battleRef.id
+    },
+    { merge: true }
+    )
+  };
 
-  updateCode = function(event) {
+  doDamage = amount => {
+    if (this.state.user.username === this.state.myBattle.user1) {
+      this.state.battleRef.set(
+        {
+          user2_health: this.state.myBattle.user2_health - amount
+        },
+        { merge: true }
+      );
+    } else {
+      this.state.battleRef.set(
+        {
+          user1_health: this.state.myBattle.user1_health - amount
+        },
+        { merge: true }
+      );
+    }
+  };
+
+  getRandomProblem = difficulty => {
+    this.props.firebase
+      .getRandomProblem(difficulty)
+      .then(problemRef => problemRef.get())
+      .then(doc => this.setState({ problem: doc.data() }));
+
+    // this.setState({ problem: probRef.data() });
+  };
+
+  updateCode = event => {
     this.setState({
       userCode: event
     });
   };
 
-  submitCode = function(code, inputs, expectedOutputs) {
+  submitCode = (code, inputs, expectedOutputs) => {
     const webWorker = new Worker("webWorker.js");
 
     webWorker.postMessage({
@@ -131,6 +174,9 @@ class App extends React.Component {
 
     webWorker.onmessage = event => {
       this.setState({ result: event.data });
+      if (event.data.correct) {
+        this.doDamage(10);
+      }
       webWorker.terminate();
       clearTimeout(timeoutId);
     };
@@ -145,6 +191,9 @@ class App extends React.Component {
   }
 
   render() {
+
+    console.log(this.state);
+
     return (
       <Router>
         <div className="container">
@@ -183,12 +232,15 @@ class App extends React.Component {
             render={props => (
               <GameStage
                 {...props}
+                myBattle={this.state.myBattle}
                 problem={this.state.problem}
                 getProblem={this.getProblem}
                 userCode={this.state.userCode}
                 updateCode={this.updateCode}
                 result={this.state.result}
                 submitCode={this.submitCode}
+                doDamage={this.doDamage}
+                getRandomProblem={this.getRandomProblem}
               />
             )}
           />

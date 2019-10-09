@@ -62,10 +62,23 @@ class Firebase {
     });
   };
 
+  increment = amount => {
+    this.db.FieldValue.increment(amount);
+  };
+
   joinRandomBattle = user =>
     this.db
       .collection("battles")
       .where("status", "==", "open")
+      .get()
+      .then(
+        docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
+      );
+
+  getRandomProblem = difficulty =>
+    this.db
+      .collection("problems")
+      .where("difficulty", "==", difficulty)
       .get()
       .then(
         docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref

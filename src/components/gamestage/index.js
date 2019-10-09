@@ -5,6 +5,7 @@ import Result from './result'
 import Player from './player'
 
 const GameStage = props => {
+
   return (
     <div className="gamepage">
       <Player />
@@ -12,6 +13,8 @@ const GameStage = props => {
         <Instructions
           prompt={props.problem.prompt}
           getProblem={props.getProblem}
+          doDamage={props.doDamage}
+          getRandomProblem={props.getRandomProblem}
         />
         <CodeArea userCode={props.userCode} updateCode={props.updateCode} />
         <Result
@@ -22,7 +25,7 @@ const GameStage = props => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default GameStage
+export default GameStage;
