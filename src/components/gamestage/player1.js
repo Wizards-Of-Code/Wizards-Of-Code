@@ -7,7 +7,7 @@ class Player1 extends Component {
 
   render() {
     return (
-      <div className="player1" ></div>
+      <div className="purple-wizard" ></div>
     );
   }
 }
