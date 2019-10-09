@@ -20,7 +20,6 @@ class App extends React.Component {
     this.state = {
       user: {},
       battles: [],
-
       problems: [],
       problem: [],
       skills: [],
@@ -55,11 +54,12 @@ class App extends React.Component {
     this.setState({ battleRef });
     let endBattleSubscription = battleRef.onSnapshot(querySnapshot => {
       let battle = querySnapshot.data();
-      if (battle.user1_health < 0) {
+      if (battle.user1_health <= 0) {
         battleRef.set(
           { winner: battle.user2, status: "completed" },
           { merge: true }
         );
+        console.log("User 2 WON");
         endBattleSubscription();
         this.state.userRef.set(
           {
@@ -67,11 +67,12 @@ class App extends React.Component {
           },
           { merge: true }
         );
-      } else if (battle.user2_health < 0) {
+      } else if (battle.user2_health <= 0) {
         battleRef.set(
           { winner: battle.user1, status: "completed" },
           { merge: true }
         );
+        console.log("User 1 WON");
         endBattleSubscription();
         this.state.userRef.set(
           {
@@ -265,9 +266,9 @@ class App extends React.Component {
   render() {
     console.log(this.state);
 
-    if (this.state.myBattle.winner) {
-      return <GameOver battleInfo={this.props.myBattle} />;
-    }
+    // if (this.state.myBattle.winner) {
+    //   return <GameOver battleInfo={this.props.myBattle} />;
+    // }
 
     return (
       <Router>
