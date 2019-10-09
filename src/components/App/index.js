@@ -200,11 +200,15 @@ class App extends React.Component {
   doDamage = amount => {
     if (this.state.user.username === this.state.myBattle.user1) {
       this.state.battleRef.update({
-        user2_health: this.props.firebase.increment(-10)
+        user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+          -10
+        )
       });
     } else {
       this.state.battleRef.update({
-        user1_health: this.props.firebase.increment(-10)
+        user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+          -10
+        )
       });
     }
   };
