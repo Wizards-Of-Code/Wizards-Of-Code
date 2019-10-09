@@ -65,7 +65,7 @@ class App extends React.Component {
     }
 
     if (this.state.myBattle.status === 'closed') {
-      let [winner, loser] = this.state.user1_health <= 0 ? ['user2', 'user1'] : ['user1', 'user2'];
+      let [winner, loser] = this.state.myBattle.user1_health <= 0 ? ['user2', 'user1'] : ['user1', 'user2'];
       console.log(`${loser} died!!!!!!`);
       this.state.battleRef.set({
         status: 'completed',
@@ -244,21 +244,6 @@ class App extends React.Component {
         <div className="container">
           <Navigation />
           <Route
-            exact
-            path={ROUTES.LANDING}
-            render={props => (
-              <LandingPage
-                {...props}
-                createBattle={this.createBattle}
-                openBattles={this.state.battles}
-                getOpenBattles={this.getOpenBattles}
-                joinRandomBattle={this.joinRandomBattle}
-                joinOpenBattle={this.joinOpenBattle}
-                activeBattle={this.state.user.activeBattle}
-              />
-            )}
-          />
-          <Route
             path={ROUTES.SIGN_UP}
             render={props => <SignUpPage {...props} login={this.login} />}
           />
@@ -279,8 +264,19 @@ class App extends React.Component {
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
           <Route
-            path={ROUTES.GAMESTAGE}
-            render={props => (
+            path={ROUTES.BATTLE}
+            render={props => {
+              return this.state.user.activeBattle === '' ? (
+                <LandingPage
+                {...props}
+                createBattle={this.createBattle}
+                openBattles={this.state.battles}
+                getOpenBattles={this.getOpenBattles}
+                joinRandomBattle={this.joinRandomBattle}
+                joinOpenBattle={this.joinOpenBattle}
+                activeBattle={this.state.user.activeBattle}
+              />
+              ) : (
               <GameStage
                 {...props}
                 myBattle={this.state.myBattle}
@@ -294,7 +290,8 @@ class App extends React.Component {
                 getRandomProblem={this.getRandomProblem}
                 activeBattle={this.state.user.activeBattle}
               />
-            )}
+              )
+            }}
           />
           <Route
             path={ROUTES.GAMEOVER}

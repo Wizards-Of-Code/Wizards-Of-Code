@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { BATTLE } from "../../constants/routes";
+
 
 const OpenBattles = props => {
 
@@ -11,7 +13,7 @@ const OpenBattles = props => {
         <div className="single-game" key={battle.id}>
           <div>
             <div className="opponent">Opponent: {battle.user1}</div>
-            <Link to={"/gamestage"}>
+            <Link to={BATTLE}>
               <button
                 className="openGame"
                 onClick={() => props.joinOpenBattle(battle.id)}
