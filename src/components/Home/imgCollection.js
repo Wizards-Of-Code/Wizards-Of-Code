@@ -11,7 +11,6 @@ class ImgCollection extends Component {
     avatarInfo = this.props.avatars.map(avatar => {
       return avatar.data();
     });
-    console.log(avatarInfo)
     return (
       <div className="avatar-container">
         <img
@@ -22,6 +21,11 @@ class ImgCollection extends Component {
         {avatarInfo.map(avatar => (
           <div className="single-avatar">
             <h1>{avatar.name}</h1>
+            <img
+              src={avatar.imgUrl}
+              alt=""
+              className="img-avatar"
+            />
             <p>{avatar.description}</p>
             <Link to={`/home`}>
               <button
