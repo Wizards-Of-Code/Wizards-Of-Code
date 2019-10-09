@@ -6,7 +6,7 @@ class Player2 extends Component {
   }
 
   render() {
-    return <div className="green-mage"></div>
+    return <div className="green-mage-idle"></div>
   }
 }
 export default Player2
