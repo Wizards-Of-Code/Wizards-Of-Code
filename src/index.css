@@ -293,10 +293,6 @@ li {
   outline:0 !important; 
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 00165c1d36dd9ebb4635e9b07a0e62fe0355a1c8
 .join-random-btl-btn,
 .create-battle-btn {
   width: 400px;
@@ -376,7 +372,6 @@ li {
   width: 100px;
   border-radius: 10px;
   font-size: 18px;
-<<<<<<< HEAD
 }
 /* body {
   margin: 0;
@@ -406,8 +401,6 @@ li {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-=======
->>>>>>> 00165c1d36dd9ebb4635e9b07a0e62fe0355a1c8
 }
 
 .connected-users{

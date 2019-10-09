@@ -2,7 +2,7 @@ import React from 'react'
 import CodeArea from './codeArea'
 import Instructions from './instructions'
 import Result from './result'
-import Player from './player'
+import Player from './Player'
 
 const GameStage = props => {
 
