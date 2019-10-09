@@ -65,7 +65,6 @@ class App extends React.Component {
     if (this.state.myBattle.status === 'closed') {
       let [winner, loser] = this.state.user1_health <= 0 ? ['user2', 'user1'] : ['user1', 'user2'];
       console.log(`${loser} died!!!!!!`);
-
       this.state.battleRef.set({
         status: 'completed',
         winner
@@ -74,7 +73,6 @@ class App extends React.Component {
       );
 
       this.state.endBattleSubscription()
-
       this.state.userRef.set({
         activeBattle: ''
       },
@@ -83,10 +81,8 @@ class App extends React.Component {
 
       this.setState({ battleRef: {} });
 
-      return <Redirect to={ROUTES.GAMEOVER} />
-
-    }
-  }
+    };
+  };
 
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
@@ -183,7 +179,6 @@ class App extends React.Component {
       .then(problemRef => problemRef.get())
       .then(doc => this.setState({ problem: doc.data() }));
 
-    // this.setState({ problem: probRef.data() });
   };
 
   updateCode = event => {
@@ -229,6 +224,10 @@ class App extends React.Component {
   render() {
 
     console.log(this.state);
+
+    if (this.state.myBattle.winner) {
+      return <GameOver battleInfo ={this.props.myBattle} />
+    }
 
     return (
       <Router>
