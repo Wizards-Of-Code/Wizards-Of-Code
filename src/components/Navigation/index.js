@@ -15,9 +15,9 @@ const Navigation = () => (
 
 const NavigationAuth = () => (
   <ul className="nav">
-    <Link to={ROUTES.LANDING}>Landing</Link>
-    <Link to={ROUTES.HOME}>Home</Link>
-    <Link to={ROUTES.ACCOUNT}>Account</Link>
+    <Link to={ROUTES.LANDING}>Battle</Link>
+    <Link to={ROUTES.HOME}>Profile</Link>
+    <Link to={ROUTES.ACCOUNT}>Account Info</Link>
     <Link to={ROUTES.ADMIN}>Admin</Link>
     <SignOutButton />
   </ul>
