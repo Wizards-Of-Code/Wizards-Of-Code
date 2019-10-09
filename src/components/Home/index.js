@@ -2,10 +2,12 @@ import React from "react";
 import { withAuthorization } from "../Session";
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
-import imgCollection from './imgCollection'
+import { BATTLE } from "../../constants/routes";
+
 
 
 const HomePage = props => {
+  console.log(props)
   return (
     <div className="home-page-container">
       <img
@@ -20,7 +22,7 @@ const HomePage = props => {
             <button className="user-history-btn">Battle History</button>
           </div>
           <div className="go-battle">
-            <Link to={'/'}>
+            <Link to={BATTLE}>
               <button className="go-to-battle">Go To Battle</button>
             </Link>
           </div>
@@ -31,7 +33,11 @@ const HomePage = props => {
       </div>
       <div className="profile-info">
         <div className="profile-info-container">
-          <img src="mage_2.png" alt="wizard" className="profile-pic" />
+          <img
+            src={props.user.imgUrl}
+            alt="wizard"
+            className="profile-pic"
+          />
           <Link to={'/avatars'}>
             <button className="change-profile-pic">
               Change Profile Picture
