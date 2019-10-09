@@ -14,14 +14,13 @@ class CodeArea extends Component {
       mode: "javascript",
       autoFocus: true,
       className: "texteditor",
-      lineWrapping: true,
       gutters: ["CodeMirror-linenumbers", 2]
     };
     return (
       <CodeMirror
         value={this.props.userCode}
-        onChange={(event) => {
-          this.props.updateCode(event)
+        onChange={event => {
+          this.props.updateCode(event);
         }}
         options={options}
         className="code-mirror"
@@ -30,4 +29,4 @@ class CodeArea extends Component {
   }
 }
 
-export default CodeArea
+export default CodeArea;

@@ -2,13 +2,11 @@ import React, { Component } from "react";
 
 class Player extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
-    return (
-      <div className="box"></div>
-    );
+    return <div className="box"></div>;
   }
 }
-export default Player
+export default Player;
