@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Navigation from "../Navigation";
 import GameStage from "../gamestage";
 import LandingPage from "../Landing";
@@ -9,6 +9,8 @@ import PasswordForgetPage from "../PasswordForget";
 import HomePage from "../Home";
 import AccountPage from "../Account";
 import AdminPage from "../Admin";
+import GameOver from "../GameOver";
+import ImgCollection from "../Home/imgCollection"
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 
@@ -22,24 +24,25 @@ class App extends React.Component {
       problems: [],
       problem: [],
       skills: [],
-      userCode: "",
+      userCode: '',
       result: {},
       battleRef: {},
+      avatars: [],
       userRef: {},
+      endBattleSubscription: {}
     };
   }
 
   login = userId => {
     let userRef = this.props.firebase.user(userId);
     this.setState({ userRef });
+
     userRef.get().then(user => {
       const userData= user.data();
       this.setState({ user: userData })
       if (userData.activeBattle !== '') {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
-        battleRef.onSnapshot(querySnapshot => {
-          this.setState({ myBattle: querySnapshot.data() });
-        });
+        this.setBattleState(battleRef);
       }
     });
 
@@ -48,11 +51,54 @@ class App extends React.Component {
     });
   };
 
+  setBattleState = (battleRef) => {
+    let endBattleSubscription = battleRef.onSnapshot(querySnapshot => {
+      this.setState({ myBattle: querySnapshot.data(), battleRef }, this.damageDealt);
+    });
+    this.setState( { endBattleSubscription });
+  }
+
+  damageDealt = () => {
+
+    if (this.state.myBattle.user1_health > 0 && this.state.myBattle.user2_health > 0) {
+      return;
+    }
+
+    if (this.state.myBattle.status === 'closed') {
+      let [winner, loser] = this.state.user1_health <= 0 ? ['user2', 'user1'] : ['user1', 'user2'];
+      console.log(`${loser} died!!!!!!`);
+      this.state.battleRef.set({
+        status: 'completed',
+        winner
+      },
+      { merge: true }
+      );
+
+      this.state.endBattleSubscription()
+      this.state.userRef.set({
+        activeBattle: ''
+      },
+      { merge: true}
+      );
+
+      this.setState({ battleRef: {} });
+
+    };
+  };
+
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
     problemRef
       .get()
       .then(problem => this.setState({ problem: problem.data() }));
+  };
+
+  getAvatars = () => {
+    const avatarsRef = this.props.firebase.avatars();
+      avatarsRef
+        .get()
+        .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
+
   };
 
   getOpenBattles = () => {
@@ -63,12 +109,12 @@ class App extends React.Component {
         let status = change.doc.data().status;
         let doc = change.doc.data();
         let id = change.doc.id;
-        if (change.type === "added") {
-          if (status === "open") {
+        if (change.type === 'added') {
+          if (status === 'open') {
             allOpenBattles.push({ ...doc, id });
           }
-        } else if (change.type === "modified") {
-          if (status === "closed") {
+        } else if (change.type === 'modified') {
+          if (status === 'closed') {
             allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
           }
         }
@@ -79,9 +125,7 @@ class App extends React.Component {
 
   createBattle = () => {
     this.props.firebase.createBattle(this.state.user).then(battleRef => {
-      battleRef.onSnapshot(querySnapshot => {
-        this.setState({ myBattle: querySnapshot.data() });
-      })
+      this.setBattleState(battleRef);
       this.state.userRef.set({
         activeBattle: battleRef.id
       },
@@ -113,9 +157,7 @@ class App extends React.Component {
       },
       { merge: true }
     );
-    battleRef.onSnapshot(querySnapshot => {
-      this.setState({ myBattle: querySnapshot.data(), battleRef });
-    });
+    this.setBattleState(battleRef);
     this.state.userRef.set({
       activeBattle: battleRef.id
     },
@@ -147,27 +189,26 @@ class App extends React.Component {
       .then(problemRef => problemRef.get())
       .then(doc => this.setState({ problem: doc.data() }));
 
-    // this.setState({ problem: probRef.data() });
   };
 
   updateCode = event => {
     this.setState({
-      userCode: event
+      userCode: event,
     });
   };
 
   submitCode = (code, inputs, expectedOutputs) => {
-    const webWorker = new Worker("webWorker.js");
+    const webWorker = new Worker('webWorker.js');
 
     webWorker.postMessage({
       userFunction: code,
       inputs: inputs,
-      expectedOutputs: expectedOutputs
+      expectedOutputs: expectedOutputs,
     });
 
     const timeoutId = setTimeout(() => {
       this.setState({
-        result: { userOutputs: "Your function failed!  :(", correct: false }
+        result: { userOutputs: 'Your function failed!  :(', correct: false },
       });
       webWorker.terminate();
     }, 5000);
@@ -194,6 +235,10 @@ class App extends React.Component {
 
     console.log(this.state);
 
+    if (this.state.myBattle.winner) {
+      return <GameOver battleInfo ={this.props.myBattle} />
+    }
+
     return (
       <Router>
         <div className="container">
@@ -209,6 +254,7 @@ class App extends React.Component {
                 getOpenBattles={this.getOpenBattles}
                 joinRandomBattle={this.joinRandomBattle}
                 joinOpenBattle={this.joinOpenBattle}
+                activeBattle={this.state.user.activeBattle}
               />
             )}
           />
@@ -223,7 +269,12 @@ class App extends React.Component {
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
           <Route
             path={ROUTES.HOME}
-            render={props => <HomePage {...props} user={this.state.user} />}
+            render={props => (
+              <HomePage
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
@@ -241,7 +292,23 @@ class App extends React.Component {
                 submitCode={this.submitCode}
                 doDamage={this.doDamage}
                 getRandomProblem={this.getRandomProblem}
+                activeBattle={this.state.user.activeBattle}
               />
+            )}
+          />
+          <Route
+            path={ROUTES.GAMEOVER}
+            render={props => (
+              <GameOver
+                {...props}
+                battleInfo ={this.props.myBattle}
+              />
+            )}
+          />
+          <Route
+            path={ROUTES.SETAVATAR}
+            render={props => (
+              <ImgCollection {...props} getAvatars={this.getAvatars} avatars={this.state.avatars}/>
             )}
           />
         </div>

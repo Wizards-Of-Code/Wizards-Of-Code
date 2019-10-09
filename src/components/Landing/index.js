@@ -1,13 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import OpenBattles from "./OpenBattles";
+import { GAMESTAGE } from "../../constants/routes";
 
 class LandingPage extends React.Component {
   componentDidMount() {
     this.props.getOpenBattles();
   }
 
+  redirect () {
+    this.props.history.push(GAMESTAGE);
+  }
+
   render() {
+
+    if (this.props.activeBattle !== '') {
+      this.props.history.push(GAMESTAGE);
+    }
+
     return (
       <div className="landing-page-container">
         <img

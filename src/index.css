@@ -281,7 +281,8 @@ li {
 .create-battle-btn,
 .join-random-btl-btn,
 .openGame,
-.submit-result {
+.submit-result,
+.select-avatar {
   font-size: 25px;
   color: rgb(12, 11, 11);
   border-radius: 10px;
@@ -308,7 +309,8 @@ li {
 .create-battle-btn:hover,
 .join-random-btl-btn:hover,
 .openGame:hover,
-.submit-result:hover {
+.submit-result:hover,
+.select-avatar:hover {
   color: #f8f4f4 !important;
   font-weight: 700 !important;
   letter-spacing: 3px;
@@ -325,6 +327,9 @@ li {
 }
 .openGame {
   text-align: center;
+}
+.select-avatar {
+  width: 200px;
 }
 
 .submit-result {
@@ -511,3 +516,24 @@ li {
   border-color: #ffffff;
   border-width: 2px;
 }
+
+.avatar-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.single-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(161, 159, 159, 0.5);;
+  height: 700px;
+  width: 420px;
+  margin: 20px;
+  padding: 5px;
+}
+
+.img-avatar {
+  
+}
+

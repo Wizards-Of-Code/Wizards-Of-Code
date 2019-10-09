@@ -5,8 +5,14 @@ import Result from './result'
 import Player1 from './player1'
 import Player2 from './player2'
 import Attacking from './attacking'
+import { LANDING } from '../../constants/routes'
 
 const GameStage = props => {
+
+  if (props.activeBattle === '') {
+    props.history.push(LANDING);
+  }
+
   return (
     <div className="gamepage">
       <div className="gamestage">
