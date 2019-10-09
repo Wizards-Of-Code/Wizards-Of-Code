@@ -52,6 +52,7 @@ class App extends React.Component {
   };
 
   setBattleState = battleRef => {
+    this.setState({ battleRef });
     let endBattleSubscription = battleRef.onSnapshot(querySnapshot => {
       let battle = querySnapshot.data();
       if (battle.user1_health < 0) {
