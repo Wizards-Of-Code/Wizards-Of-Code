@@ -24,15 +24,27 @@ class App extends React.Component {
       skills: [],
       userCode: "",
       result: {},
-      battleRef: {}
+      battleRef: {},
+      userRef: {},
     };
   }
 
   login = userId => {
     let userRef = this.props.firebase.user(userId);
-    userRef.get().then(user => this.setState({ user: user.data() }));
+    this.setState({ userRef });
+    userRef.get().then(user => {
+      const userData= user.data();
+      this.setState({ user: userData })
+      if (userData.activeBattle !== '') {
+        let battleRef = this.props.firebase.battle(userData.activeBattle);
+        battleRef.onSnapshot(querySnapshot => {
+          this.setState({ myBattle: querySnapshot.data() });
+        });
+      }
+    });
+
     userRef.onSnapshot(snapshot => {
-      console.log("SNAPSHOT", snapshot);
+      this.setState({ user: snapshot.data() });
     });
   };
 
@@ -66,11 +78,16 @@ class App extends React.Component {
   };
 
   createBattle = () => {
-    this.props.firebase.createBattle(this.state.user).then(battleRef =>
+    this.props.firebase.createBattle(this.state.user).then(battleRef => {
       battleRef.onSnapshot(querySnapshot => {
-        this.setState({ myBattle: querySnapshot });
+        this.setState({ myBattle: querySnapshot.data() });
       })
-    );
+      this.state.userRef.set({
+        activeBattle: battleRef.id
+      },
+      { merge: true }
+      )
+    });
   };
 
   joinRandomBattle = () => {
@@ -87,6 +104,7 @@ class App extends React.Component {
 
   joinBattle = battleRef => {
     const user = this.state.user;
+    console.log(user);
     battleRef.set(
       {
         user2: user.username,
@@ -98,6 +116,11 @@ class App extends React.Component {
     battleRef.onSnapshot(querySnapshot => {
       this.setState({ myBattle: querySnapshot.data(), battleRef });
     });
+    this.state.userRef.set({
+      activeBattle: battleRef.id
+    },
+    { merge: true }
+    )
   };
 
   doDamage = amount => {
@@ -168,6 +191,9 @@ class App extends React.Component {
   }
 
   render() {
+
+    console.log(this.state);
+
     return (
       <Router>
         <div className="container">
@@ -206,6 +232,7 @@ class App extends React.Component {
             render={props => (
               <GameStage
                 {...props}
+                myBattle={this.state.myBattle}
                 problem={this.state.problem}
                 getProblem={this.getProblem}
                 userCode={this.state.userCode}

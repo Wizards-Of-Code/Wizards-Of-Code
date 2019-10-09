@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 
 class Instructions extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   componentDidMount() {
     this.props.getProblem("b0FL15GLthEMS3mXfBTZ");
   }
