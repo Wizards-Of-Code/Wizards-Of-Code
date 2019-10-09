@@ -9,11 +9,8 @@ import PasswordForgetPage from "../PasswordForget";
 import HomePage from "../Home";
 import AccountPage from "../Account";
 import AdminPage from "../Admin";
-<<<<<<< HEAD
 import GameOver from "../GameOver";
-=======
 import ImgCollection from "../Home/imgCollection"
->>>>>>> bc6c814a2b91a2e1f3bc23d6322508b033d7b18a
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 
@@ -101,7 +98,7 @@ class App extends React.Component {
       avatarsRef
         .get()
         .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
-      
+
   };
 
   getOpenBattles = () => {
