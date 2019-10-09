@@ -28,7 +28,7 @@ class App extends React.Component {
       battleRef: {},
       avatars: [],
       userRef: {},
-      endBattleSubscription: {},
+      endBattleSubscription: {}
     };
   }
 
@@ -40,7 +40,7 @@ class App extends React.Component {
       const userData = user.data();
       this.setState({ user: userData });
 
-      if (userData.activeBattle !== '') {
+      if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
         this.setBattleState(battleRef);
       }
@@ -52,7 +52,6 @@ class App extends React.Component {
   };
 
   setBattleState = battleRef => {
-
     this.setState({ battleRef });
     let endBattleSubscription = battleRef.onSnapshot(querySnapshot => {
       let battle = querySnapshot.data();
@@ -84,9 +83,7 @@ class App extends React.Component {
         );
       }
     });
-
   };
-
 
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
@@ -102,14 +99,14 @@ class App extends React.Component {
       .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
   };
 
-  setAvatar = (imgUrl) => {
+  setAvatar = imgUrl => {
     this.state.userRef.set(
       {
-        imgUrl: imgUrl,
+        imgUrl: imgUrl
       },
       { merge: true }
     );
-  }
+  };
 
   getOpenBattles = () => {
     const openBattlesRef = this.props.firebase.openBattles();
@@ -140,7 +137,6 @@ class App extends React.Component {
         {
           activeBattle: battleRef.id,
           role: "user1"
-
         },
         { merge: true }
       );
@@ -166,7 +162,7 @@ class App extends React.Component {
       {
         user2: user.username,
         user2_health: user.maxHealth,
-        status: 'closed',
+        status: "closed"
       },
       { merge: true }
     );
@@ -175,14 +171,12 @@ class App extends React.Component {
       {
         activeBattle: battleRef.id,
         role: "user2"
-
       },
       { merge: true }
     );
   };
 
   doDamage = amount => {
-
     if (this.state.user.role === "user1") {
       this.state.battleRef.update({
         user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -195,7 +189,6 @@ class App extends React.Component {
           -10
         )
       });
-
     }
   };
 
@@ -247,7 +240,6 @@ class App extends React.Component {
   }
 
   render() {
-
     return (
       <Router>
         <div className="container">
@@ -268,9 +260,24 @@ class App extends React.Component {
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
           <Route
+            path={ROUTES.LANDING}
+            render={props => (
+              <LandingPage
+                {...props}
+                createBattle={this.createBattle}
+                openBattles={this.state.battles}
+                getOpenBattles={this.getOpenBattles}
+                joinRandomBattle={this.joinRandomBattle}
+                joinOpenBattle={this.joinOpenBattle}
+                activeBattle={this.state.user.activeBattle}
+              />
+            )}
+          />
+          <Route
             path={ROUTES.BATTLE}
-            render={props => {
-              return this.state.user.activeBattle === "" ? (
+            render={props =>
+              this.state.user.activeBattle === "" ||
+              !this.state.user.activeBattle ? (
                 <LandingPage
                   {...props}
                   createBattle={this.createBattle}
@@ -294,8 +301,8 @@ class App extends React.Component {
                   getRandomProblem={this.getRandomProblem}
                   activeBattle={this.state.user.activeBattle}
                 />
-              );
-            }}
+              )
+            }
           />
           <Route
             path={ROUTES.GAMEOVER}

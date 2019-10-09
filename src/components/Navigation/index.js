@@ -25,7 +25,7 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => (
   <ul className="nav">
-    <Link to={ROUTES.LANDING}>Landing</Link>
+    <Link to={ROUTES.BATTLE}>Battle</Link>
     <Link to={ROUTES.SIGN_IN}>Sign In</Link>
   </ul>
 );
