@@ -14,7 +14,7 @@ class Player2 extends Component {
         <h1 style={textTransform} color="white">
           {this.props.playerName}
         </h1>
-        <div className="helth-bar2">
+        <div style={textTransform} className="health-bar2">
           <div className="innerbar-lost2">
             <div className="innerbar-activ2">
               <p className="hp-points2">90%</p>
