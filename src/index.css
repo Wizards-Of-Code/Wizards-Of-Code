@@ -404,15 +404,15 @@ li {
   font-size: 18px;
 }
 
-.green-mage {
+.elrond-casts-spell {
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px/20);
   height: 438px;
   background: url(greenChar.png);
-  animation: castASpell 3s steps(20) infinite;
+  animation: castSpell 3s steps(20) infinite;
 }
 
-@keyframes castASpell { 
+@keyframes castSpell { 
   from {
     background-position: 0;
   }
@@ -455,6 +455,23 @@ li {
   }
 }
 
+.galadriel-cast-spell {
+  transform: scaleX(-0.7) scaleY(0.7);
+  width: calc(6840px/20);
+  height: 410px;
+  background: url(galadriel-cast-spell.png);
+  animation: galadriel-cast-spell 2s steps(20) infinite;
+}
+
+@keyframes galadriel-cast-spell { 
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 6840px;
+  }
+}
+
 .fireball-right {
   width: calc(6217px / 13);
   height: 110px;
@@ -479,22 +496,6 @@ li {
 
 }
 
-.ice-left {
-  transform: scale(1.5);
-  width: calc(3814px / 13);
-  height: 175px;
-  background: url(iceball.png);
-  animation: ice-attack 1s steps(22) infinite;
-}
-
-@keyframes ice-attack { 
-  from {
-    background-position: 0;
-  }
-  to {
-    background-position: 3814px
-  }
-}
 .gamepage {
   display: flex;
   flex-direction: column;
