@@ -8,7 +8,7 @@ class Attacking extends Component {
   }
 
   render() {
-    return <div><h1>Attacking</h1></div>
+    return <div></div>
   }
 }
 export default Attacking
