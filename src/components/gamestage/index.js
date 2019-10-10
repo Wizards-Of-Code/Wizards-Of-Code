@@ -139,6 +139,9 @@ class GameStage extends React.Component {
   }
 
   render () {
+
+    if (this.state.battleIsOver) return <GameOver battleInfo={this.state.battleInfo} />
+
     return (
       <div className="gamepage">
         <div className="gamestage">
@@ -148,7 +151,6 @@ class GameStage extends React.Component {
         <button onClick={() => {
           this.doDamage(10);
         }}>DO DAMAGE</button>
-        {this.state.battleIsOver ? <GameOver battleInfo={this.state.battleInfo} /> : ''}
         </div>
         <div className="taskbox">
           <Instructions
