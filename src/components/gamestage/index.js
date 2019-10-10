@@ -109,7 +109,9 @@ class GameStage extends React.Component {
           { merge: true }
         );
       }
-      this.setState({ battleInfo: this.props.battleRef.data() }, () => console.log(this.state.battleInfo));
+      this.props.battleRef.get().then( snapshot => {
+        this.setState({ battleInfo: snapshot.data() }, () => console.log(this.state.battleInfo))
+      });
     };
 
 
