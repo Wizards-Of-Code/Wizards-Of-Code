@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Aladin|Berkshire+Swash|Aladin|Londrina+Solid|Aladin|Aladin|Aladin&display=swap");
 html {
   width: 100%;
   height: 100%;
@@ -23,9 +24,9 @@ code {
 a {
   color: rgb(42, 58, 44);
   text-decoration: none;
-  text-shadow: 2px 2px 2px #1b1b1b;
+  text-shadow: 2px 2px 2px white;
   font-size: 30px;
-  font-family: fantasy;
+  font-family: "Aladin";
 }
 
 a:hover {
@@ -101,14 +102,13 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
- 
 }
 
 .title,
 .title-result {
   color: rgb(30, 31, 29);
   text-align: center;
-  font-family: fantasy;
+  font-family: "Aladin";
   font-weight: bolder;
   font-size: 20px;
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
@@ -250,7 +250,7 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 80px;
-  font-family: fantasy;
+  font-family: "Aladin";
   margin-bottom: 0;
 }
 .please-sign-in {
@@ -258,7 +258,7 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 80px;
-  font-family: fantasy;
+  font-family: "Aladin";
   margin-bottom: 0;
 }
 .sign-in-box {
@@ -306,7 +306,7 @@ li {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
   margin-left: 15px;
-  font-family: fantasy;
+  font-family: "Aladin";
   border: none;
   font-weight: 100;
   border-radius: 6px;
@@ -358,7 +358,7 @@ li {
   text-decoration: none;
   text-shadow: 2px 2px 2px #1b1b1b;
   font-size: 25px;
-  font-family: fantasy;
+  font-family: "Aladin";
 }
 
 .error {
@@ -370,7 +370,7 @@ li {
   color: rgb(250, 247, 246);
   text-decoration: none;
   font-size: 45px;
-  font-family: fantasy;
+  font-family: "Aladin";
   text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
 }
 
@@ -410,7 +410,7 @@ li {
   color: white;
   border: 2px solid rgb(184, 180, 180);
   z-index: 10;
-  font-family: fantasy;
+  font-family: "Aladin";
   padding: 5px;
   background-image: linear-gradient(rgb(58, 58, 28), rgb(29, 49, 34));
   height: 40px;
@@ -421,30 +421,30 @@ li {
 
 .elrond-casts-spell {
   transform: scaleX(0.7) scaleY(0.7);
-  width: calc(7960px/20);
+  width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
   animation: castSpell 3s steps(20) infinite;
 }
 
-@keyframes castSpell { 
+@keyframes castSpell {
   from {
     background-position: 0;
   }
   to {
-    background-position: 7960px
+    background-position: 7960px;
   }
 }
 
 .elrond-idle {
   transform: scaleX(0.7) scaleY(0.7);
-  width: calc(7960px/20);
+  width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond.png);
   animation: elrond-idle 1.5s steps(20) infinite;
 }
 
-@keyframes elrond-idle { 
+@keyframes elrond-idle {
   from {
     background-position: 0;
   }
@@ -455,13 +455,13 @@ li {
 
 .galadriel-idle {
   transform: scaleX(0.7) scaleY(0.7);
-  width: calc(6840px/20);
+  width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-idle.png);
   animation: galadriel-idle 1.5s steps(20) infinite;
 }
 
-@keyframes galadriel-idle { 
+@keyframes galadriel-idle {
   from {
     background-position: 0;
   }
@@ -472,13 +472,13 @@ li {
 
 .galadriel-casts-spell {
   transform: scaleX(0.7) scaleY(0.7);
-  width: calc(6840px/20);
+  width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
-  animation: galadriel-casts-spell 2s steps(20)
+  animation: galadriel-casts-spell 2s steps(20);
 }
 
-@keyframes galadriel-casts-spell { 
+@keyframes galadriel-casts-spell {
   from {
     background-position: 0;
   }
@@ -491,17 +491,17 @@ li {
   width: calc(6217px / 13);
   height: 110px;
   background: url(./styling/fireball-LtoR.png);
-  animation: attack 1s steps(calc(13*100));
+  animation: attack 1s steps(calc(13 * 100));
 }
 .fireball-left {
   width: calc(6217px / 13);
   height: 110px;
   background: url(./styling/fireball-RtoL.png);
-  animation: attack 1s steps(calc(13*100));
+  animation: attack 1s steps(calc(13 * 100));
 }
-@keyframes attack { 
+@keyframes attack {
   from {
-     background-position: 0px;
+    background-position: 0px;
   }
   to {
     background-position: -6217px;
