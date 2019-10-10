@@ -11,7 +11,7 @@ const GameStage = props => {
     <div className="gamepage">
       <div className="gamestage">
         <div className={elrondIdle} style={convertDirection}><Player1 /></div>
-        <div className={player1FireBall}><Attacking /></div>
+        <div className={player2FireBall}><Attacking /></div>
         <div className={galadrielIdle}><Player2 /></div>
       </div>
       <div className="taskbox">
