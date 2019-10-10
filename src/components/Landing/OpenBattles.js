@@ -16,7 +16,7 @@ const OpenBattles = props => {
                 className="openGame"
                 onClick={() => {
                   if (props.user.username) {
-                    props.joinRandomBattle(battle.id);
+                    props.joinOpenBattle(battle.id);
                   }
                 }}
               >

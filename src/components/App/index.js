@@ -22,14 +22,10 @@ class App extends React.Component {
       user: {},
       battles: [],
       problems: [],
-      problem: [],
       skills: [],
-      userCode: "",
-      result: {},
       battleRef: {},
       avatars: [],
-      userRef: {},
-      endBattleSubscription: {}
+      userRef: {}
     };
     this.setState = this.setState.bind(this);
   }
@@ -44,54 +40,13 @@ class App extends React.Component {
 
       if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
-        this.setBattleState(battleRef);
+        this.setState({ battleRef })
       }
     });
 
     userRef.onSnapshot(snapshot => {
       this.setState({ user: snapshot.data() });
     });
-  };
-
-  setBattleState = battleRef => {
-    this.setState({ battleRef });
-    let endBattleSubscription = battleRef.onSnapshot(querySnapshot => {
-      let battle = querySnapshot.data();
-      if (battle.user1_health <= 0) {
-        battleRef.set(
-          { winner: battle.user2, status: "completed" },
-          { merge: true }
-        );
-        console.log("User 2 WON");
-        endBattleSubscription();
-        this.state.userRef.set(
-          {
-            activeBattle: ""
-          },
-          { merge: true }
-        );
-      } else if (battle.user2_health <= 0) {
-        battleRef.set(
-          { winner: battle.user1, status: "completed" },
-          { merge: true }
-        );
-        console.log("User 1 WON");
-        endBattleSubscription();
-        this.state.userRef.set(
-          {
-            activeBattle: ""
-          },
-          { merge: true }
-        );
-      }
-    });
-  };
-
-  getProblem = problemId => {
-    const problemRef = this.props.firebase.problem(problemId);
-    problemRef
-      .get()
-      .then(problem => this.setState({ problem: problem.data() }));
   };
 
   getAvatars = () => {
@@ -134,7 +89,7 @@ class App extends React.Component {
 
   createBattle = () => {
     this.props.firebase.createBattle(this.state.user).then(battleRef => {
-      this.setBattleState(battleRef);
+      this.setState({ battleRef });
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
@@ -166,7 +121,7 @@ class App extends React.Component {
       },
       { merge: true }
     );
-    this.setBattleState(battleRef);
+    this.setState({ battleRef });
     this.state.userRef.set(
       {
         activeBattle: battleRef.id,
@@ -174,61 +129,6 @@ class App extends React.Component {
       },
       { merge: true }
     );
-  };
-
-  doDamage = amount => {
-    if (this.state.user.role === "user1") {
-      this.state.battleRef.update({
-        user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-          -10
-        )
-      });
-    } else {
-      this.state.battleRef.update({
-        user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-          -10
-        )
-      });
-    }
-  };
-
-  getRandomProblem = difficulty => {
-    this.props.firebase
-      .getRandomProblem(difficulty)
-      .then(problemRef => problemRef.get())
-      .then(doc => this.setState({ problem: doc.data() }));
-  };
-
-  updateCode = event => {
-    this.setState({
-      userCode: event
-    });
-  };
-
-  submitCode = (code, inputs, expectedOutputs) => {
-    const webWorker = new Worker("webWorker.js");
-
-    webWorker.postMessage({
-      userFunction: code,
-      inputs: inputs,
-      expectedOutputs: expectedOutputs
-    });
-
-    const timeoutId = setTimeout(() => {
-      this.setState({
-        result: { userOutputs: "Your function failed!  :(", correct: false }
-      });
-      webWorker.terminate();
-    }, 5000);
-
-    webWorker.onmessage = event => {
-      this.setState({ result: event.data });
-      if (event.data.correct) {
-        this.doDamage(10);
-      }
-      webWorker.terminate();
-      clearTimeout(timeoutId);
-    };
   };
 
   componentDidMount() {
@@ -280,7 +180,9 @@ class App extends React.Component {
               ) : (
                 <GameStage
                   {...props}
-                  myBattle={this.state.myBattle}
+                  user={this.state.user}
+                  battleRef={this.state.battleRef}
+                  userRef={this.state.userRef}
                   problem={this.state.problem}
                   getProblem={this.getProblem}
                   userCode={this.state.userCode}

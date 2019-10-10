@@ -100,6 +100,8 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+ 
 }
 
 .title,
@@ -418,10 +420,13 @@ li {
 }
 
 .elrond-casts-spell {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px/20);
   height: 438px;
-  background: url(greenChar.png);
+  background: url(./styling/elrond-cast-spell.png);
   animation: castSpell 3s steps(20) infinite;
 }
 
@@ -434,11 +439,14 @@ li {
   }
 }
 
-.elrond {
+.elrond-idle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px/20);
   height: 438px;
-  background: url(elrond.png);
+  background: url(./styling/elrond.png);
   animation: elrond-idle 1.5s steps(20) infinite;
 }
 
@@ -451,11 +459,14 @@ li {
   }
 }
 
-.galadriel {
-  transform: scaleX(-0.7) scaleY(0.7);
+.galadriel-idle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px/20);
   height: 410px;
-  background: url(galadriel-idle.png);
+  background: url(./styling/galadriel-idle.png);
   animation: galadriel-idle 1.5s steps(20) infinite;
 }
 
@@ -468,15 +479,18 @@ li {
   }
 }
 
-.galadriel-cast-spell {
-  transform: scaleX(-0.7) scaleY(0.7);
+.galadriel-casts-spell {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px/20);
   height: 410px;
-  background: url(galadriel-cast-spell.png);
-  animation: galadriel-cast-spell 2s steps(20) infinite;
+  background: url(./styling/galadriel-cast-spell.png);
+  animation: galadriel-casts-spell 2s steps(20)
 }
 
-@keyframes galadriel-cast-spell { 
+@keyframes galadriel-casts-spell { 
   from {
     background-position: 0;
   }
@@ -488,8 +502,14 @@ li {
 .fireball-right {
   width: calc(6217px / 13);
   height: 110px;
-  background: url(fireball-LtoR.png);
-  animation: attack 0.03s steps(13) infinite;
+  background: url(./styling/fireball-LtoR.png);
+  animation: attack 1s steps(calc(13*100));
+}
+.fireball-left {
+  width: calc(6217px / 13);
+  height: 110px;
+  background: url(./styling/fireball-RtoL.png);
+  animation: attack 1s steps(calc(13*100));
 }
 @keyframes attack { 
   from {
@@ -500,13 +520,6 @@ li {
   }
 }
 
-.fireball-left {
-  width: calc(6217px / 13);
-  height: 110px;
-  background: url(firesprite.png);
-  animation: attack 0.5s steps(13) infinite;
-}
-
 .gamepage {
   display: flex;
   flex-direction: column;
@@ -515,8 +528,10 @@ li {
 
 .gamestage {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 65%;
-  background-image: url(greenforest.png);
+  background-image: url(./styling/greenforest.png);
 }
 
 .connected-users {
@@ -551,4 +566,72 @@ li {
 
 .img-avatar {
   height: 50%;
+}
+
+.helth-bar1 {
+  width: 400px;
+  height: 40px;
+  background-color: #9aaf8f;
+  margin: 10px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.innerbar-lost1 {
+  width: 390px;
+  height: 30px;
+  background: rgba(230, 226, 226, 0.5);
+  margin: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.innerbar-activ1 {
+  width: 350px;
+  height: 30px;
+  background-color: #e99090;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 4px;
+}
+
+.hp-points1 {
+  margin-block-start: 0;
+}
+
+.helth-bar2 {
+  width: 400px;
+  height: 40px;
+  background-color: #9aaf8f;
+  margin: 10px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.innerbar-lost2 {
+  width: 390px;
+  height: 30px;
+  background: rgba(230, 226, 226, 0.5);
+  margin: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.innerbar-activ2 {
+  width: 350px;
+  height: 30px;
+  background-color: #e99090;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 4px;
+}
+
+.hp-points2 {
+  margin-block-start: 0;
 }
