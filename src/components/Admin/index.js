@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { withFirebase } from '../Firebase';
+import React, { Component } from "react";
+import { withFirebase } from "../Firebase";
 
 class AdminPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      users: [],
+      users: []
     };
   }
 
@@ -16,16 +16,12 @@ class AdminPage extends Component {
       let usersList = []; // might be a way to get info from firebase without having to loop through like this
       let changes = snapshot.docChanges();
       changes.forEach(change => {
-        console.log(change.doc.data());
         usersList.push(change.doc.data());
-      })
-
-      console.log(usersList);
+      });
       this.setState({
         users: usersList,
-        loading: false,
+        loading: false
       });
-
     });
   }
 

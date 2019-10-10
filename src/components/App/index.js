@@ -13,6 +13,7 @@ import GameOver from "../GameOver";
 import ImgCollection from "../Home/imgCollection";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
+import NotFound from "../NotFound";
 
 class App extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class App extends React.Component {
       userRef: {},
       endBattleSubscription: {}
     };
+    this.setState = this.setState.bind(this);
   }
 
   login = userId => {
@@ -145,7 +147,6 @@ class App extends React.Component {
 
   joinRandomBattle = () => {
     this.props.firebase.joinRandomBattle(this.state.user).then(battleRef => {
-      console.log(battleRef.id);
       this.joinBattle(battleRef);
     });
   };
@@ -157,7 +158,6 @@ class App extends React.Component {
 
   joinBattle = battleRef => {
     const user = this.state.user;
-    console.log(user);
     battleRef.set(
       {
         user2: user.username,
@@ -232,6 +232,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    console.log("state", this.state);
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.login(authUser.uid);
@@ -243,7 +244,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="container">
-          <Navigation />
+          <Navigation setState={this.setState} />
           <Route
             path={ROUTES.SIGN_UP}
             render={props => <SignUpPage {...props} login={this.login} />}
@@ -259,27 +260,16 @@ class App extends React.Component {
           />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
+
           <Route
-            path={ROUTES.LANDING}
-            render={props => (
-              <LandingPage
-                {...props}
-                createBattle={this.createBattle}
-                openBattles={this.state.battles}
-                getOpenBattles={this.getOpenBattles}
-                joinRandomBattle={this.joinRandomBattle}
-                joinOpenBattle={this.joinOpenBattle}
-                activeBattle={this.state.user.activeBattle}
-              />
-            )}
-          />
-          <Route
-            path={ROUTES.BATTLE}
+            exact
+            path={"(/|/battle)"}
             render={props =>
               this.state.user.activeBattle === "" ||
               !this.state.user.activeBattle ? (
                 <LandingPage
                   {...props}
+                  user={this.state.user}
                   createBattle={this.createBattle}
                   openBattles={this.state.battles}
                   getOpenBattles={this.getOpenBattles}
