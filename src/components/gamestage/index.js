@@ -181,6 +181,11 @@ const elrondCastsSpell = "elrond-casts-spell"
 const elrondIdle = "elrond-idle"
 const player1FireBall = "fireball-right"
 const player2FireBall = "fireball-left"
+const none = {transform: 'none'}
+
+// in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
+const elrondDie = "elrond-die"
+
 
 
 

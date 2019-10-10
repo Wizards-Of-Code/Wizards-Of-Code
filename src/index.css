@@ -459,6 +459,10 @@ li {
   }
 }
 
+.elrond-die {
+  content:url(./styling/elrond-die.png);
+}
+
 .galadriel-idle {
   display: flex;
   align-items: center;
@@ -502,15 +506,15 @@ li {
 .fireball-right {
   width: calc(6217px / 13);
   height: 110px;
-  background: url(./styling/fireball-RtoL.png);
+  background: url(./styling/fireball.png);
   transform: scaleX(-1) scaleY(1);
   animation: attack 1s steps(calc(13*100));
 }
 .fireball-left {
   width: calc(6217px / 13);
   height: 110px;
-  background: url(./styling/fireball-RtoL.png);
-  animation: attack 1s steps(calc(13 * 100));
+  background: url(./styling/fireball.png);
+  animation: attack 1s steps(calc(13*100));
 }
 @keyframes attack {
   from {
