@@ -40,7 +40,7 @@ class App extends React.Component {
 
       if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
-        this.setBattleState(battleRef);
+        this.setState({ battleRef })
       }
     });
 

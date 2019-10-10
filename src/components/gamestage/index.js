@@ -132,15 +132,15 @@ class GameStage extends React.Component {
           <Instructions
             prompt={this.state.problem.prompt}
             getProblem={this.getProblem}
-            doDamage={this.props.doDamage}
-            getRandomProblem={this.props.getRandomProblem}
+            doDamage={this.doDamage}
+            getRandomProblem={this.getRandomProblem}
           />
-          <CodeArea userCode={this.props.userCode} updateCode={this.props.updateCode} />
+          <CodeArea userCode={this.state.userCode} updateCode={this.updateCode} />
           <Result
             submitCode={this.submitCode}
-            userCode={this.props.userCode}
+            userCode={this.state.userCode}
             problem={this.state.problem}
-            result={this.props.result}
+            result={this.state.result}
           />
         </div>
       </div>
