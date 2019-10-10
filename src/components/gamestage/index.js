@@ -124,6 +124,10 @@ class GameStage extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
+  }
+
+  componentWillUnmount () {
+    this.unsubscribe();
     if (this.state.battleIsOver) {
       this.props.userRef.set(
         {
@@ -132,10 +136,6 @@ class GameStage extends React.Component {
         { merge: true }
       );
     }
-  }
-
-  componentWillUnmount () {
-    this.unsubscribe();
   }
 
   render () {
