@@ -145,9 +145,10 @@ class GameStage extends React.Component {
     }
   }
 
-  render() {
-    if (this.state.battleIsOver)
-      return <GameOver battleInfo={this.state.battleInfo} />;
+
+  render () {
+
+    if (this.state.battleIsOver) return <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
 
     return (
       <div className="gamepage">
