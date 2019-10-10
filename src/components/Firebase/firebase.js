@@ -63,7 +63,6 @@ class Firebase {
 
   // avatars API
   avatars = () => {
-    console.log("here");
     return this.db.collection("avatars");
   };
 

@@ -9,7 +9,6 @@ class LandingPage extends React.Component {
   }
 
   render() {
-
     return (
       <div className="landing-page-container">
         <img
@@ -22,7 +21,11 @@ class LandingPage extends React.Component {
             <Link to={BATTLE}>
               <button
                 className="create-battle-btn"
-                onClick={this.props.createBattle}
+                onClick={() => {
+                  if (this.props.user.username) {
+                    this.props.createBattle();
+                  }
+                }}
               >
                 Create New Battle
               </button>
@@ -30,7 +33,11 @@ class LandingPage extends React.Component {
           </div>
           <Link to={BATTLE}>
             <button
-              onClick={this.props.joinRandomBattle}
+              onClick={() => {
+                if (this.props.user.username) {
+                  this.props.joinRandomBattle();
+                }
+              }}
               className="join-random-btl-btn"
             >
               Join A Random Battle
@@ -41,11 +48,20 @@ class LandingPage extends React.Component {
             Open Battles
           </button>
         </div>
-        <div className="join-btl">
-          <OpenBattles
-            openBattles={this.props.openBattles}
-            joinOpenBattle={this.props.joinOpenBattle}
-          />
+        <div>
+          {this.props.user.username ? (
+            <div className="join-btl">
+              <OpenBattles
+                user={this.props.user}
+                openBattles={this.props.openBattles}
+                joinOpenBattle={this.props.joinOpenBattle}
+              />
+            </div>
+          ) : (
+            <div className="sign-in-box">
+              <h1 className="please-sign-in">Please Sign In</h1>
+            </div>
+          )}
         </div>
       </div>
     );

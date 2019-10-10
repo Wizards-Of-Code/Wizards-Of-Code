@@ -35,3 +35,22 @@ const GameStage = props => {
 };
 
 export default GameStage;
+
+
+// {className: .elrond-cast-spell,
+// animation: castSpell}
+
+// {className: elrond,
+// animation: elrond-idle}
+
+// {className: galadriel,
+// animation: galadriel-idle}
+
+// {className: galadriel-cast-spell,
+// animation: galadriel-cast-spell}
+
+// {className: fireball-right,
+// animation: attack}
+
+// {className: fireball-left,
+// animation: attack}

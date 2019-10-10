@@ -253,6 +253,19 @@ li {
   font-family: fantasy;
   margin-bottom: 0;
 }
+.please-sign-in {
+  align-self: center;
+  color: rgb(30, 31, 29);
+  text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
+  font-size: 80px;
+  font-family: fantasy;
+  margin-bottom: 0;
+}
+.sign-in-box {
+  display: flex;
+  max-lines: 1;
+  padding-left: 40%;
+}
 
 .sign-up-form {
   margin-left: 35%;
@@ -406,94 +419,96 @@ li {
   font-size: 18px;
 }
 
-.purple-wizard {
-  position: absolute;
-  top: 35%;
-  left: 25%;
-  transform: translate(-30%, -20%) scale(0.7); 
-  width: calc(1795px / 5);
-  height: 350px;
-  background: url(wizard-die.png);
-  animation: die 2.5s steps(5) infinite;
+.elrond-casts-spell {
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(7960px/20);
+  height: 438px;
+  background: url(greenChar.png);
+  animation: castSpell 3s steps(20) infinite;
 }
-@keyframes die {
+
+@keyframes castSpell { 
   from {
     background-position: 0;
   }
   to {
-    background-position: -1795px;
+    background-position: 7960px
   }
 }
 
-.green-mage {
-  position: absolute;
-  top: 30%;
-  left: 70%;
-  transform: translate(-70%,-20%) scale(0.7);
-  width: calc(7941px/20);
-  height: 400px;
-  background: url(greenChar.png);
-  animation: castASpell 3s steps(20) infinite;
-  scale: 
+.elrond {
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(7960px/20);
+  height: 438px;
+  background: url(elrond.png);
+  animation: elrond-idle 1.5s steps(20) infinite;
 }
-@keyframes castASpell { 
+
+@keyframes elrond-idle { 
   from {
     background-position: 0;
   }
   to {
-    background-position: 7941px
+    background-position: 7960px;
+  }
+}
+
+.galadriel {
+  transform: scaleX(-0.7) scaleY(0.7);
+  width: calc(6840px/20);
+  height: 410px;
+  background: url(galadriel-idle.png);
+  animation: galadriel-idle 1.5s steps(20) infinite;
+}
+
+@keyframes galadriel-idle { 
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 6840px;
+  }
+}
+
+.galadriel-cast-spell {
+  transform: scaleX(-0.7) scaleY(0.7);
+  width: calc(6840px/20);
+  height: 410px;
+  background: url(galadriel-cast-spell.png);
+  animation: galadriel-cast-spell 2s steps(20) infinite;
+}
+
+@keyframes galadriel-cast-spell { 
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 6840px;
   }
 }
 
 .fireball-right {
-  position: absolute;
-  top: 30%;
-  left: 45%;
-  transform: translate(-50%,10%) scaleX(-1);
   width: calc(6217px / 13);
   height: 110px;
-  background: url(firesprite.png);
-  animation: attack 3s steps(20) infinite;
+  background: url(fireball-LtoR.png);
+  animation: attack 0.03s steps(13) infinite;
 }
 @keyframes attack { 
   from {
-    background-position: 0;
+     background-position: 0px;
   }
   to {
-    background-position: 50%
+    background-position: -6217px;
   }
 }
 
 .fireball-left {
-  position: absolute;
-  top: 30%;
-  left: 45%;
-  transform: translate(-50%,10%);
   width: calc(6217px / 13);
   height: 110px;
   background: url(firesprite.png);
-  animation: attack 3s steps(20) infinite;
+  animation: attack 0.5s steps(13) infinite;
 }
 
-.ice-left {
-  position: absolute;
-  top: 30%;
-  left: 45%;
-  transform: translate(-50%,10%);
-  width: calc(1298px / 20);
-  height: 99px;
-  background: url(iceball.png);
-  animation: ice-attack 3s steps(20) infinite;
-}
-
-@keyframes ice-attack { 
-  from {
-    background-position: 0;
-  }
-  to {
-    background-position: -1298px
-  }
-}
 .gamepage {
   display: flex;
   flex-direction: column;
@@ -502,9 +517,8 @@ li {
 
 .gamestage {
   display: flex;
-  align-items: center;
   height: 65%;
-  background-image: url(greenforest.png)
+  background-image: url(greenforest.png);
 }
 
 .connected-users {
@@ -529,7 +543,7 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: rgba(161, 159, 159, 0.5);;
+  background: rgba(161, 159, 159, 0.5);
   height: 700px;
   width: 420px;
   margin: 20px;
@@ -541,3 +555,70 @@ li {
   height: 50%;
 }
 
+.helth-bar1 {
+  width: 400px;
+  height: 40px;
+  background-color: #9aaf8f;
+  margin: 10px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.innerbar-lost1 {
+  width: 390px;
+  height: 30px;
+  background: rgba(230, 226, 226, 0.5);
+  margin: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.innerbar-activ1 {
+  width: 350px;
+  height: 30px;
+  background-color: #e99090;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 4px;
+}
+
+.hp-points1 {
+  margin-block-start: 0;
+}
+
+.helth-bar2 {
+  width: 400px;
+  height: 40px;
+  background-color: #9aaf8f;
+  margin: 10px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.innerbar-lost2 {
+  width: 390px;
+  height: 30px;
+  background: rgba(230, 226, 226, 0.5);
+  margin: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.innerbar-activ2 {
+  width: 350px;
+  height: 30px;
+  background-color: #e99090;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 4px;
+}
+
+.hp-points2 {
+  margin-block-start: 0;
+}
