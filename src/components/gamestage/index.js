@@ -1,24 +1,23 @@
-import React from 'react'
-import CodeArea from './codeArea'
-import Instructions from './instructions'
-import Result from './result'
-import Player1 from './player1'
-import Player2 from './player2'
-import Attacking from './attacking'
-import { withFirebase } from '../Firebase'
-import GameOver from './gameOver'
+import React from "react";
+import CodeArea from "./codeArea";
+import Instructions from "./instructions";
+import Result from "./result";
+import Player1 from "./player1";
+import Player2 from "./player2";
+import Attacking from "./attacking";
+import { withFirebase } from "../Firebase";
+import GameOver from "./gameOver";
 
 class GameStage extends React.Component {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.unsubscribe = {};
     this.state = {
       battleIsOver: false,
-      battleInfo : {},
+      battleInfo: {},
       problem: {},
       result: {},
-      userCode: ''
+      userCode: ""
     };
   }
 
@@ -70,32 +69,39 @@ class GameStage extends React.Component {
 
   doDamage = amount => {
     if (this.props.user.role === "user1") {
-      this.props.battleRef.update({
-        user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-          -10
-        ),
-        player1_anim: elrondCastsSpell,
-        attack_anim: player1FireBall
-      }).then(() => {
-        this.isDead();
-      });
+      this.props.battleRef
+        .update({
+          user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+            -10
+          ),
+          player1_anim: elrondCastsSpell,
+          attack_anim: player1FireBall
+        })
+        .then(() => {
+          this.isDead();
+        });
     } else {
-      this.props.battleRef.update({
-        user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-          -10
-        ),
-        player2_anim: elrondCastsSpell,
-        attack_anim: player2FireBall
-      }).then(() => {
-        this.isDead();
-      });;
+      this.props.battleRef
+        .update({
+          user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+            -10
+          ),
+          player2_anim: elrondCastsSpell,
+          attack_anim: player2FireBall
+        })
+        .then(() => {
+          this.isDead();
+        });
     }
     setTimeout(() => {
-      this.props.battleRef.set({
-        player1_anim: elrondIdle,
-        player2_anim: elrondIdle,
-        attack_anim: null
-      }, {merge: true})
+      this.props.battleRef.set(
+        {
+          player1_anim: elrondIdle,
+          player2_anim: elrondIdle,
+          attack_anim: null
+        },
+        { merge: true }
+      );
     }, 2000);
   };
 
@@ -115,18 +121,19 @@ class GameStage extends React.Component {
       console.log("User 1 WON");
       this.setState({ battleIsOver: true });
     }
-  }
-
-  onBattleUpdate = battleSnapshot => {
-    this.setState({ battleInfo: battleSnapshot.data() }, () => console.log(this.state.battleInfo))
   };
 
+  onBattleUpdate = battleSnapshot => {
+    this.setState({ battleInfo: battleSnapshot.data() }, () =>
+      console.log(this.state.battleInfo)
+    );
+  };
 
   componentDidMount() {
     this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.unsubscribe();
     if (this.state.battleIsOver) {
       this.props.userRef.set(
@@ -138,19 +145,31 @@ class GameStage extends React.Component {
     }
   }
 
+
   render () {
 
-    if (this.state.battleIsOver) return <GameOver battleInfo={this.state.battleInfo} />
+    if (this.state.battleIsOver) return <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
 
     return (
       <div className="gamepage">
         <div className="gamestage">
-        <div className={this.state.battleInfo.player1_anim} style={convertDirection} ><Player1 playerName={this.state.battleInfo.user1}/></div>
-        <div className={this.state.battleInfo.attack_anim}><Attacking /></div>
-        <div className={this.state.battleInfo.player2_anim}><Player2 playerName={this.state.battleInfo.user2}/></div>
-        <button onClick={() => {
+          <div>
+            <Player1 playerName={this.state.battleInfo.user1} />
+            <div
+              className={this.state.battleInfo.player1_anim}
+              style={convertDirection}
+            ></div>
+          </div>
+          <div className={this.state.battleInfo.attack_anim}>
+            <Attacking />
+          </div>
+          <div>
+            <Player2 playerName={this.state.battleInfo.user2} />
+            <div className={this.state.battleInfo.player2_anim}></div>
+          </div>
+          {this.state.battleInfo.user2 ? (<button onClick={() => {
           this.doDamage(10);
-        }}>DO DAMAGE</button>
+        }}>DO DAMAGE</button>) : ''}
         </div>
         <div className="taskbox">
           <Instructions
@@ -159,9 +178,12 @@ class GameStage extends React.Component {
             doDamage={this.doDamage}
             getRandomProblem={this.getRandomProblem}
           />
-          <CodeArea userCode={this.state.userCode} updateCode={this.updateCode} />
+          <CodeArea
+            userCode={this.state.userCode}
+            updateCode={this.updateCode}
+          />
           <Result
-            submitCode={this.submitCode}
+            submitCode={this.state.battleInfo.user2 ? this.submitCode : () => console.log('No opponenet')}
             userCode={this.state.userCode}
             problem={this.state.problem}
             result={this.state.result}
@@ -170,26 +192,25 @@ class GameStage extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default withFirebase(GameStage);
 
-
-const galadrielCastsSpell = "galadriel-casts-spell"
-const galadrielIdle = "galadriel-idle"
-const elrondCastsSpell = "elrond-casts-spell"
-const elrondIdle = "elrond-idle"
-const player1FireBall = "fireball-right"
-const player2FireBall = "fireball-left"
-const none = {transform: 'none'}
+const galadrielCastsSpell = "galadriel-casts-spell";
+const galadrielIdle = "galadriel-idle";
+const elrondCastsSpell = "elrond-casts-spell";
+const elrondIdle = "elrond-idle";
+const player1FireBall = "fireball-right";
+const player2FireBall = "fireball-left";
+const none = { transform: "none" };
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
 const elrondDie = "elrond-die"
-
+const galadrielDie= 'galadriel-die'
 
 
 
 // all players are animated to be player 2 (facing left), if we were to make them player1, we would have to convert their facing direction, that's why we add style={convertDirection} in Player1 div
-const convertDirection ={
-  transform: 'scaleX(-0.7) scaleY(0.7)'
-}
+const convertDirection = {
+  transform: "scaleX(-0.7) scaleY(0.7)"
+};
