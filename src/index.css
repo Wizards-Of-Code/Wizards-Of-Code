@@ -405,10 +405,7 @@ li {
 }
 
 .purple-wizard {
-  position: absolute;
-  top: 35%;
-  left: 25%;
-  transform: translate(-30%, -20%) scale(0.7); 
+  transform: scale(0.7); 
   width: calc(1795px / 5);
   height: 350px;
   background: url(wizard-die.png);
@@ -424,12 +421,9 @@ li {
 }
 
 .green-mage {
-  position: absolute;
-  top: 30%;
-  left: 70%;
-  transform: translate(-70%,-20%) scaleX(0.7) scaleY(0.7);
-  width: calc(7941px/20);
-  height: 400px;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(7960px/20);
+  height: 438px;
   background: url(greenChar.png);
   animation: castASpell 3s steps(20) infinite;
 }
@@ -439,65 +433,70 @@ li {
     background-position: 0;
   }
   to {
-    background-position: 7941px
+    background-position: 7960px
   }
 }
 
-.green-mage-idle {
-  position: absolute;
-  top: 30%;
-  left: 70%;
-  transform: translate(-70%,-20%) scaleX(0.7) scaleY(0.7);
-  width: calc(7873px/20);
-  height: 378px;
-  background: url(green-mage-idle.png);
-  animation: idle 5s steps(20) infinite;
+.elrond {
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(7960px/20);
+  height: 438px;
+  background: url(elrond.png);
+  animation: elrond-idle 1.5s steps(20) infinite;
 }
 
-@keyframes idle { 
+@keyframes elrond-idle { 
   from {
     background-position: 0;
   }
   to {
-    background-position: 7873px;
+    background-position: 7960px;
+  }
+}
+
+.galadriel {
+  transform: scaleX(-0.7) scaleY(0.7);
+  width: calc(6840px/20);
+  height: 410px;
+  background: url(galadriel-idle.png);
+  animation: galadriel-idle 1.5s steps(20) infinite;
+}
+
+@keyframes galadriel-idle { 
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 6840px;
   }
 }
 
 .fireball-right {
-  position: absolute;
-  top: 30%;
-  left: 45%;
-  transform: translate(-50%,10%) scaleX(-1);
   width: calc(6217px / 13);
   height: 110px;
-  background: url(firesprite.png);
-  animation: attack 3s steps(20) infinite;
+  background: url(fireball-LtoR.png);
+  animation: attack 0.5s steps(13) infinite;
 }
 @keyframes attack { 
   from {
-    background-position: 0;
+     background-position: 0px;
   }
   to {
-    background-position: 50%
+    background-position: -6217px;
   }
 }
 
 .fireball-left {
-  position: absolute;
-  top: 30%;
-  left: 45%;
-  transform: translate(-50%,10%);
   width: calc(6217px / 13);
   height: 110px;
   background: url(firesprite.png);
-  animation: attack 3s steps(20) infinite;
+  animation: attack 1s steps(13) ;
+  animation-delay: 2s;
+
 }
 
 .ice-left {
-  position: absolute;
-  top: 30%;
-  left: 32%;
-  transform: translate(10%,10%) scale(1.5);
+  transform: scale(1.5);
   width: calc(3814px / 13);
   height: 175px;
   background: url(iceball.png);
@@ -520,7 +519,6 @@ li {
 
 .gamestage {
   display: flex;
-  align-items: center;
   height: 65%;
   background-image: url(greenforest.png)
 }
