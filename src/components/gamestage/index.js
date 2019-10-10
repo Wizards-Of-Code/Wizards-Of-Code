@@ -10,7 +10,7 @@ const GameStage = props => {
   return (
     <div className="gamepage">
       <div className="gamestage">
-        <div className={elrondIdle} style={convertDirection}><Player1 /></div>
+        <div className={elrondDie} style={none}><Player1 /></div>
         <div className={player2FireBall}><Attacking /></div>
         <div className={galadrielIdle}><Player2 /></div>
       </div>
@@ -41,6 +41,11 @@ const elrondCastsSpell = "elrond-casts-spell"
 const elrondIdle = "elrond-idle"
 const player1FireBall = "fireball-right"
 const player2FireBall = "fireball-left"
+const none = {transform: 'none'}
+
+// in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
+const elrondDie = "elrond-die"
+
 
 
 
@@ -48,3 +53,4 @@ const player2FireBall = "fireball-left"
 const convertDirection ={
   transform: 'scaleX(-0.7) scaleY(0.7)'
 }
+

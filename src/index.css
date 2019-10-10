@@ -457,6 +457,10 @@ li {
   }
 }
 
+.elrond-die {
+  content:url(./styling/elrond-die.png);
+}
+
 .galadriel-idle {
   display: flex;
   align-items: center;
