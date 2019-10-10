@@ -72,13 +72,17 @@ class GameStage extends React.Component {
         user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -10
         )
+      }).then(() => {
+        this.isDead();
       });
     } else {
       this.props.battleRef.update({
         user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -10
         )
-      });
+      }).then(() => {
+        this.isDead();
+      });;
     }
   };
 
@@ -130,6 +134,9 @@ class GameStage extends React.Component {
         <div className={elrondIdle} style={convertDirection}><Player1 /></div>
         <div className={player2FireBall}><Attacking /></div>
         <div className={elrondIdle}><Player2 /></div>
+        <button onClick={() => {
+          this.doDamage(10);
+        }}>DO DAMAGE</button>
         </div>
         <div className="taskbox">
           <Instructions
