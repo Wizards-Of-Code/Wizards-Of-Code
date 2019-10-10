@@ -14,7 +14,7 @@ const HomePage = props => {
       />
       <div className="home-page-navbar">
         <div className="home-page-navbar-container">
-          <h1 className="sign-up-logo">Home Page</h1>
+          <h1 className="sign-up-logo">Profile Page</h1>
           <div className="user-history">
             <button className="user-history-btn">Battle History</button>
           </div>
