@@ -7,13 +7,12 @@ import Player2 from './player2'
 import Attacking from './attacking'
 
 const GameStage = props => {
-
   return (
     <div className="gamepage">
       <div className="gamestage">
-      <Player1 />
-      <Attacking  />
-      <Player2 />
+        <div className={elrondIdle} style={convertDirection}><Player1 /></div>
+        <div className={player2FireBall}><Attacking /></div>
+        <div className={elrondIdle}><Player2 /></div>
       </div>
       <div className="taskbox">
         <Instructions
@@ -36,21 +35,16 @@ const GameStage = props => {
 
 export default GameStage;
 
+const galadrielCastsSpell = "galadriel-casts-spell"
+const galadrielIdle = "galadriel-idle"
+const elrondCastsSpell = "elrond-casts-spell"
+const elrondIdle = "elrond-idle"
+const player1FireBall = "fireball-right"
+const player2FireBall = "fireball-left"
 
-// {className: .elrond-cast-spell,
-// animation: castSpell}
 
-// {className: elrond,
-// animation: elrond-idle}
 
-// {className: galadriel,
-// animation: galadriel-idle}
-
-// {className: galadriel-cast-spell,
-// animation: galadriel-cast-spell}
-
-// {className: fireball-right,
-// animation: attack}
-
-// {className: fireball-left,
-// animation: attack}
+// all players are animated to be player 2 (facing left), if we were to make them player2, we would have to convert their facing direction, that's why we add style={convertDirection} in Player1 div
+const convertDirection ={
+  transform: 'scaleX(-0.7) scaleY(0.7)'
+}
