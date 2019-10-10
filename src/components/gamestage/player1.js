@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-
+const textTransform ={
+  transform: 'scaleX(-1) scaleY(1)'
+}
 class Player1 extends Component {
   constructor(props) {
     super(props);
@@ -7,7 +9,9 @@ class Player1 extends Component {
 
   render() {
     return (
-      <div className="galadriel-cast-spell" ></div>
+      <div>
+        <h1 style={textTransform}>Player1</h1>
+      </div>
     );
   }
 }
