@@ -7,7 +7,7 @@ class Player1 extends Component {
 
   render() {
     return (
-      <div className="purple-wizard" ></div>
+      <div className="galadriel-cast-spell" ></div>
     );
   }
 }
