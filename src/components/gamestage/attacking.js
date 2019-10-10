@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
-const textTransform ={
-  transform: 'scale(1)'
-}
+import React, { Component } from "react";
+const textTransform = {
+  transform: "scale(1)"
+};
 class Attacking extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
-    return <div></div>
+    return <div></div>;
   }
 }
-export default Attacking
+export default Attacking;
