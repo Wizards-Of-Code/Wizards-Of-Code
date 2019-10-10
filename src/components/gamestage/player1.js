@@ -18,7 +18,6 @@ class Player1 extends Component {
             </div>
           </div>
         </div>
-        <div className="galadriel-cast-spell"></div>
       </div>
     );
   }

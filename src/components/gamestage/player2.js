@@ -19,7 +19,6 @@ class Player2 extends Component {
             </div>
           </div>
         </div>
-        <div className="elrond-casts-spell"></div>
      </div>
     )
   }
