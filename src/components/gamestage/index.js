@@ -71,7 +71,9 @@ class GameStage extends React.Component {
       this.props.battleRef.update({
         user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -10
-        )
+        ),
+        player1_anim: `elrond-casts-spell`,
+        attack_anim: player1FireBall
       }).then(() => {
         this.isDead();
       });
@@ -79,7 +81,9 @@ class GameStage extends React.Component {
       this.props.battleRef.update({
         user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -10
-        )
+        ),
+        player2_anim: `elrond-casts-spell`,
+        attack_anim: player2FireBall
       }).then(() => {
         this.isDead();
       });;
@@ -131,9 +135,9 @@ class GameStage extends React.Component {
     return (
       <div className="gamepage">
         <div className="gamestage">
-        <div className={elrondIdle} style={convertDirection}><Player1 /></div>
-        <div className={player2FireBall}><Attacking /></div>
-        <div className={galadrielCastsSpell}><Player2 /></div>
+        <div className={this.state.battleInfo.player1_anim} style={convertDirection}><Player1 /></div>
+        <div className={this.state.battleInfo.attack_anim}><Attacking /></div>
+        <div className={this.state.battleInfo.player2_anim}><Player2 /></div>
         <button onClick={() => {
           this.doDamage(10);
         }}>DO DAMAGE</button>
@@ -159,6 +163,7 @@ class GameStage extends React.Component {
 };
 
 export default withFirebase(GameStage);
+
 
 const galadrielCastsSpell = "galadriel-casts-spell"
 const galadrielIdle = "galadriel-idle"
