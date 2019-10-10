@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function GameOver(props) {
+export default function GameOver() {
    
   return (
     <div className="game-over">
@@ -10,11 +10,22 @@ export default function GameOver(props) {
             alt=""
           />
           <h1>Congratulations</h1>
-          <h1>YOU're WINNER</h1>
+          <h1>YOU WIN</h1>
           <button className="play-again">Play Again</button>
         </div>
-      
     </div>
+
+    /* <div>
+         <div>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/2943378-fantasy-art-artwork-forest___landscape-nature-wallpapers.jpg?alt=media&token=9af2b2b5-a818-4d56-9941-4b7a294ad241"
+            alt=""
+          />
+          <h1>YOU LOSE...</h1>
+          <h1> The winner is</h1>
+          <button className="play-again">Play Again</button>
+        </div>
+    </div> */
   );
 }
 
