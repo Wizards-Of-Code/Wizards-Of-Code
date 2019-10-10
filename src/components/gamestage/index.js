@@ -7,7 +7,6 @@ import Player2 from './player2'
 import Attacking from './attacking'
 import { withFirebase } from '../Firebase'
 
-<<<<<<< HEAD
 class GameStage extends React.Component {
 
   constructor (props) {
@@ -128,9 +127,9 @@ class GameStage extends React.Component {
     return (
       <div className="gamepage">
         <div className="gamestage">
-        <Player1 />
-        <Attacking  />
-        <Player2 />
+        <div className={elrondIdle} style={convertDirection}><Player1 /></div>
+        <div className={player2FireBall}><Attacking /></div>
+        <div className={elrondIdle}><Player2 /></div>
         </div>
         <div className="taskbox">
           <Instructions
@@ -147,30 +146,6 @@ class GameStage extends React.Component {
             result={this.state.result}
           />
         </div>
-=======
-const GameStage = props => {
-  return (
-    <div className="gamepage">
-      <div className="gamestage">
-        <div className={elrondIdle} style={convertDirection}><Player1 /></div>
-        <div className={player2FireBall}><Attacking /></div>
-        <div className={elrondIdle}><Player2 /></div>
-      </div>
-      <div className="taskbox">
-        <Instructions
-          prompt={props.problem.prompt}
-          getProblem={props.getProblem}
-          doDamage={props.doDamage}
-          getRandomProblem={props.getRandomProblem}
-        />
-        <CodeArea userCode={props.userCode} updateCode={props.updateCode} />
-        <Result
-          submitCode={props.submitCode}
-          userCode={props.userCode}
-          problem={props.problem}
-          result={props.result}
-        />
->>>>>>> b92af24a8b98e32d97c9be2c914dc5d243e82ee3
       </div>
     );
   }
