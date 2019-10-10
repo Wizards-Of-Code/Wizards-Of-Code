@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BATTLE } from "../../constants/routes";
 
-
 const OpenBattles = props => {
-
   const battles = props.openBattles;
 
   return (
@@ -16,7 +14,11 @@ const OpenBattles = props => {
             <Link to={BATTLE}>
               <button
                 className="openGame"
-                onClick={() => props.joinOpenBattle(battle.id)}
+                onClick={() => {
+                  if (props.user.username) {
+                    props.joinRandomBattle(battle.id);
+                  }
+                }}
               >
                 Joinable Game
               </button>
