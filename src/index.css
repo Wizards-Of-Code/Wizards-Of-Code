@@ -460,7 +460,7 @@ li {
 }
 
 .elrond-die {
-  content:url(./styling/elrond-die.png);
+  content: url(./styling/elrond-die.png);
 }
 
 .galadriel-idle {
@@ -508,13 +508,20 @@ li {
   height: 110px;
   background: url(./styling/fireball.png);
   transform: scaleX(-1) scaleY(1);
-  animation: attack 1s steps(calc(13*100));
+  animation: attack 1s steps(calc(13 * 100));
+  position: absolute;
+  top: 30%;
+  left: 35%;
 }
+
 .fireball-left {
   width: calc(6217px / 13);
   height: 110px;
   background: url(./styling/fireball.png);
-  animation: attack 1s steps(calc(13*100));
+  animation: attack 1s steps(calc(13 * 100));
+  position: absolute;
+  top: 30%;
+  left: 35%;
 }
 @keyframes attack {
   from {
@@ -592,7 +599,6 @@ li {
   border-radius: 4px;
   display: flex;
   justify-content: flex-start;
-
 }
 
 .innerbar-activ1 {

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-const textTransform ={
-  transform: 'scaleX(-1) scaleY(1)',
-  color: 'white'
-}
+const textTransform = {
+  transform: "scaleX(-1) scaleY(1)",
+  color: "white"
+};
 class Player1 extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,9 @@ class Player1 extends Component {
   render() {
     return (
       <div>
-        <h1 style={textTransform} color='white'>{this.props.playerName}</h1>
+        <h1 style={textTransform} color="white">
+          {this.props.playerName}
+        </h1>
         <div style={textTransform} className="helth-bar1">
           <div className="innerbar-lost1">
             <div className="innerbar-activ1">
@@ -23,4 +25,4 @@ class Player1 extends Component {
     );
   }
 }
-export default Player1
+export default Player1;
