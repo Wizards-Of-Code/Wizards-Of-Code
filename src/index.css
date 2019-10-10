@@ -463,6 +463,10 @@ li {
   content:url(./styling/elrond-die.png);
 }
 
+.galadriel-die {
+  content:url(./styling/galadriel-die.png);
+}
+
 .galadriel-idle {
   display: flex;
   align-items: center;
@@ -504,6 +508,9 @@ li {
 }
 
 .fireball-right {
+  position: absolute;
+  top: 30%;
+  left: 35%;
   width: calc(6217px / 13);
   height: 110px;
   background: url(./styling/fireball.png);
@@ -511,6 +518,9 @@ li {
   animation: attack 1s steps(calc(13*100));
 }
 .fireball-left {
+  position: absolute;
+  top: 30%;
+  left: 35%;
   width: calc(6217px / 13);
   height: 110px;
   background: url(./styling/fireball.png);

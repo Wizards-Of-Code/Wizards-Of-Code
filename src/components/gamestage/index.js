@@ -185,7 +185,7 @@ const none = {transform: 'none'}
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
 const elrondDie = "elrond-die"
-
+const galadrielDie= 'galadriel-die'
 
 
 
