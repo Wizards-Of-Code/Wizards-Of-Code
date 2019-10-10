@@ -404,22 +404,6 @@ li {
   font-size: 18px;
 }
 
-.purple-wizard {
-  transform: scale(0.7); 
-  width: calc(1795px / 5);
-  height: 350px;
-  background: url(wizard-die.png);
-  animation: die 2.5s steps(5) infinite;
-}
-@keyframes die {
-  from {
-    background-position: 0;
-  }
-  to {
-    background-position: -1795px;
-  }
-}
-
 .green-mage {
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px/20);
