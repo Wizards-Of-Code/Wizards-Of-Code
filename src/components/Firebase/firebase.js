@@ -57,6 +57,9 @@ class Firebase {
     return this.db.collection("battles").add({
       user1: user.username,
       user1_health: user.maxHealth,
+      player1_anim: 'elrond-idle',
+      player2_anim: 'elrond-idle',
+      attack_anim: '',
       status: "open"
     });
   };
