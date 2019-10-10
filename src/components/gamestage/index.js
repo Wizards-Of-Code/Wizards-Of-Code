@@ -82,37 +82,37 @@ class GameStage extends React.Component {
     }
   };
 
-  onBattleUpdate = querySnapshot => {
-      let battle = querySnapshot.data();
-      if (battle.user1_health <= 0) {
-        this.props.battleRef.set(
-          { winner: battle.user2, status: "completed" },
-          { merge: true }
-        );
-        console.log("User 2 WON");
-        this.props.userRef.set(
-          {
-            activeBattle: ""
-          },
-          { merge: true }
-        );
-      } else if (battle.user2_health <= 0) {
-        this.props.battleRef.set(
-          { winner: battle.user1, status: "completed" },
-          { merge: true }
-        );
-        console.log("User 1 WON");
-        this.props.userRef.set(
-          {
-            activeBattle: ""
-          },
-          { merge: true }
-        );
-      }
-      this.props.battleRef.get().then( snapshot => {
-        this.setState({ battleInfo: snapshot.data() }, () => console.log(this.state.battleInfo))
-      });
-    };
+  isDead = () => {
+    if (this.state.battleInfo.user1_health <= 0) {
+      this.props.battleRef.set(
+        { winner: this.state.battleInfo.user2, status: "completed" },
+        { merge: true }
+      );
+      console.log("User 2 WON");
+      this.props.userRef.set(
+        {
+          activeBattle: ""
+        },
+        { merge: true }
+      );
+    } else if (this.state.battleInfo.user2_health <= 0) {
+      this.props.battleRef.set(
+        { winner: this.state.battleInfo.user1, status: "completed" },
+        { merge: true }
+      );
+      console.log("User 1 WON");
+      this.props.userRef.set(
+        {
+          activeBattle: ""
+        },
+        { merge: true }
+      );
+    }
+  }
+
+  onBattleUpdate = battleSnapshot => {
+    this.setState({ battleInfo: battleSnapshot.data() }, () => console.log(this.state.battleInfo))
+  };
 
 
   componentDidMount() {
