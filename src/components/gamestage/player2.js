@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 const textTransform ={
-  transform: 'scaleX(1) scaleY(1)'
+  transform: 'scaleX(1) scaleY(1)',
+  color: 'white'
 }
 class Player2 extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Player2 extends Component {
 
     return (
       <div>
-        <h1 style={textTransform} >Player2</h1>
+        <h1 style={textTransform} color='white'>{this.props.playerName}</h1>
         <div className='helth-bar2'>
           <div className="innerbar-lost2">
             <div className="innerbar-activ2">

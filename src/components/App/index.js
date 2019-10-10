@@ -9,7 +9,6 @@ import PasswordForgetPage from "../PasswordForget";
 import HomePage from "../Home";
 import AccountPage from "../Account";
 import AdminPage from "../Admin";
-import GameOver from "../GameOver";
 import ImgCollection from "../Home/imgCollection";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
@@ -195,12 +194,6 @@ class App extends React.Component {
                 />
               )
             }
-          />
-          <Route
-            path={ROUTES.GAMEOVER}
-            render={props => (
-              <GameOver {...props} battleInfo={this.props.myBattle} />
-            )}
           />
           <Route
             path={ROUTES.SETAVATAR}
