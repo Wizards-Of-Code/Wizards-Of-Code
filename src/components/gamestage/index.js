@@ -6,6 +6,7 @@ import Player1 from './player1'
 import Player2 from './player2'
 import Attacking from './attacking'
 import { withFirebase } from '../Firebase'
+import GameOver from './gameOver'
 
 class GameStage extends React.Component {
 
@@ -13,6 +14,7 @@ class GameStage extends React.Component {
     super(props);
     this.unsubscribe = {};
     this.state = {
+      battleIsOver: false,
       battleInfo : {},
       problem: {},
       result: {},
@@ -104,24 +106,14 @@ class GameStage extends React.Component {
         { merge: true }
       );
       console.log("User 2 WON");
-      this.props.userRef.set(
-        {
-          activeBattle: ""
-        },
-        { merge: true }
-      );
+      this.setState({ battleIsOver: true });
     } else if (this.state.battleInfo.user2_health <= 0) {
       this.props.battleRef.set(
         { winner: this.state.battleInfo.user1, status: "completed" },
         { merge: true }
       );
       console.log("User 1 WON");
-      this.props.userRef.set(
-        {
-          activeBattle: ""
-        },
-        { merge: true }
-      );
+      this.setState({ battleIsOver: true });
     }
   }
 
@@ -132,6 +124,14 @@ class GameStage extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
+    if (this.state.battleIsOver) {
+      this.props.userRef.set(
+        {
+          activeBattle: ""
+        },
+        { merge: true }
+      );
+    }
   }
 
   componentWillUnmount () {
@@ -148,6 +148,7 @@ class GameStage extends React.Component {
         <button onClick={() => {
           this.doDamage(10);
         }}>DO DAMAGE</button>
+        {this.state.battleIsOver ? <GameOver battleInfo={this.state.battleInfo} /> : ''}
         </div>
         <div className="taskbox">
           <Instructions

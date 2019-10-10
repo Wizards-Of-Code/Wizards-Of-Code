@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 const textTransform ={
-  transform: 'scaleX(1) scaleY(1)'
+  transform: 'scaleX(1) scaleY(1)',
+  color: 'white'
 }
 class Player2 extends Component {
   constructor(props) {
