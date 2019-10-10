@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-const textTransform = {
-  transform: "scaleX(1) scaleY(1)",
+import { endianness } from "os";
+const whiteText = {
   color: "white"
 };
 class Player2 extends Component {
@@ -11,10 +11,10 @@ class Player2 extends Component {
   render() {
     return (
       <div>
-        <h1 style={textTransform} color="white">
-          {this.props.playerName ? this.props.playerName : 'Waiting for Opponent...'}
+        <h1 style={whiteText} >
+        {this.props.playerName ? this.props.playerName : 'Waiting for Opponent...'}
         </h1>
-        <div style={textTransform} className="health-bar2">
+        <div className="health-bar2">
           <div className="innerbar-lost2">
             <div className="innerbar-activ2">
               <p className="hp-points2">90%</p>

@@ -205,7 +205,10 @@ const player2FireBall = "fireball-left";
 const none = { transform: "none" };
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
-const elrondDie = "elrond-die";
+const elrondDie = "elrond-die"
+const galadrielDie= 'galadriel-die'
+
+
 
 // all players are animated to be player 2 (facing left), if we were to make them player1, we would have to convert their facing direction, that's why we add style={convertDirection} in Player1 div
 const convertDirection = {
