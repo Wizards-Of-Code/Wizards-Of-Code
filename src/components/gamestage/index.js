@@ -148,9 +148,9 @@ class GameStage extends React.Component {
         <div className={this.state.battleInfo.player1_anim} style={convertDirection} ><Player1 playerName={this.state.battleInfo.user1}/></div>
         <div className={this.state.battleInfo.attack_anim}><Attacking /></div>
         <div className={this.state.battleInfo.player2_anim}><Player2 playerName={this.state.battleInfo.user2}/></div>
-        <button onClick={() => {
+        {this.state.battleInfo.user2 ? (<button onClick={() => {
           this.doDamage(10);
-        }}>DO DAMAGE</button>
+        }}>DO DAMAGE</button>) : ''}
         </div>
         <div className="taskbox">
           <Instructions
@@ -161,7 +161,7 @@ class GameStage extends React.Component {
           />
           <CodeArea userCode={this.state.userCode} updateCode={this.updateCode} />
           <Result
-            submitCode={this.submitCode}
+            submitCode={this.state.battleInfo.user2 ? this.submitCode : () => console.log('No opponenet')}
             userCode={this.state.userCode}
             problem={this.state.problem}
             result={this.state.result}
