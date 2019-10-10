@@ -100,6 +100,8 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+ 
 }
 
 .title,
@@ -551,4 +553,72 @@ li {
 
 .img-avatar {
   height: 50%;
+}
+
+.helth-bar1 {
+  width: 400px;
+  height: 40px;
+  background-color: #9aaf8f;
+  margin: 10px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.innerbar-lost1 {
+  width: 390px;
+  height: 30px;
+  background: rgba(230, 226, 226, 0.5);
+  margin: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.innerbar-activ1 {
+  width: 350px;
+  height: 30px;
+  background-color: #e99090;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 4px;
+}
+
+.hp-points1 {
+  margin-block-start: 0;
+}
+
+.helth-bar2 {
+  width: 400px;
+  height: 40px;
+  background-color: #9aaf8f;
+  margin: 10px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.innerbar-lost2 {
+  width: 390px;
+  height: 30px;
+  background: rgba(230, 226, 226, 0.5);
+  margin: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.innerbar-activ2 {
+  width: 350px;
+  height: 30px;
+  background-color: #e99090;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 4px;
+}
+
+.hp-points2 {
+  margin-block-start: 0;
 }
