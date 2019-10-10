@@ -420,6 +420,9 @@ li {
 }
 
 .elrond-casts-spell {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px/20);
   height: 438px;
@@ -437,6 +440,9 @@ li {
 }
 
 .elrond-idle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px/20);
   height: 438px;
@@ -454,6 +460,9 @@ li {
 }
 
 .galadriel-idle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px/20);
   height: 410px;
@@ -471,6 +480,9 @@ li {
 }
 
 .galadriel-casts-spell {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px/20);
   height: 410px;
@@ -517,6 +529,7 @@ li {
 .gamestage {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 65%;
   background-image: url(./styling/greenforest.png);
 }
