@@ -8,10 +8,9 @@ const firebase = new Firebase();
 export default firebase;
 
 ReactDOM.render(
-    <FirebaseContext.Provider value={firebase}>
-      <App />
-    </FirebaseContext.Provider>
-  ,
+  <FirebaseContext.Provider value={firebase}>
+    <App />
+  </FirebaseContext.Provider>,
   document.getElementById("root")
 );
 

@@ -13,6 +13,7 @@ import GameOver from "../GameOver";
 import ImgCollection from "../Home/imgCollection";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
+import NotFound from "../NotFound";
 
 class App extends React.Component {
   constructor(props) {
@@ -28,8 +29,9 @@ class App extends React.Component {
       battleRef: {},
       avatars: [],
       userRef: {},
-      endBattleSubscription: {},
+      endBattleSubscription: {}
     };
+    this.setState = this.setState.bind(this);
   }
 
   login = userId => {
@@ -40,7 +42,7 @@ class App extends React.Component {
       const userData = user.data();
       this.setState({ user: userData });
 
-      if (userData.activeBattle !== '') {
+      if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
         this.setBattleState(battleRef);
       }
@@ -52,7 +54,6 @@ class App extends React.Component {
   };
 
   setBattleState = battleRef => {
-
     this.setState({ battleRef });
     let endBattleSubscription = battleRef.onSnapshot(querySnapshot => {
       let battle = querySnapshot.data();
@@ -84,9 +85,7 @@ class App extends React.Component {
         );
       }
     });
-
   };
-
 
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
@@ -102,14 +101,14 @@ class App extends React.Component {
       .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
   };
 
-  setAvatar = (imgUrl) => {
+  setAvatar = imgUrl => {
     this.state.userRef.set(
       {
-        imgUrl: imgUrl,
+        imgUrl: imgUrl
       },
       { merge: true }
     );
-  }
+  };
 
   getOpenBattles = () => {
     const openBattlesRef = this.props.firebase.openBattles();
@@ -140,7 +139,6 @@ class App extends React.Component {
         {
           activeBattle: battleRef.id,
           role: "user1"
-
         },
         { merge: true }
       );
@@ -149,7 +147,6 @@ class App extends React.Component {
 
   joinRandomBattle = () => {
     this.props.firebase.joinRandomBattle(this.state.user).then(battleRef => {
-      console.log(battleRef.id);
       this.joinBattle(battleRef);
     });
   };
@@ -161,12 +158,11 @@ class App extends React.Component {
 
   joinBattle = battleRef => {
     const user = this.state.user;
-    console.log(user);
     battleRef.set(
       {
         user2: user.username,
         user2_health: user.maxHealth,
-        status: 'closed',
+        status: "closed"
       },
       { merge: true }
     );
@@ -175,14 +171,12 @@ class App extends React.Component {
       {
         activeBattle: battleRef.id,
         role: "user2"
-
       },
       { merge: true }
     );
   };
 
   doDamage = amount => {
-
     if (this.state.user.role === "user1") {
       this.state.battleRef.update({
         user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -195,7 +189,6 @@ class App extends React.Component {
           -10
         )
       });
-
     }
   };
 
@@ -239,6 +232,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    console.log("state", this.state);
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.login(authUser.uid);
@@ -247,11 +241,10 @@ class App extends React.Component {
   }
 
   render() {
-
     return (
       <Router>
         <div className="container">
-          <Navigation />
+          <Navigation setState={this.setState} />
           <Route
             path={ROUTES.SIGN_UP}
             render={props => <SignUpPage {...props} login={this.login} />}
@@ -267,12 +260,16 @@ class App extends React.Component {
           />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
+
           <Route
-            path={ROUTES.BATTLE}
-            render={props => {
-              return this.state.user.activeBattle === "" ? (
+            exact
+            path={"(/|/battle)"}
+            render={props =>
+              this.state.user.activeBattle === "" ||
+              !this.state.user.activeBattle ? (
                 <LandingPage
                   {...props}
+                  user={this.state.user}
                   createBattle={this.createBattle}
                   openBattles={this.state.battles}
                   getOpenBattles={this.getOpenBattles}
@@ -294,8 +291,8 @@ class App extends React.Component {
                   getRandomProblem={this.getRandomProblem}
                   activeBattle={this.state.user.activeBattle}
                 />
-              );
-            }}
+              )
+            }
           />
           <Route
             path={ROUTES.GAMEOVER}

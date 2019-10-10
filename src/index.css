@@ -251,6 +251,19 @@ li {
   font-family: fantasy;
   margin-bottom: 0;
 }
+.please-sign-in {
+  align-self: center;
+  color: rgb(30, 31, 29);
+  text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
+  font-size: 80px;
+  font-family: fantasy;
+  margin-bottom: 0;
+}
+.sign-in-box {
+  display: flex;
+  max-lines: 1;
+  padding-left: 40%;
+}
 
 .sign-up-form {
   margin-left: 35%;
@@ -408,7 +421,7 @@ li {
   position: absolute;
   top: 35%;
   left: 25%;
-  transform: translate(-30%, -20%) scale(0.7); 
+  transform: translate(-30%, -20%) scale(0.7);
   width: calc(1795px / 5);
   height: 350px;
   background: url(wizard-die.png);
@@ -427,19 +440,19 @@ li {
   position: absolute;
   top: 30%;
   left: 70%;
-  transform: translate(-70%,-20%) scale(0.7);
-  width: calc(7941px/20);
+  transform: translate(-70%, -20%) scale(0.7);
+  width: calc(7941px / 20);
   height: 400px;
   background: url(greenChar.png);
   animation: castASpell 3s steps(20) infinite;
-  scale: 
+  scale: ;
 }
-@keyframes castASpell { 
+@keyframes castASpell {
   from {
     background-position: 0;
   }
   to {
-    background-position: 7941px
+    background-position: 7941px;
   }
 }
 
@@ -447,18 +460,18 @@ li {
   position: absolute;
   top: 30%;
   left: 45%;
-  transform: translate(-50%,10%) scaleX(-1);
+  transform: translate(-50%, 10%) scaleX(-1);
   width: calc(6217px / 13);
   height: 110px;
   background: url(firesprite.png);
   animation: attack 3s steps(20) infinite;
 }
-@keyframes attack { 
+@keyframes attack {
   from {
     background-position: 0;
   }
   to {
-    background-position: 50%
+    background-position: 50%;
   }
 }
 
@@ -466,7 +479,7 @@ li {
   position: absolute;
   top: 30%;
   left: 45%;
-  transform: translate(-50%,10%);
+  transform: translate(-50%, 10%);
   width: calc(6217px / 13);
   height: 110px;
   background: url(firesprite.png);
@@ -477,19 +490,19 @@ li {
   position: absolute;
   top: 30%;
   left: 45%;
-  transform: translate(-50%,10%);
+  transform: translate(-50%, 10%);
   width: calc(1298px / 20);
   height: 99px;
   background: url(iceball.png);
   animation: ice-attack 3s steps(20) infinite;
 }
 
-@keyframes ice-attack { 
+@keyframes ice-attack {
   from {
     background-position: 0;
   }
   to {
-    background-position: -1298px
+    background-position: -1298px;
   }
 }
 .gamepage {
@@ -502,7 +515,7 @@ li {
   display: flex;
   align-items: center;
   height: 65%;
-  background-image: url(greenforest.png)
+  background-image: url(greenforest.png);
 }
 
 .connected-users {
@@ -527,7 +540,7 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: rgba(161, 159, 159, 0.5);;
+  background: rgba(161, 159, 159, 0.5);
   height: 700px;
   width: 420px;
   margin: 20px;
@@ -538,4 +551,3 @@ li {
 .img-avatar {
   height: 50%;
 }
-

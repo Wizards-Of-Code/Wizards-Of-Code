@@ -1,9 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { withFirebase } from '../Firebase';
+import { withFirebase } from "../Firebase";
 
-const SignOutButton = ({ firebase }) => (
-  <button type="button" onClick={firebase.doSignOut} className="sign-out-btn">
+const SignOutButton = props => (
+  <button
+    type="button"
+    onClick={() => {
+      props.updateState({ user: {} });
+      props.firebase.doSignOut();
+    }}
+    className="sign-out-btn"
+  >
     Sign Out
   </button>
 );
