@@ -502,8 +502,9 @@ li {
 .fireball-right {
   width: calc(6217px / 13);
   height: 110px;
-  background: url(./styling/fireball-LtoR.png);
-  animation: attack 1s steps(calc(13 * 100));
+  background: url(./styling/fireball-RtoL.png);
+  transform: scaleX(-1) scaleY(1);
+  animation: attack 1s steps(calc(13*100));
 }
 .fireball-left {
   width: calc(6217px / 13);
