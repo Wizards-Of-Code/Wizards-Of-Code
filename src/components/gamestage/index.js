@@ -7,7 +7,7 @@ import Player2 from './player2'
 import Attacking from './attacking'
 import {withFirebase} from '../Firebase'
 import GameOver from './gameOver'
-
+import firebutton from '../../styling/fireball-button.png'
 class GameStage extends React.Component {
   constructor(props) {
     super(props)
@@ -144,19 +144,22 @@ class GameStage extends React.Component {
   }
 
   render() {
-    // if (this.state.battleIsOver)
-    //   return (
-    //     <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
-    //   )
+    if (this.state.battleIsOver)
+      return (
+        <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
+      )
 
     return (
       <div className="gamepage">
         <div className="gamestage">
+          <div className={glowFireball}>{this.state.battleInfo.user1 ? (<img src={firebutton} onClick={() => {
+          this.doDamage(10)
+        }} />) : ''}</div>
           <div>
             <Player1 playerName={this.state.battleInfo.user1} />
             <div
-              // className={this.state.battleInfo.player1_anim}
-              className={figwitCastsSpell}
+              className={this.state.battleInfo.player1_anim}
+              // className={figwitCastsSpell}
               style={convertDirection}
             ></div>
           </div>
@@ -167,17 +170,9 @@ class GameStage extends React.Component {
             <Player2 playerName={this.state.battleInfo.user2} />
             <div className={this.state.battleInfo.player2_anim}></div>
           </div>
-          {/* {this.state.battleInfo.user2 ? (<button onClick={() => {
-          this.doDamage(10);
-        }}>DO DAMAGE</button>) : ''} */}
-          
-            <button
-              onClick={() => {
-                this.doDamage(10)
-              }}
-            >
-              DO DAMAGE
-            </button>
+          <div>{this.state.battleInfo.user2 ? (<img src={firebutton} onClick={() => {
+          this.doDamage(10)
+        }} />) : ''}</div>
         </div>
         <div className="taskbox">
           <Instructions
@@ -222,6 +217,7 @@ const figwitCastsSpell = 'figwit-casts-spell'
 const figwitHurt = 'figwit-hurt'
 const player1FireBall = 'fireball-right'
 const player2FireBall = 'fireball-left'
+const glowFireball = 'glow-fireball'
 const none = {transform: 'none'}
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}

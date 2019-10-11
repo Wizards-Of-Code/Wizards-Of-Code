@@ -639,7 +639,7 @@ li {
 
 .gamestage {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 65%;
   background-image: url(./styling/greenforest.png);
@@ -745,6 +745,24 @@ li {
 
 .hp-points2 {
   margin-block-start: 0;
+}
+
+.glow-fireball {
+  /* background-color: #004A7F; */
+  border-radius: 50%;
+  border: none;
+  color: white;
+  cursor: pointer;
+  /* display: inline-block; */
+  /* padding: 5px 10px; */
+  background-image: url(./styling/fireball-button.png);
+  animation: glowing 1500ms infinite;
+}
+
+@keyframes glowing {
+  0% { box-shadow: inset 1px 2px 2.5px }
+  50% { box-shadow: inset 2px 3px 4px  }
+  100% { box-shadow: inset 1px 2px 2.5px}
 }
 
 .lose-win {
