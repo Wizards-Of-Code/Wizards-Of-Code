@@ -7,7 +7,6 @@ import Player2 from "./player2";
 import Attacking from "./attacking";
 import { withFirebase } from "../Firebase";
 import GameOver from "./gameOver";
-import shroomForest from "../../styling/shroomForest.jpg";
 
 class GameStage extends React.Component {
   constructor(props) {
@@ -18,7 +17,8 @@ class GameStage extends React.Component {
       battleInfo: {},
       problem: {},
       result: {},
-      userCode: ""
+      userCode: "",
+      backgroundImage: ""
     };
   }
 
@@ -132,6 +132,11 @@ class GameStage extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
+    this.props.userRef
+      .get()
+      .then(background =>
+        this.setState({ backgroundImage: background.data().background })
+      );
   }
 
   componentWillUnmount() {
@@ -155,31 +160,40 @@ class GameStage extends React.Component {
         <div
           className="gamestage"
           style={{
-            backgroundImage: `url(${shroomForest})`
+            backgroundImage: `url(${this.state.backgroundImage})`
           }}
         >
-          <div>
-            <Player1 playerName={this.state.battleInfo.user1} />
-            <div
-              className={this.state.battleInfo.player1_anim}
-              style={convertDirection}
-            ></div>
+          <div className="gamebox">
+            <div>
+              <div className={this.state.battleInfo.attack_anim}>
+                <Attacking />
+              </div>
+              <Player1 playerName={this.state.battleInfo.user1} />
+              <div
+                className={this.state.battleInfo.player1_anim}
+                style={{
+                  ...convertDirection,
+                  marginTop: "-20%",
+                  marginRight: "10%"
+                }}
+              ></div>
+            </div>
+            <div>
+              <Player2 playerName={this.state.battleInfo.user2} />
+              <div
+                className={this.state.battleInfo.player2_anim}
+                style={{ marginTop: "-20%", marginLeft: "10%" }}
+              ></div>
+            </div>
           </div>
-          <div className={this.state.battleInfo.attack_anim}>
-            <Attacking />
-          </div>
-          <div>
-            <Player2 playerName={this.state.battleInfo.user2} />
-            <div className={this.state.battleInfo.player2_anim}></div>
-          </div>
-          <button
-            onClick={() => {
-              this.doDamage(10);
-            }}
-          >
-            DO DAMAGE
-          </button>
         </div>
+        <button
+          onClick={() => {
+            this.doDamage(10);
+          }}
+        >
+          DO DAMAGE
+        </button>
         <div className="taskbox">
           <Instructions
             prompt={this.state.problem.prompt}

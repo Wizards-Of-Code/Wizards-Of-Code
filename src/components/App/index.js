@@ -12,6 +12,7 @@ import AdminPage from "../Admin";
 import ImgCollection from "../Home/imgCollection";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
+import randomizeUrls from "../../RandomBackground";
 import NotFound from "../NotFound";
 
 class App extends React.Component {
@@ -39,7 +40,7 @@ class App extends React.Component {
 
       if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
-        this.setState({ battleRef })
+        this.setState({ battleRef });
       }
     });
 
@@ -87,12 +88,14 @@ class App extends React.Component {
   };
 
   createBattle = () => {
+    let randomBackgroundUrl = randomizeUrls();
     this.props.firebase.createBattle(this.state.user).then(battleRef => {
       this.setState({ battleRef });
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
-          role: "user1"
+          role: "user1",
+          background: randomBackgroundUrl
         },
         { merge: true }
       );
