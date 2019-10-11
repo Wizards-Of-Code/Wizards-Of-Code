@@ -9,7 +9,7 @@ export default function GameOver(props) {
         <div>
           <img
             className="sign-up-img"
-            src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/dd4c80ed483c8f3c286cd44194f2e93b.jpg?alt=media&token=b445f3c9-2313-40a9-86bc-221e1ad0e232"
+            src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/dd4c80ed483c8f3c286cd44194f2e93b.jpg?alt=media&token=947c1ec2-63f2-4d98-849c-a48a111495ab"
             alt=""
           />
           <h1 className="lose-win">Congratulations</h1>
@@ -32,7 +32,7 @@ export default function GameOver(props) {
               The winner is {props.battleInfo.winner}
             </h1>
             <img
-            className="grave"
+              className="grave"
               src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/galadriel-die.png?alt=media&token=9658752a-ec5f-40f3-adcf-642f5a0d5d24"
               alt=""
             />
