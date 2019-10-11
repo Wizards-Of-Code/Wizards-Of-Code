@@ -62,13 +62,13 @@ class GameStage extends React.Component {
       1: 10,
       2: 25,
       3: 60
-    }
+    };
 
     webWorker.onmessage = event => {
       this.setState({ result: event.data });
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty]);
-        this.setState( { userCode: '' })
+        this.setState({ userCode: "" });
       } else {
         this.selfDamage(this.state.problem.difficulty * 5);
       }
@@ -178,12 +178,14 @@ class GameStage extends React.Component {
   };
 
   componentDidMount() {
-    this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
-    this.props.battleRef
-      .get()
-      .then(battleDoc =>
-        this.setState({ backgroundImage: battleDoc.data().background })
-      );
+    if (this.props.battleRef.id) {
+      this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
+      this.props.battleRef
+        .get()
+        .then(battleDoc =>
+          this.setState({ backgroundImage: battleDoc.data().background })
+        );
+    }
   }
 
   componentWillUnmount() {
