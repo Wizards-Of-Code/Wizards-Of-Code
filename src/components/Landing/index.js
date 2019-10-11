@@ -9,6 +9,9 @@ class LandingPage extends React.Component {
   }
 
   render() {
+
+    console.log(this.props.openBattles, this.props);
+
     return (
       <div className="landing-page-container">
         <img

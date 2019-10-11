@@ -56,10 +56,19 @@ class GameStage extends React.Component {
       webWorker.terminate()
     }, 5000)
 
+    const damageAmounts = {
+      1: 10,
+      2: 25,
+      3: 60
+    }
+
     webWorker.onmessage = event => {
       this.setState({result: event.data})
       if (event.data.correct) {
-        this.doDamage(10)
+        this.doDamage(damageAmounts[this.state.problem.difficulty])
+        this.setState({userCode: ''})
+      } else {
+        this.selfDamage(this.state.problem.difficulty * 5)
       }
       webWorker.terminate()
       clearTimeout(timeoutId)
@@ -71,9 +80,10 @@ class GameStage extends React.Component {
       this.props.battleRef
         .update({
           user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-            -10
+            -1 * amount
           ),
           player1_anim: elrondCastsSpell,
+          player2_anim: elrondHurt,
           attack_anim: player1FireBall
         })
         .then(() => {
@@ -83,10 +93,47 @@ class GameStage extends React.Component {
       this.props.battleRef
         .update({
           user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-            -10
+            -1 * amount
           ),
           player2_anim: elrondCastsSpell,
+          player1_anim: elrondHurt,
           attack_anim: player2FireBall
+        })
+        .then(() => {
+          this.isDead()
+        })
+    }
+    setTimeout(() => {
+      this.props.battleRef.set(
+        {
+          player1_anim: elrondIdle,
+          player2_anim: elrondIdle,
+          attack_anim: null
+        },
+        {merge: true}
+      )
+    }, 2000)
+  }
+
+  selfDamage = amount => {
+    if (this.props.user.role === 'user2') {
+      this.props.battleRef
+        .update({
+          user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+            -1 * amount
+          ),
+          player2_anim: elrondHurt
+        })
+        .then(() => {
+          this.isDead()
+        })
+    } else {
+      this.props.battleRef
+        .update({
+          user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+            -1 * amount
+          ),
+          player1_anim: elrondHurt
         })
         .then(() => {
           this.isDead()
@@ -150,10 +197,11 @@ class GameStage extends React.Component {
   }
 
   render() {
-    if (this.state.battleIsOver)
+    if (this.state.battleIsOver) {
       return (
         <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
       )
+    }
 
     return (
       <div className="gamepage">
@@ -204,7 +252,7 @@ class GameStage extends React.Component {
               ></div>
             </div>
           </div>
-          <div className={fireball} style={glowAnimation} >
+          <div className={fireball} style={glowAnimation}>
             {this.state.battleInfo.user2 ? (
               <img
                 src={firebutton}
@@ -264,10 +312,6 @@ const fireball = 'glow-fireball'
 const none = {transform: 'none'}
 
 const glowAnimation = {animation: 'glowing 1500ms infinite'}
-
-
-
-
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
 const elrondDie = 'elrond-die'

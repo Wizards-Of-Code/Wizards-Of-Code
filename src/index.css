@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Aladin|Berkshire+Swash|Aladin|Londrina+Solid|Aladin|Aladin|Aladin&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Aladin|Berkshire+Swash|Aladin|Londrina+Solid|Aladin|Aladin|Aladin&display=swap');
 html {
   width: 100%;
   height: 100%;
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,7 +18,7 @@ body {
   height: 100%;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 a {
@@ -26,7 +26,7 @@ a {
   text-decoration: none;
   text-shadow: 2px 2px 2px white;
   font-size: 30px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
 }
 
 a:hover {
@@ -45,7 +45,7 @@ li {
 .nav {
   display: flex;
   justify-content: space-around;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   background-image: linear-gradient(rgb(197, 197, 153), rgb(150, 170, 155));
   height: 100%;
   margin: 0;
@@ -74,6 +74,7 @@ li {
   z-index: 2;
   margin-bottom: 30px;
   margin-top: 20px;
+  background-color: #ecf5ee;
 }
 
 .instructions,
@@ -108,7 +109,7 @@ li {
 .title-result {
   color: rgb(30, 31, 29);
   text-align: center;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-weight: bolder;
   font-size: 20px;
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
@@ -128,7 +129,7 @@ li {
 }
 
 .buttonFont {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
 }
 .home-page-container {
@@ -178,6 +179,7 @@ li {
   width: 300px;
   height: 200px;
   align-content: flex-end;
+  z-index: 500000;
 }
 
 .home-page-navbar {
@@ -250,7 +252,7 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 80px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   margin-bottom: 0;
 }
 
@@ -258,7 +260,7 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 80px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   margin-bottom: 0;
 }
 .sign-in-box {
@@ -306,7 +308,7 @@ li {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
   margin-left: 15px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   border: none;
   font-weight: 100;
   border-radius: 6px;
@@ -358,7 +360,7 @@ li {
   text-decoration: none;
   text-shadow: 2px 2px 2px #1b1b1b;
   font-size: 25px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
 }
 
 .error {
@@ -370,7 +372,7 @@ li {
   color: rgb(250, 247, 246);
   text-decoration: none;
   font-size: 45px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
 }
 
@@ -410,7 +412,7 @@ li {
   color: white;
   border: 2px solid rgb(184, 180, 180);
   z-index: 10;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   padding: 5px;
   background-image: linear-gradient(rgb(58, 58, 28), rgb(29, 49, 34));
   height: 40px;
@@ -458,13 +460,12 @@ li {
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-hurt.png);
-  animation: elrond 3s steps(20);
+  animation: elrond 1.5s steps(20) infinite;
 }
 
 .elrond-die {
   content: url(./styling/elrond-die.png);
 }
-
 
 @keyframes galadriel {
   from {
@@ -509,7 +510,7 @@ li {
 }
 
 .galadriel-die {
-  content:url(./styling/galadriel-die.png);
+  content: url(./styling/galadriel-die.png);
 }
 
 @keyframes arwen {
@@ -611,6 +612,8 @@ li {
   display: flex;
   margin-top: 0;
   margin-bottom: 0;
+  flex: auto;
+  justify-content: space-evenly;
 }
 
 .fireball-left {
@@ -640,7 +643,7 @@ li {
 .healthName {
   margin: 0;
   padding: 0;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-size: 1vw;
   line-height: 1;
   color: white;
@@ -710,7 +713,7 @@ li {
 }
 
 .innerbar-activ1 {
-  height: 30px;
+  height: 25px;
   background-color: #e99090;
   display: flex;
   justify-content: flex-start;
@@ -743,7 +746,7 @@ li {
 }
 
 .innerbar-activ2 {
-  height: 30px;
+  height: 25px;
   background-color: #e99090;
   display: flex;
   justify-content: flex-end;
@@ -763,9 +766,15 @@ li {
 }
 
 @keyframes glowing {
-  0% { box-shadow: inset 1px 2px 2.5px }
-  50% { box-shadow: inset 2px 3px 4px  }
-  100% { box-shadow: inset 1px 2px 2.5px}
+  0% {
+    box-shadow: inset 1px 2px 2.5px;
+  }
+  50% {
+    box-shadow: inset 2px 3px 4px;
+  }
+  100% {
+    box-shadow: inset 1px 2px 2.5px;
+  }
 }
 
 .lose-win {
@@ -773,7 +782,7 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 80px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   margin-block-start: 0%;
   height: 30%;
   padding-top: 30px;
@@ -786,7 +795,8 @@ li {
 }
 
 .grave {
-  text-align: center;
+  position: relative;
+  left: 45%;
 }
 
 .center {
