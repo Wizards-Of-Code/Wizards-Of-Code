@@ -1,29 +1,27 @@
-import CodeMirror from "react-codemirror";
+import {Controlled as CodeMirror} from 'react-codemirror2'
 import "codemirror/mode/javascript/javascript";
 import React, { Component } from "react";
 
 class CodeArea extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { code: "" };
-  }
 
   render() {
     let options = {
       lineNumbers: true,
       mode: "javascript",
       autoFocus: true,
-      className: "texteditor",
       gutters: ["CodeMirror-linenumbers", 2]
     };
+
     return (
       <CodeMirror
-        value={this.props.userCode}
-        onChange={event => {
-          this.props.updateCode(event);
+        value={this.props.value}
+        onBeforeChange={(editor, data, value) => {
+          this.props.updateCode(value);
+        }}
+        onChange={(editor, data, value) => {
         }}
         options={options}
-        className="code-mirror"
+        className="CodeMirror"
       />
     );
   }

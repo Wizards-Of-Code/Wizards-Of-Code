@@ -8,9 +8,9 @@ class Player1 extends Component {
   }
 
   render() {
-    console.log(this.props);
+
     let hp = this.props.playerHP;
-    console.log(hp);
+
     return (
       <div className="healthName">
         <p style={textTransform}>{this.props.playerName}</p>

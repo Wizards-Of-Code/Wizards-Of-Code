@@ -10,16 +10,19 @@ import GameOver from './gameOver'
 import firebutton from '../../styling/fireball-button.png'
 class GameStage extends React.Component {
   constructor(props) {
-    super(props)
-    this.unsubscribe = {}
+    super(props);
+    this.unsubscribe = {};
+    this.taskboxClass = 'taskbox'
     this.state = {
       battleIsOver: false,
       battleInfo: {},
-      problem: {},
+      problem: {
+        prompt: ""
+      },
       result: {},
-      userCode: '',
-      backgroundImage: ''
-    }
+      userCode: "",
+      backgroundImage: "",
+    };
   }
 
   getProblem = problemId => {
@@ -51,10 +54,11 @@ class GameStage extends React.Component {
 
     const timeoutId = setTimeout(() => {
       this.setState({
-        result: {userOutputs: 'Your function failed!  :(', correct: false}
-      })
-      webWorker.terminate()
-    }, 5000)
+        result: { userOutputs: "Your function failed!  :(", correct: false }
+      });
+      webWorker.terminate();
+      this.selfDamage(5);
+    }, 5000);
 
     const damageAmounts = {
       1: 10,
@@ -65,8 +69,8 @@ class GameStage extends React.Component {
     webWorker.onmessage = event => {
       this.setState({result: event.data})
       if (event.data.correct) {
-        this.doDamage(damageAmounts[this.state.problem.difficulty])
-        this.setState({userCode: ''})
+        this.doDamage(damageAmounts[this.state.problem.difficulty]);
+        this.setState({ userCode: "", problem: {prompt: ""} });
       } else {
         this.selfDamage(this.state.problem.difficulty * 5)
       }
@@ -116,7 +120,8 @@ class GameStage extends React.Component {
   }
 
   selfDamage = amount => {
-    if (this.props.user.role === 'user2') {
+    this.taskboxClass = 'taskbox red';
+    if (this.props.user.role === "user2") {
       this.props.battleRef
         .update({
           user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -146,10 +151,11 @@ class GameStage extends React.Component {
           player2_anim: elrondIdle,
           attack_anim: null
         },
-        {merge: true}
-      )
-    }, 2000)
-  }
+        { merge: true }
+      );
+      this.taskboxClass = 'taskbox';
+    }, 2000);
+  };
 
   isDead = () => {
     if (this.state.battleInfo.user1_health <= 0) {
@@ -217,9 +223,7 @@ class GameStage extends React.Component {
             {this.state.battleInfo.user1 ? (
               <img
                 src={firebutton}
-                onClick={() => {
-                  this.doDamage(10)
-                }}
+                onClick ={() => this.getRandomProblem(1)}
               />
             ) : (
               ''
@@ -267,22 +271,21 @@ class GameStage extends React.Component {
             )}
           </div>
         </div>
-        <div className="taskbox">
+        <div className={this.taskboxClass}>
           <Instructions
             prompt={this.state.problem.prompt}
-            getProblem={this.getProblem}
             doDamage={this.doDamage}
             getRandomProblem={this.getRandomProblem}
           />
           <CodeArea
-            userCode={this.state.userCode}
+            value={this.state.userCode}
             updateCode={this.updateCode}
           />
           <Result
             submitCode={
-              this.state.battleInfo.user2
+              this.state.problem.inputs
                 ? this.submitCode
-                : () => console.log('No opponenet')
+                : () => console.log("No opponent")
             }
             userCode={this.state.userCode}
             problem={this.state.problem}

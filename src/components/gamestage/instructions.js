@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
 class Instructions extends Component {
-  componentDidMount() {
-    this.props.getProblem("b0FL15GLthEMS3mXfBTZ");
-  }
 
   render() {
     return (

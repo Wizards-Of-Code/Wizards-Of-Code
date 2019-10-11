@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "codemirror": "^5.49.0",
     "firebase": "^7.0.0",
     "pixi.js": "^5.1.5",
     "react": "^16.10.1",
     "react-codemirror": "^1.0.0",
+    "react-codemirror2": "^6.0.0",
     "react-dom": "^16.10.1",
     "react-pixi-fiber": "^0.9.3",
     "react-redux": "^7.1.1",
