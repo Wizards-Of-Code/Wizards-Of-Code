@@ -17,7 +17,8 @@ class GameStage extends React.Component {
       battleInfo: {},
       problem: {},
       result: {},
-      userCode: ""
+      userCode: "",
+      backgroundImage: ""
     };
   }
 
@@ -131,6 +132,11 @@ class GameStage extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
+    this.props.battleRef
+      .get()
+      .then(battleDoc =>
+        this.setState({ backgroundImage: battleDoc.data().background })
+      );
   }
 
   componentWillUnmount() {
@@ -145,31 +151,60 @@ class GameStage extends React.Component {
     }
   }
 
-
-  render () {
-
-    if (this.state.battleIsOver) return <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
+  render() {
+    if (this.state.battleIsOver)
+      return (
+        <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
+      );
 
     return (
       <div className="gamepage">
-        <div className="gamestage">
-          <div>
-            <Player1 playerName={this.state.battleInfo.user1} />
-            <div
-              className={this.state.battleInfo.player1_anim}
-              style={convertDirection}
-            ></div>
+        <div
+          className="gamestage"
+          style={{
+            backgroundImage: `url(${this.state.backgroundImage})`
+          }}
+        >
+          <div className="gamebox">
+            <div>
+              <div className={this.state.battleInfo.attack_anim}>
+                <Attacking />
+              </div>
+              <Player1
+                playerName={this.state.battleInfo.user1}
+                playerHP={this.state.battleInfo.user1_health}
+              />
+              <div
+                className={this.state.battleInfo.player1_anim}
+                style={{
+                  ...convertDirection,
+                  marginTop: "-20%",
+                  marginRight: "10%"
+                }}
+              ></div>
+            </div>
+            <div>
+              <Player2
+                playerName={this.state.battleInfo.user2}
+                playerHP={this.state.battleInfo.user2_health}
+              />
+              <div
+                className={this.state.battleInfo.player2_anim}
+                style={{ marginTop: "-20%", marginLeft: "10%" }}
+              ></div>
+            </div>
           </div>
-          <div className={this.state.battleInfo.attack_anim}>
-            <Attacking />
-          </div>
-          <div>
-            <Player2 playerName={this.state.battleInfo.user2} />
-            <div className={this.state.battleInfo.player2_anim}></div>
-          </div>
-          {this.state.battleInfo.user2 ? (<button onClick={() => {
-          this.doDamage(10);
-        }}>DO DAMAGE</button>) : ''}
+          {this.state.battleInfo.user2 ? (
+            <button
+              onClick={() => {
+                this.doDamage(10);
+              }}
+            >
+              DO DAMAGE
+            </button>
+          ) : (
+            ""
+          )}
         </div>
         <div className="taskbox">
           <Instructions
@@ -183,7 +218,11 @@ class GameStage extends React.Component {
             updateCode={this.updateCode}
           />
           <Result
-            submitCode={this.state.battleInfo.user2 ? this.submitCode : () => console.log('No opponenet')}
+            submitCode={
+              this.state.battleInfo.user2
+                ? this.submitCode
+                : () => console.log("No opponenet")
+            }
             userCode={this.state.userCode}
             problem={this.state.problem}
             result={this.state.result}
@@ -205,10 +244,8 @@ const player2FireBall = "fireball-left";
 const none = { transform: "none" };
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
-const elrondDie = "elrond-die"
-const galadrielDie= 'galadriel-die'
-
-
+const elrondDie = "elrond-die";
+const galadrielDie = "galadriel-die";
 
 // all players are animated to be player 2 (facing left), if we were to make them player1, we would have to convert their facing direction, that's why we add style={convertDirection} in Player1 div
 const convertDirection = {
