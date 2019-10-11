@@ -460,7 +460,7 @@ li {
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-hurt.png);
-  animation: elrond 3s steps(20);
+  animation: elrond 1.5s steps(20) infinite;
 }
 
 .elrond-die {

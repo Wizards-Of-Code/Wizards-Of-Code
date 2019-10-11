@@ -203,6 +203,7 @@ class GameStage extends React.Component {
       return (
         <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
       );
+    }
 
     return (
       <div className="gamepage">
