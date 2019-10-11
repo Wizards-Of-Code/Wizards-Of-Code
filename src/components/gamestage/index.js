@@ -147,14 +147,17 @@ class GameStage extends React.Component {
 
 
   render () {
-
+    
     if (this.state.battleIsOver) return <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
 
     return (
       <div className="gamepage">
         <div className="gamestage">
           <div>
-            <Player1 playerName={this.state.battleInfo.user1} />
+            <Player1
+              playerName={this.state.battleInfo.user1}
+              playerHP={this.state.battleInfo.user1_health}
+            />
             <div
               className={this.state.battleInfo.player1_anim}
               style={convertDirection}
@@ -164,12 +167,23 @@ class GameStage extends React.Component {
             <Attacking />
           </div>
           <div>
-            <Player2 playerName={this.state.battleInfo.user2} />
+            <Player2
+              playerName={this.state.battleInfo.user2}
+              playerHP={this.state.battleInfo.user2_health}
+            />
             <div className={this.state.battleInfo.player2_anim}></div>
           </div>
-          {this.state.battleInfo.user2 ? (<button onClick={() => {
-          this.doDamage(10);
-        }}>DO DAMAGE</button>) : ''}
+          {this.state.battleInfo.user2 ? (
+            <button
+              onClick={() => {
+                this.doDamage(10);
+              }}
+            >
+              DO DAMAGE
+            </button>
+          ) : (
+            ''
+          )}
         </div>
         <div className="taskbox">
           <Instructions
@@ -183,7 +197,11 @@ class GameStage extends React.Component {
             updateCode={this.updateCode}
           />
           <Result
-            submitCode={this.state.battleInfo.user2 ? this.submitCode : () => console.log('No opponenet')}
+            submitCode={
+              this.state.battleInfo.user2
+                ? this.submitCode
+                : () => console.log('No opponenet')
+            }
             userCode={this.state.userCode}
             problem={this.state.problem}
             result={this.state.result}
