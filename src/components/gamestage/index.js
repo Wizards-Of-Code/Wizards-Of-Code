@@ -66,6 +66,7 @@ class GameStage extends React.Component {
       this.setState({result: event.data})
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty]);
+        this.setState( { userCode: '' })
       } else {
         this.selfDamage(this.state.problem.difficulty * 5);
       }
@@ -82,6 +83,7 @@ class GameStage extends React.Component {
             -1 * amount
           ),
           player1_anim: elrondCastsSpell,
+          player2_anim: elrondHurt,
           attack_anim: player1FireBall
         })
         .then(() => {
@@ -94,6 +96,7 @@ class GameStage extends React.Component {
             -1 * amount
           ),
           player2_anim: elrondCastsSpell,
+          player1_anim: elrondHurt,
           attack_anim: player2FireBall
         })
         .then(() => {
@@ -119,6 +122,7 @@ class GameStage extends React.Component {
           user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
+          player2_anim: elrondHurt
         })
         .then(() => {
           this.isDead();
@@ -129,6 +133,7 @@ class GameStage extends React.Component {
           user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
+          player1_anim: elrondHurt
         })
         .then(() => {
           this.isDead();
@@ -192,10 +197,13 @@ class GameStage extends React.Component {
   }
 
   render() {
-    if (this.state.battleIsOver)
+    if (this.state.battleIsOver) {
       return (
         <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
       )
+    }
+
+    console.log(this.state.userCode);
 
     return (
       <div className="gamepage">
