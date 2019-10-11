@@ -419,18 +419,7 @@ li {
   font-size: 18px;
 }
 
-.elrond-casts-spell {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  transform: scaleX(0.7) scaleY(0.7);
-  width: calc(7960px / 20);
-  height: 438px;
-  background: url(./styling/elrond-cast-spell.png);
-  animation: castSpell 3s steps(20) infinite;
-}
-
-@keyframes castSpell {
+@keyframes elrond {
   from {
     background-position: 0;
   }
@@ -446,25 +435,44 @@ li {
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
-  background: url(./styling/elrond.png);
-  animation: elrond-idle 1.5s steps(20) infinite;
+  background: url(./styling/elrond-idle.png);
+  animation: elrond 1.5s steps(20) infinite;
 }
 
-@keyframes elrond-idle {
-  from {
-    background-position: 0;
-  }
-  to {
-    background-position: 7960px;
-  }
+.elrond-casts-spell {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(7960px / 20);
+  height: 438px;
+  background: url(./styling/elrond-cast-spell.png);
+  animation: elrond 1.5s steps(20);
+}
+
+.elrond-hurt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(7960px / 20);
+  height: 438px;
+  background: url(./styling/elrond-hurt.png);
+  animation: elrond 3s steps(20);
 }
 
 .elrond-die {
   content: url(./styling/elrond-die.png);
 }
 
-.galadriel-die {
-  content:url(./styling/galadriel-die.png);
+
+@keyframes galadriel {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 6840px;
+  }
 }
 
 .galadriel-idle {
@@ -475,16 +483,7 @@ li {
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-idle.png);
-  animation: galadriel-idle 1.5s steps(20) infinite;
-}
-
-@keyframes galadriel-idle {
-  from {
-    background-position: 0;
-  }
-  to {
-    background-position: 6840px;
-  }
+  animation: galadriel 1.5s steps(20) infinite;
 }
 
 .galadriel-casts-spell {
@@ -495,16 +494,106 @@ li {
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
-  animation: galadriel-casts-spell 2s steps(20);
+  animation: galadriel 1.5s steps(20);
 }
 
-@keyframes galadriel-casts-spell {
+.galadriel-hurt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(6840px / 20);
+  height: 410px;
+  background: url(./styling/galadriel-hurt.png);
+  animation: galadriel 3s steps(20);
+}
+
+.galadriel-die {
+  content:url(./styling/galadriel-die.png);
+}
+
+@keyframes arwen {
   from {
     background-position: 0;
   }
   to {
-    background-position: 6840px;
+    background-position: 5560px;
   }
+}
+
+.arwen-idle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(5560px / 20);
+  height: 347px;
+  background: url(./styling/arwen-idle.png);
+  animation: arwen 1.5s steps(20) infinite;
+}
+
+.arwen-casts-spell {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(5560px / 20);
+  height: 347px;
+  background: url(./styling/arwen-casts-spell.png);
+  animation: arwen 1.5s steps(20);
+}
+
+.arwen-hurt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(5560px / 20);
+  height: 347px;
+  background: url(./styling/arwen-hurt.png);
+  animation: arwen 3s steps(20);
+}
+
+@keyframes figwit {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 9640px;
+  }
+}
+
+.figwit-idle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(9640px / 20);
+  height: 372px;
+  background: url(./styling/figwit-idle.png);
+  animation: figwit 1.5s steps(20) infinite;
+}
+
+.figwit-casts-spell {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(9640px / 20);
+  height: 372px;
+  background: url(./styling/figwit-casts-spell.png);
+  animation: figwit 5s steps(20);
+}
+
+.figwit-hurt {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(9640px / 20);
+  height: 372px;
+  background: url(./styling/figwit-hurt.png);
+  animation: figwit 3s steps(20);
 }
 
 .fireball-right {
