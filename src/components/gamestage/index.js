@@ -132,10 +132,10 @@ class GameStage extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
-    this.props.userRef
+    this.props.battleRef
       .get()
-      .then(background =>
-        this.setState({ backgroundImage: background.data().background })
+      .then(battleDoc =>
+        this.setState({ backgroundImage: battleDoc.data().background })
       );
   }
 
