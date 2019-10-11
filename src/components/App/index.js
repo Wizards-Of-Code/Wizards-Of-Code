@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "../Navigation";
 import GameStage from "../gamestage";
 import LandingPage from "../Landing";
@@ -12,6 +12,7 @@ import AdminPage from "../Admin";
 import ImgCollection from "../Home/imgCollection";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
+
 import NotFound from "../NotFound";
 
 class App extends React.Component {
@@ -39,7 +40,7 @@ class App extends React.Component {
 
       if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
-        this.setState({ battleRef })
+        this.setState({ battleRef });
       }
     });
 

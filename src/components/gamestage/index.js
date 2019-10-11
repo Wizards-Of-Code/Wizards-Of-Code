@@ -17,7 +17,8 @@ class GameStage extends React.Component {
       battleInfo: {},
       problem: {},
       result: {},
-      userCode: ''
+      userCode: '',
+      backgroundImage: ''
     }
   }
 
@@ -129,6 +130,11 @@ class GameStage extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate)
+    this.props.battleRef
+      .get()
+      .then(battleDoc =>
+        this.setState({backgroundImage: battleDoc.data().background})
+      )
   }
 
   componentWillUnmount() {
@@ -151,28 +157,65 @@ class GameStage extends React.Component {
 
     return (
       <div className="gamepage">
-        <div className="gamestage">
-          <div className={glowFireball}>{this.state.battleInfo.user1 ? (<img src={firebutton} onClick={() => {
-          this.doDamage(10)
-        }} />) : ''}</div>
-          <div>
-            <Player1 playerName={this.state.battleInfo.user1} />
-            <div
-              className={this.state.battleInfo.player1_anim}
-              // className={figwitCastsSpell}
-              style={convertDirection}
-            ></div>
+        <div
+          className="gamestage"
+          style={{
+            backgroundImage: `url(${this.state.backgroundImage})`
+          }}
+        >
+          <div className={glowFireball}>
+              {this.state.battleInfo.user1 ? (
+                <img
+                  src={firebutton}
+                  onClick={() => {
+                    this.doDamage(10)
+                  }}
+                />
+              ) : (
+                ''
+              )}
+            </div>
+          <div className="gamebox">
+            <div>
+              <div className={this.state.battleInfo.attack_anim}>
+                <Attacking />
+              </div>
+              <Player1
+                playerName={this.state.battleInfo.user1}
+                playerHP={this.state.battleInfo.user1_health}
+              />
+              <div
+                className={this.state.battleInfo.player1_anim}
+                style={{
+                  ...convertDirection,
+                  marginTop: '-20%',
+                  marginRight: '10%'
+                }}
+              ></div>
+            </div>
+            <div>
+              <Player2
+                playerName={this.state.battleInfo.user2}
+                playerHP={this.state.battleInfo.user2_health}
+              />
+              <div
+                className={this.state.battleInfo.player2_anim}
+                style={{marginTop: '-20%', marginLeft: '10%'}}
+              ></div>
+            </div>
           </div>
-          <div className={this.state.battleInfo.attack_anim}>
-            <Attacking />
+          <div className={glowFireball}>
+            {this.state.battleInfo.user2 ? (
+              <img
+                src={firebutton}
+                onClick={() => {
+                  this.doDamage(10)
+                }}
+              />
+            ) : (
+              ''
+            )}
           </div>
-          <div>
-            <Player2 playerName={this.state.battleInfo.user2} />
-            <div className={this.state.battleInfo.player2_anim}></div>
-          </div>
-          <div>{this.state.battleInfo.user2 ? (<img src={firebutton} onClick={() => {
-          this.doDamage(10)
-        }} />) : ''}</div>
         </div>
         <div className="taskbox">
           <Instructions
