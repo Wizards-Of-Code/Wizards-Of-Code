@@ -32,6 +32,7 @@ class GameStage extends React.Component {
   }
 
   getRandomProblem = difficulty => {
+    this.setState({ result: {} });
     this.props.firebase
       .getRandomProblem(difficulty)
       .then(problemRef => problemRef.get())
