@@ -6,8 +6,8 @@ const Result = props => {
       <div className="flex-side">
         <div className="title-result">Result:</div>
         {props.result.userOutputs ? (
-          <div>
-            <p>{props.result.correct ? "CORRECT!" : "TRY AGAIN :("}</p>
+          <div className='result-box'>
+            <p><b>{props.result.correct ? "CORRECT!" : "TRY AGAIN :("}</b></p>
             <p>Expected Output:</p>
             <p>{props.problem.outputs}</p>
             <p>Your Output:</p>

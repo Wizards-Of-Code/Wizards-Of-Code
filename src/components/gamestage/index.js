@@ -12,13 +12,16 @@ class GameStage extends React.Component {
   constructor(props) {
     super(props);
     this.unsubscribe = {};
+    this.taskboxClass = 'taskbox'
     this.state = {
       battleIsOver: false,
       battleInfo: {},
-      problem: {},
+      problem: {
+        prompt: ""
+      },
       result: {},
       userCode: "",
-      backgroundImage: ""
+      backgroundImage: "",
     };
   }
 
@@ -56,6 +59,7 @@ class GameStage extends React.Component {
         result: { userOutputs: "Your function failed!  :(", correct: false }
       });
       webWorker.terminate();
+      this.selfDamage(5);
     }, 5000);
 
     const damageAmounts = {
@@ -68,7 +72,7 @@ class GameStage extends React.Component {
       this.setState({ result: event.data });
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty]);
-        this.setState({ userCode: "" });
+        this.setState({ userCode: "", problem: {prompt: ""} });
       } else {
         this.selfDamage(this.state.problem.difficulty * 5);
       }
@@ -118,6 +122,7 @@ class GameStage extends React.Component {
   };
 
   selfDamage = amount => {
+    this.taskboxClass = 'taskbox red';
     if (this.props.user.role === "user2") {
       this.props.battleRef
         .update({
@@ -150,6 +155,7 @@ class GameStage extends React.Component {
         },
         { merge: true }
       );
+      this.taskboxClass = 'taskbox';
     }, 2000);
   };
 
@@ -219,9 +225,7 @@ class GameStage extends React.Component {
             {this.state.battleInfo.user1 ? (
               <img
                 src={firebutton}
-                onClick={() => {
-                  this.doDamage(10);
-                }}
+                onClick ={() => this.getRandomProblem(1)}
               />
             ) : (
               ""
@@ -269,10 +273,9 @@ class GameStage extends React.Component {
             )}
           </div>
         </div>
-        <div className="taskbox">
+        <div className={this.taskboxClass}>
           <Instructions
             prompt={this.state.problem.prompt}
-            getProblem={this.getProblem}
             doDamage={this.doDamage}
             getRandomProblem={this.getRandomProblem}
           />
@@ -282,9 +285,9 @@ class GameStage extends React.Component {
           />
           <Result
             submitCode={
-              this.state.battleInfo.user2
+              this.state.problem.inputs
                 ? this.submitCode
-                : () => console.log("No opponenet")
+                : () => console.log("No opponent")
             }
             userCode={this.state.userCode}
             problem={this.state.problem}

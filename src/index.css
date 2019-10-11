@@ -61,22 +61,12 @@ li {
   width: 100%;
   height: 35%;
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
+  transition: background-image 1s ease;
 }
 
-/* .ReactCodeMirror {
-  width: 60%;
-  word-wrap: break-word;
-} */
-
-/* .CodeMirror {
-  width: 100%;
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-  border: solid 5px rgb(44, 66, 47);
-  z-index: 2;
-  margin-bottom: 30px;
-  margin-top: 20px;
-  background-color: #ecf5ee;
-} */
+.taskbox.red {
+  background-image: linear-gradient(orange, red);
+}
 
 .instructions,
 .result {
@@ -808,5 +798,11 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.result-box {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
