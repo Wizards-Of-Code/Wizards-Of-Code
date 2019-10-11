@@ -11,7 +11,7 @@ const OpenBattles = props => {
     <ol className="join-btl">
       {battles.map(battle => (
         <div className="single-game" key={battle.id}>
-          <div>
+          <div className='center'>
             <div className="opponent">Opponent: {battle.user1}</div>
             <Link to={BATTLE}>
               <button

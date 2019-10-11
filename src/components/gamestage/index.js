@@ -138,10 +138,10 @@ class GameStage extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
-    this.props.userRef
+    this.props.battleRef
       .get()
-      .then(background =>
-        this.setState({ backgroundImage: background.data().background })
+      .then(battleDoc =>
+        this.setState({ backgroundImage: battleDoc.data().background })
       );
   }
 
@@ -176,7 +176,10 @@ class GameStage extends React.Component {
               <div className={this.state.battleInfo.attack_anim}>
                 <Attacking />
               </div>
-              <Player1 playerName={this.state.battleInfo.user1} />
+              <Player1
+                playerName={this.state.battleInfo.user1}
+                playerHP={this.state.battleInfo.user1_health}
+              />
               <div
                 className={this.state.battleInfo.player1_anim}
                 style={{
@@ -187,7 +190,10 @@ class GameStage extends React.Component {
               ></div>
             </div>
             <div>
-              <Player2 playerName={this.state.battleInfo.user2} />
+              <Player2
+                playerName={this.state.battleInfo.user2}
+                playerHP={this.state.battleInfo.user2_health}
+              />
               <div
                 className={this.state.battleInfo.player2_anim}
                 style={{ marginTop: "-20%", marginLeft: "10%" }}

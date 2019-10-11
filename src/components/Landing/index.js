@@ -52,13 +52,13 @@ class LandingPage extends React.Component {
               <button className="join-random-btl-btn" disabled>
                 Open Battles
               </button>
-            </div>
-            <div className="join-btl">
-              <OpenBattles
-                user={this.props.user}
-                openBattles={this.props.openBattles}
-                joinOpenBattle={this.props.joinOpenBattle}
-              />
+              <div className="join-btl">
+                <OpenBattles
+                  user={this.props.user}
+                  openBattles={this.props.openBattles}
+                  joinOpenBattle={this.props.joinOpenBattle}
+                />
+              </div>
             </div>
           </div>
         ) : (

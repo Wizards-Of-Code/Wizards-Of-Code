@@ -511,6 +511,7 @@ li {
   transform: scaleX(-1) scaleY(1);
   animation: attack 1s steps(calc(13 * 100));
   position: absolute;
+  border-radius: 70%;
   top: 33%;
   left: 35%;
 }
@@ -526,6 +527,7 @@ li {
   background: url(./styling/fireball.png);
   animation: attack 1s steps(calc(13 * 100));
   position: absolute;
+  border-radius: 70%;
   top: 33%;
   left: 35%;
 }
@@ -583,7 +585,7 @@ li {
   justify-content: space-between;
   background: rgba(161, 159, 159, 0.5);
   height: 700px;
-  width: 420px;
+  width: 300px;
   margin: 20px;
   padding: 10px;
   border-radius: 10px;
@@ -591,6 +593,7 @@ li {
 
 .img-avatar {
   height: 50%;
+  width: 100%;
 }
 
 .health-bar1 {
@@ -615,8 +618,7 @@ li {
 }
 
 .innerbar-activ1 {
-  width: 350px;
-  height: 25px;
+  height: 30px;
   background-color: #e99090;
   display: flex;
   justify-content: flex-start;
@@ -649,8 +651,7 @@ li {
 }
 
 .innerbar-activ2 {
-  width: 350px;
-  height: 25px;
+  height: 30px;
   background-color: #e99090;
   display: flex;
   justify-content: flex-end;
@@ -659,4 +660,32 @@ li {
 
 .hp-points2 {
   margin-block-start: 0;
+}
+
+.lose-win {
+  text-align: center;
+  color: rgb(30, 31, 29);
+  text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
+  font-size: 80px;
+  font-family: "Aladin";
+  margin-block-start: 0%;
+  height: 30%;
+  padding-top: 30px;
+}
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.grave {
+  text-align: center;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

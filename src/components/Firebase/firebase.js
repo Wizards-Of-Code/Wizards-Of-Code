@@ -2,6 +2,7 @@ import app from "firebase/app";
 import "firebase/auth";
 // import 'firebase/database';
 import "firebase/firestore";
+import randomizeUrls from "../../RandomBackground";
 
 // Your web app's Firebase configuration
 // don't use var unless you have a reason to
@@ -54,13 +55,15 @@ class Firebase {
   // Battles API
   battle = battleId => this.db.collection("battles").doc(battleId);
   createBattle = user => {
+    let randomBackgroundUrl = randomizeUrls();
     return this.db.collection("battles").add({
       user1: user.username,
       user1_health: user.maxHealth,
-      player1_anim: 'elrond-idle',
-      player2_anim: 'elrond-idle',
-      attack_anim: '',
-      status: "open"
+      player1_anim: "elrond-idle",
+      player2_anim: "elrond-idle",
+      attack_anim: "",
+      status: "open",
+      background: randomBackgroundUrl
     });
   };
 
