@@ -7,6 +7,7 @@ import Player2 from "./player2";
 import Attacking from "./attacking";
 import { withFirebase } from "../Firebase";
 import GameOver from "./gameOver";
+import BattleHistory from '../Home/battleHistory';
 import firebutton from "../../styling/fireball-button.png";
 class GameStage extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class GameStage extends React.Component {
       backgroundImage: "",
     };
   }
-
+  
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
     problemRef
@@ -207,12 +208,13 @@ class GameStage extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     if (this.state.battleIsOver) {
       return (
         <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
       );
     }
-
+    
     return (
       <div className="gamepage">
         <div

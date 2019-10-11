@@ -10,6 +10,7 @@ import HomePage from "../Home";
 import AccountPage from "../Account";
 import AdminPage from "../Admin";
 import ImgCollection from "../Home/imgCollection";
+import BattleHistory from '../Home/battleHistory';
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 
@@ -25,7 +26,7 @@ class App extends React.Component {
       skills: [],
       battleRef: {},
       avatars: [],
-      userRef: {}
+      userRef: {},
     };
     this.setState = this.setState.bind(this);
   }
@@ -38,7 +39,7 @@ class App extends React.Component {
       const userData = user.data();
       this.setState({ user: userData });
 
-      if (userData.activeBattle !== "") {
+      if (userData.activeBattle !== '') {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
         this.setState({ battleRef });
       }
@@ -56,10 +57,11 @@ class App extends React.Component {
       .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
   };
 
+
   setAvatar = imgUrl => {
     this.state.userRef.set(
       {
-        imgUrl: imgUrl
+        imgUrl: imgUrl,
       },
       { merge: true }
     );
@@ -73,12 +75,12 @@ class App extends React.Component {
         let status = change.doc.data().status;
         let doc = change.doc.data();
         let id = change.doc.id;
-        if (change.type === "added") {
-          if (status === "open") {
+        if (change.type === 'added') {
+          if (status === 'open') {
             allOpenBattles.push({ ...doc, id });
           }
-        } else if (change.type === "modified") {
-          if (status === "closed") {
+        } else if (change.type === 'modified') {
+          if (status === 'closed') {
             allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
           }
         }
@@ -94,7 +96,7 @@ class App extends React.Component {
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
-          role: "user1"
+          role: 'user1',
         },
         { merge: true }
       );
@@ -118,7 +120,7 @@ class App extends React.Component {
       {
         user2: user.username,
         user2_health: user.maxHealth,
-        status: "closed"
+        status: 'closed',
       },
       { merge: true }
     );
@@ -126,14 +128,14 @@ class App extends React.Component {
     this.state.userRef.set(
       {
         activeBattle: battleRef.id,
-        role: "user2"
+        role: 'user2',
       },
       { merge: true }
     );
   };
 
   componentDidMount() {
-    console.log("state", this.state);
+    console.log('state', this.state);
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.login(authUser.uid);
@@ -210,6 +212,16 @@ class App extends React.Component {
                 avatars={this.state.avatars}
                 user={this.state.user}
                 setAvatar={this.setAvatar}
+              />
+            )}
+          />
+
+          <Route
+            path={ROUTES.BATTLEHISTORY}
+            render={props => (
+              <BattleHistory
+                {...props}
+                user={this.state.user}
               />
             )}
           />
