@@ -793,6 +793,7 @@ li {
   color: white;
   cursor: pointer;
   background-image: url(./styling/easy-fireball-button.png);
+  margin: 10%;
 }
 
 @keyframes glowing {
