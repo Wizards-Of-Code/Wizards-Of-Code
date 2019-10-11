@@ -68,6 +68,8 @@ class GameStage extends React.Component {
       this.setState({ result: event.data });
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty]);
+      } else {
+        this.selfDamage(this.state.problem.difficulty * 5);
       }
       webWorker.terminate();
       clearTimeout(timeoutId);
@@ -95,6 +97,40 @@ class GameStage extends React.Component {
           ),
           player2_anim: elrondCastsSpell,
           attack_anim: player2FireBall
+        })
+        .then(() => {
+          this.isDead();
+        });
+    }
+    setTimeout(() => {
+      this.props.battleRef.set(
+        {
+          player1_anim: elrondIdle,
+          player2_anim: elrondIdle,
+          attack_anim: null
+        },
+        { merge: true }
+      );
+    }, 2000);
+  };
+
+  selfDamage = amount => {
+    if (this.props.user.role === "user2") {
+      this.props.battleRef
+        .update({
+          user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+            -1 * amount
+          ),
+        })
+        .then(() => {
+          this.isDead();
+        });
+    } else {
+      this.props.battleRef
+        .update({
+          user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+            -1 * amount
+          ),
         })
         .then(() => {
           this.isDead();
