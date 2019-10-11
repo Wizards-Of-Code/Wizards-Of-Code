@@ -793,17 +793,18 @@ li {
   color: white;
   cursor: pointer;
   background-image: url(./styling/easy-fireball-button.png);
+  margin: 10%;
 }
 
 @keyframes glowing {
   0% {
-    box-shadow: inset 1px 2px 2.5px;
+    box-shadow: inset -3px -6px 4.5px;
   }
   50% {
     box-shadow: inset 2px 3px 4px;
   }
   100% {
-    box-shadow: inset 1px 2px 2.5px;
+    box-shadow: inset -3px -6px 4.5px;
   }
 }
 
