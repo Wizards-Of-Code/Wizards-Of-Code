@@ -58,10 +58,16 @@ class GameStage extends React.Component {
       webWorker.terminate();
     }, 5000);
 
+    const damageAmounts = {
+      1: 10,
+      2: 25,
+      3: 60
+    }
+
     webWorker.onmessage = event => {
       this.setState({ result: event.data });
       if (event.data.correct) {
-        this.doDamage(10);
+        this.doDamage(damageAmounts[this.state.problem.difficulty]);
       }
       webWorker.terminate();
       clearTimeout(timeoutId);
@@ -73,7 +79,7 @@ class GameStage extends React.Component {
       this.props.battleRef
         .update({
           user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-            -10
+            -1 * amount
           ),
           player1_anim: elrondCastsSpell,
           attack_anim: player1FireBall
@@ -85,7 +91,7 @@ class GameStage extends React.Component {
       this.props.battleRef
         .update({
           user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-            -10
+            -1 * amount
           ),
           player2_anim: elrondCastsSpell,
           attack_anim: player2FireBall
