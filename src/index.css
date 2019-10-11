@@ -63,19 +63,20 @@ li {
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
 }
 
-.ReactCodeMirror {
+/* .ReactCodeMirror {
   width: 60%;
   word-wrap: break-word;
-}
+} */
 
-.CodeMirror {
+/* .CodeMirror {
+  width: 100%;
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   border: solid 5px rgb(44, 66, 47);
   z-index: 2;
   margin-bottom: 30px;
   margin-top: 20px;
   background-color: #ecf5ee;
-}
+} */
 
 .instructions,
 .result {

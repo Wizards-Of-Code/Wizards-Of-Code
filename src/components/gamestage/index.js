@@ -275,7 +275,7 @@ class GameStage extends React.Component {
             getRandomProblem={this.getRandomProblem}
           />
           <CodeArea
-            userCode={this.state.userCode}
+            value={this.state.userCode}
             updateCode={this.updateCode}
           />
           <Result
