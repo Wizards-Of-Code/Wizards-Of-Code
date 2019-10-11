@@ -221,11 +221,13 @@ class GameStage extends React.Component {
             backgroundImage: `url(${this.state.backgroundImage})`
           }}
         >
+
           <div className={glowFireball}>
             {this.state.battleInfo.user1 ? (
               <img
                 src={firebutton}
                 onClick ={() => this.getRandomProblem(1)}
+                alt='fireball!!!!'
               />
             ) : (
               ""
@@ -237,7 +239,7 @@ class GameStage extends React.Component {
                 <Attacking />
               </div>
               <Player1
-                playerName={this.state.battleInfo.user1}
+                playerName={this.state.battleInfo.user1}å
                 playerHP={this.state.battleInfo.user1_health}
               />
               <div
@@ -264,14 +266,14 @@ class GameStage extends React.Component {
             {this.state.battleInfo.user2 ? (
               <img
                 src={firebutton}
-                onClick={() => {
-                  this.doDamage(10);
-                }}
+                onClick ={() => this.getRandomProblem(1)}
+                alt='fireball!!!!'
               />
             ) : (
               ""
             )}
           </div>
+
         </div>
         <div className={this.taskboxClass}>
           <Instructions
