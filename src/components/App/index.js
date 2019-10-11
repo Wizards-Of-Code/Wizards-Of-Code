@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import Navigation from "../Navigation";
 import GameStage from "../gamestage";
 import LandingPage from "../Landing";

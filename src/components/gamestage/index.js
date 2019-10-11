@@ -153,7 +153,9 @@ class GameStage extends React.Component {
 
   render() {
     if (this.state.battleIsOver)
-      return <GameOver battleInfo={this.state.battleInfo} />;
+      return (
+        <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
+      );
 
     return (
       <div className="gamepage">
@@ -186,14 +188,18 @@ class GameStage extends React.Component {
               ></div>
             </div>
           </div>
+          {this.state.battleInfo.user2 ? (
+            <button
+              onClick={() => {
+                this.doDamage(10);
+              }}
+            >
+              DO DAMAGE
+            </button>
+          ) : (
+            ""
+          )}
         </div>
-        <button
-          onClick={() => {
-            this.doDamage(10);
-          }}
-        >
-          DO DAMAGE
-        </button>
         <div className="taskbox">
           <Instructions
             prompt={this.state.problem.prompt}
@@ -206,7 +212,11 @@ class GameStage extends React.Component {
             updateCode={this.updateCode}
           />
           <Result
-            submitCode={this.submitCode}
+            submitCode={
+              this.state.battleInfo.user2
+                ? this.submitCode
+                : () => console.log("No opponenet")
+            }
             userCode={this.state.userCode}
             problem={this.state.problem}
             result={this.state.result}
@@ -229,6 +239,7 @@ const none = { transform: "none" };
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
 const elrondDie = "elrond-die";
+const galadrielDie = "galadriel-die";
 
 // all players are animated to be player 2 (facing left), if we were to make them player1, we would have to convert their facing direction, that's why we add style={convertDirection} in Player1 div
 const convertDirection = {

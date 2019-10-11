@@ -11,7 +11,9 @@ class Player2 extends Component {
     return (
       <div className="healthName">
         <p style={{ ...textTransform, textAlign: "right" }}>
-          {this.props.playerName}
+          {this.props.playerName
+            ? this.props.playerName
+            : "Waiting for Opponent..."}
         </p>
         <div style={textTransform} className="health-bar2">
           <div className="innerbar-lost2">

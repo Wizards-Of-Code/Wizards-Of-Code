@@ -463,6 +463,10 @@ li {
   content: url(./styling/elrond-die.png);
 }
 
+.galadriel-die {
+  content:url(./styling/galadriel-die.png);
+}
+
 .galadriel-idle {
   display: flex;
   align-items: center;
@@ -504,6 +508,9 @@ li {
 }
 
 .fireball-right {
+  position: absolute;
+  top: 30%;
+  left: 35%;
   width: calc(6217px / 13);
   height: 110px;
   background: url(./styling/fireball.png);
@@ -521,6 +528,9 @@ li {
 }
 
 .fireball-left {
+  position: absolute;
+  top: 30%;
+  left: 35%;
   width: calc(6217px / 13);
   height: 110px;
   background: url(./styling/fireball.png);
@@ -659,4 +669,25 @@ li {
 
 .hp-points2 {
   margin-block-start: 0;
+}
+
+.lose-win {
+  text-align: center;
+  color: rgb(30, 31, 29);
+  text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
+  font-size: 80px;
+  font-family: "Aladin";
+  margin-block-start: 0%;
+  height: 30%;
+  padding-top: 30px;
+}
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.grave {
+  text-align: center;
 }
