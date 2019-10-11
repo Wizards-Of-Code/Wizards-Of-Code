@@ -8,3 +8,4 @@ export const PASSWORD_FORGET = '/pw-forget';
 export const BATTLE = '/battle';
 export const GAMEOVER = '/gameover';
 export const SETAVATAR = '/avatars';
+export const BATTLEHISTORY = '/battle-history'

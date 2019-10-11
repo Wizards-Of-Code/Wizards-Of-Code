@@ -7,6 +7,7 @@ import Player2 from './player2'
 import Attacking from './attacking'
 import {withFirebase} from '../Firebase'
 import GameOver from './gameOver'
+import BattleHistory from '../Home/battleHistory';
 import firebutton from '../../styling/easy-fireball-button.png'
 class GameStage extends React.Component {
   constructor(props) {
@@ -205,6 +206,7 @@ class GameStage extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     if (this.state.battleIsOver) {
       return (
         <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
@@ -224,6 +226,7 @@ class GameStage extends React.Component {
               <img
                 src={firebutton}
                 onClick ={() => this.getRandomProblem(1)}
+                alt='fireball!!!!'
               />
             ) : (
               ''
@@ -235,7 +238,7 @@ class GameStage extends React.Component {
                 <Attacking />
               </div>
               <Player1
-                playerName={this.state.battleInfo.user1}
+                playerName={this.state.battleInfo.user1}å
                 playerHP={this.state.battleInfo.user1_health}
               />
               <div
@@ -262,14 +265,14 @@ class GameStage extends React.Component {
             {this.state.battleInfo.user2 ? (
               <img
                 src={firebutton}
-                onClick={() => {
-                  this.doDamage(10)
-                }}
+                onClick ={() => this.getRandomProblem(1)}
+                alt='fireball!!!!'
               />
             ) : (
               ''
             )}
           </div>
+
         </div>
         <div className={this.taskboxClass}>
           <Instructions

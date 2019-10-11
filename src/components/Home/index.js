@@ -15,9 +15,11 @@ const HomePage = props => {
       <div className="home-page-navbar">
         <div className="home-page-navbar-container">
           <h1 className="sign-up-logo">Profile Page</h1>
-          <div className="user-history">
-            <button className="user-history-btn">Battle History</button>
-          </div>
+          <Link to={'/battle-history'}>
+            <div className="user-history">
+              <button className="user-history-btn">Battle History</button>
+            </div>
+          </Link>
           <div className="go-battle">
             <Link to={BATTLE}>
               <button className="go-to-battle">Go To Battle</button>
@@ -31,7 +33,7 @@ const HomePage = props => {
       <div className="profile-info">
         <div className="profile-info-container">
           <img src={props.user.imgUrl} alt="wizard" className="profile-pic" />
-          <Link to={"/avatars"}>
+          <Link to={'/avatars'}>
             <button className="change-profile-pic">
               Change Profile Picture
             </button>
