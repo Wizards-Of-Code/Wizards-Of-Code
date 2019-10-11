@@ -83,6 +83,7 @@ class App extends React.Component {
           }
         }
       });
+      console.log(allOpenBattles);
       this.setState({ battles: allOpenBattles });
     });
   };

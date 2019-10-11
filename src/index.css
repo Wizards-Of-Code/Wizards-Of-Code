@@ -178,6 +178,7 @@ li {
   width: 300px;
   height: 200px;
   align-content: flex-end;
+  z-index: 500000;
 }
 
 .home-page-navbar {

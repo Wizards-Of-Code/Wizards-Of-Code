@@ -5,6 +5,8 @@ import { BATTLE } from "../../constants/routes";
 const OpenBattles = props => {
   const battles = props.openBattles;
 
+  console.log(battles);
+
   return (
     <ol className="join-btl">
       {battles.map(battle => (
