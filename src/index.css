@@ -74,6 +74,7 @@ li {
   z-index: 2;
   margin-bottom: 30px;
   margin-top: 20px;
+  background-color: #ecf5ee;
 }
 
 .instructions,
@@ -617,7 +618,7 @@ li {
 }
 
 .innerbar-activ1 {
-  height: 30px;
+  height: 25px;
   background-color: #e99090;
   display: flex;
   justify-content: flex-start;
@@ -650,7 +651,7 @@ li {
 }
 
 .innerbar-activ2 {
-  height: 30px;
+  height: 25px;
   background-color: #e99090;
   display: flex;
   justify-content: flex-end;
@@ -679,7 +680,8 @@ li {
 }
 
 .grave {
-  text-align: center;
+  position: relative;
+  left: 45%;
 }
 
 .center {
