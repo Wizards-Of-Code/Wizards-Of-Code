@@ -7,6 +7,7 @@ import Player2 from "./player2";
 import Attacking from "./attacking";
 import { withFirebase } from "../Firebase";
 import GameOver from "./gameOver";
+import shroomForest from "../../styling/shroomForest.jpg";
 
 class GameStage extends React.Component {
   constructor(props) {
@@ -151,7 +152,12 @@ class GameStage extends React.Component {
 
     return (
       <div className="gamepage">
-        <div className="gamestage">
+        <div
+          className="gamestage"
+          style={{
+            backgroundImage: `url(${shroomForest})`
+          }}
+        >
           <div>
             <Player1 playerName={this.state.battleInfo.user1} />
             <div
