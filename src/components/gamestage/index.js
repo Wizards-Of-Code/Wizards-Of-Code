@@ -60,7 +60,7 @@ class GameStage extends React.Component {
       1: 10,
       2: 25,
       3: 60
-    }
+    };
 
     webWorker.onmessage = event => {
       this.setState({result: event.data})
@@ -176,12 +176,14 @@ class GameStage extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate)
-    this.props.battleRef
-      .get()
-      .then(battleDoc =>
-        this.setState({backgroundImage: battleDoc.data().background})
-      )
+    if (this.props.battleRef.id) {
+      this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
+      this.props.battleRef
+        .get()
+        .then(battleDoc =>
+          this.setState({ backgroundImage: battleDoc.data().background })
+        );
+    }
   }
 
   componentWillUnmount() {

@@ -161,42 +161,46 @@ class App extends React.Component {
           />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
+          {this.state.battleRef.id || this.state.user.activeBattle === "" ? (
+            <Route
+              exact
+              path={"(/|/battle)"}
+              render={props =>
+                this.state.user.activeBattle === "" ||
+                !this.state.user.activeBattle ? (
+                  <LandingPage
+                    {...props}
+                    user={this.state.user}
+                    createBattle={this.createBattle}
+                    openBattles={this.state.battles}
+                    getOpenBattles={this.getOpenBattles}
+                    joinRandomBattle={this.joinRandomBattle}
+                    joinOpenBattle={this.joinOpenBattle}
+                    activeBattle={this.state.user.activeBattle}
+                  />
+                ) : (
+                  <GameStage
+                    {...props}
+                    user={this.state.user}
+                    battleRef={this.state.battleRef}
+                    userRef={this.state.userRef}
+                    problem={this.state.problem}
+                    getProblem={this.getProblem}
+                    userCode={this.state.userCode}
+                    updateCode={this.updateCode}
+                    result={this.state.result}
+                    submitCode={this.submitCode}
+                    doDamage={this.doDamage}
+                    getRandomProblem={this.getRandomProblem}
+                    activeBattle={this.state.user.activeBattle}
+                  />
+                )
+              }
+            />
+          ) : (
+            "loading"
+          )}
 
-          <Route
-            exact
-            path={"(/|/battle)"}
-            render={props =>
-              this.state.user.activeBattle === "" ||
-              !this.state.user.activeBattle ? (
-                <LandingPage
-                  {...props}
-                  user={this.state.user}
-                  createBattle={this.createBattle}
-                  openBattles={this.state.battles}
-                  getOpenBattles={this.getOpenBattles}
-                  joinRandomBattle={this.joinRandomBattle}
-                  joinOpenBattle={this.joinOpenBattle}
-                  activeBattle={this.state.user.activeBattle}
-                />
-              ) : (
-                <GameStage
-                  {...props}
-                  user={this.state.user}
-                  battleRef={this.state.battleRef}
-                  userRef={this.state.userRef}
-                  problem={this.state.problem}
-                  getProblem={this.getProblem}
-                  userCode={this.state.userCode}
-                  updateCode={this.updateCode}
-                  result={this.state.result}
-                  submitCode={this.submitCode}
-                  doDamage={this.doDamage}
-                  getRandomProblem={this.getRandomProblem}
-                  activeBattle={this.state.user.activeBattle}
-                />
-              )
-            }
-          />
           <Route
             path={ROUTES.SETAVATAR}
             render={props => (
