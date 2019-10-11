@@ -299,6 +299,7 @@ export default withFirebase(GameStage)
 const galadrielIdle = 'galadriel-idle'
 const galadrielCastsSpell = 'galadriel-casts-spell'
 const galadrielHurt = 'galadriel-hurt'
+const galadrielWin = 'galadriel-win'
 const elrondIdle = 'elrond-idle'
 const elrondCastsSpell = 'elrond-casts-spell'
 const elrondHurt = 'elrond-hurt'
@@ -306,14 +307,18 @@ const elrondWin = 'elrond-win'
 const arwenIdle = 'arwen-idle'
 const arwenCastsSpell = 'arwen-casts-spell'
 const arwenHurt = 'arwen-hurt'
+const arwenWin = 'arwen-win'
 const figwitIdle = 'figwit-idle'
 const figwitCastsSpell = 'figwit-casts-spell'
 const figwitHurt = 'figwit-hurt'
+const figwitWin = 'figwit-win'
 const player1FireBall = 'fireball-right'
 const player2FireBall = 'fireball-left'
 const fireball = 'glow-fireball'
 const none = {transform: 'none'}
 
+
+// add style={glowAnimation} to fireball class when fireball button can be pressed
 const glowAnimation = {animation: 'glowing 1500ms infinite'}
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
