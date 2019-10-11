@@ -163,18 +163,18 @@ class GameStage extends React.Component {
             backgroundImage: `url(${this.state.backgroundImage})`
           }}
         >
-          <div className={glowFireball}>
-              {this.state.battleInfo.user1 ? (
-                <img
-                  src={firebutton}
-                  onClick={() => {
-                    this.doDamage(10)
-                  }}
-                />
-              ) : (
-                ''
-              )}
-            </div>
+          <div className={fireball} style={glowAnimation}>
+            {this.state.battleInfo.user1 ? (
+              <img
+                src={firebutton}
+                onClick={() => {
+                  this.doDamage(10)
+                }}
+              />
+            ) : (
+              ''
+            )}
+          </div>
           <div className="gamebox">
             <div>
               <div className={this.state.battleInfo.attack_anim}>
@@ -204,7 +204,7 @@ class GameStage extends React.Component {
               ></div>
             </div>
           </div>
-          <div className={glowFireball}>
+          <div className={fireball} style={glowAnimation} >
             {this.state.battleInfo.user2 ? (
               <img
                 src={firebutton}
@@ -260,8 +260,14 @@ const figwitCastsSpell = 'figwit-casts-spell'
 const figwitHurt = 'figwit-hurt'
 const player1FireBall = 'fireball-right'
 const player2FireBall = 'fireball-left'
-const glowFireball = 'glow-fireball'
+const fireball = 'glow-fireball'
 const none = {transform: 'none'}
+
+const glowAnimation = {animation: 'glowing 1500ms infinite'}
+
+
+
+
 
 // in PLAYER1 DIE mode, USE style={none} otherwise, use style={convertDirection}
 const elrondDie = 'elrond-die'

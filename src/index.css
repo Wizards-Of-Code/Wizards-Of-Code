@@ -447,7 +447,7 @@ li {
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
-  animation: elrond 1.5s steps(20);
+  animation: elrond 1.5s steps(20) infinite;
 }
 
 .elrond-hurt {
@@ -494,7 +494,7 @@ li {
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
-  animation: galadriel 1.5s steps(20);
+  animation: galadriel 1.5s steps(20) infinite;
 }
 
 .galadriel-hurt {
@@ -540,7 +540,7 @@ li {
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-casts-spell.png);
-  animation: arwen 1.5s steps(20);
+  animation: arwen 1.5s steps(20) infinite;
 }
 
 .arwen-hurt {
@@ -582,7 +582,7 @@ li {
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-casts-spell.png);
-  animation: figwit 5s steps(20);
+  animation: figwit 5s steps(20) infinite;
 }
 
 .figwit-hurt {
@@ -755,15 +755,11 @@ li {
 }
 
 .glow-fireball {
-  /* background-color: #004A7F; */
   border-radius: 50%;
   border: none;
   color: white;
   cursor: pointer;
-  /* display: inline-block; */
-  /* padding: 5px 10px; */
   background-image: url(./styling/fireball-button.png);
-  animation: glowing 1500ms infinite;
 }
 
 @keyframes glowing {
