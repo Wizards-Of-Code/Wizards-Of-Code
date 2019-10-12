@@ -166,27 +166,27 @@ class GameStage extends React.Component {
   };
 
   isDead = () => {
-    if (this.state.battleInfo.user1_health <= 0) {
+    const { battleInfo } = this.state
+
+    if (battleInfo.user1_health <= 0) {
       this.props.battleRef.set(
-        {winner: this.state.battleInfo.user2, status: 'completed'},
+        {winner: battleInfo.user2, status: 'completed'},
         {merge: true}
       )
       console.log('User 2 WON')
-      this.setState({battleIsOver: true})
-    } else if (this.state.battleInfo.user2_health <= 0) {
+
+    } else if (battleInfo.user2_health <= 0) {
       this.props.battleRef.set(
-        {winner: this.state.battleInfo.user1, status: 'completed'},
+        {winner: battleInfo.user1, status: 'completed'},
         {merge: true}
       )
       console.log('User 1 WON')
-      this.setState({battleIsOver: true})
+
     }
   }
 
   onBattleUpdate = battleSnapshot => {
-    this.setState({battleInfo: battleSnapshot.data()}, () =>
-      console.log(this.state.battleInfo)
-    )
+    this.setState({battleInfo: battleSnapshot.data()});
   }
 
   componentDidMount() {
@@ -202,7 +202,7 @@ class GameStage extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribe()
-    if (this.state.battleIsOver) {
+    if (this.state.battleInfo.status === "completed") {
       this.props.userRef.set(
         {
           activeBattle: ''
@@ -213,8 +213,9 @@ class GameStage extends React.Component {
   }
 
   render() {
-    console.log(this.state)
-    if (this.state.battleIsOver) {
+
+    if (this.state.battleInfo.status === "completed") {
+      console.log('Battle Devided', this.state);
       return (
         <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
       )
@@ -329,6 +330,7 @@ const player1FireBall = 'fireball-right'
 const player2FireBall = 'fireball-left'
 const fireball = 'glow-fireball'
 const none = {transform: 'none'}
+
 
 
 // add style={glowAnimation} to fireball class when fireball button can be pressed

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function GameOver(props) {
-  console.log(props)
+
   return (
     <div className="game-over">
       {props.user.username === props.battleInfo.winner ? (
