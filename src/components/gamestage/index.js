@@ -173,15 +173,11 @@ class GameStage extends React.Component {
         {winner: battleInfo.user2, status: 'completed'},
         {merge: true}
       )
-      console.log('User 2 WON')
-
     } else if (battleInfo.user2_health <= 0) {
       this.props.battleRef.set(
         {winner: battleInfo.user1, status: 'completed'},
         {merge: true}
       )
-      console.log('User 1 WON')
-
     }
   }
 
