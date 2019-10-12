@@ -85,11 +85,12 @@ class GameStage extends React.Component {
     }
   }
 
-  doDamage = amount => {
-    if (this.props.user.role === 'user1') {
+  doDamage = (amount, player) => {
+
+    if (this.props.user.role === 'player1') {
       this.props.battleRef
         .update({
-          user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+          player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
           player1_anim: elrondCastsSpell,
@@ -102,7 +103,7 @@ class GameStage extends React.Component {
     } else {
       this.props.battleRef
         .update({
-          user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
           player2_anim: elrondCastsSpell,
@@ -129,10 +130,10 @@ class GameStage extends React.Component {
 
   selfDamage = amount => {
     this.taskboxClass = 'taskbox red';
-    if (this.props.user.role === "user2") {
+    if (this.props.user.role === "player2") {
       this.props.battleRef
         .update({
-          user2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+          player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
           player2_anim: elrondHurt
@@ -143,7 +144,7 @@ class GameStage extends React.Component {
     } else {
       this.props.battleRef
         .update({
-          user1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+          player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
           player1_anim: elrondHurt
@@ -168,14 +169,14 @@ class GameStage extends React.Component {
   isDead = () => {
     const { battleInfo } = this.state
 
-    if (battleInfo.user1_health <= 0) {
+    if (battleInfo.player1_health <= 0) {
       this.props.battleRef.set(
-        {winner: battleInfo.user2, status: 'completed'},
+        {winner: battleInfo.player2, status: 'completed'},
         {merge: true}
       )
-    } else if (battleInfo.user2_health <= 0) {
+    } else if (battleInfo.player2_health <= 0) {
       this.props.battleRef.set(
-        {winner: battleInfo.user1, status: 'completed'},
+        {winner: battleInfo.player1, status: 'completed'},
         {merge: true}
       )
     }
@@ -226,7 +227,7 @@ class GameStage extends React.Component {
           }}
         >
           <div className={fireball} style={glowAnimation}>
-            {this.state.battleInfo.user1 ? (
+            {this.state.battleInfo.player1 ? (
               <img
                 src={firebutton}
                 onClick ={() => this.getRandomProblem(1)}
@@ -242,8 +243,8 @@ class GameStage extends React.Component {
                 <Attacking />
               </div>
               <Player1
-                playerName={this.state.battleInfo.user1}å
-                playerHP={this.state.battleInfo.user1_health}
+                playerName={this.state.battleInfo.player1}å
+                playerHP={this.state.battleInfo.player1_health}
               />
               <div
                 className={this.state.battleInfo.player1_anim}
@@ -256,8 +257,8 @@ class GameStage extends React.Component {
             </div>
             <div>
               <Player2
-                playerName={this.state.battleInfo.user2}
-                playerHP={this.state.battleInfo.user2_health}
+                playerName={this.state.battleInfo.player2}
+                playerHP={this.state.battleInfo.player2_health}
               />
               <div
                 className={this.state.battleInfo.player2_anim}
@@ -266,7 +267,7 @@ class GameStage extends React.Component {
             </div>
           </div>
           <div className={fireball} style={glowAnimation}>
-            {this.state.battleInfo.user2 ? (
+            {this.state.battleInfo.player2 ? (
               <img
                 src={firebutton}
                 onClick ={() => this.getRandomProblem(1)}

@@ -43,11 +43,18 @@ class Firebase {
 
   // User API
   user = uid => this.db.collection("users").doc(uid);
-
   users = () => this.db.collection("users");
 
   // Problem API
   problem = probId => this.db.collection("problems").doc(probId);
+  getRandomProblem = difficulty =>
+  this.db
+    .collection("problems")
+    .where("difficulty", "==", difficulty)
+    .get()
+    .then(
+      docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
+);
 
   // Skills API
   skill = skillId => this.db.collection("skills").doc(skillId);
@@ -57,8 +64,8 @@ class Firebase {
   createBattle = user => {
     let randomBackgroundUrl = randomizeUrls();
     return this.db.collection("battles").add({
-      user1: user.username,
-      user1_health: user.maxHealth,
+      player1: user.username,
+      player1_health: user.maxHealth,
       player1_anim: "elrond-idle",
       player2_anim: "elrond-idle",
       attack_anim: "",
@@ -66,6 +73,15 @@ class Firebase {
       background: randomBackgroundUrl
     });
   };
+  openBattles = () => this.db.collection("battles");
+  joinRandomBattle = user =>
+  this.db
+    .collection("battles")
+    .where("status", "==", "open")
+    .get()
+    .then(
+      docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
+    );
 
   // avatars API
   avatars = () => {
@@ -76,30 +92,14 @@ class Firebase {
     return this.db.FieldValue.increment(amount);
   };
 
-  joinRandomBattle = user =>
-    this.db
-      .collection("battles")
-      .where("status", "==", "open")
-      .get()
-      .then(
-        docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
-      );
 
-  getRandomProblem = difficulty =>
-    this.db
-      .collection("problems")
-      .where("difficulty", "==", difficulty)
-      .get()
-      .then(
-        docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
-      );
 
-  battles = () => this.db.collection("battles");
-  openBattles = () => this.db.collection("battles");
+
+
 
   // David's suggestion
   // Have parent component hold all the state for the application & subscribe to parts of firestore depending on user's progress
-  // i.e. I'm user1 battling against user2. We both subscribe to the same battle to get updates for it. When user2 solves a problem, the battle gets updated in the database. Since I'm subscribed to the battle, I automatically get the update & can then update my state thanks to the listener
+  // i.e. I'm player1 battling against player2. We both subscribe to the same battle to get updates for it. When player2 solves a problem, the battle gets updated in the database. Since I'm subscribed to the battle, I automatically get the update & can then update my state thanks to the listener
   // When updates happen to the battle, it gets updated in the parent component's state & then trickles down into whatever components need it
 
   // documentation: https://firebase.google.com/docs/database/admin/retrieve-data

@@ -78,17 +78,12 @@ class App extends React.Component {
         let status = change.doc.data().status;
         let doc = change.doc.data();
         let id = change.doc.id;
-        if (change.type === 'added') {
-          if (status === 'open') {
-            allOpenBattles.push({ ...doc, id });
-          }
-        } else if (change.type === 'modified') {
-          if (status === 'closed') {
-            allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
-          }
+        if (change.type === 'added' && status === 'open') {
+          allOpenBattles.push({ ...doc, id });
+        } else if (change.type === 'modified' && status === 'closed') {
+          allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
         }
       });
-      console.log(allOpenBattles);
       this.setState({ battles: allOpenBattles });
     });
   };
@@ -99,7 +94,7 @@ class App extends React.Component {
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
-          role: 'user1',
+          role: 'player1',
         },
         { merge: true }
       );
@@ -121,8 +116,8 @@ class App extends React.Component {
     const user = this.state.user;
     battleRef.set(
       {
-        user2: user.username,
-        user2_health: user.maxHealth,
+        player2: user.username,
+        player2_health: user.maxHealth,
         status: 'closed',
       },
       { merge: true }
@@ -131,7 +126,7 @@ class App extends React.Component {
     this.state.userRef.set(
       {
         activeBattle: battleRef.id,
-        role: 'user2',
+        role: 'player2',
       },
       { merge: true }
     );
