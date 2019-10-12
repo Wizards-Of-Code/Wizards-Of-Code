@@ -35,16 +35,19 @@ class App extends React.Component {
     let userRef = this.props.firebase.user(userId);
     this.setState({ userRef });
 
+    // get user firebase reference
     userRef.get().then(user => {
       const userData = user.data();
       this.setState({ user: userData });
 
+      // get battle firebase reference, if applicable
       if (userData.activeBattle !== '') {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
         this.setState({ battleRef });
       }
     });
 
+    // subscribe to user updates
     userRef.onSnapshot(snapshot => {
       this.setState({ user: snapshot.data() });
     });

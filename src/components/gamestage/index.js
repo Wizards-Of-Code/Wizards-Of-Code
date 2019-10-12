@@ -48,12 +48,14 @@ class GameStage extends React.Component {
   submitCode = (code, inputs, expectedOutputs) => {
     const webWorker = new Worker('webWorker.js')
 
+    // send user code to web worker with relevant data
     webWorker.postMessage({
       userFunction: code,
       inputs: inputs,
       expectedOutputs: expectedOutputs
     })
 
+    // timeout to protect against infinite loops etc.
     const timeoutId = setTimeout(() => {
       this.setState({
         result: { userOutputs: "Your function failed!  :(", correct: false }
@@ -62,12 +64,14 @@ class GameStage extends React.Component {
       this.selfDamage(5);
     }, 5000);
 
+    // Damage amounts: Move to database?
     const damageAmounts = {
       1: 10,
       2: 25,
       3: 60
     };
 
+    // respond to correct/incorrect evaluations of code from WebWorker
     webWorker.onmessage = event => {
       this.setState({result: event.data})
       if (event.data.correct) {
@@ -109,6 +113,8 @@ class GameStage extends React.Component {
           this.isDead()
         })
     }
+
+    // return to idle animations
     setTimeout(() => {
       this.props.battleRef.set(
         {
