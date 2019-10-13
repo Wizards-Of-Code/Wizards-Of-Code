@@ -5,6 +5,7 @@ import { compose } from "recompose";
 import { BATTLE } from "../../constants/routes";
 
 const HomePage = props => {
+  console.log('home/index PROPS', props)
   return (
     <div className="home-page-container">
       <img
