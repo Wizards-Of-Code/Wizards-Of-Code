@@ -25,7 +25,7 @@ class ImgCollection extends Component {
             <img src={avatar.imgUrl} alt="" className="img-avatar" />
             <p>{avatar.description}</p>
 
-            <Link to={`/home`}>
+            <Link to={`/profile`}>
               <button
                 onClick={() => this.props.setAvatar(avatar.imgUrl)}
                 className="select-avatar"
