@@ -14,7 +14,9 @@ var devConfig = {
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+  webClientId: process.env.REACT_WEB_CLIENT_ID,
+  webClientSecret: process.env.REACT_WEB_CLIENT_SECRET
 };
 // Initialize Firebase
 class Firebase {
@@ -32,6 +34,9 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) => {
     return this.auth.signInWithEmailAndPassword(email, password);
   };
+  doSignInWithGoogle = () => {
+    console.log(this.auth.GoogleAuthProvider);
+  };
 
   doSignOut = () => this.auth.signOut();
 
@@ -48,13 +53,13 @@ class Firebase {
   // Problem API
   problem = probId => this.db.collection("problems").doc(probId);
   getRandomProblem = difficulty =>
-  this.db
-    .collection("problems")
-    .where("difficulty", "==", difficulty)
-    .get()
-    .then(
-      docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
-);
+    this.db
+      .collection("problems")
+      .where("difficulty", "==", difficulty)
+      .get()
+      .then(
+        docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
+      );
 
   // Skills API
   skill = skillId => this.db.collection("skills").doc(skillId);
@@ -75,20 +80,20 @@ class Firebase {
   };
   openBattles = () => this.db.collection("battles");
   findRandomBattle = () =>
-  this.db
-    .collection("battles")
-    .where("status", "==", "open")
-    .get()
-    .then(
-      openBattles => {
-        debugger
-        if(openBattles.docs.length) {
-          return openBattles.docs[Math.floor(Math.random() * openBattles.docs.length)].ref
+    this.db
+      .collection("battles")
+      .where("status", "==", "open")
+      .get()
+      .then(openBattles => {
+        debugger;
+        if (openBattles.docs.length) {
+          return openBattles.docs[
+            Math.floor(Math.random() * openBattles.docs.length)
+          ].ref;
         } else {
-          return null
+          return null;
         }
-      }
-    );
+      });
 
   // avatars API
   avatars = () => {
@@ -98,11 +103,6 @@ class Firebase {
   increment = amount => {
     return this.db.FieldValue.increment(amount);
   };
-
-
-
-
-
 
   // David's suggestion
   // Have parent component hold all the state for the application & subscribe to parts of firestore depending on user's progress

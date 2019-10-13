@@ -15,6 +15,7 @@ const SignInPage = props => (
     />
     <h1 className="sign-up-logo">Sign In</h1>
     <SignInForm login={props.login} />
+
     <PasswordForgetLink />
     <SignUpLink />
   </div>
@@ -78,6 +79,14 @@ class SignInFormBase extends Component {
           />
           <button disabled={isInvalid} type="submit" className="sign-up-btn">
             Sign In
+          </button>
+          <button
+            className="sign-up-btn"
+            onClick={() => {
+              this.props.firebase.doSignInWithGoogle();
+            }}
+          >
+            Sign In With Google
           </button>
           {error && <p className="error">{error.message}</p>}
         </form>
