@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from "../Navigation";
 import GameStage from "../gamestage";
 import BattlesPage from "../Battles";
@@ -148,82 +148,95 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <Navigation setState={this.setState} />
-
-          <Route
-            path={ROUTES.SIGN_UP}
-            render={props => <SignUpPage {...props} login={this.login} />}
-          />
-          <Route
-            path={ROUTES.SIGN_IN}
-            render={props => <SignInPage {...props} login={this.login} />}
-          />
-          <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-          <Route
-            path={ROUTES.PROFILE}
-            render={props => <ProfilePage {...props} user={this.state.user} />}
-          />
-          <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-          <Route path={ROUTES.ADMIN} component={AdminPage} />
-          {this.state.battleRef.id || this.state.user.activeBattle === "" ? (
+          <Switch>
             <Route
               exact
-              path={"(/|/battle)"}
-              render={props =>
-                this.state.user.activeBattle === "" ||
-                !this.state.user.activeBattle ? (
-                  <BattlesPage
-                    {...props}
-                    user={this.state.user}
-                    createBattle={this.createBattle}
-                    openBattles={this.state.battles}
-                    getOpenBattles={this.getOpenBattles}
-                    joinRandomBattle={this.joinRandomBattle}
-                    joinOpenBattle={this.joinOpenBattle}
-                    activeBattle={this.state.user.activeBattle}
-                  />
-                ) : (
-                  <GameStage
-                    {...props}
-                    user={this.state.user}
-                    battleRef={this.state.battleRef}
-                    userRef={this.state.userRef}
-                    problem={this.state.problem}
-                    getProblem={this.getProblem}
-                    userCode={this.state.userCode}
-                    updateCode={this.updateCode}
-                    result={this.state.result}
-                    submitCode={this.submitCode}
-                    doDamage={this.doDamage}
-                    getRandomProblem={this.getRandomProblem}
-                    activeBattle={this.state.user.activeBattle}
-                  />
-                )
-              }
+              path={ROUTES.SIGN_UP}
+              render={props => <SignUpPage {...props} login={this.login} />}
             />
-          ) : (
-            ""
-          )}
-          <Route exact path={ROUTES.HOME} component={HomePage} />
-
-          <Route
-            path={ROUTES.SETAVATAR}
-            render={props => (
-              <ImgCollection
-                {...props}
-                getAvatars={this.getAvatars}
-                avatars={this.state.avatars}
-                user={this.state.user}
-                setAvatar={this.setAvatar}
+            <Route
+              exact
+              path={ROUTES.SIGN_IN}
+              render={props => <SignInPage {...props} login={this.login} />}
+            />
+            <Route
+              exact
+              path={ROUTES.PASSWORD_FORGET}
+              component={PasswordForgetPage}
+            />
+            <Route
+              exact
+              path={ROUTES.PROFILE}
+              render={props => (
+                <ProfilePage {...props} user={this.state.user} />
+              )}
+            />
+            <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
+            <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+            {this.state.battleRef.id || this.state.user.activeBattle === "" ? (
+              <Route
+                exact
+                path={"(/|/battle)"}
+                render={props =>
+                  this.state.user.activeBattle === "" ||
+                  !this.state.user.activeBattle ? (
+                    <BattlesPage
+                      {...props}
+                      user={this.state.user}
+                      createBattle={this.createBattle}
+                      openBattles={this.state.battles}
+                      getOpenBattles={this.getOpenBattles}
+                      joinRandomBattle={this.joinRandomBattle}
+                      joinOpenBattle={this.joinOpenBattle}
+                      activeBattle={this.state.user.activeBattle}
+                    />
+                  ) : (
+                    <GameStage
+                      {...props}
+                      user={this.state.user}
+                      battleRef={this.state.battleRef}
+                      userRef={this.state.userRef}
+                      problem={this.state.problem}
+                      getProblem={this.getProblem}
+                      userCode={this.state.userCode}
+                      updateCode={this.updateCode}
+                      result={this.state.result}
+                      submitCode={this.submitCode}
+                      doDamage={this.doDamage}
+                      getRandomProblem={this.getRandomProblem}
+                      activeBattle={this.state.user.activeBattle}
+                    />
+                  )
+                }
               />
+            ) : (
+              ""
             )}
-          />
+            <Route exact path={ROUTES.HOME} component={HomePage} />
 
-          <Route
-            path={ROUTES.BATTLEHISTORY}
-            render={props => (
-              <BattleHistory {...props} user={this.state.user} />
-            )}
-          />
+            <Route
+              exact
+              path={ROUTES.SETAVATAR}
+              render={props => (
+                <ImgCollection
+                  {...props}
+                  getAvatars={this.getAvatars}
+                  avatars={this.state.avatars}
+                  user={this.state.user}
+                  setAvatar={this.setAvatar}
+                />
+              )}
+            />
+
+            <Route
+              exact
+              path={ROUTES.BATTLEHISTORY}
+              render={props => (
+                <BattleHistory {...props} user={this.state.user} />
+              )}
+            />
+            <Route path="*" component={NotFound} />
+          </Switch>
         </div>
       </Router>
     );
