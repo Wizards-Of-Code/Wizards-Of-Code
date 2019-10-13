@@ -4,28 +4,32 @@ const Animation = {
     attack: 'galadriel-casts-spell',
     hurt: 'galadriel-hurt',
     win: 'galadriel-win',
-    die: 'galadriel-die',    
+    spin: 'galadriel-spin',
+    die: 'galadriel-die',
   },
   elrond: {
     idle: 'elrond-idle',
     attack: 'elrond-casts-spell',
     hurt: 'elrond-hurt',
     win: 'elrond-win',
-    die: 'elrond-die',    
+    spin: 'elrond-spin',    
+    die: 'elrond-die',  
   },
   arwen: {
     idle: 'arwen-idle',
     attack: 'arwen-casts-spell',
     hurt: 'arwen-hurt',
     win: 'arwen-win',
-    // die: ,    
+    spin: 'arwen-spin',
+    die: 'arwen-die'  
   },
   figwit: {
     idle: 'figwit-idle',
     attack: 'figwit-casts-spell',
     hurt: 'figwit-hurt',
     win: 'figwit-win',
-    // die: ,    
+    spin: 'figwit-spin',
+    die: 'figwit-die' 
   }
 
 }

@@ -496,6 +496,45 @@ li {
   animation-duration: 1s;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.elrond-spin {
+  width: 397px;
+  height: 438px;
+  background: url(./styling/elrond.png);
+  animation: spin infinite;
+  animation-duration: 1s;
+}
+
+.galadriel-spin {
+  width: 341px;
+  height: 410px;
+  background: url(./styling/galadriel.png);
+  animation: spin infinite;
+  animation-duration: 1s;
+}
+
+.arwen-spin {
+  width: 277px;
+  height: 347px;
+  background: url(./styling/arwen.png);
+  animation: spin infinite;
+  animation-duration: 1s;
+}
+
+.figwit-spin {
+  width: 197px;
+  height: 352px;
+  background: url(./styling/figwit.png);
+  animation: spin infinite;
+  animation-duration: 1s;
+}
 
 @keyframes galadriel {
   from {
@@ -585,6 +624,10 @@ li {
   animation: arwen 3s steps(20);
 }
 
+.arwen-die {
+  content: url(./styling/arwen-die.png);
+}
+
 @keyframes figwit {
   from {
     background-position: 0;
@@ -625,6 +668,10 @@ li {
   height: 372px;
   background: url(./styling/figwit-hurt.png);
   animation: figwit 3s steps(20);
+}
+
+.figwit-die {
+  content: url(./styling/figwit-die.png);
 }
 
 @keyframes fire-attack {
