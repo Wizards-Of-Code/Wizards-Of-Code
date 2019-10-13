@@ -85,35 +85,37 @@ class GameStage extends React.Component {
     }
   }
 
-  doDamage = (amount, player) => {
+  updateHealth = (amount, player) => {
 
-    if (this.props.user.role === 'player1') {
-      this.props.battleRef
-        .update({
-          player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-            -1 * amount
-          ),
-          player1_anim: elrondCastsSpell,
-          player2_anim: elrondHurt,
-          attack_anim: player1FireBall
-        })
-        .then(() => {
-          this.isDead()
-        })
-    } else {
-      this.props.battleRef
-        .update({
-         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
-            -1 * amount
-          ),
-          player2_anim: elrondCastsSpell,
-          player1_anim: elrondHurt,
-          attack_anim: player2FireBall
-        })
-        .then(() => {
-          this.isDead()
-        })
-    }
+    const updateObject = {
+      player1: {
+        player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+          -1 * amount
+        ),
+        player1_anim: elrondCastsSpell,
+        player2_anim: elrondHurt,
+        attack_anim: player1FireBall
+      },
+      player2: {
+        player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
+           -1 * amount
+         ),
+         player2_anim: elrondCastsSpell,
+         player1_anim: elrondHurt,
+         attack_anim: player2FireBall
+       }
+    };
+
+    this.props.battleRef
+    .update(updateObject[player])
+    .then(() => {
+      this.isDead()
+    })
+  }
+
+  doDamage = (amount) => {
+
+    this.updateHealth(amount, this.props.user.role)
 
     // return to idle animations
     setTimeout(() => {

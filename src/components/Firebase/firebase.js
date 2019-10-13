@@ -74,13 +74,20 @@ class Firebase {
     });
   };
   openBattles = () => this.db.collection("battles");
-  joinRandomBattle = user =>
+  findRandomBattle = () =>
   this.db
     .collection("battles")
     .where("status", "==", "open")
     .get()
     .then(
-      docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
+      openBattles => {
+        debugger
+        if(openBattles.docs.length) {
+          return openBattles.docs[Math.floor(Math.random() * openBattles.docs.length)].ref
+        } else {
+          return null
+        }
+      }
     );
 
   // avatars API

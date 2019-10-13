@@ -102,9 +102,14 @@ class App extends React.Component {
   };
 
   joinRandomBattle = () => {
-    this.props.firebase.joinRandomBattle(this.state.user).then(battleRef => {
-      this.joinBattle(battleRef);
-    });
+    this.props.firebase.findRandomBattle(this.state.user)
+      .then(battleRef => {
+        if (battleRef) {
+          this.joinBattle(battleRef);
+        } else {
+          alert('NO OPEN BATTLE DUM DUM!');
+        }
+      });
   };
 
   joinOpenBattle = battleId => {
