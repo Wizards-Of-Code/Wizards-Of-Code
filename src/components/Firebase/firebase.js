@@ -18,12 +18,14 @@ var devConfig = {
   webClientId: process.env.REACT_WEB_CLIENT_ID,
   webClientSecret: process.env.REACT_WEB_CLIENT_SECRET
 };
+
 // Initialize Firebase
 class Firebase {
   constructor() {
     app.initializeApp(devConfig);
     this.auth = app.auth();
     this.db = app.firestore();
+    this.provider = new app.auth.GoogleAuthProvider();
   }
 
   // auth API
@@ -35,7 +37,7 @@ class Firebase {
     return this.auth.signInWithEmailAndPassword(email, password);
   };
   doSignInWithGoogle = () => {
-    console.log(this.auth.GoogleAuthProvider);
+    console.log(this.provider);
   };
 
   doSignOut = () => this.auth.signOut();

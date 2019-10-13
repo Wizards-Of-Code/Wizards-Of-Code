@@ -212,7 +212,7 @@ class App extends React.Component {
             ) : (
               ""
             )}
-            <Route exact path={ROUTES.HOME} component={HomePage} />
+            <Route exact path={"(/|/home)"} component={HomePage} />
 
             <Route
               exact
