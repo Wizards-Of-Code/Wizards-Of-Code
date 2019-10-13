@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import { compose } from "recompose";
+import { withFirebase } from "../Firebase";
+import * as ROUTES from "../../constants/routes";
 
 const SignUpPage = props => (
   <div className="sign-up">
-    <img className="sign-up-img"
+    <img
+      className="sign-up-img"
       src="https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg"
       alt=""
     />
@@ -16,18 +17,18 @@ const SignUpPage = props => (
 );
 
 const INITIAL_STATE = {
-  username: '',
-  email: '',
-  passwordOne: '',
-  passwordTwo: '',
+  username: "",
+  email: "",
+  passwordOne: "",
+  passwordTwo: "",
   error: null,
-  uid: null,
+  uid: null
 };
 
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...INITIAL_STATE};
+    this.state = { ...INITIAL_STATE };
   }
 
   onSubmit = event => {
@@ -36,31 +37,26 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
+        const iceArrowRef = this.props.firebase.skill("UfEUBPa6SjEWLEKirF1Y");
 
-        const iceArrowRef = this.props.firebase.skill('UfEUBPa6SjEWLEKirF1Y');
-
-        this.setState( {uid: authUser.user.uid} )
+        this.setState({ uid: authUser.user.uid });
 
         // Create a user in your Firebase realtime database
-        return this.props.firebase
-          .user(authUser.user.uid)
-          .set({
-            username,
-            email,
-            experience: 0,
-            maxHealth: 100,
-            skills: [
-              iceArrowRef
-            ],
-            activeBattle: ''
-          });
+        return this.props.firebase.user(authUser.user.uid).set({
+          username,
+          email,
+          experience: 0,
+          maxHealth: 100,
+          skills: [iceArrowRef],
+          activeBattle: ""
+        });
       })
       .then(() => {
-        this.props.login(this.state.uid)
+        this.props.login(this.state.uid);
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.PROFILE);
       })
       .catch(error => {
         this.setState({ error });
@@ -73,22 +69,13 @@ class SignUpFormBase extends Component {
   };
 
   render() {
+    const { username, email, passwordOne, passwordTwo, error } = this.state;
 
-    const {
-      username,
-      email,
-      passwordOne,
-      passwordTwo,
-      error,
-    } = this.state;
-
-    const isInvalid = ( // make stronger form validations here & make sure password isn't less than 6 characters
+    const isInvalid = // make stronger form validations here & make sure password isn't less than 6 characters
       passwordOne !== passwordTwo ||
-      passwordOne === '' ||
-      email === '' ||
-      username === ''
-    );
-
+      passwordOne === "" ||
+      email === "" ||
+      username === "";
 
     return (
       <div>
@@ -139,12 +126,13 @@ class SignUpFormBase extends Component {
   }
 }
 const SignUpLink = () => (
-  <p className='no-account'>
-    Don't have an account? <Link to={ROUTES.SIGN_UP} className="sp-link">Sign Up</Link>
+  <p className="no-account">
+    Don't have an account?{" "}
+    <Link to={ROUTES.SIGN_UP} className="sp-link">
+      Sign Up
+    </Link>
   </p>
 );
-
-
 
 const SignUpForm = compose(
   withRouter,

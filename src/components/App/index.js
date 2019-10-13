@@ -2,18 +2,18 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "../Navigation";
 import GameStage from "../gamestage";
-import LandingPage from "../Landing";
+import BattlesPage from "../Battles";
 import SignUpPage from "../SignUp";
 import SignInPage from "../SignIn";
 import PasswordForgetPage from "../PasswordForget";
-import HomePage from "../Home";
+import ProfilePage from "../Profile";
 import AccountPage from "../Account";
 import AdminPage from "../Admin";
-import ImgCollection from "../Home/imgCollection";
-import BattleHistory from '../Home/battleHistory';
+import ImgCollection from "../Profile/imgCollection";
+import BattleHistory from "../Profile/battleHistory";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
-
+import HomePage from "../Home";
 import NotFound from "../NotFound";
 
 class App extends React.Component {
@@ -26,7 +26,7 @@ class App extends React.Component {
       skills: [],
       battleRef: {},
       avatars: [],
-      userRef: {},
+      userRef: {}
     };
     this.setState = this.setState.bind(this);
   }
@@ -41,7 +41,7 @@ class App extends React.Component {
       this.setState({ user: userData });
 
       // get battle firebase reference, if applicable
-      if (userData.activeBattle !== '') {
+      if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
         this.setState({ battleRef });
       }
@@ -60,11 +60,10 @@ class App extends React.Component {
       .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
   };
 
-
   setAvatar = imgUrl => {
     this.state.userRef.set(
       {
-        imgUrl: imgUrl,
+        imgUrl: imgUrl
       },
       { merge: true }
     );
@@ -78,9 +77,9 @@ class App extends React.Component {
         let status = change.doc.data().status;
         let doc = change.doc.data();
         let id = change.doc.id;
-        if (change.type === 'added' && status === 'open') {
+        if (change.type === "added" && status === "open") {
           allOpenBattles.push({ ...doc, id });
-        } else if (change.type === 'modified' && status === 'closed') {
+        } else if (change.type === "modified" && status === "closed") {
           allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
         }
       });
@@ -94,7 +93,7 @@ class App extends React.Component {
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
-          role: 'player1',
+          role: "player1"
         },
         { merge: true }
       );
@@ -102,14 +101,13 @@ class App extends React.Component {
   };
 
   joinRandomBattle = () => {
-    this.props.firebase.findRandomBattle(this.state.user)
-      .then(battleRef => {
-        if (battleRef) {
-          this.joinBattle(battleRef);
-        } else {
-          alert('NO OPEN BATTLE DUM DUM!');
-        }
-      });
+    this.props.firebase.findRandomBattle(this.state.user).then(battleRef => {
+      if (battleRef) {
+        this.joinBattle(battleRef);
+      } else {
+        alert("NO OPEN BATTLE DUM DUM!");
+      }
+    });
   };
 
   joinOpenBattle = battleId => {
@@ -123,7 +121,7 @@ class App extends React.Component {
       {
         player2: user.username,
         player2_health: user.maxHealth,
-        status: 'closed',
+        status: "closed"
       },
       { merge: true }
     );
@@ -131,14 +129,13 @@ class App extends React.Component {
     this.state.userRef.set(
       {
         activeBattle: battleRef.id,
-        role: 'player2',
+        role: "player2"
       },
       { merge: true }
     );
   };
 
   componentDidMount() {
-
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.login(authUser.uid);
@@ -151,6 +148,7 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <Navigation setState={this.setState} />
+
           <Route
             path={ROUTES.SIGN_UP}
             render={props => <SignUpPage {...props} login={this.login} />}
@@ -161,8 +159,8 @@ class App extends React.Component {
           />
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
           <Route
-            path={ROUTES.HOME}
-            render={props => <HomePage {...props} user={this.state.user} />}
+            path={ROUTES.PROFILE}
+            render={props => <ProfilePage {...props} user={this.state.user} />}
           />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
@@ -173,7 +171,7 @@ class App extends React.Component {
               render={props =>
                 this.state.user.activeBattle === "" ||
                 !this.state.user.activeBattle ? (
-                  <LandingPage
+                  <BattlesPage
                     {...props}
                     user={this.state.user}
                     createBattle={this.createBattle}
@@ -203,8 +201,9 @@ class App extends React.Component {
               }
             />
           ) : (
-            "loading"
+            ""
           )}
+          <Route exact path={ROUTES.HOME} component={HomePage} />
 
           <Route
             path={ROUTES.SETAVATAR}
@@ -222,10 +221,7 @@ class App extends React.Component {
           <Route
             path={ROUTES.BATTLEHISTORY}
             render={props => (
-              <BattleHistory
-                {...props}
-                user={this.state.user}
-              />
+              <BattleHistory {...props} user={this.state.user} />
             )}
           />
         </div>
