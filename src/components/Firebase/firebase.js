@@ -37,7 +37,7 @@ class Firebase {
     return this.auth.signInWithEmailAndPassword(email, password);
   };
   doSignInWithGoogle = () => {
-    console.log(this.provider);
+    this.auth.signInWithRedirect(this.provider);
   };
 
   doSignOut = () => this.auth.signOut();
