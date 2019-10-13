@@ -117,7 +117,9 @@ class GameStage extends React.Component {
         ),
         player1_anim: Animation[this.player1Avatar()].attack,
         player2_anim: Animation.figwit.hurt,
-        attack_anim: player1FireBall
+        // attack_anim: player1FireBall
+        attack_anim: "thunder-left"
+
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -125,7 +127,9 @@ class GameStage extends React.Component {
         ),
         player2_anim: Animation.figwit.attack,
         player1_anim: Animation[this.player1Avatar()].hurt,
-        attack_anim: player2FireBall
+        // attack_anim: player2FireBall
+        attack_anim: "thunder-left"
+
       }
     }
 
@@ -271,11 +275,12 @@ class GameStage extends React.Component {
               />
               <div
                 className={this.state.battleInfo.player1_anim}
-                style={{
-                  ...convertDirection,
-                  marginTop: '-20%',
-                  marginRight: '10%'
-                }}
+                // style={{
+                  // ...convertDirection,
+                //   marginTop: '-20%',
+                //   marginRight: '10%'
+                // }}
+                style={convertDirection}
               ></div>
             </div>
             <div>
