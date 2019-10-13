@@ -116,14 +116,14 @@ class GameStage extends React.Component {
           -1 * amount
         ),
         player1_anim: Animation[this.player1Avatar()].attack,
-        player2_anim: Animation.galadriel.hurt,
+        player2_anim: Animation.figwit.hurt,
         attack_anim: player1FireBall
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -1 * amount
         ),
-        player2_anim: Animation.galadriel.attack,
+        player2_anim: Animation.figwit.attack,
         player1_anim: Animation[this.player1Avatar()].hurt,
         attack_anim: player2FireBall
       }
@@ -142,7 +142,7 @@ class GameStage extends React.Component {
       this.props.battleRef.set(
         {
           player1_anim: Animation[this.player1Avatar()].idle,
-          player2_anim: Animation.galadriel.idle,
+          player2_anim: Animation.figwit.idle,
           attack_anim: null
         },
         {merge: true}
@@ -158,7 +158,7 @@ class GameStage extends React.Component {
           player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
-          player2_anim: Animation.galadriel.hurt
+          player2_anim: Animation.figwit.hurt
         })
         .then(() => {
           this.isDead()
@@ -179,7 +179,7 @@ class GameStage extends React.Component {
       this.props.battleRef.set(
         {
           player1_anim: Animation[this.player1Avatar()].idle,
-          player2_anim: Animation.galadriel.idle,
+          player2_anim: Animation.figwit.idle,
           attack_anim: null
         },
         {merge: true}
@@ -232,6 +232,7 @@ class GameStage extends React.Component {
   }
 
   render() {
+    console.log('GAMESTAGE PROPS', this.props)
 
     if (this.state.battleInfo.status === 'completed') {
       console.log('Battle Devided', this.state)
