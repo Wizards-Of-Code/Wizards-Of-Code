@@ -83,7 +83,7 @@ class SignInFormBase extends Component {
           <button
             className="sign-up-btn"
             onClick={() => {
-              this.props.firebase.doSignInWithGoogle();
+              this.props.firebase.doSignInWithGoogle()
             }}
           >
             Sign In With Google

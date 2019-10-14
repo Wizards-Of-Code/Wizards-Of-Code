@@ -1,4 +1,4 @@
-import app from "firebase/app";
+import app, { auth } from "firebase/app";
 import "firebase/auth";
 // import 'firebase/database';
 import "firebase/firestore";
@@ -36,8 +36,19 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) => {
     return this.auth.signInWithEmailAndPassword(email, password);
   };
+
   doSignInWithGoogle = () => {
-    return this.auth.signInWithRedirect(this.provider);
+    return this.auth.signInWithPopup(this.provider)
+    .then(authUser => {
+      console.log(authUser);
+      return this.user(authUser.user.uid).set({
+        username: authUser.user.email,
+        email: authUser.user.email,
+        experience: 0,
+        maxHealth: 100,
+        activeBattle: ""
+      });
+    });;
   };
 
   doSignOut = () => this.auth.signOut();
