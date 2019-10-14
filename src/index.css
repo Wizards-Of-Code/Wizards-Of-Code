@@ -729,7 +729,7 @@ li {
   border-radius: 70%;
   top: 33%;
   left: 35%;
-} 
+}
 
 @keyframes thunder-attack {
   from {
@@ -955,7 +955,7 @@ li {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  
+
 }
 
 .single-recored {
@@ -977,4 +977,13 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 30px;
+}
+
+.goodMessage {
+  position: fixed;
+  margin-top: 20%;
+  font-size: 6rem;
+  color: blue;
+  text-shadow: 2px 2px 2px green;
+  z-index: 10;
 }
