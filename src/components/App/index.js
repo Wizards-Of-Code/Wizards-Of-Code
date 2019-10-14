@@ -26,7 +26,8 @@ class App extends React.Component {
       skills: [],
       battleRef: {},
       avatars: [],
-      userRef: {}
+      userRef: {},
+      closedBtl: [],
     };
     this.setState = this.setState.bind(this);
   }
@@ -40,7 +41,7 @@ class App extends React.Component {
       const userData = user.data();
       this.setState({ user: userData });
       // get battle firebase reference, if applicable
-      if (userData.activeBattle !== "") {
+      if (userData.activeBattle !== '') {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
         this.setState({ battleRef });
       }
@@ -62,7 +63,7 @@ class App extends React.Component {
   setAvatar = imgUrl => {
     this.state.userRef.set(
       {
-        imgUrl: imgUrl
+        imgUrl: imgUrl,
       },
       { merge: true }
     );
@@ -76,9 +77,9 @@ class App extends React.Component {
         let status = change.doc.data().status;
         let doc = change.doc.data();
         let id = change.doc.id;
-        if (change.type === "added" && status === "open") {
+        if (change.type === 'added' && status === 'open') {
           allOpenBattles.push({ ...doc, id });
-        } else if (change.type === "modified" && status === "closed") {
+        } else if (change.type === 'modified' && status === 'closed') {
           allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
         }
       });
@@ -86,13 +87,19 @@ class App extends React.Component {
     });
   };
 
+  getClosedBtls = () => {
+    const closedBattlesRef = this.props.firebase.closedBattles();
+    closedBattlesRef
+      .get()
+      .then(querySnapshot => this.setState({ closedBtl: querySnapshot.docs }));
+  };
   createBattle = () => {
     this.props.firebase.createBattle(this.state.user).then(battleRef => {
       this.setState({ battleRef });
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
-          role: "player1"
+          role: 'player1',
         },
         { merge: true }
       );
@@ -104,7 +111,7 @@ class App extends React.Component {
       if (battleRef) {
         this.joinBattle(battleRef);
       } else {
-        alert("NO OPEN BATTLE DUM DUM!");
+        alert('NO OPEN BATTLE DUM DUM!');
       }
     });
   };
@@ -120,7 +127,7 @@ class App extends React.Component {
       {
         player2: user.username,
         player2_health: user.maxHealth,
-        status: "closed"
+        status: 'closed',
       },
       { merge: true }
     );
@@ -128,7 +135,7 @@ class App extends React.Component {
     this.state.userRef.set(
       {
         activeBattle: battleRef.id,
-        role: "player2"
+        role: 'player2',
       },
       { merge: true }
     );
@@ -143,7 +150,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('APP state', this.state)
+    console.log('APP state', this.state);
     return (
       <Router>
         <div className="container">
@@ -173,12 +180,12 @@ class App extends React.Component {
             />
             <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
             <Route exact path={ROUTES.ADMIN} component={AdminPage} />
-            {this.state.battleRef.id || this.state.user.activeBattle === "" ? (
+            {this.state.battleRef.id || this.state.user.activeBattle === '' ? (
               <Route
                 exact
-                path={"(/|/battle)"}
+                path={'(/|/battle)'}
                 render={props =>
-                  this.state.user.activeBattle === "" ||
+                  this.state.user.activeBattle === '' ||
                   !this.state.user.activeBattle ? (
                     <BattlesPage
                       {...props}
@@ -210,9 +217,9 @@ class App extends React.Component {
                 }
               />
             ) : (
-              ""
+              ''
             )}
-            <Route exact path={"(/|/home)"} component={HomePage} />
+            <Route exact path={'(/|/home)'} component={HomePage} />
 
             <Route
               exact
@@ -229,10 +236,14 @@ class App extends React.Component {
             />
 
             <Route
-              exact
               path={ROUTES.BATTLEHISTORY}
               render={props => (
-                <BattleHistory {...props} user={this.state.user} />
+                <BattleHistory
+                  {...props}
+                  user={this.state.user}
+                  closedBtl={this.state.closedBtl}
+                  getClosedBtls={this.getClosedBtls}
+                />
               )}
             />
             <Route path="*" component={NotFound} />

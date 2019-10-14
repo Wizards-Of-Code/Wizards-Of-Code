@@ -37,7 +37,6 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        const iceArrowRef = this.props.firebase.skill("UfEUBPa6SjEWLEKirF1Y");
 
         this.setState({ uid: authUser.user.uid });
 
@@ -47,7 +46,6 @@ class SignUpFormBase extends Component {
           email,
           experience: 0,
           maxHealth: 100,
-          skills: [iceArrowRef],
           activeBattle: ""
         });
       })
