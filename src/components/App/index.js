@@ -39,7 +39,6 @@ class App extends React.Component {
     userRef.get().then(user => {
       const userData = user.data();
       this.setState({ user: userData });
-
       // get battle firebase reference, if applicable
       if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
@@ -144,6 +143,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('APP state', this.state)
     return (
       <Router>
         <div className="container">

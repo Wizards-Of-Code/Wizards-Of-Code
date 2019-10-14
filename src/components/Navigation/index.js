@@ -27,7 +27,7 @@ const NavigationAuth = props => (
     <Link to={ROUTES.BATTLE}>Battle</Link>
     <Link to={ROUTES.PROFILE}>Profile</Link>
     <Link to={ROUTES.ACCOUNT}>Account Info</Link>
-    <Link to={ROUTES.ADMIN}>Admin</Link>
+    {/* <Link to={ROUTES.ADMIN}>Admin</Link> */}
     <SignOutButton updateState={props.updateState} />
   </ul>
 );
