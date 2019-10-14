@@ -3,7 +3,7 @@ import "firebase/auth";
 // import 'firebase/database';
 import "firebase/firestore";
 import randomizeUrls from "../../RandomBackground";
-import {Character} from "../gamestage/utilities"
+import { Character } from "../gamestage/utilities";
 // Your web app's Firebase configuration
 // don't use var unless you have a reason to
 var devConfig = {
@@ -47,7 +47,8 @@ class Firebase {
           experience: 0,
           maxHealth: 100,
           activeBattle: "",
-          imgUrl: 'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/mage_2%20copy.png?alt=media&token=b9f14ef3-a649-453d-bf5f-3449758fecf7'
+          imgUrl:
+            "https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/mage_2%20copy.png?alt=media&token=b9f14ef3-a649-453d-bf5f-3449758fecf7"
         });
       }
     });
@@ -86,11 +87,13 @@ class Firebase {
     return this.db.collection("battles").add({
       player1: user.username,
       player1_health: user.maxHealth,
-      player1_anim: Character(user.imgUrl),
-      player2_anim: '',
-      attack_anim: '',
-      status: 'open',
-      background: randomBackgroundUrl,
+      player1_anim: `${Character(user.imgUrl)}-idle`,
+      player1_char: Character(user.imgUrl),
+      player2_anim: "",
+      player2_char: "",
+      attack_anim: "",
+      status: "open",
+      background: randomBackgroundUrl
     });
   };
   openBattles = () => this.db.collection("battles");
