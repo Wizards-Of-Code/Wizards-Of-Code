@@ -275,11 +275,6 @@ class GameStage extends React.Component {
               />
               <div
                 className={this.state.battleInfo.player1_anim}
-                // style={{
-                  // ...convertDirection,
-                //   marginTop: '-20%',
-                //   marginRight: '10%'
-                // }}
                 style={convertDirection}
               ></div>
             </div>
@@ -290,7 +285,6 @@ class GameStage extends React.Component {
               />
               <div
                 className={this.state.battleInfo.player2_anim}
-                style={{marginTop: '-20%', marginLeft: '10%'}}
               ></div>
             </div>
           </div>
