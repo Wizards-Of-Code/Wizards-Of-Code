@@ -9,6 +9,7 @@ import {withFirebase} from '../Firebase'
 import GameOver from './gameOver'
 import firebutton from '../../styling/easy-fireball-button.png'
 import Animation from './utilities'
+
 class GameStage extends React.Component {
   constructor(props) {
     super(props)
@@ -22,32 +23,18 @@ class GameStage extends React.Component {
       },
       result: {},
       userCode: '',
-      backgroundImage: ''
+      backgroundImage: '',
     }
   }
 
+  //this.state.battleInfo.player1_anim = 'elrond'
+  //this.state.battleInfo.player2_anim
+  
+
+
   // Ai: I know this looks ugly, but we could clean it up later which requires changing data in firestore.
   // this method returns player1 chosen avatar - so now we can render the right avatar according to player1 profile image at every action without having to hard code it (if user doen't have a profile image, it would show 'elrond' by default)
-  player1Avatar = () => {
-    if (
-      this.props.user.imgUrl ===
-      'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/5_animation_attack_000.png?alt=media&token=aa3739c6-9e8e-47c6-9a1b-b97187c971d3'
-    ) {
-      return 'galadriel'
-    } else if (
-      this.props.user.imgUrl ===
-      'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/Figwit.png?alt=media&token=eaf3e0df-5fd4-4293-aaeb-e066b1fe7d3e'
-    ) {
-      return 'figwit'
-    } else if (
-      this.props.user.imgUrl ===
-      'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/2_animation_idle_002.png?alt=media&token=d52ef37c-11c6-4ec2-9c52-242804ba3e34'
-    ) {
-      return 'arwen'
-    } else {
-      return 'elrond'
-    }
-  }
+  
 
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
@@ -116,20 +103,18 @@ class GameStage extends React.Component {
         player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -1 * amount
         ),
-        player1_anim: Animation[this.player1Avatar()].attack,
-        player2_anim: Animation.figwit.hurt,
-        // attack_anim: player1FireBall
-        attack_anim: "thunder-left"
+        player1_anim: Animation[this.state.battleInfo.player1_anim].attack,
+        player2_anim: Animation[this.state.battleInfo.player2_anim].hurt,
+        attack_anim: Animation.spell.player1.thunder
 
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -1 * amount
         ),
-        player2_anim: Animation.figwit.attack,
-        player1_anim: Animation[this.player1Avatar()].hurt,
-        // attack_anim: player2FireBall
-        attack_anim: "thunder-left"
+        player2_anim: Animation[this.state.battleInfo.player2_anim].attack,
+        player1_anim: Animation[this.state.battleInfo.player1_anim].hurt,
+        attack_anim: Animation.spell.player2.thunder
 
       }
     }
@@ -146,8 +131,8 @@ class GameStage extends React.Component {
     setTimeout(() => {
       this.props.battleRef.set(
         {
-          player1_anim: Animation[this.player1Avatar()].idle,
-          player2_anim: Animation.figwit.idle,
+          player1_anim: Animation[this.state.battleInfo.player1_anim].idle,
+          player2_anim: Animation[this.state.battleInfo.player2_anim].idle,
           attack_anim: null
         },
         { merge: true }
@@ -174,7 +159,7 @@ class GameStage extends React.Component {
           player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
-          player1_anim: Animation[this.player1Avatar()].hurt
+          player1_anim: Animation[this.state.battleInfo.player1Avatar].hurt
         })
         .then(() => {
           this.isDead();
@@ -183,8 +168,8 @@ class GameStage extends React.Component {
     setTimeout(() => {
       this.props.battleRef.set(
         {
-          player1_anim: Animation[this.player1Avatar()].idle,
-          player2_anim: Animation.figwit.idle,
+          player1_anim: Animation[this.state.battleInfo.player1_anim].idle,
+          player2_anim: Animation[this.state.battleInfo.player2_anim].idle,
           attack_anim: null
         },
         {merge: true}
@@ -214,6 +199,9 @@ class GameStage extends React.Component {
   }
 
   componentDidMount() {
+    this.player1Avatar()
+    this.player2Avatar()
+
     if (this.props.battleRef.id) {
       this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate)
       this.props.battleRef
@@ -258,7 +246,7 @@ class GameStage extends React.Component {
               <img
                 src={firebutton}
                 onClick={() => this.getRandomProblem(1)}
-                alt="fireball!!!!"
+                alt="fireball!!!!" //what is alt for?
               />
             ) : (
               ""
@@ -274,7 +262,7 @@ class GameStage extends React.Component {
                 playerHP={this.state.battleInfo.player1_health}
               />
               <div
-                className={this.state.battleInfo.player1_anim}
+                className={Animation[this.state.battleInfo.player1_anim].idle}
                 style={convertDirection}
               ></div>
             </div>
@@ -284,7 +272,7 @@ class GameStage extends React.Component {
                 playerHP={this.state.battleInfo.player2_health}
               />
               <div
-                className={this.state.battleInfo.player2_anim}
+                className={Animation[this.state.battleInfo.player2_anim].idle}
               ></div>
             </div>
           </div>
@@ -325,8 +313,6 @@ class GameStage extends React.Component {
 
 export default withFirebase(GameStage)
 
-const player1FireBall = 'fireball-right'
-const player2FireBall = 'fireball-left'
 const fireball = 'glow-fireball'
 const none = {transform: 'none'}
 

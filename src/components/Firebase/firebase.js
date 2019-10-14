@@ -3,7 +3,7 @@ import "firebase/auth";
 // import 'firebase/database';
 import "firebase/firestore";
 import randomizeUrls from "../../RandomBackground";
-
+import {Character} from "../gamestage/utilities"
 // Your web app's Firebase configuration
 // don't use var unless you have a reason to
 var devConfig = {
@@ -84,8 +84,8 @@ class Firebase {
     return this.db.collection('battles').add({
       player1: user.username,
       player1_health: user.maxHealth,
-      player1_anim: 'elrond-idle',
-      player2_anim: 'elrond-idle',
+      player1_anim: Character(user.imgUrl),
+      player2_anim: '',
       attack_anim: '',
       status: 'open',
       background: randomBackgroundUrl,

@@ -15,6 +15,7 @@ import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 import HomePage from "../Home";
 import NotFound from "../NotFound";
+import {Character} from "../gamestage/utilities"
 
 class App extends React.Component {
   constructor(props) {
@@ -64,6 +65,7 @@ class App extends React.Component {
     this.state.userRef.set(
       {
         imgUrl: imgUrl,
+        player1AvatarName: 'elrond'
       },
       { merge: true }
     );
@@ -128,6 +130,8 @@ class App extends React.Component {
         player2: user.username,
         player2_health: user.maxHealth,
         status: 'closed',
+        player2_anim: Character(user.imgUrl),
+        player2_img: user.imgUrl
       },
       { merge: true }
     );
