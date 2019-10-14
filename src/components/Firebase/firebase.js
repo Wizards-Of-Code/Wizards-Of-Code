@@ -38,17 +38,18 @@ class Firebase {
   };
 
   doSignInWithGoogle = () => {
-    return this.auth.signInWithPopup(this.provider)
-    .then(authUser => {
-      console.log(authUser);
-      return this.user(authUser.user.uid).set({
-        username: authUser.user.email,
-        email: authUser.user.email,
-        experience: 0,
-        maxHealth: 100,
-        activeBattle: ""
-      });
-    });;
+    return this.auth.signInWithPopup(this.provider).then(authUser => {
+      console.log("AUTH USER", authUser);
+      if (authUser.additionalUserInfo.isNewUser) {
+        this.user(authUser.user.uid).set({
+          username: authUser.user.email,
+          email: authUser.user.email,
+          experience: 0,
+          maxHealth: 100,
+          activeBattle: ""
+        });
+      }
+    });
   };
 
   doSignOut = () => this.auth.signOut();
@@ -60,43 +61,43 @@ class Firebase {
   };
 
   // User API
-  user = uid => this.db.collection('users').doc(uid);
-  users = () => this.db.collection('users');
+  user = uid => this.db.collection("users").doc(uid);
+  users = () => this.db.collection("users");
 
   // Problem API
-  problem = probId => this.db.collection('problems').doc(probId);
+  problem = probId => this.db.collection("problems").doc(probId);
   getRandomProblem = difficulty =>
     this.db
-      .collection('problems')
-      .where('difficulty', '==', difficulty)
+      .collection("problems")
+      .where("difficulty", "==", difficulty)
       .get()
       .then(
         docs => docs.docs[Math.floor(Math.random() * docs.docs.length)].ref
       );
 
   // Skills API
-  skill = skillId => this.db.collection('skills').doc(skillId);
+  skill = skillId => this.db.collection("skills").doc(skillId);
 
   // Battles API
-  battle = battleId => this.db.collection('battles').doc(battleId);
+  battle = battleId => this.db.collection("battles").doc(battleId);
   createBattle = user => {
     let randomBackgroundUrl = randomizeUrls();
-    return this.db.collection('battles').add({
+    return this.db.collection("battles").add({
       player1: user.username,
       player1_health: user.maxHealth,
-      player1_anim: 'elrond-idle',
-      player2_anim: 'elrond-idle',
-      attack_anim: '',
-      status: 'open',
-      background: randomBackgroundUrl,
+      player1_anim: "elrond-idle",
+      player2_anim: "elrond-idle",
+      attack_anim: "",
+      status: "open",
+      background: randomBackgroundUrl
     });
   };
-  openBattles = () => this.db.collection('battles');
-  closedBattles = () => this.db.collection('battles');
+  openBattles = () => this.db.collection("battles");
+  closedBattles = () => this.db.collection("battles");
   findRandomBattle = () =>
     this.db
-      .collection('battles')
-      .where('status', '==', 'open')
+      .collection("battles")
+      .where("status", "==", "open")
       .get()
       .then(openBattles => {
         debugger;
@@ -111,7 +112,7 @@ class Firebase {
 
   // avatars API
   avatars = () => {
-    return this.db.collection('avatars');
+    return this.db.collection("avatars");
   };
 
   increment = amount => {
