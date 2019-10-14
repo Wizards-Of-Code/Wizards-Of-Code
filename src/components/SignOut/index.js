@@ -1,6 +1,7 @@
 import React from "react";
-
 import { withFirebase } from "../Firebase";
+import { withRouter } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 const SignOutButton = props => (
   <button
@@ -8,6 +9,7 @@ const SignOutButton = props => (
     onClick={() => {
       props.updateState({ user: {} });
       props.firebase.doSignOut();
+      props.history.push(ROUTES.HOME);
     }}
     className="sign-out-btn"
   >
@@ -15,4 +17,4 @@ const SignOutButton = props => (
   </button>
 );
 
-export default withFirebase(SignOutButton);
+export default withFirebase(withRouter(SignOutButton));

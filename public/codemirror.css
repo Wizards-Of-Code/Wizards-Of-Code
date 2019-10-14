@@ -5,11 +5,15 @@
   font-family: monospace;
   color: black;
   direction: ltr;
-  height: 80%;
-  border-style: solid;
-  border-width: 1px;
-  border-color: blue;
-  border-radius: 2%;
+  height: 100%;
+  width: 100%;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border: solid 5px rgb(44, 66, 47);
+  z-index: 2;
+  background-color: #d5ecda;
+  margin-bottom: 30px;
+  margin-top: -3px;
+  margin-left: -4px;
 }
 
 /* PADDING */

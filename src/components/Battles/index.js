@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import OpenBattles from "./OpenBattles";
 import { BATTLE } from "../../constants/routes";
 
-class LandingPage extends React.Component {
+class BattlesPage extends React.Component {
   componentDidMount() {
     this.props.getOpenBattles();
   }
 
   render() {
+    console.log(this.props.openBattles, this.props);
+
     return (
       <div className="landing-page-container">
         <img
@@ -68,4 +70,4 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+export default BattlesPage;

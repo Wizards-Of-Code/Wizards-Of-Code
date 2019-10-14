@@ -23,17 +23,18 @@ const Navigation = props => {
 
 const NavigationAuth = props => (
   <ul className="nav">
+    <Link to={ROUTES.HOME}>Wizards of Code</Link>
     <Link to={ROUTES.BATTLE}>Battle</Link>
-    <Link to={ROUTES.HOME}>Profile</Link>
+    <Link to={ROUTES.PROFILE}>Profile</Link>
     <Link to={ROUTES.ACCOUNT}>Account Info</Link>
-    <Link to={ROUTES.ADMIN}>Admin</Link>
+    {/* <Link to={ROUTES.ADMIN}>Admin</Link> */}
     <SignOutButton updateState={props.updateState} />
   </ul>
 );
 
 const NavigationNonAuth = () => (
   <ul className="nav">
-    <Link to={ROUTES.BATTLE}>Battle</Link>
+    <Link to={ROUTES.HOME}>Wizards of Code</Link>
     <Link to={ROUTES.SIGN_IN}>Sign In</Link>
   </ul>
 );

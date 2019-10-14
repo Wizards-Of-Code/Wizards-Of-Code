@@ -46,6 +46,7 @@ li {
   display: flex;
   justify-content: space-around;
   font-family: "Courier New", Courier, monospace;
+
   background-image: linear-gradient(rgb(197, 197, 153), rgb(150, 170, 155));
   height: 100%;
   margin: 0;
@@ -61,19 +62,11 @@ li {
   width: 100%;
   height: 35%;
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
+  transition: background-image 1s ease;
 }
 
-.ReactCodeMirror {
-  width: 60%;
-  word-wrap: break-word;
-}
-
-.CodeMirror {
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-  border: solid 5px rgb(44, 66, 47);
-  z-index: 2;
-  margin-bottom: 30px;
-  margin-top: 20px;
+.taskbox.red {
+  background-image: linear-gradient(orange, red);
 }
 
 .instructions,
@@ -131,7 +124,7 @@ li {
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
 }
-.home-page-container {
+.profile-page-container {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -178,6 +171,7 @@ li {
   width: 300px;
   height: 200px;
   align-content: flex-end;
+  z-index: 500000;
 }
 
 .home-page-navbar {
@@ -194,11 +188,25 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50%;
+  height: fit-content;
   border-radius: 5px;
   border-color: #ffffff;
   border-width: 2px;
   padding: 20px;
+}
+.home-page-container {
+  display: flex;
+  justify-content: center;
+  font-family: "Aladin";
+  font-size: 1.5vw;
+}
+
+.home-page-container p {
+  align-self: center;
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: center;
+  line-height: 2.5;
 }
 
 .profile-info {
@@ -447,7 +455,7 @@ li {
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
-  animation: elrond 1.5s steps(20);
+  animation: elrond 1.5s steps(20) infinite;
 }
 
 .elrond-hurt {
@@ -458,13 +466,100 @@ li {
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-hurt.png);
-  animation: elrond 3s steps(20);
+  animation: elrond 1.5s steps(20) infinite;
 }
 
 .elrond-die {
   content: url(./styling/elrond-die.png);
 }
 
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-100px) scaleX(0.7) scaleY(0.7);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.elrond-win {
+  width: 397px;
+  height: 438px;
+  background: url(./styling/elrond.png);
+  animation: bounce infinite;
+  animation-duration: 1s;
+}
+
+.galadriel-win {
+  width: 341px;
+  height: 410px;
+  background: url(./styling/galadriel.png);
+  animation: bounce infinite;
+  animation-duration: 1s;
+}
+
+.arwen-win {
+  width: 277px;
+  height: 347px;
+  background: url(./styling/arwen.png);
+  animation: bounce infinite;
+  animation-duration: 1s;
+}
+
+.figwit-win {
+  width: 197px;
+  height: 352px;
+  background: url(./styling/figwit.png);
+  animation: bounce infinite;
+  animation-duration: 1s;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.elrond-spin {
+  width: 397px;
+  height: 438px;
+  background: url(./styling/elrond.png);
+  animation: spin infinite;
+  animation-duration: 1s;
+}
+
+.galadriel-spin {
+  width: 341px;
+  height: 410px;
+  background: url(./styling/galadriel.png);
+  animation: spin infinite;
+  animation-duration: 1s;
+}
+
+.arwen-spin {
+  width: 277px;
+  height: 347px;
+  background: url(./styling/arwen.png);
+  animation: spin infinite;
+  animation-duration: 1s;
+}
+
+.figwit-spin {
+  width: 197px;
+  height: 352px;
+  background: url(./styling/figwit.png);
+  animation: spin infinite;
+  animation-duration: 1s;
+}
 
 @keyframes galadriel {
   from {
@@ -494,7 +589,7 @@ li {
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
-  animation: galadriel 1.5s steps(20);
+  animation: galadriel 1.5s steps(20) infinite;
 }
 
 .galadriel-hurt {
@@ -509,7 +604,7 @@ li {
 }
 
 .galadriel-die {
-  content:url(./styling/galadriel-die.png);
+  content: url(./styling/galadriel-die.png);
 }
 
 @keyframes arwen {
@@ -540,7 +635,7 @@ li {
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-casts-spell.png);
-  animation: arwen 1.5s steps(20);
+  animation: arwen 1.5s steps(20) infinite;
 }
 
 .arwen-hurt {
@@ -552,6 +647,10 @@ li {
   height: 347px;
   background: url(./styling/arwen-hurt.png);
   animation: arwen 3s steps(20);
+}
+
+.arwen-die {
+  content: url(./styling/arwen-die.png);
 }
 
 @keyframes figwit {
@@ -582,7 +681,7 @@ li {
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-casts-spell.png);
-  animation: figwit 5s steps(20);
+  animation: figwit 5s steps(20) infinite;
 }
 
 .figwit-hurt {
@@ -596,34 +695,11 @@ li {
   animation: figwit 3s steps(20);
 }
 
-.fireball-right {
-  width: calc(6217px / 13);
-  height: 110px;
-  background: url(./styling/fireball.png);
-  transform: scaleX(-1) scaleY(1);
-  animation: attack 1s steps(calc(13 * 100));
-  position: absolute;
-  border-radius: 70%;
-  top: 33%;
-  left: 35%;
-}
-.gamebox {
-  display: flex;
-  margin-top: 0;
-  margin-bottom: 0;
+.figwit-die {
+  content: url(./styling/figwit-die.png);
 }
 
-.fireball-left {
-  width: calc(6217px / 13);
-  height: 110px;
-  background: url(./styling/fireball.png);
-  animation: attack 1s steps(calc(13 * 100));
-  position: absolute;
-  border-radius: 70%;
-  top: 33%;
-  left: 35%;
-}
-@keyframes attack {
+@keyframes fire-attack {
   from {
     background-position: 0px;
   }
@@ -631,6 +707,71 @@ li {
     background-position: -6217px;
   }
 }
+
+.fireball-left {
+  width: calc(6217px / 13);
+  height: 110px;
+  background: url(./styling/fireball.png);
+  animation: fire-attack 1s steps(calc(13 * 100));
+  position: absolute;
+  border-radius: 70%;
+  top: 33%;
+  left: 35%;
+}
+
+.fireball-right {
+  width: calc(6217px / 13);
+  height: 110px;
+  background: url(./styling/fireball.png);
+  transform: scaleX(-1) scaleY(1);
+  animation: fire-attack 1s steps(calc(13 * 100));
+  position: absolute;
+  border-radius: 70%;
+  top: 33%;
+  left: 35%;
+} 
+
+@keyframes thunder-attack {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -6217px;
+  }
+}
+
+.thunder-left {
+  width: calc(6217px / 11);
+  height: 279px;
+  background: url(./styling/thunder.png);
+  animation: thunder-attack 1s steps(calc(11 * 100));
+  transform: scaleX(-1) scaleY(1);
+  position: absolute;
+  border-radius: 70%;
+  top: 20%;
+  left: 35%;
+}
+
+.thunder-right {
+  width: calc(6217px / 11);
+  height: 279px;
+  background: url(./styling/thunder.png);
+  animation: thunder-attack 1s steps(calc(11 * 100));
+  transform: scaleX(1) scaleY(1);
+  position: absolute;
+  border-radius: 70%;
+  top: 20%;
+  left: 35%;
+}
+
+.gamebox {
+  display: flex;
+  margin-top: 0;
+  margin-bottom: 0;
+  flex: auto;
+  justify-content: space-evenly;
+}
+
 
 .gamepage {
   display: flex;
@@ -710,7 +851,7 @@ li {
 }
 
 .innerbar-activ1 {
-  height: 30px;
+  height: 25px;
   background-color: #e99090;
   display: flex;
   justify-content: flex-start;
@@ -743,7 +884,7 @@ li {
 }
 
 .innerbar-activ2 {
-  height: 30px;
+  height: 25px;
   background-color: #e99090;
   display: flex;
   justify-content: flex-end;
@@ -755,21 +896,24 @@ li {
 }
 
 .glow-fireball {
-  /* background-color: #004A7F; */
   border-radius: 50%;
   border: none;
   color: white;
   cursor: pointer;
-  /* display: inline-block; */
-  /* padding: 5px 10px; */
-  background-image: url(./styling/fireball-button.png);
-  animation: glowing 1500ms infinite;
+  background-image: url(./styling/easy-fireball-button.png);
+  margin: 10%;
 }
 
 @keyframes glowing {
-  0% { box-shadow: inset 1px 2px 2.5px }
-  50% { box-shadow: inset 2px 3px 4px  }
-  100% { box-shadow: inset 1px 2px 2.5px}
+  0% {
+    box-shadow: inset -3px -6px 4.5px;
+  }
+  50% {
+    box-shadow: inset 2px 3px 4px;
+  }
+  100% {
+    box-shadow: inset -3px -6px 4.5px;
+  }
 }
 
 .lose-win {
@@ -790,12 +934,19 @@ li {
 }
 
 .grave {
-  text-align: center;
+  position: relative;
+  left: 45%;
 }
 
 .center {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.result-box {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
