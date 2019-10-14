@@ -30,6 +30,7 @@ class BattlesPage extends React.Component {
                         this.props.createBattle();
                       }
                     }}
+                    onMouseDown={this.props.pageSound}
                   >
                     Create New Battle
                   </button>
@@ -43,12 +44,17 @@ class BattlesPage extends React.Component {
                     }
                   }}
                   className="join-random-btl-btn"
+                  onMouseDown={this.props.pageSound}
                 >
                   Join A Random Battle
                 </button>
               </Link>
 
-              <button className="join-random-btl-btn" disabled>
+              <button
+                className="join-random-btl-btn"
+                disabled
+                onMouseDown={this.props.pageSound}
+              >
                 Open Battles
               </button>
               <div className="join-btl">
@@ -56,6 +62,7 @@ class BattlesPage extends React.Component {
                   user={this.props.user}
                   openBattles={this.props.openBattles}
                   joinOpenBattle={this.props.joinOpenBattle}
+                  pageSound={this.pageSound}
                 />
               </div>
             </div>

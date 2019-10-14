@@ -15,26 +15,38 @@ const ProfilePage = props => {
       <div className="home-page-navbar">
         <div className="home-page-navbar-container">
           <h1 className="sign-up-logo">Profile Page</h1>
-          <Link to={"/battle-history"}>
+          <Link to={'/battle-history'}>
             <div className="user-history">
-              <button className="user-history-btn">Battle History</button>
+              <button
+                className="user-history-btn"
+                onMouseDown={props.pageSound}
+              >
+                Battle History
+              </button>
             </div>
           </Link>
           <div className="go-battle">
             <Link to={BATTLE}>
-              <button className="go-to-battle">Go To Battle</button>
+              <button className="go-to-battle" onMouseDown={props.pageSound}>
+                Go To Battle
+              </button>
             </Link>
           </div>
           <div className="list-of-skills">
-            <button className="list-skills">My Skills</button>
+            <button className="list-skills" onMouseDown={props.pageSound}>
+              My Skills
+            </button>
           </div>
         </div>
       </div>
       <div className="profile-info">
         <div className="profile-info-container">
           <img src={props.user.imgUrl} alt="wizard" className="profile-pic" />
-          <Link to={"/avatars"}>
-            <button className="change-profile-pic">
+          <Link to={'/avatars'}>
+            <button
+              className="change-profile-pic"
+              onMouseDown={props.pageSound}
+            >
               Change Profile Picture
             </button>
           </Link>
