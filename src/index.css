@@ -985,3 +985,8 @@ li {
   text-shadow: 2px 2px 2px green;
   z-index: 10;
 }
+
+.battle-container {
+  display: flex;
+  width: 100%;
+}

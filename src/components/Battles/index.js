@@ -19,7 +19,7 @@ class BattlesPage extends React.Component {
           alt=""
         />
         {this.props.user.username ? (
-          <div>
+          <div className="battle-container">
             <div className="join-random-btl">
               <div className="create-battle">
                 <Link to={BATTLE}>
@@ -51,13 +51,13 @@ class BattlesPage extends React.Component {
               <button className="join-random-btl-btn" disabled>
                 Open Battles
               </button>
-              <div className="join-btl">
-                <OpenBattles
-                  user={this.props.user}
-                  openBattles={this.props.openBattles}
-                  joinOpenBattle={this.props.joinOpenBattle}
-                />
-              </div>
+            </div>
+            <div className="battle-container">
+              <OpenBattles
+                user={this.props.user}
+                openBattles={this.props.openBattles}
+                joinOpenBattle={this.props.joinOpenBattle}
+              />
             </div>
           </div>
         ) : (
