@@ -96,7 +96,9 @@ class GameStage extends React.Component {
         });
       } else {
         this.selfDamage(this.state.problem.difficulty * 5);
-        this.setState({ message: {content: 'Incorrect', type: 'badMessage'} })
+        this.setState({
+          message: { content: "Incorrect", type: "badMessage" }
+        });
       }
       webWorker.terminate();
       clearTimeout(timeoutId);
@@ -177,20 +179,12 @@ class GameStage extends React.Component {
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
           attack_anim: null
         },
-<<<<<<< HEAD
         { merge: true }
       );
       this.taskboxClass = "taskbox";
+      this.setState({ message: {} });
     }, 2000);
   };
-=======
-        {merge: true}
-      )
-      this.taskboxClass = 'taskbox';
-      this.setState({ message: {} });
-    }, 2000)
-  }
->>>>>>> d2858a3bcc7011282838e52c6a1a68d0d6cacf63
 
   isDead = () => {
     const { battleInfo } = this.state;
