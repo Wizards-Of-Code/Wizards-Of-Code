@@ -155,7 +155,7 @@ class GameStage extends React.Component {
           player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
-          player2_anim: Animation[this.state.battleInfo.player2_char].hurt
+          player2_anim: Animation[this.state.battleInfo.player2_char].spin
         })
         .then(() => {
           this.isDead();
@@ -166,7 +166,7 @@ class GameStage extends React.Component {
           player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
-          player1_anim: Animation[this.state.battleInfo.player1_char].hurt
+          player1_anim: Animation[this.state.battleInfo.player1_char].spin
         })
         .then(() => {
           this.isDead();
@@ -264,9 +264,6 @@ class GameStage extends React.Component {
           <div className="gamebox">
             <MessageLog message={this.state.message} />
             <div>
-              <div className={this.state.battleInfo.attack_anim}>
-                <Attacking />
-              </div>
               <Player1
                 playerName={this.state.battleInfo.player1}
                 playerHP={this.state.battleInfo.player1_health}
@@ -275,6 +272,9 @@ class GameStage extends React.Component {
                 className={this.state.battleInfo.player1_anim}
                 style={convertDirection}
               ></div>
+            </div>
+            <div className={this.state.battleInfo.attack_anim}>
+              <Attacking />
             </div>
             <div>
               <Player2

@@ -8,7 +8,7 @@ const OpenBattles = props => {
   console.log(battles);
 
   return (
-    <ol className="join-btl">
+    <ol className="join-btl container1">
       {battles.map(battle => (
         <div className="single-game" key={battle.id}>
           <div className="center">

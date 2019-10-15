@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class BattleHistory extends Component {
   componentDidMount() {
@@ -7,6 +7,7 @@ class BattleHistory extends Component {
 
   render() {
     let btlInfo;
+    let wins = 0;
     let completedBtl = [];
     btlInfo = this.props.closedBtl.map(closedB => {
       return closedB.data();
@@ -14,31 +15,46 @@ class BattleHistory extends Component {
 
     btlInfo.map(btl => {
       if (
-        btl.status === 'completed' &&
+        btl.status === "completed" &&
         (btl.player1 === this.props.user.username ||
           btl.player2 === this.props.user.username)
       ) {
         completedBtl.push(btl);
       }
     });
-    console.log('BTL HISTORY', completedBtl);
+
     return (
-      <div>
+      <div className="container1">
         <img
           className="home-img"
           src="https://wallpaperaccess.com/full/279729.jpg"
           alt=""
         />
+
         <h1 className="sign-up-logo">Battle history</h1>
+
         <div className="btl-history">
-          {completedBtl.map(compB => (
-            <div className="single-recored">
-              <h1 className="btl-text">
-                {compB.player1} VS {compB.player2}
-              </h1>
-              <h1 className="btl-text"> WINNER {compB.winner}</h1>
-            </div>
-          ))}
+          {completedBtl.map(compB => {
+            let winBackground = "";
+            let loseBackground = "";
+            let opponent = "";
+            if (this.props.user.username === compB.winner) {
+              winBackground = "winBackground";
+            } else {
+              loseBackground = "loseBackground";
+            }
+            if (this.props.user.username === compB.player1)
+              opponent = compB.player2;
+            else opponent = compB.player1;
+
+            return (
+              <div
+                className={`single-recored ${loseBackground} ${winBackground}`}
+              >
+                <h1 className={`btl-text`}>Opponent: {opponent}</h1>
+              </div>
+            );
+          })}
         </div>
       </div>
     );
