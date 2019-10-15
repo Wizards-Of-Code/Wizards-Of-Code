@@ -65,8 +65,7 @@ class GameStage extends React.Component {
       .then(problemRef => problemRef.get())
       .then(doc => {
         const problem = doc.data();
-        console.log(problem.startingCode);
-        this.setState({ problem, userCode: problem.startingCode ? `${problem.startingCode}\n  \n}` : 'yo\nyo\nmama'});
+        this.setState({ problem, userCode: `${problem.startingCode}\n\n}` });
       });
   };
 
@@ -110,6 +109,7 @@ class GameStage extends React.Component {
         this.setState({ userCode: '', problem: {prompt: ''}, message: {content: 'Success!', type: 'goodMessage'} })
       } else {
         this.selfDamage(this.state.problem.difficulty * 5);
+        this.setState({ message: {content: 'Incorrect', type: 'badMessage'} })
       }
       webWorker.terminate();
       clearTimeout(timeoutId);
@@ -196,7 +196,8 @@ class GameStage extends React.Component {
         },
         {merge: true}
       )
-      this.taskboxClass = 'taskbox'
+      this.taskboxClass = 'taskbox';
+      this.setState({ message: {} });
     }, 2000)
   }
 
