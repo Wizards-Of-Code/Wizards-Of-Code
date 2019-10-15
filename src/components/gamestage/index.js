@@ -27,7 +27,7 @@ class GameStage extends React.Component {
       message: {}
     }
   }
-  
+
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId)
     problemRef.get().then(problem => this.setState({problem: problem.data()}))
@@ -260,6 +260,7 @@ class GameStage extends React.Component {
           <div className="gamebox">
             <MessageLog message={this.state.message} />
             <div className={this.state.battleInfo.attack_anim}>
+
               <Attacking />
             </div>
             <div className="player">
