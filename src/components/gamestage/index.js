@@ -110,16 +110,16 @@ class GameStage extends React.Component {
           -1 * amount
         ),
         player1_anim: Animation[this.state.battleInfo.player1_char].attack,
-        player2_anim: Animation[this.state.battleInfo.player2_char].spin,
-        attack_anim: Animation.spell.player1.thunder
+        player2_anim: Animation[this.state.battleInfo.player2_char].hurt,
+        attack_anim: Animation.spell.player1.fireball
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
           -1 * amount
         ),
         player2_anim: Animation[this.state.battleInfo.player2_char].attack,
-        player1_anim: Animation[this.state.battleInfo.player1_char].spin,
-        attack_anim: Animation.spell.player2.thunder
+        player1_anim: Animation[this.state.battleInfo.player1_char].hurt,
+        attack_anim: Animation.spell.player2.fireball
       }
     }
 

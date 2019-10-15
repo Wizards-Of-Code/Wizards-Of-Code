@@ -437,9 +437,9 @@ li {
 }
 
 .elrond-idle {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
@@ -449,9 +449,9 @@ li {
 }
 
 .elrond-casts-spell {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
@@ -461,9 +461,9 @@ li {
 }
 
 .elrond-hurt {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
@@ -579,9 +579,9 @@ li {
 }
 
 .galadriel-idle {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
@@ -591,9 +591,10 @@ li {
 }
 
 .galadriel-casts-spell {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
+
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
@@ -603,14 +604,14 @@ li {
 }
 
 .galadriel-hurt {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-hurt.png);
-  animation: galadriel 3s steps(20);
+  animation: galadriel 3s steps(20) infinite;
   margin-top: 40%;
 }
 
@@ -628,9 +629,9 @@ li {
 }
 
 .arwen-idle {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
@@ -640,9 +641,9 @@ li {
 }
 
 .arwen-casts-spell {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
@@ -652,14 +653,14 @@ li {
 }
 
 .arwen-hurt {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-hurt.png);
-  animation: arwen 3s steps(20);
+  animation: arwen 3s steps(20)infinite;
   margin-top: 40%;
 }
 
@@ -677,9 +678,9 @@ li {
 }
 
 .figwit-idle {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
@@ -689,9 +690,9 @@ li {
 }
 
 .figwit-casts-spell {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
@@ -701,14 +702,14 @@ li {
 }
 
 .figwit-hurt {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-hurt.png);
-  animation: figwit 3s steps(20);
+  animation: figwit 3s steps(20) infinite;
   margin-top: 40%;
 }
 
@@ -791,10 +792,8 @@ li {
 
 .player {
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-end;
-  flex-direction: column;
-  margin: 20%;
+  justify-content: center;
+  margin: 10%;
 }
 
 .gamepage {
@@ -876,7 +875,7 @@ li {
   /* margin: 10px; */
   /* border-radius: 7px; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-content: center;
 }
 
@@ -930,7 +929,9 @@ li {
   color: white;
   cursor: pointer;
   background-image: url(./styling/easy-fireball-button.png);
-  margin: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
+
 }
 
 @keyframes glowing {
