@@ -260,8 +260,6 @@ class GameStage extends React.Component {
                 style={convertDirection}
               ></div>
             </div>
-
-
             <div className="player">
               <Player2
                 playerName={this.state.battleInfo.player2}

@@ -11,7 +11,7 @@ class Player2 extends Component {
     let hp = this.props.playerHP;
     return (
       <div className="healthName">
-        <p style={{ ...textTransform, textAlign: "right" }}>
+        <p style={{ ...textTransform, textAlign: "right", marginBlockStart:"0px"}}>
           {this.props.playerName
             ? this.props.playerName
             : "Waiting for Opponent..."}

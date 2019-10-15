@@ -445,6 +445,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-idle.png);
   animation: elrond 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .elrond-casts-spell {
@@ -456,6 +457,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
   animation: elrond 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .elrond-hurt {
@@ -467,6 +469,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-hurt.png);
   animation: elrond 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .elrond-die {
@@ -495,6 +498,7 @@ li {
   background: url(./styling/elrond.png);
   animation: bounce infinite;
   animation-duration: 1s;
+  margin-top: 40%;
 }
 
 .galadriel-win {
@@ -503,6 +507,7 @@ li {
   background: url(./styling/galadriel.png);
   animation: bounce infinite;
   animation-duration: 1s;
+  margin-top: 40%;
 }
 
 .arwen-win {
@@ -511,6 +516,7 @@ li {
   background: url(./styling/arwen.png);
   animation: bounce infinite;
   animation-duration: 1s;
+  margin-top: 40%;
 }
 
 .figwit-win {
@@ -519,6 +525,7 @@ li {
   background: url(./styling/figwit.png);
   animation: bounce infinite;
   animation-duration: 1s;
+  margin-top: 40%;
 }
 
 @keyframes spin {
@@ -535,6 +542,7 @@ li {
   transform: scaleX(0.7) scaleY(0.7);
   background: url(./styling/elrond.png);
   animation: spin 1s infinite;
+  margin-top: 40%;
 }
 
 .galadriel-spin {
@@ -542,6 +550,7 @@ li {
   height: 410px;
   background: url(./styling/galadriel.png);
   animation: spin 1s infinite;
+  margin-top: 40%;
 }
 
 .arwen-spin {
@@ -549,6 +558,7 @@ li {
   height: 347px;
   background: url(./styling/arwen.png);
   animation: spin 0.8s infinite linear;
+  margin-top: 40%;
 }
 
 .figwit-spin {
@@ -556,6 +566,7 @@ li {
   height: 352px;
   background: url(./styling/figwit.png);
   animation: spin 1s infinite;
+  margin-top: 40%;
 }
 
 @keyframes galadriel {
@@ -576,6 +587,7 @@ li {
   height: 410px;
   background: url(./styling/galadriel-idle.png);
   animation: galadriel 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .galadriel-casts-spell {
@@ -587,6 +599,7 @@ li {
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
   animation: galadriel 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .galadriel-hurt {
@@ -598,6 +611,7 @@ li {
   height: 410px;
   background: url(./styling/galadriel-hurt.png);
   animation: galadriel 3s steps(20);
+  margin-top: 40%;
 }
 
 .galadriel-die {
@@ -622,6 +636,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-idle.png);
   animation: arwen 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .arwen-casts-spell {
@@ -633,6 +648,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-casts-spell.png);
   animation: arwen 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .arwen-hurt {
@@ -644,6 +660,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-hurt.png);
   animation: arwen 3s steps(20);
+  margin-top: 40%;
 }
 
 .arwen-die {
@@ -668,6 +685,7 @@ li {
   height: 372px;
   background: url(./styling/figwit-idle.png);
   animation: figwit 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .figwit-casts-spell {
@@ -679,6 +697,7 @@ li {
   height: 372px;
   background: url(./styling/figwit-casts-spell.png);
   animation: figwit 5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .figwit-hurt {
@@ -690,6 +709,7 @@ li {
   height: 372px;
   background: url(./styling/figwit-hurt.png);
   animation: figwit 3s steps(20);
+  margin-top: 40%;
 }
 
 .figwit-die {
@@ -741,11 +761,11 @@ li {
   width: calc(6217px / 11);
   height: 279px;
   background: url(./styling/thunder.png);
-  animation: thunder-attack 1s steps(calc(11 * 100));
+  animation: thunder-attack 0.5s steps(calc(11 * 1500)) infinite;
   transform: scaleX(1) scaleY(1);
   position: absolute;
   border-radius: 70%;
-  top: 20%;
+  top: 25%;
   left: 35%;
 }
 
@@ -753,11 +773,11 @@ li {
   width: calc(6217px / 11);
   height: 279px;
   background: url(./styling/thunder.png);
-  animation: thunder-attack 1s steps(calc(11 * 100));
+  animation: thunder-attack 0.5s steps(calc(11 * 1500)) infinite;
   transform: scaleX(-1) scaleY(1);
   position: absolute;
   border-radius: 70%;
-  top: 20%;
+  top: 25%;
   left: 35%;
 }
 
@@ -774,6 +794,7 @@ li {
   justify-content: space-evenly;
   align-items: flex-end;
   flex-direction: column;
+  margin: 20%;
 }
 
 .gamepage {
@@ -784,7 +805,6 @@ li {
 .healthName {
   position: absolute;
   top: 10%;
-  margin-left: 15px;
   font-family: "Aladin";
   font-size: 1.5vw;
   line-height: 1;
@@ -837,10 +857,26 @@ li {
   width: 400px;
   height: 30px;
   background-color: #9aaf8f;
-  margin: 10px;
-  border-radius: 7px;
+  /* margin: 10px; */
+  /* border-radius: 7px; */
   display: flex;
   justify-content: flex-start;
+  align-content: center;
+}
+
+.empty-box {
+  width: 20px;
+  height: 20px;
+}
+
+.health-bar2 {
+  width: 400px;
+  height: 30px;
+  background-color: #9aaf8f;
+  /* margin: 10px; */
+  /* border-radius: 7px; */
+  display: flex;
+  justify-content: flex-end;
   align-content: center;
 }
 
@@ -854,6 +890,16 @@ li {
   justify-content: flex-start;
 }
 
+.innerbar-lost2 {
+  width: 390px;
+  height: 20px;
+  background: rgba(230, 226, 226, 0.5);
+  margin: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .innerbar-activ1 {
   height: 20px;
   background-color: rgb(86, 86, 245);
@@ -864,27 +910,6 @@ li {
 
 .hp-points1 {
   margin-block-start: 0;
-}
-
-.health-bar2 {
-  width: 400px;
-  height: 30px;
-  background-color: #9aaf8f;
-  margin: 10px;
-  border-radius: 7px;
-  display: flex;
-  justify-content: flex-end;
-  align-content: center;
-}
-
-.innerbar-lost2 {
-  width: 390px;
-  height: 20px;
-  background: rgba(230, 226, 226, 0.5);
-  margin: 5px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: flex-end;
 }
 
 .innerbar-activ2 {
