@@ -526,39 +526,36 @@ li {
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(359deg);
+    transform: rotate(360deg);
   }
 }
 .elrond-spin {
   width: 397px;
   height: 438px;
+  transform: scaleX(0.7) scaleY(0.7);
   background: url(./styling/elrond.png);
-  animation: spin infinite;
-  animation-duration: 1s;
+  animation: spin 1s infinite;
 }
 
 .galadriel-spin {
   width: 341px;
   height: 410px;
   background: url(./styling/galadriel.png);
-  animation: spin infinite;
-  animation-duration: 1s;
+  animation: spin 1s infinite;
 }
 
 .arwen-spin {
   width: 277px;
   height: 347px;
   background: url(./styling/arwen.png);
-  animation: spin infinite;
-  animation-duration: 1s;
+  animation: spin 0.8s infinite linear;
 }
 
 .figwit-spin {
   width: 197px;
   height: 352px;
   background: url(./styling/figwit.png);
-  animation: spin infinite;
-  animation-duration: 1s;
+  animation: spin 1s infinite;
 }
 
 @keyframes galadriel {
@@ -745,7 +742,7 @@ li {
   height: 279px;
   background: url(./styling/thunder.png);
   animation: thunder-attack 1s steps(calc(11 * 100));
-  transform: scaleX(-1) scaleY(1);
+  transform: scaleX(1) scaleY(1);
   position: absolute;
   border-radius: 70%;
   top: 20%;
@@ -757,7 +754,7 @@ li {
   height: 279px;
   background: url(./styling/thunder.png);
   animation: thunder-attack 1s steps(calc(11 * 100));
-  transform: scaleX(1) scaleY(1);
+  transform: scaleX(-1) scaleY(1);
   position: absolute;
   border-radius: 70%;
   top: 20%;
@@ -772,6 +769,12 @@ li {
   justify-content: space-evenly;
 }
 
+.player {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  flex-direction: column;
+}
 
 .gamepage {
   display: flex;
@@ -779,10 +782,11 @@ li {
   height: 100%;
 }
 .healthName {
-  margin: 0;
-  padding: 0;
+  position: absolute;
+  top: 10%;
+  margin-left: 15px;
   font-family: "Aladin";
-  font-size: 1vw;
+  font-size: 1.5vw;
   line-height: 1;
   color: white;
 }
@@ -831,7 +835,7 @@ li {
 
 .health-bar1 {
   width: 400px;
-  height: 35px;
+  height: 30px;
   background-color: #9aaf8f;
   margin: 10px;
   border-radius: 7px;
@@ -842,7 +846,7 @@ li {
 
 .innerbar-lost1 {
   width: 390px;
-  height: 25px;
+  height: 20px;
   background: rgba(230, 226, 226, 0.5);
   margin: 5px;
   border-radius: 4px;
@@ -851,8 +855,8 @@ li {
 }
 
 .innerbar-activ1 {
-  height: 25px;
-  background-color: #e99090;
+  height: 20px;
+  background-color: rgb(86, 86, 245);
   display: flex;
   justify-content: flex-start;
   border-radius: 4px;
@@ -864,7 +868,7 @@ li {
 
 .health-bar2 {
   width: 400px;
-  height: 35px;
+  height: 30px;
   background-color: #9aaf8f;
   margin: 10px;
   border-radius: 7px;
@@ -875,7 +879,7 @@ li {
 
 .innerbar-lost2 {
   width: 390px;
-  height: 25px;
+  height: 20px;
   background: rgba(230, 226, 226, 0.5);
   margin: 5px;
   border-radius: 4px;
@@ -884,8 +888,8 @@ li {
 }
 
 .innerbar-activ2 {
-  height: 25px;
-  background-color: #e99090;
+  height: 20px;
+  background-color: rgb(86, 86, 245);
   display: flex;
   justify-content: flex-end;
   border-radius: 4px;
