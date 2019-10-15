@@ -111,7 +111,7 @@ class GameStage extends React.Component {
         ),
         player1_anim: Animation[this.state.battleInfo.player1_char].attack,
         player2_anim: Animation[this.state.battleInfo.player2_char].hurt,
-        attack_anim: Animation.spell.player1.fireball
+        attack_anim: Animation.spell.player1.thunder
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -119,7 +119,7 @@ class GameStage extends React.Component {
         ),
         player2_anim: Animation[this.state.battleInfo.player2_char].attack,
         player1_anim: Animation[this.state.battleInfo.player1_char].hurt,
-        attack_anim: Animation.spell.player2.fireball
+        attack_anim: Animation.spell.player2.thunder
       }
     }
 
@@ -256,7 +256,11 @@ class GameStage extends React.Component {
                 alt="fireball!!!!" //what is alt for?
               />
             ) : (
-              ''
+              <img
+                src={firebutton}
+                onClick={() => this.getRandomProblem(1)}
+                alt="fireball!!!!" //what is alt for?
+              />
             )}
           </div>
           <div className="gamebox">
@@ -290,7 +294,11 @@ class GameStage extends React.Component {
                 alt="fireball!!!!"
               />
             ) : (
-              ''
+              <img
+                src={firebutton}
+                onClick={() => this.getRandomProblem(1)}
+                alt="fireball!!!!" //what is alt for?
+              />
             )}
           </div>
         </div>

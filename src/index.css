@@ -445,7 +445,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-idle.png);
   animation: elrond 1.5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 30%;
 }
 
 .elrond-casts-spell {
@@ -457,7 +457,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
   animation: elrond 1.5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 30%;
 }
 
 .elrond-hurt {
@@ -469,7 +469,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-hurt.png);
   animation: elrond 1.5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 30%;
 }
 
 .elrond-die {
@@ -557,7 +557,7 @@ li {
   width: 277px;
   height: 347px;
   background: url(./styling/arwen.png);
-  animation: spin 0.8s infinite linear;
+  animation: spin 0.8s linear infinite;
   margin-top: 40%;
 }
 
@@ -565,7 +565,7 @@ li {
   width: 197px;
   height: 352px;
   background: url(./styling/figwit.png);
-  animation: spin 1s infinite;
+  animation: spin 1s linear infinite;
   margin-top: 40%;
 }
 
@@ -637,7 +637,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-idle.png);
   animation: arwen 1.5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 65%;
 }
 
 .arwen-casts-spell {
@@ -649,7 +649,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-casts-spell.png);
   animation: arwen 1.5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 65%;
 }
 
 .arwen-hurt {
@@ -661,7 +661,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-hurt.png);
   animation: arwen 3s steps(20)infinite;
-  margin-top: 40%;
+  margin-top: 65%;
 }
 
 .arwen-die {
@@ -686,7 +686,8 @@ li {
   height: 372px;
   background: url(./styling/figwit-idle.png);
   animation: figwit 1.5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 35%;
+
 }
 
 .figwit-casts-spell {
@@ -698,7 +699,8 @@ li {
   height: 372px;
   background: url(./styling/figwit-casts-spell.png);
   animation: figwit 5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 35%;
+
 }
 
 .figwit-hurt {
@@ -710,7 +712,7 @@ li {
   height: 372px;
   background: url(./styling/figwit-hurt.png);
   animation: figwit 3s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 35%;
 }
 
 .figwit-die {
@@ -768,6 +770,7 @@ li {
   border-radius: 70%;
   top: 25%;
   left: 35%;
+  display: inline-block
 }
 
 .thunder-right {
@@ -780,6 +783,8 @@ li {
   border-radius: 70%;
   top: 25%;
   left: 35%;
+  display: inline-block
+
 }
 
 .gamebox {
