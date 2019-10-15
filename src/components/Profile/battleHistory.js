@@ -38,20 +38,33 @@ class BattleHistory extends Component {
             let winBackground = "";
             let loseBackground = "";
             let opponent = "";
+            let opponentHealth = "";
+            let myHealth = "";
             if (this.props.user.username === compB.winner) {
               winBackground = "winBackground";
             } else {
               loseBackground = "loseBackground";
             }
-            if (this.props.user.username === compB.player1)
+            if (this.props.user.username === compB.player1) {
+              myHealth += compB.player1_health;
               opponent = compB.player2;
-            else opponent = compB.player1;
+              opponentHealth += compB.player2_health;
+            } else {
+              myHealth += compB.player2_health;
+              opponent = compB.player1;
+              opponentHealth += compB.player1_health;
+            }
 
             return (
               <div
                 className={`single-recored ${loseBackground} ${winBackground}`}
               >
-                <h1 className={`btl-text`}>Opponent: {opponent}</h1>
+                <h1 className={`btl-text`}>{opponent}</h1>
+                <h1 className={`btl-text`}>
+                  Their Health: {opponentHealth} HP
+                </h1>
+                <h1 className={`btl-text`}> My Health: {myHealth}HP </h1>
+                <p></p>
               </div>
             );
           })}
