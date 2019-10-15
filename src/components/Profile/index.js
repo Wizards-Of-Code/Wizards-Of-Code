@@ -55,7 +55,7 @@ const ProfilePage = props => {
             <h3>User name: {props.user.username}</h3>
             <h3>User email: {props.user.email}</h3>
             <h3>Experience: {props.user.experience}</h3>
-            <h3>Health: {props.user.maxHealth}%</h3>
+            <h3>Health: {props.user.maxHealth}HP</h3>
           </div>
         </div>
       </div>

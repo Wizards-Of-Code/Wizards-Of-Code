@@ -105,7 +105,7 @@ class GameStage extends React.Component {
         ),
         player1_anim: Animation[this.state.battleInfo.player1_char].attack,
         player2_anim: Animation[this.state.battleInfo.player2_char].hurt,
-        attack_anim: Animation.spell.player1.thunder
+        attack_anim: Animation.spell.player1.thunder,
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -131,7 +131,7 @@ class GameStage extends React.Component {
         {
           player1_anim: Animation[this.state.battleInfo.player1_char].idle,
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
-          attack_anim: null
+          attack_anim: null,
         },
         {merge: true}
       )
@@ -169,7 +169,7 @@ class GameStage extends React.Component {
         {
           player1_anim: Animation[this.state.battleInfo.player1_char].idle,
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
-          attack_anim: null
+          attack_anim: null,
         },
         {merge: true}
       )
@@ -177,6 +177,48 @@ class GameStage extends React.Component {
       this.setState({message: {}})
     }, 2000)
   }
+
+ 
+  addExp = () => {
+   this.props.userRef.set({ experience: this.props.user.experience += 100 }, { merge: true });
+   if (this.props.user.experience >= 2000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   } else if (this.props.user.experience >= 4000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   } else if (this.props.user.experience >= 6000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   } else if (this.props.user.experience >= 8000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   } else if (this.props.user.experience >= 10000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   }
+  };
+
 
   isDead = () => {
     const {battleInfo} = this.state
@@ -225,21 +267,26 @@ class GameStage extends React.Component {
   }
 
   render() {
+    console.log('MMMMMMMAAAAAXXX', this.props);
     if (this.state.battleInfo.status === 'completed') {
-      console.log('Battle Devided', this.state)
+      console.log('Battle Devided', this.state);
       return (
-        <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
-      )
+        <GameOver
+          battleInfo={this.state.battleInfo}
+          user={this.props.user}
+          addExp={this.addExp}
+        />
+      );
     }
 
-    console.log('BATTLE INFO', this.state.battleInfo)
+    console.log('BATTLE INFO', this.props);
 
     return (
       <div className="gamepage">
         <div
           className="gamestage"
           style={{
-            backgroundImage: `url(${this.state.backgroundImage})`
+            backgroundImage: `url(${this.state.backgroundImage})`,
           }}
         >
           <div className={fireball} style={glowAnimation}>
