@@ -7,6 +7,7 @@ class ImgCollection extends Component {
   }
 
   render() {
+    console.log('this.propssssss',this.props)
     let avatarInfo;
     avatarInfo = this.props.avatars.map(avatar => {
       return avatar.data();
@@ -14,6 +15,12 @@ class ImgCollection extends Component {
 
     return (
       <div className="avatar-container">
+        <audio
+          id="coinSound"
+          src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/page-flip-01a.mp3?alt=media&token=8fdba966-a324-4c91-863f-18237b57852c"
+          // autoPlay="{false}"
+          type="audio/ogg"
+        />
         <img
           className="home-img"
           src="https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg"
@@ -28,6 +35,7 @@ class ImgCollection extends Component {
             <Link to={`/profile`}>
               <button
                 onClick={() => this.props.setAvatar(avatar.imgUrl)}
+                onMouseDown={this.props.pageSound}
                 className="select-avatar"
               >
                 Select avatar

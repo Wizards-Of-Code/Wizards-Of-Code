@@ -15,8 +15,8 @@ class BattleHistory extends Component {
     btlInfo.map(btl => {
       if (
         btl.status === 'completed' &&
-        (btl.user1 === this.props.user.username ||
-          btl.user2 === this.props.user.username)
+        (btl.player1 === this.props.user.username ||
+          btl.player2 === this.props.user.username)
       ) {
         completedBtl.push(btl);
       }
@@ -34,7 +34,7 @@ class BattleHistory extends Component {
           {completedBtl.map(compB => (
             <div className="single-recored">
               <h1 className="btl-text">
-                {compB.user1} VS {compB.user2}
+                {compB.player1} VS {compB.player2}
               </h1>
               <h1 className="btl-text"> WINNER {compB.winner}</h1>
             </div>

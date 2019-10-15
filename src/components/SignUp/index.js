@@ -115,7 +115,11 @@ class SignUpFormBase extends Component {
             className="input-fields"
           />
 
-          <button disabled={isInvalid} type="submit" className="sign-up-btn">
+          <button
+            disabled={isInvalid}
+            type="submit"
+            className="sign-up-btn"
+          >
             Sign Up
           </button>
           {error && <p>{error.message}</p>}
@@ -126,8 +130,11 @@ class SignUpFormBase extends Component {
 }
 const SignUpLink = () => (
   <p className="no-account">
-    Don't have an account?{" "}
-    <Link to={ROUTES.SIGN_UP} className="sp-link">
+    Don't have an account?{' '}
+    <Link
+      to={ROUTES.SIGN_UP}
+      className="sp-link"
+    >
       Sign Up
     </Link>
   </p>

@@ -11,7 +11,7 @@ const OpenBattles = props => {
     <ol className="join-btl">
       {battles.map(battle => (
         <div className="single-game" key={battle.id}>
-          <div className='center'>
+          <div className="center">
             <div className="opponent">Opponent: {battle.player1}</div>
             <Link to={BATTLE}>
               <button
@@ -21,6 +21,7 @@ const OpenBattles = props => {
                     props.joinOpenBattle(battle.id);
                   }
                 }}
+                onMouseDown={props.pageSound}
               >
                 Joinable Game
               </button>
