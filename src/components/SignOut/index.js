@@ -11,6 +11,7 @@ const SignOutButton = props => (
       props.firebase.doSignOut();
       props.history.push(ROUTES.HOME);
     }}
+    onMouseDown={props.pageSound}
     className="sign-out-btn"
   >
     Sign Out

@@ -17,6 +17,7 @@ import HomePage from "../Home";
 import NotFound from "../NotFound";
 import { Character } from "../gamestage/utilities";
 
+const AUDIO = document.createElement('audio')
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -62,6 +63,7 @@ class App extends React.Component {
   };
 
   setAvatar = imgUrl => {
+    console.log(this.state.userRef);
     this.state.userRef.set(
       {
         imgUrl: imgUrl
@@ -144,6 +146,15 @@ class App extends React.Component {
     );
   };
 
+  pageSound = () => {
+    AUDIO.src =
+      'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/page-flip-01a.mp3?alt=media&token=8fdba966-a324-4c91-863f-18237b57852c';
+    AUDIO.load();
+    AUDIO.play();
+    
+  }
+  
+
   componentDidMount() {
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
@@ -157,12 +168,17 @@ class App extends React.Component {
     return (
       <Router>
         <div className="container">
-          <Navigation setState={this.setState} />
+          <Navigation setState={this.setState} pageSound={this.pageSound} />
           <Switch>
             <Route
               exact
               path={ROUTES.SIGN_UP}
-              render={props => <SignUpPage {...props} login={this.login} />}
+              render={props => (
+                <SignUpPage
+                  {...props}
+                  login={this.login}
+                />
+              )}
             />
             <Route
               exact
@@ -178,7 +194,11 @@ class App extends React.Component {
               exact
               path={ROUTES.PROFILE}
               render={props => (
-                <ProfilePage {...props} user={this.state.user} />
+                <ProfilePage
+                  {...props}
+                  user={this.state.user}
+                  pageSound={this.pageSound}
+                />
               )}
             />
             <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
@@ -199,6 +219,7 @@ class App extends React.Component {
                       joinRandomBattle={this.joinRandomBattle}
                       joinOpenBattle={this.joinOpenBattle}
                       activeBattle={this.state.user.activeBattle}
+                      pageSound={this.pageSound}
                     />
                   ) : (
                     <GameStage
@@ -234,6 +255,7 @@ class App extends React.Component {
                   avatars={this.state.avatars}
                   user={this.state.user}
                   setAvatar={this.setAvatar}
+                  pageSound={this.pageSound}
                 />
               )}
             />

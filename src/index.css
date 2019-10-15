@@ -746,7 +746,7 @@ li {
   border-radius: 70%;
   top: 33%;
   left: 35%;
-} 
+}
 
 @keyframes thunder-attack {
   from {
@@ -761,7 +761,7 @@ li {
   width: calc(6217px / 11);
   height: 279px;
   background: url(./styling/thunder.png);
-  animation: thunder-attack 0.5s steps(calc(11 * 1500)) infinite;
+  animation: thunder-attack 1s steps(calc(11 * 100));
   transform: scaleX(1) scaleY(1);
   position: absolute;
   border-radius: 70%;
@@ -773,7 +773,7 @@ li {
   width: calc(6217px / 11);
   height: 279px;
   background: url(./styling/thunder.png);
-  animation: thunder-attack 0.5s steps(calc(11 * 1500)) infinite;
+  animation: thunder-attack 1s steps(calc(11 * 100));
   transform: scaleX(-1) scaleY(1);
   position: absolute;
   border-radius: 70%;
@@ -984,7 +984,6 @@ li {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  
 }
 
 .single-recored {
@@ -1002,8 +1001,52 @@ li {
 }
 
 .btl-text {
-  font-family: 'Aladin';
+  font-family: "Aladin";
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 30px;
+}
+
+@keyframes bottomFadeOut {
+  0% {
+    position: absolute;
+    bottom: -3rem;
+    opacity: 0;
+  }
+
+  75% {
+    position: absolute;
+    bottom: 55%;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.goodMessage {
+  position: absolute;
+  font-size: 6rem;
+  font-family: "Aladin";
+  color: navy;
+  text-shadow: 2px 2px 2px rgb(118, 197, 118);
+  opacity: 0;
+  animation-name: bottomFadeOut;
+  animation-duration: 2s;
+}
+.badMessage {
+  position: absolute;
+  font-size: 6rem;
+  font-family: "Aladin";
+  color: rgb(165, 37, 20);
+  text-shadow: 2px 2px 2px rgb(231, 229, 223);
+  opacity: 0;
+  animation-name: bottomFadeOut;
+  animation-duration: 2s;
+}
+
+.battle-container {
+  display: flex;
+  width: 100%;
 }

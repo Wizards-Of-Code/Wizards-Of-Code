@@ -9,7 +9,7 @@ import {withFirebase} from '../Firebase'
 import GameOver from './gameOver'
 import firebutton from '../../styling/easy-fireball-button.png'
 import Animation from './utilities'
-
+import MessageLog from './messageLog'
 class GameStage extends React.Component {
   constructor(props) {
     super(props)
@@ -23,7 +23,8 @@ class GameStage extends React.Component {
       },
       result: {},
       userCode: '',
-      backgroundImage: ''
+      backgroundImage: '',
+      message: {}
     }
   }
 
@@ -43,7 +44,10 @@ class GameStage extends React.Component {
     this.props.firebase
       .getRandomProblem(difficulty)
       .then(problemRef => problemRef.get())
-      .then(doc => this.setState({problem: doc.data()}))
+      .then(doc => {
+        const problem = doc.data()
+        this.setState({problem, userCode: `${problem.startingCode}\n  \n}`})
+      })
   }
 
   updateCode = event => {
@@ -83,9 +87,16 @@ class GameStage extends React.Component {
       this.setState({result: event.data})
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty])
-        this.setState({userCode: '', problem: {prompt: ''}})
+        this.setState({
+          userCode: '',
+          problem: {prompt: ''},
+          message: {content: 'Success!', type: 'goodMessage'}
+        })
       } else {
         this.selfDamage(this.state.problem.difficulty * 5)
+        this.setState({
+          message: {content: 'Incorrect', type: 'badMessage'}
+        })
       }
       webWorker.terminate()
       clearTimeout(timeoutId)
@@ -130,6 +141,7 @@ class GameStage extends React.Component {
         },
         {merge: true}
       )
+      this.setState({message: {}})
     }, 2000)
   }
 
@@ -168,6 +180,7 @@ class GameStage extends React.Component {
         {merge: true}
       )
       this.taskboxClass = 'taskbox'
+      this.setState({message: {}})
     }, 2000)
   }
 
@@ -247,6 +260,7 @@ class GameStage extends React.Component {
             )}
           </div>
           <div className="gamebox">
+            <MessageLog message={this.state.message} />
             <div className={this.state.battleInfo.attack_anim}>
               <Attacking />
             </div>

@@ -6,14 +6,18 @@ import * as ROUTES from "../../constants/routes";
 import { AuthUserContext } from "../Session";
 
 const Navigation = props => {
+    console.log(props);
   return (
     <div>
       <AuthUserContext.Consumer>
         {authUser =>
           authUser ? (
-            <NavigationAuth updateState={props.setState} />
+            <NavigationAuth
+              updateState={props.setState}
+              pageSound={props.pageSound}
+            />
           ) : (
-            <NavigationNonAuth />
+            <NavigationNonAuth pageSound={props.pageSound} />
           )
         }
       </AuthUserContext.Consumer>
@@ -23,19 +27,34 @@ const Navigation = props => {
 
 const NavigationAuth = props => (
   <ul className="nav">
-    <Link to={ROUTES.HOME}>Wizards of Code</Link>
-    <Link to={ROUTES.BATTLE}>Battle</Link>
-    <Link to={ROUTES.PROFILE}>Profile</Link>
-    <Link to={ROUTES.ACCOUNT}>Account Info</Link>
+    <Link to={ROUTES.HOME} onMouseDown={props.pageSound}>
+      Wizards of Code
+    </Link>
+    <Link to={ROUTES.BATTLE} onMouseDown={props.pageSound}>
+      Battle
+    </Link>
+    <Link to={ROUTES.PROFILE} onMouseDown={props.pageSound}>
+      Profile
+    </Link>
+    <Link to={ROUTES.ACCOUNT} onMouseDown={props.pageSound}>
+      Account Info
+    </Link>
     {/* <Link to={ROUTES.ADMIN}>Admin</Link> */}
-    <SignOutButton updateState={props.updateState} />
+    <SignOutButton
+      updateState={props.updateState}
+      pageSound={props.pageSound}
+    />
   </ul>
 );
 
-const NavigationNonAuth = () => (
+const NavigationNonAuth = (props) => (
   <ul className="nav">
-    <Link to={ROUTES.HOME}>Wizards of Code</Link>
-    <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    <Link to={ROUTES.HOME} onMouseDown={props.pageSound}>
+      Wizards of Code
+    </Link>
+    <Link to={ROUTES.SIGN_IN} onMouseDown={props.pageSound}>
+      Sign In
+    </Link>
   </ul>
 );
 
