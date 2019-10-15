@@ -40,6 +40,9 @@ const Animation = {
       fireball: "fireball-left",
       thunder: "thunder-left"
     }
+  },
+  leaves: {
+    idle: "leaves"
   }
 };
 

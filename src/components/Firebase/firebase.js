@@ -89,7 +89,7 @@ class Firebase {
       player1_health: user.maxHealth,
       player1_anim: `${Character(user.imgUrl)}-idle`,
       player1_char: Character(user.imgUrl),
-      player2_anim: "galadriel-idle",
+      player2_anim: "leaves",
       player2_char: "",
       attack_anim: "",
       status: "open",

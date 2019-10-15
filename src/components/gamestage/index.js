@@ -27,13 +27,7 @@ class GameStage extends React.Component {
       message: {}
     }
   }
-
-  //this.state.battleInfo.player1_anim = 'elrond'
-  //this.state.battleInfo.player2_anim
-
-  // Ai: I know this looks ugly, but we could clean it up later which requires changing data in firestore.
-  // this method returns player1 chosen avatar - so now we can render the right avatar according to player1 profile image at every action without having to hard code it (if user doen't have a profile image, it would show 'elrond' by default)
-
+  
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId)
     problemRef.get().then(problem => this.setState({problem: problem.data()}))

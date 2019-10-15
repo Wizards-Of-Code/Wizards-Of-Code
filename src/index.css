@@ -787,6 +787,15 @@ li {
 
 }
 
+.leaves {
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(9640px / 20);
+  height: 408px;
+  background: url(./styling/leaves.png);
+  animation: figwit 5s steps(20) infinite;
+  margin-top: 35%;
+}
+
 .gamebox {
   display: flex;
   margin-top: 0;
