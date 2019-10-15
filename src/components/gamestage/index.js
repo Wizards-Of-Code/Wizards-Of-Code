@@ -10,21 +10,22 @@ import GameOver from "./gameOver";
 import firebutton from "../../styling/easy-fireball-button.png";
 import Animation from "./utilities";
 import MessageLog from "./messageLog";
+
 class GameStage extends React.Component {
   constructor(props) {
     super(props);
     this.unsubscribe = {};
-    this.taskboxClass = "taskbox";
+    this.taskboxClass = 'taskbox';
     this.state = {
       battleIsOver: false,
       battleInfo: {},
       problem: {
-        prompt: ""
+        prompt: '',
       },
       result: {},
-      userCode: "",
-      backgroundImage: "",
-      message: {}
+      userCode: '',
+      backgroundImage: '',
+      message: {},
     };
   }
 
@@ -54,24 +55,24 @@ class GameStage extends React.Component {
 
   updateCode = event => {
     this.setState({
-      userCode: event
+      userCode: event,
     });
   };
 
   submitCode = (code, inputs, expectedOutputs) => {
-    const webWorker = new Worker("webWorker.js");
+    const webWorker = new Worker('webWorker.js');
 
     // send user code to web worker with relevant data
     webWorker.postMessage({
       userFunction: code,
       inputs: inputs,
-      expectedOutputs: expectedOutputs
+      expectedOutputs: expectedOutputs,
     });
 
     // timeout to protect against infinite loops etc.
     const timeoutId = setTimeout(() => {
       this.setState({
-        result: { userOutputs: "Your function failed!  :(", correct: false }
+        result: { userOutputs: 'Your function failed!  :(', correct: false },
       });
       webWorker.terminate();
       this.selfDamage(5);
@@ -81,7 +82,7 @@ class GameStage extends React.Component {
     const damageAmounts = {
       1: 10,
       2: 25,
-      3: 60
+      3: 60,
     };
 
     // respond to correct/incorrect evaluations of code from WebWorker
@@ -90,14 +91,14 @@ class GameStage extends React.Component {
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty]);
         this.setState({
-          userCode: "",
-          problem: { prompt: "" },
-          message: { content: "Success!", type: "goodMessage" }
+          userCode: '',
+          problem: { prompt: '' },
+          message: { content: 'Success!', type: 'goodMessage' },
         });
       } else {
         this.selfDamage(this.state.problem.difficulty * 5);
         this.setState({
-          message: { content: "Incorrect", type: "badMessage" }
+          message: { content: 'Incorrect', type: 'badMessage' },
         });
       }
       webWorker.terminate();
@@ -113,7 +114,7 @@ class GameStage extends React.Component {
         ),
         player1_anim: Animation[this.state.battleInfo.player1_char].attack,
         player2_anim: Animation[this.state.battleInfo.player2_char].hurt,
-        attack_anim: Animation.spell.player1.thunder
+        attack_anim: Animation.spell.player1.thunder,
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -121,8 +122,8 @@ class GameStage extends React.Component {
         ),
         player2_anim: Animation[this.state.battleInfo.player2_char].attack,
         player1_anim: Animation[this.state.battleInfo.player1_char].hurt,
-        attack_anim: Animation.spell.player2.thunder
-      }
+        attack_anim: Animation.spell.player2.thunder,
+      },
     };
 
     this.props.battleRef.update(updateObject[player]).then(() => {
@@ -139,7 +140,7 @@ class GameStage extends React.Component {
         {
           player1_anim: Animation[this.state.battleInfo.player1_char].idle,
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
-          attack_anim: null
+          attack_anim: null,
         },
         { merge: true }
       );
@@ -148,14 +149,14 @@ class GameStage extends React.Component {
   };
 
   selfDamage = amount => {
-    this.taskboxClass = "taskbox red";
-    if (this.props.user.role === "player2") {
+    this.taskboxClass = 'taskbox red';
+    if (this.props.user.role === 'player2') {
       this.props.battleRef
         .update({
           player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
-          player2_anim: Animation[this.state.battleInfo.player2_char].hurt
+          player2_anim: Animation[this.state.battleInfo.player2_char].hurt,
         })
         .then(() => {
           this.isDead();
@@ -166,7 +167,7 @@ class GameStage extends React.Component {
           player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
-          player1_anim: Animation[this.state.battleInfo.player1_char].hurt
+          player1_anim: Animation[this.state.battleInfo.player1_char].hurt,
         })
         .then(() => {
           this.isDead();
@@ -177,26 +178,68 @@ class GameStage extends React.Component {
         {
           player1_anim: Animation[this.state.battleInfo.player1_char].idle,
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
-          attack_anim: null
+          attack_anim: null,
         },
         { merge: true }
       );
-      this.taskboxClass = "taskbox";
+      this.taskboxClass = 'taskbox';
       this.setState({ message: {} });
     }, 2000);
   };
+
+ 
+  addExp = () => {
+   this.props.userRef.set({ experience: this.props.user.experience += 100 }, { merge: true });
+   if (this.props.user.experience >= 2000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   } else if (this.props.user.experience >= 4000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   } else if (this.props.user.experience >= 6000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   } else if (this.props.user.experience >= 8000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   } else if (this.props.user.experience >= 10000) {
+     this.props.userRef.set(
+       {
+         maxHealth: (this.props.user.maxHealth += 20),
+       },
+       { merge: true }
+     );
+   }
+  };
+
 
   isDead = () => {
     const { battleInfo } = this.state;
 
     if (battleInfo.player1_health <= 0) {
       this.props.battleRef.set(
-        { winner: battleInfo.player2, status: "completed" },
+        { winner: battleInfo.player2, status: 'completed' },
         { merge: true }
       );
     } else if (battleInfo.player2_health <= 0) {
       this.props.battleRef.set(
-        { winner: battleInfo.player1, status: "completed" },
+        { winner: battleInfo.player1, status: 'completed' },
         { merge: true }
       );
     }
@@ -222,10 +265,10 @@ class GameStage extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribe();
-    if (this.state.battleInfo.status === "completed") {
+    if (this.state.battleInfo.status === 'completed') {
       this.props.userRef.set(
         {
-          activeBattle: ""
+          activeBattle: '',
         },
         { merge: true }
       );
@@ -233,21 +276,26 @@ class GameStage extends React.Component {
   }
 
   render() {
-    if (this.state.battleInfo.status === "completed") {
-      console.log("Battle Devided", this.state);
+    console.log('MMMMMMMAAAAAXXX', this.props);
+    if (this.state.battleInfo.status === 'completed') {
+      console.log('Battle Devided', this.state);
       return (
-        <GameOver battleInfo={this.state.battleInfo} user={this.props.user} />
+        <GameOver
+          battleInfo={this.state.battleInfo}
+          user={this.props.user}
+          addExp={this.addExp}
+        />
       );
     }
 
-    console.log("BATTLE INFO", this.state.battleInfo);
+    console.log('BATTLE INFO', this.props);
 
     return (
       <div className="gamepage">
         <div
           className="gamestage"
           style={{
-            backgroundImage: `url(${this.state.backgroundImage})`
+            backgroundImage: `url(${this.state.backgroundImage})`,
           }}
         >
           <div className={fireball} style={glowAnimation}>
@@ -258,7 +306,7 @@ class GameStage extends React.Component {
                 alt="fireball!!!!" //what is alt for?
               />
             ) : (
-              ""
+              ''
             )}
           </div>
           <div className="gamebox">
@@ -292,7 +340,7 @@ class GameStage extends React.Component {
                 alt="fireball!!!!"
               />
             ) : (
-              ""
+              ''
             )}
           </div>
         </div>
@@ -307,7 +355,7 @@ class GameStage extends React.Component {
             submitCode={
               this.state.problem.inputs
                 ? this.submitCode
-                : () => console.log("No opponent")
+                : () => console.log('No opponent')
             }
             userCode={this.state.userCode}
             problem={this.state.problem}
