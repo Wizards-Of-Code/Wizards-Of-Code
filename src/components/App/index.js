@@ -15,7 +15,9 @@ import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 import HomePage from "../Home";
 import NotFound from "../NotFound";
+import { Character } from "../gamestage/utilities";
 
+const AUDIO = document.createElement('audio')
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +29,7 @@ class App extends React.Component {
       battleRef: {},
       avatars: [],
       userRef: {},
-      closedBtl: [],
+      closedBtl: []
     };
     this.setState = this.setState.bind(this);
   }
@@ -41,7 +43,7 @@ class App extends React.Component {
       const userData = user.data();
       this.setState({ user: userData });
       // get battle firebase reference, if applicable
-      if (userData.activeBattle !== '') {
+      if (userData.activeBattle !== "") {
         let battleRef = this.props.firebase.battle(userData.activeBattle);
         this.setState({ battleRef });
       }
@@ -61,9 +63,10 @@ class App extends React.Component {
   };
 
   setAvatar = imgUrl => {
+    console.log(this.state.userRef);
     this.state.userRef.set(
       {
-        imgUrl: imgUrl,
+        imgUrl: imgUrl
       },
       { merge: true }
     );
@@ -77,9 +80,9 @@ class App extends React.Component {
         let status = change.doc.data().status;
         let doc = change.doc.data();
         let id = change.doc.id;
-        if (change.type === 'added' && status === 'open') {
+        if (change.type === "added" && status === "open") {
           allOpenBattles.push({ ...doc, id });
-        } else if (change.type === 'modified' && status === 'closed') {
+        } else if (change.type === "modified" && status === "closed") {
           allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
         }
       });
@@ -99,7 +102,7 @@ class App extends React.Component {
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
-          role: 'player1',
+          role: "player1"
         },
         { merge: true }
       );
@@ -111,7 +114,7 @@ class App extends React.Component {
       if (battleRef) {
         this.joinBattle(battleRef);
       } else {
-        alert('NO OPEN BATTLE DUM DUM!');
+        alert("NO OPEN BATTLE DUM DUM!");
       }
     });
   };
@@ -127,7 +130,9 @@ class App extends React.Component {
       {
         player2: user.username,
         player2_health: user.maxHealth,
-        status: 'closed',
+        status: "closed",
+        player2_anim: `${Character(user.imgUrl)}-idle`,
+        player2_char: Character(user.imgUrl)
       },
       { merge: true }
     );
@@ -135,11 +140,20 @@ class App extends React.Component {
     this.state.userRef.set(
       {
         activeBattle: battleRef.id,
-        role: 'player2',
+        role: "player2"
       },
       { merge: true }
     );
   };
+
+  pageSound = () => {
+    AUDIO.src =
+      'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/page-flip-01a.mp3?alt=media&token=8fdba966-a324-4c91-863f-18237b57852c';
+    AUDIO.load();
+    AUDIO.play();
+    
+  }
+  
 
   componentDidMount() {
     this.props.firebase.auth.onAuthStateChanged(authUser => {
@@ -150,16 +164,21 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('APP state', this.state);
+    console.log("APP state", this.state);
     return (
       <Router>
         <div className="container">
-          <Navigation setState={this.setState} />
+          <Navigation setState={this.setState} pageSound={this.pageSound} />
           <Switch>
             <Route
               exact
               path={ROUTES.SIGN_UP}
-              render={props => <SignUpPage {...props} login={this.login} />}
+              render={props => (
+                <SignUpPage
+                  {...props}
+                  login={this.login}
+                />
+              )}
             />
             <Route
               exact
@@ -175,17 +194,21 @@ class App extends React.Component {
               exact
               path={ROUTES.PROFILE}
               render={props => (
-                <ProfilePage {...props} user={this.state.user} />
+                <ProfilePage
+                  {...props}
+                  user={this.state.user}
+                  pageSound={this.pageSound}
+                />
               )}
             />
             <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
             <Route exact path={ROUTES.ADMIN} component={AdminPage} />
-            {this.state.battleRef.id || this.state.user.activeBattle === '' ? (
+            {this.state.battleRef.id || this.state.user.activeBattle === "" ? (
               <Route
                 exact
-                path={'(/|/battle)'}
+                path={"(/|/battle)"}
                 render={props =>
-                  this.state.user.activeBattle === '' ||
+                  this.state.user.activeBattle === "" ||
                   !this.state.user.activeBattle ? (
                     <BattlesPage
                       {...props}
@@ -196,6 +219,7 @@ class App extends React.Component {
                       joinRandomBattle={this.joinRandomBattle}
                       joinOpenBattle={this.joinOpenBattle}
                       activeBattle={this.state.user.activeBattle}
+                      pageSound={this.pageSound}
                     />
                   ) : (
                     <GameStage
@@ -217,9 +241,9 @@ class App extends React.Component {
                 }
               />
             ) : (
-              ''
+              ""
             )}
-            <Route exact path={'(/|/home)'} component={HomePage} />
+            <Route exact path={"(/|/home)"} component={HomePage} />
 
             <Route
               exact
@@ -231,6 +255,7 @@ class App extends React.Component {
                   avatars={this.state.avatars}
                   user={this.state.user}
                   setAvatar={this.setAvatar}
+                  pageSound={this.pageSound}
                 />
               )}
             />
