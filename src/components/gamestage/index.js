@@ -65,7 +65,7 @@ class GameStage extends React.Component {
       .then(problemRef => problemRef.get())
       .then(doc => {
         const problem = doc.data();
-        this.setState({ problem, userCode: `${problem.startingCode}\n\n}` });
+        this.setState({ problem, userCode: `${problem.startingCode}\n  \n}` });
       });
   };
 

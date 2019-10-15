@@ -998,6 +998,7 @@ li {
 }
 
 .goodMessage {
+  position: absolute;
   font-size: 6rem;
   font-family: 'Aladin';
   color: navy;
@@ -1008,6 +1009,7 @@ li {
 }
 
 .badMessage {
+  position: absolute;
   font-size: 6rem;
   font-family: 'Aladin';
   color: rgb(165, 37, 20);
