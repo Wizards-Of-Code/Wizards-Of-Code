@@ -37,7 +37,6 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-
         this.setState({ uid: authUser.user.uid });
 
         // Create a user in your Firebase realtime database
@@ -47,7 +46,8 @@ class SignUpFormBase extends Component {
           experience: 0,
           maxHealth: 100,
           activeBattle: "",
-          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/mage_2%20copy.png?alt=media&token=b9f14ef3-a649-453d-bf5f-3449758fecf7'
+          imgUrl:
+            "https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/mage_2%20copy.png?alt=media&token=b9f14ef3-a649-453d-bf5f-3449758fecf7"
         });
       })
       .then(() => {
