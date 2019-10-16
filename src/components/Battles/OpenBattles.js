@@ -13,8 +13,9 @@ const OpenBattles = props => {
         <div className="single-game" key={battle.id}>
           <div className="center">
             <div className="opponent">Opponent: {battle.player1}</div>
-            <div style={{color: 'gold',fontFamily: "Aladin"}}>
-              EXP:{battle.player1_exp}HP:{battle.player1_health}
+            <div className="hp-exp">
+              <p className="hp-exp-text">EXP:{battle.player1_exp}</p>
+              <p className="hp-exp-text">HP:{battle.player1_health}</p>
             </div>
             <Link to={BATTLE}>
               <button

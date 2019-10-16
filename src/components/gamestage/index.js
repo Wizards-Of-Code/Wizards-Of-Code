@@ -229,13 +229,10 @@ class GameStage extends React.Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-      console.log('Battle INFO', this.state.battleInfo);
+    
     // this.player1Avatar();
     // this.player2Avatar();
 
-=======
->>>>>>> e14edc547042de36af3d6092d5e79032243481cc
     if (this.props.battleRef.id) {
       this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate)
       this.props.battleRef
@@ -260,10 +257,6 @@ class GameStage extends React.Component {
 
   render() {
     if (this.state.battleInfo.status === 'completed') {
-<<<<<<< HEAD
-=======
-      console.log('Battle Devided', this.state)
->>>>>>> e14edc547042de36af3d6092d5e79032243481cc
       return (
         <GameOver
           battleInfo={this.state.battleInfo}
