@@ -248,11 +248,26 @@ li {
 }
 .home-page-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  text-align: center;
   font-family: "Aladin";
   font-size: 1.5vw;
   background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
   background-size: cover;
+}
+
+.home-page-container h1 {
+  color: #f09b1c;
+  text-shadow: 2px 2px 5px #1b1b1b;
+  font-size: 7rem;
+}
+
+.home-page-details {
+  display: flex;
+  justify-content: space-between;
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #1b1b1b;
+  font-size: 1.5rem;
 }
 
 .notfound-page-container {
