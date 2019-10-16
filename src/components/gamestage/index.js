@@ -8,8 +8,15 @@ import Attacking from './attacking'
 import {withFirebase} from '../Firebase'
 import GameOver from './gameOver'
 import firebutton from '../../styling/easy-fireball-button.png'
+import easyButton from '../../styling/easy-button.png'
+import mediumButton from '../../styling/medium-button.png'
+import hardButton from '../../styling/hard-button.png'
 import Animation from './utilities'
 import MessageLog from './messageLog'
+import easySpell from '../../styling/easy-spell.png'
+import mediumSpell from '../../styling/medium-spell.png'
+import hardSpell from '../../styling/hard-spell.png'
+
 class GameStage extends React.Component {
   constructor(props) {
     super(props)
@@ -105,7 +112,7 @@ class GameStage extends React.Component {
         ),
         player1_anim: Animation[this.state.battleInfo.player1_char].attack,
         player2_anim: Animation[this.state.battleInfo.player2_char].hurt,
-        attack_anim: Animation.spell.player1.purpleExplosion,
+        attack_anim: Animation.spell.player1.purpleExplosion
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -131,7 +138,7 @@ class GameStage extends React.Component {
         {
           player1_anim: Animation[this.state.battleInfo.player1_char].idle,
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
-          attack_anim: null,
+          attack_anim: null
         },
         {merge: true}
       )
@@ -169,7 +176,7 @@ class GameStage extends React.Component {
         {
           player1_anim: Animation[this.state.battleInfo.player1_char].idle,
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
-          attack_anim: null,
+          attack_anim: null
         },
         {merge: true}
       )
@@ -178,47 +185,48 @@ class GameStage extends React.Component {
     }, 2000)
   }
 
- 
   addExp = () => {
-   this.props.userRef.set({ experience: this.props.user.experience += 100 }, { merge: true });
-   if (this.props.user.experience >= 2000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   } else if (this.props.user.experience >= 4000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   } else if (this.props.user.experience >= 6000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   } else if (this.props.user.experience >= 8000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   } else if (this.props.user.experience >= 10000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   }
-  };
-
+    this.props.userRef.set(
+      {experience: (this.props.user.experience += 100)},
+      {merge: true}
+    )
+    if (this.props.user.experience >= 2000) {
+      this.props.userRef.set(
+        {
+          maxHealth: (this.props.user.maxHealth += 20)
+        },
+        {merge: true}
+      )
+    } else if (this.props.user.experience >= 4000) {
+      this.props.userRef.set(
+        {
+          maxHealth: (this.props.user.maxHealth += 20)
+        },
+        {merge: true}
+      )
+    } else if (this.props.user.experience >= 6000) {
+      this.props.userRef.set(
+        {
+          maxHealth: (this.props.user.maxHealth += 20)
+        },
+        {merge: true}
+      )
+    } else if (this.props.user.experience >= 8000) {
+      this.props.userRef.set(
+        {
+          maxHealth: (this.props.user.maxHealth += 20)
+        },
+        {merge: true}
+      )
+    } else if (this.props.user.experience >= 10000) {
+      this.props.userRef.set(
+        {
+          maxHealth: (this.props.user.maxHealth += 20)
+        },
+        {merge: true}
+      )
+    }
+  }
 
   isDead = () => {
     const {battleInfo} = this.state
@@ -241,9 +249,6 @@ class GameStage extends React.Component {
   }
 
   componentDidMount() {
-    // this.player1Avatar();
-    // this.player2Avatar();
-
     if (this.props.battleRef.id) {
       this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate)
       this.props.battleRef
@@ -267,35 +272,44 @@ class GameStage extends React.Component {
   }
 
   render() {
-    console.log('MMMMMMMAAAAAXXX', this.props);
     if (this.state.battleInfo.status === 'completed') {
-      console.log('Battle Devided', this.state);
+      console.log('Battle Devided', this.state)
       return (
         <GameOver
           battleInfo={this.state.battleInfo}
           user={this.props.user}
           addExp={this.addExp}
         />
-      );
+      )
     }
-
-    console.log('BATTLE INFO', this.props);
 
     return (
       <div className="gamepage">
         <div
           className="gamestage"
           style={{
-            backgroundImage: `url(${this.state.backgroundImage})`,
+            backgroundImage: `url(${this.state.backgroundImage})`
           }}
         >
-          <div className={fireball} style={glowAnimation}>
+          <div style={{transform: 'scale(0.2)'}}>
             {this.state.battleInfo.player1 ? (
-              <img
-                src={firebutton}
-                onClick={() => this.getRandomProblem(1)}
-                alt="fireball!!!!" //what is alt for?
-              />
+              <div>
+                <img
+                  src={easySpell}
+                  alt="easy-Spell"
+                  onClick={() => this.getRandomProblem(1)}
+                ></img>
+                <img
+                  src={mediumSpell}
+                  alt="medium-Spell"
+                  onClick={() => this.getRandomProblem(2)}
+                ></img>
+                <img
+                  src={hardSpell}
+                  alt="medium-Spell"
+                  onClick={() => this.getRandomProblem(3)}
+                ></img>
+              </div>
             ) : (
               <img
                 src={firebutton}
@@ -307,7 +321,6 @@ class GameStage extends React.Component {
           <div className="gamebox">
             <MessageLog message={this.state.message} />
             <div className={this.state.battleInfo.attack_anim}>
-
               <Attacking />
             </div>
             <div className="player">
@@ -328,13 +341,25 @@ class GameStage extends React.Component {
               <div className={this.state.battleInfo.player2_anim}></div>
             </div>
           </div>
-          <div className={fireball} style={glowAnimation}>
+          <div style={{transform: 'scale(0.2)'}}>
             {this.state.battleInfo.player2 ? (
-              <img
-                src={firebutton}
-                onClick={() => this.getRandomProblem(1)}
-                alt="fireball!!!!"
-              />
+              <div>
+                <img
+                  src={easyButton}
+                  alt="easy-Button"
+                  onClick={() => this.getRandomProblem(1)}
+                ></img>
+                <img
+                  src={mediumButton}
+                  alt="medium-Button"
+                  onClick={() => this.getRandomProblem(2)}
+                ></img>
+                <img
+                  src={hardButton}
+                  alt="medium-Button"
+                  onClick={() => this.getRandomProblem(3)}
+                ></img>
+              </div>
             ) : (
               <img
                 src={firebutton}
