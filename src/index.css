@@ -536,7 +536,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-idle.png);
   animation: elrond 1.5s steps(20) infinite;
-  margin-top: 30%;
+  margin-top: 11%;
 }
 
 .elrond-casts-spell {
@@ -548,7 +548,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
   animation: elrond 1.5s steps(20) infinite;
-  margin-top: 30%;
+  margin-top: 11%;
 }
 
 .elrond-hurt {
@@ -560,7 +560,7 @@ li {
   height: 438px;
   background: url(./styling/elrond-hurt.png);
   animation: elrond 1.5s steps(20) infinite;
-  margin-top: 30%;
+  margin-top: 11%;
 }
 
 .elrond-die {
@@ -616,7 +616,7 @@ li {
   background: url(./styling/figwit.png);
   animation: bounce infinite;
   animation-duration: 1s;
-  margin: 0 auto;
+  margin-top: 35%;
 }
 
 @keyframes spin {
@@ -678,7 +678,7 @@ li {
   height: 410px;
   background: url(./styling/galadriel-idle.png);
   animation: galadriel 1.5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 18%;
 }
 
 .galadriel-casts-spell {
@@ -691,7 +691,7 @@ li {
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
   animation: galadriel 1.5s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 18%;
 }
 
 .galadriel-hurt {
@@ -703,7 +703,7 @@ li {
   height: 410px;
   background: url(./styling/galadriel-hurt.png);
   animation: galadriel 3s steps(20) infinite;
-  margin-top: 40%;
+  margin-top: 18%;
 }
 
 .galadriel-die {
@@ -728,7 +728,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-idle.png);
   animation: arwen 1.5s steps(20) infinite;
-  margin-top: 65%;
+  margin-top: 40%;
 }
 
 .arwen-casts-spell {
@@ -740,7 +740,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-casts-spell.png);
   animation: arwen 1.5s steps(20) infinite;
-  margin-top: 65%;
+  margin-top: 40%;
 }
 
 .arwen-hurt {
@@ -752,7 +752,7 @@ li {
   height: 347px;
   background: url(./styling/arwen-hurt.png);
   animation: arwen 3s steps(20) infinite;
-  margin-top: 65%;
+  margin-top: 40%;
 }
 
 .arwen-die {
@@ -777,7 +777,7 @@ li {
   height: 372px;
   background: url(./styling/figwit-idle.png);
   animation: figwit 1.5s steps(20) infinite;
-  margin-top: 35%;
+  margin-top: 20%;
 }
 
 .figwit-casts-spell {
@@ -789,7 +789,7 @@ li {
   height: 372px;
   background: url(./styling/figwit-casts-spell.png);
   animation: figwit 5s steps(20) infinite;
-  margin-top: 35%;
+  margin-top: 20%;
 }
 
 .figwit-hurt {
@@ -801,7 +801,7 @@ li {
   height: 372px;
   background: url(./styling/figwit-hurt.png);
   animation: figwit 3s steps(20) infinite;
-  margin-top: 35%;
+  margin-top: 20%;
 }
 
 .figwit-die {
@@ -916,6 +916,22 @@ li {
   margin-top: 35%;
 }
 
+.spell-button {
+  width: 7%;
+  height: auto;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.spells {
+  /* position: relative; */
+  display: flex;
+  /* margin-bottom: 0%; */
+  /* align-items: flex-end; */
+  justify-content: center;
+  flex-direction: row;
+}
+
 .gamebox {
   display: flex;
   margin-top: 0;
@@ -928,7 +944,9 @@ li {
 .player {
   display: flex;
   justify-content: center;
-  margin: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 15%;
 }
 
 .gamepage {
@@ -938,11 +956,12 @@ li {
 }
 .healthName {
   position: absolute;
-  top: 10%;
   font-family: "Aladin";
   font-size: 1.5vw;
   line-height: 1;
   color: white;
+  /* margin-top: 4.5%; */
+  /* margin-bottom: 0%; */
 }
 
 .gamestage {
@@ -950,8 +969,16 @@ li {
   justify-content: space-around;
   align-items: center;
   height: 65%;
+  flex-direction: column;
 }
 
+.stage-and-spells {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 65%;
+  flex-direction: column;
+}
 .connected-users {
   background: rgba(161, 159, 159, 0.5);
   display: flex;
@@ -996,24 +1023,22 @@ li {
   width: 400px;
   height: 30px;
   background-color: #9aaf8f;
-  /* margin: 10px; */
-  /* border-radius: 7px; */
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0%;
+  border-radius: 7px;
   display: flex;
   justify-content: flex-start;
   align-content: center;
-}
-
-.empty-box {
-  width: 20px;
-  height: 20px;
 }
 
 .health-bar2 {
   width: 400px;
   height: 30px;
   background-color: #9aaf8f;
-  /* margin: 10px; */
-  /* border-radius: 7px; */
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 7px;
   display: flex;
   justify-content: flex-start;
   align-content: center;
@@ -1063,7 +1088,7 @@ li {
   margin-block-start: 0;
 }
 
-.glow-fireball {
+/* .glow-fireball {
   border-radius: 50%;
   border: none;
   color: white;
@@ -1072,6 +1097,8 @@ li {
   margin-left: 5%;
   margin-right: 5%;
 }
+
+} */
 
 @keyframes glowing {
   0% {
