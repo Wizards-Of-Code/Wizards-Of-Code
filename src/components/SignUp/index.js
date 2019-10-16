@@ -5,12 +5,7 @@ import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
 const SignUpPage = props => (
-  <div className="sign-up">
-    <img
-      className="sign-up-img"
-      src="https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg"
-      alt=""
-    />
+  <div className="sign-in-page-container centerUp">
     <h1 className="sign-up-logo">Sign Up</h1>
     <SignUpForm login={props.login} />
   </div>
@@ -115,11 +110,7 @@ class SignUpFormBase extends Component {
             className="input-fields"
           />
 
-          <button
-            disabled={isInvalid}
-            type="submit"
-            className="sign-up-btn"
-          >
+          <button disabled={isInvalid} type="submit" className="sign-up-btn">
             Sign Up
           </button>
           {error && <p>{error.message}</p>}
@@ -130,11 +121,8 @@ class SignUpFormBase extends Component {
 }
 const SignUpLink = () => (
   <p className="no-account">
-    Don't have an account?{' '}
-    <Link
-      to={ROUTES.SIGN_UP}
-      className="sp-link"
-    >
+    Don't have an account?{" "}
+    <Link to={ROUTES.SIGN_UP} className="sp-link">
       Sign Up
     </Link>
   </p>
