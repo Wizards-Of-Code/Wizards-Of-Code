@@ -184,9 +184,10 @@ li {
 .landing-page-container {
   display: flex;
   flex-direction: row;
-  min-height: fill-available;
-  width: 100%;
+
   height: 100%;
+  background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
+  background-size: cover;
 }
 
 .join-random-btl {

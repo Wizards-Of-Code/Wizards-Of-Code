@@ -9,15 +9,10 @@ class BattlesPage extends React.Component {
   }
 
   render() {
-    console.log('PROOOPS', this.props);
+    console.log("PROOOPS", this.props);
 
     return (
       <div className="landing-page-container">
-        <img
-          className="home-img"
-          src="https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg"
-          alt=""
-        />
         {this.props.user.username ? (
           <div className="battle-container">
             <div className="join-random-btl">
