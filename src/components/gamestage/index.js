@@ -308,25 +308,27 @@ class GameStage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="spells">
-            <img
-              className="spell-button"
-              src={easySpell}
-              alt="easy-Spell"
-              onClick={() => this.getRandomProblem(1)}
-            ></img>
-            <img
-              className="spell-button"
-              src={mediumSpell}
-              alt="medium-Spell"
-              onClick={() => this.getRandomProblem(2)}
-            ></img>
-            <img
-              className="spell-button"
-              src={hardSpell}
-              alt="medium-Spell"
-              onClick={() => this.getRandomProblem(3)}
-            ></img>
+          <div>
+            {this.state.battleInfo.status === 'closed' ? (<div className="spells">
+              <img
+                className="spell-button"
+                src={easySpell}
+                alt="easy-Spell"
+                onClick={() => this.getRandomProblem(1)}
+              ></img>
+              <img
+                className="spell-button"
+                src={mediumSpell}
+                alt="medium-Spell"
+                onClick={() => this.getRandomProblem(2)}
+              ></img>
+              <img
+                className="spell-button"
+                src={hardSpell}
+                alt="medium-Spell"
+                onClick={() => this.getRandomProblem(3)}
+              ></img>
+            </div>) : '' }
           </div>
         </div>
         <div className={this.taskboxClass}>
@@ -342,12 +344,13 @@ class GameStage extends React.Component {
           />
           <div className="submit-button-box">
             <button
-              onClick={() =>
+              onClick={this.state.problem.inputs ? () => {
                 this.submitCode(
                   this.state.userCode,
                   this.state.problem.inputs,
                   this.state.problem.outputs
                 )
+              } : () => {}
               }
               className="submit-result"
             >
