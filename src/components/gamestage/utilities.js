@@ -34,12 +34,17 @@ const Animation = {
   spell: {
     player1: {
       fireball: "fireball-right",
-      thunder: "thunder-right"
+      thunder: "thunder-right",
+      purpleExplosion: "purple-explosion-right"
     },
     player2: {
       fireball: "fireball-left",
-      thunder: "thunder-left"
+      thunder: "thunder-left",
+      purpleExplosion: "purple-explosion-left"
     }
+  },
+  leaves: {
+    idle: "leaves"
   }
 };
 

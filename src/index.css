@@ -437,36 +437,39 @@ li {
 }
 
 .elrond-idle {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-idle.png);
   animation: elrond 1.5s steps(20) infinite;
+  margin-top: 30%;
 }
 
 .elrond-casts-spell {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
   animation: elrond 1.5s steps(20) infinite;
+  margin-top: 30%;
 }
 
 .elrond-hurt {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-hurt.png);
   animation: elrond 1.5s steps(20) infinite;
+  margin-top: 30%;
 }
 
 .elrond-die {
@@ -495,6 +498,7 @@ li {
   background: url(./styling/elrond.png);
   animation: bounce infinite;
   animation-duration: 1s;
+  margin-top: 40%;
 }
 
 .galadriel-win {
@@ -503,6 +507,7 @@ li {
   background: url(./styling/galadriel.png);
   animation: bounce infinite;
   animation-duration: 1s;
+  margin-top: 40%;
 }
 
 .arwen-win {
@@ -511,6 +516,7 @@ li {
   background: url(./styling/arwen.png);
   animation: bounce infinite;
   animation-duration: 1s;
+  margin-top: 40%;
 }
 
 .figwit-win {
@@ -519,6 +525,7 @@ li {
   background: url(./styling/figwit.png);
   animation: bounce infinite;
   animation-duration: 1s;
+  margin-top: 40%;
 }
 
 @keyframes spin {
@@ -526,39 +533,40 @@ li {
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(359deg);
+    transform: rotate(360deg);
   }
 }
 .elrond-spin {
   width: 397px;
   height: 438px;
+  transform: scaleX(0.7) scaleY(0.7);
   background: url(./styling/elrond.png);
-  animation: spin infinite;
-  animation-duration: 1s;
+  animation: spin 1s infinite;
+  margin-top: 40%;
 }
 
 .galadriel-spin {
   width: 341px;
   height: 410px;
   background: url(./styling/galadriel.png);
-  animation: spin infinite;
-  animation-duration: 1s;
+  animation: spin 1s infinite;
+  margin-top: 40%;
 }
 
 .arwen-spin {
   width: 277px;
   height: 347px;
   background: url(./styling/arwen.png);
-  animation: spin infinite;
-  animation-duration: 1s;
+  animation: spin 0.8s linear infinite;
+  margin-top: 40%;
 }
 
 .figwit-spin {
   width: 197px;
   height: 352px;
   background: url(./styling/figwit.png);
-  animation: spin infinite;
-  animation-duration: 1s;
+  animation: spin 1s linear infinite;
+  margin-top: 40%;
 }
 
 @keyframes galadriel {
@@ -571,36 +579,40 @@ li {
 }
 
 .galadriel-idle {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-idle.png);
   animation: galadriel 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .galadriel-casts-spell {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
+
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
   animation: galadriel 1.5s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .galadriel-hurt {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-hurt.png);
-  animation: galadriel 3s steps(20);
+  animation: galadriel 3s steps(20) infinite;
+  margin-top: 40%;
 }
 
 .galadriel-die {
@@ -617,36 +629,39 @@ li {
 }
 
 .arwen-idle {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-idle.png);
   animation: arwen 1.5s steps(20) infinite;
+  margin-top: 65%;
 }
 
 .arwen-casts-spell {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-casts-spell.png);
   animation: arwen 1.5s steps(20) infinite;
+  margin-top: 65%;
 }
 
 .arwen-hurt {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-hurt.png);
-  animation: arwen 3s steps(20);
+  animation: arwen 3s steps(20)infinite;
+  margin-top: 65%;
 }
 
 .arwen-die {
@@ -663,36 +678,41 @@ li {
 }
 
 .figwit-idle {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-idle.png);
   animation: figwit 1.5s steps(20) infinite;
+  margin-top: 35%;
+
 }
 
 .figwit-casts-spell {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-casts-spell.png);
   animation: figwit 5s steps(20) infinite;
+  margin-top: 35%;
+
 }
 
 .figwit-hurt {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-hurt.png);
-  animation: figwit 3s steps(20);
+  animation: figwit 3s steps(20) infinite;
+  margin-top: 35%;
 }
 
 .figwit-die {
@@ -747,9 +767,10 @@ li {
   animation: thunder-attack 1s steps(calc(11 * 100));
   transform: scaleX(1) scaleY(1);
   position: absolute;
-  border-radius: 70%;
-  top: 20%;
+  /* border-radius: 70%; */
+  top: 25%;
   left: 35%;
+  display: inline-block
 }
 
 .thunder-right {
@@ -759,9 +780,51 @@ li {
   animation: thunder-attack 1s steps(calc(11 * 100));
   transform: scaleX(-1) scaleY(1);
   position: absolute;
-  border-radius: 70%;
-  top: 20%;
+  /* border-radius: 70%; */
+  top: 25%;
   left: 35%;
+  display: inline-block
+}
+
+@keyframes purple-explosion {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -6000px;
+  }
+}
+.purple-explosion-left {
+  width: calc(6000px / 15);
+  height: 397px;
+  background: url(./styling/purple-explosion.png);
+  animation: purple-explosion 0.5s steps(10) infinite;
+  transform: scaleX(-1) scaleY(1);
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  display: inline-block
+}
+
+.purple-explosion-right {
+  width: calc(6000px / 15);
+  height: 397px;
+  background: url(./styling/purple-explosion.png);
+  animation: purple-explosion 0.5s steps(10) infinite;
+  transform: scaleX(1) scaleY(1);
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  display: inline-block
+}
+
+.leaves {
+  transform: scaleX(0.7) scaleY(0.7);
+  width: calc(9640px / 20);
+  height: 408px;
+  background: url(./styling/leaves.png);
+  animation: figwit 5s steps(20) infinite;
+  margin-top: 35%;
 }
 
 .gamebox {
@@ -772,16 +835,22 @@ li {
   justify-content: space-evenly;
 }
 
+.player {
+  display: flex;
+  justify-content: center;
+  margin: 10%;
+}
+
 .gamepage {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 .healthName {
-  margin: 0;
-  padding: 0;
+  position: absolute;
+  top: 10%;
   font-family: "Aladin";
-  font-size: 1vw;
+  font-size: 1.5vw;
   line-height: 1;
   color: white;
 }
@@ -830,10 +899,26 @@ li {
 
 .health-bar1 {
   width: 400px;
-  height: 35px;
+  height: 30px;
   background-color: #9aaf8f;
-  margin: 10px;
-  border-radius: 7px;
+  /* margin: 10px; */
+  /* border-radius: 7px; */
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.empty-box {
+  width: 20px;
+  height: 20px;
+}
+
+.health-bar2 {
+  width: 400px;
+  height: 30px;
+  background-color: #9aaf8f;
+  /* margin: 10px; */
+  /* border-radius: 7px; */
   display: flex;
   justify-content: flex-start;
   align-content: center;
@@ -841,7 +926,7 @@ li {
 
 .innerbar-lost1 {
   width: 390px;
-  height: 25px;
+  height: 20px;
   background: rgba(230, 226, 226, 0.5);
   margin: 5px;
   border-radius: 4px;
@@ -849,9 +934,19 @@ li {
   justify-content: flex-start;
 }
 
+.innerbar-lost2 {
+  width: 390px;
+  height: 20px;
+  background: rgba(230, 226, 226, 0.5);
+  margin: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .innerbar-activ1 {
-  height: 25px;
-  background-color: #e99090;
+  height: 20px;
+  background-color: rgb(86, 86, 245);
   display: flex;
   justify-content: flex-start;
   border-radius: 4px;
@@ -861,30 +956,9 @@ li {
   margin-block-start: 0;
 }
 
-.health-bar2 {
-  width: 400px;
-  height: 35px;
-  background-color: #9aaf8f;
-  margin: 10px;
-  border-radius: 7px;
-  display: flex;
-  justify-content: flex-end;
-  align-content: center;
-}
-
-.innerbar-lost2 {
-  width: 390px;
-  height: 25px;
-  background: rgba(230, 226, 226, 0.5);
-  margin: 5px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .innerbar-activ2 {
-  height: 25px;
-  background-color: #e99090;
+  height: 20px;
+  background-color: rgb(86, 86, 245);
   display: flex;
   justify-content: flex-end;
   border-radius: 4px;
@@ -900,7 +974,9 @@ li {
   color: white;
   cursor: pointer;
   background-image: url(./styling/easy-fireball-button.png);
-  margin: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
+
 }
 
 @keyframes glowing {
@@ -914,6 +990,8 @@ li {
     box-shadow: inset -3px -6px 4.5px;
   }
 }
+
+
 
 .lose-win {
   text-align: center;
@@ -954,6 +1032,7 @@ li {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .single-recored {
@@ -963,11 +1042,12 @@ li {
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 20%;
+  width: 40vw;
   border-radius: 5px;
   border-color: #ffffff;
   border-width: 2px;
   margin: 15px;
+  line-height: 0.3;
 }
 
 .btl-text {
@@ -1019,4 +1099,18 @@ li {
 .battle-container {
   display: flex;
   width: 100%;
+}
+.container1 {
+  overflow-y: auto;
+}
+
+.highlight {
+  text-shadow: 2px 2px rgb(255, 215, 0);
+}
+
+.loseBackground {
+  background: rgba(255, 159, 159, 0.5);
+}
+.winBackground {
+  background: rgba(217, 255, 0, 0.5);
 }
