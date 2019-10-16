@@ -230,14 +230,11 @@ class GameStage extends React.Component {
     this.setState({battleInfo: battleSnapshot.data()})
   }
 
-  componentDidMount() {
-<<<<<<< HEAD
-      console.log('Battle INFO', this.state.battleInfo);
-    // this.player1Avatar();
-    // this.player2Avatar();
+  closeResults = () => {
+    this.setState({ result: {} });
+  }
 
-=======
->>>>>>> e14edc547042de36af3d6092d5e79032243481cc
+  componentDidMount() {
     if (this.props.battleRef.id) {
       this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate)
       this.props.battleRef
@@ -262,10 +259,6 @@ class GameStage extends React.Component {
 
   render() {
     if (this.state.battleInfo.status === 'completed') {
-<<<<<<< HEAD
-=======
-      console.log('Battle Devided', this.state)
->>>>>>> e14edc547042de36af3d6092d5e79032243481cc
       return (
         <GameOver
           battleInfo={this.state.battleInfo}
@@ -367,7 +360,7 @@ class GameStage extends React.Component {
             doDamage={this.doDamage}
             getRandomProblem={this.getRandomProblem}
           />
-          <CodeArea value={this.state.userCode} updateCode={this.updateCode} />
+          <CodeArea value={this.state.userCode} updateCode={this.updateCode} closeResults={this.closeResults} />
           <div className='submit-button-box'>
             <button
               onClick={() =>
@@ -382,11 +375,11 @@ class GameStage extends React.Component {
               SUBMIT CODE
             </button>
           </div>
-          {this.state.previousProblem.inputs ? <Result
+          <Result
             problem={this.state.problem}
             previousProblem={this.state.previousProblem}
             result={this.state.result}
-          /> : ''}
+          />
         </div>
       </div>
     )

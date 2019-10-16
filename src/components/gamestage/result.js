@@ -13,8 +13,8 @@ const Result = props => {
   }
 
   return (
-    <div className="result">
-        <div className="title-result">{!result.userOutputs ? 'Result:' : result.correct ? "CORRECT!" : "TRY AGAIN :("}</div>
+    <div className={result.userOutputs ? 'result' : 'result-hidden'}>
+        <div className="title-result">{result.correct ? "CORRECT!" : "TRY AGAIN :("}</div>
         <div className='result-box'>
           {result.userOutputs ? (
             <div>
@@ -33,16 +33,9 @@ const Result = props => {
               ))}
             </table>
           </div>
-      ) : (
-          <table id='result-table'>
-            <tr>
-              <th>Input</th>
-              <th>Your Output</th>
-              <th>Expected</th>
-            </tr>
-          </table>
-        )}
+      ) : ''}
         </div>
+        <small>(click in code area to close)</small>
     </div>
   );
 };

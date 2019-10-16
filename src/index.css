@@ -69,13 +69,17 @@ li {
   background-image: linear-gradient(orange, red);
 }
 
-.instructions,
-.result {
+.code-area {
+  width: 65%;
+}
+
+.instructions {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   height: 80%;
+  width: 30%;
   background-image: linear-gradient(rgb(212, 212, 207), rgb(108, 134, 115));
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   border: solid 5px rgb(44, 66, 47);
@@ -93,16 +97,56 @@ li {
   flex-direction: column;
 }
 
-.instructions {
-  width: 30%;
-}
-
 .result {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: flex-end;
   justify-content: space-between;
-  width: 10%;
+  position: absolute;
+  width: 40%;
+  bottom: 3rem;
+  right: 0.5rem;
+  z-index: 2;
+}
+
+.result small {
+  color: grey;
+  padding-left: .25rem;
+  font-size: .5rem;
+}
+
+.result-hidden {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  justify-content: space-between;
+  position: absolute;
+  width: 40%;
+  top: 5rem;
+  right: 0.5rem;
+  z-index: 2;
+}
+
+#result-table {
+  border-collapse: separate;
+  border-spacing: 3px;
+  table-layout: fixed;
+  width: 100%;
+
+}
+#result-table td {
+  width: 32%;
+  word-wrap: break-word;
+  text-align: center;
+  background-color: #9aaf8f;
+  padding: .25rem;
+  border: 1px solid #6d8773;
+}
+
+#result-table th {
+  border: solid 1px #6d8773;
+  background-color: #bcdcbc;
 }
 
 .title,
@@ -117,11 +161,6 @@ li {
 
 .title-result + div {
   font-size: 1vw;
-  padding-left: 10%;
-}
-
-.title-result + div p {
-  margin: 0;
 }
 
 .buttonFont {
@@ -1118,23 +1157,6 @@ li {
 }
 .winBackground {
   background: rgba(217, 255, 0, 0.5);
-}
-
-#result-table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 100%;
-
-}
-#result-table td {
-  border: solid 1px black;
-  width: 32%;
-  word-wrap: break-word;
-}
-
-#result-table th {
-  border: solid 1px black;
-  border-bottom: solid 3px black;
 }
 
 .submit-button-box {
