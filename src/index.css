@@ -102,7 +102,7 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 40%
+  width: 10%;
 }
 
 .title,
@@ -1135,4 +1135,11 @@ li {
 #result-table th {
   border: solid 1px black;
   border-bottom: solid 3px black;
+}
+
+.submit-button-box {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 2;
 }

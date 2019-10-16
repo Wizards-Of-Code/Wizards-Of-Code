@@ -14,7 +14,7 @@ const Result = props => {
 
   return (
     <div className="result">
-        {/* <div className="title-result">{!result.userOutputs ? 'Result:' : result.correct ? "CORRECT!" : "TRY AGAIN :("}</div>
+        <div className="title-result">{!result.userOutputs ? 'Result:' : result.correct ? "CORRECT!" : "TRY AGAIN :("}</div>
         <div className='result-box'>
           {result.userOutputs ? (
             <div>
@@ -42,20 +42,6 @@ const Result = props => {
             </tr>
           </table>
         )}
-        </div> */}
-        <div>
-          <button
-            onClick={() =>
-              props.submitCode(
-                props.userCode,
-                props.problem.inputs,
-                props.problem.outputs
-              )
-            }
-            className="submit-result"
-          >
-            SUBMIT CODE
-          </button>
         </div>
     </div>
   );

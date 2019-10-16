@@ -378,17 +378,25 @@ class GameStage extends React.Component {
             getRandomProblem={this.getRandomProblem}
           />
           <CodeArea value={this.state.userCode} updateCode={this.updateCode} />
-          <Result
-            submitCode={
-              this.state.problem.inputs
-                ? this.submitCode
-                : () => console.log('No opponent')
-            }
-            userCode={this.state.userCode}
+          <div className='submit-button-box'>
+            <button
+              onClick={() =>
+                this.submitCode(
+                  this.state.userCode,
+                  this.state.problem.inputs,
+                  this.state.problem.outputs
+                )
+              }
+              className="submit-result"
+            >
+              SUBMIT CODE
+            </button>
+          </div>
+          {this.state.previousProblem.inputs ? <Result
             problem={this.state.problem}
             previousProblem={this.state.previousProblem}
             result={this.state.result}
-          />
+          /> : ''}
         </div>
       </div>
     )
