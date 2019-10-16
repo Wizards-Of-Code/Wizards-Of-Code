@@ -184,7 +184,6 @@ li {
 .landing-page-container {
   display: flex;
   flex-direction: row;
-
   height: 100%;
   background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
   background-size: cover;
@@ -193,9 +192,8 @@ li {
 .join-random-btl {
   display: flex;
   flex-direction: column;
-  width: 500px;
-  height: 100%;
-  margin: 50px;
+  margin-top: 2%;
+  margin-left: 2%;
   position: relative;
 }
 
@@ -1269,4 +1267,11 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.navbarHighlight {
+  background-color: rgb(240, 230, 140, 0.5);
+  border-radius: 8%;
+  padding-left: 5px;
+  padding-right: 5px;
 }
