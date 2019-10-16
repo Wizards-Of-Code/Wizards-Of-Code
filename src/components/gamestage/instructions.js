@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import hardButton from '../../styling/hard-button.png'
 
 class Instructions extends Component {
   render() {

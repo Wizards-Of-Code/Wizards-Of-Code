@@ -7,10 +7,6 @@ import Player2 from './player2'
 import Attacking from './attacking'
 import {withFirebase} from '../Firebase'
 import GameOver from './gameOver'
-import firebutton from '../../styling/easy-fireball-button.png'
-import easyButton from '../../styling/easy-button.png'
-import mediumButton from '../../styling/medium-button.png'
-import hardButton from '../../styling/hard-button.png'
 import Animation from './utilities'
 import MessageLog from './messageLog'
 import easySpell from '../../styling/easy-spell.png'
@@ -303,7 +299,7 @@ class GameStage extends React.Component {
             <div className="gamebox">
               <MessageLog message={this.state.message} />
               <div className={this.state.battleInfo.attack_anim}>
-                <Attacking />
+                {/* <Attacking /> */}
               </div>
               <div className="player">
                 <Player1
