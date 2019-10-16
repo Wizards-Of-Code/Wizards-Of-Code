@@ -771,7 +771,7 @@ li {
   animation: thunder-attack 1s steps(calc(11 * 100));
   transform: scaleX(1) scaleY(1);
   position: absolute;
-  border-radius: 70%;
+  /* border-radius: 70%; */
   top: 25%;
   left: 35%;
   display: inline-block
@@ -784,11 +784,42 @@ li {
   animation: thunder-attack 1s steps(calc(11 * 100));
   transform: scaleX(-1) scaleY(1);
   position: absolute;
-  border-radius: 70%;
+  /* border-radius: 70%; */
   top: 25%;
   left: 35%;
   display: inline-block
+}
 
+@keyframes purple-explosion {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -6000px;
+  }
+}
+.purple-explosion-left {
+  width: calc(6000px / 15);
+  height: 397px;
+  background: url(./styling/purple-explosion.png);
+  animation: purple-explosion 0.5s steps(10) infinite;
+  transform: scaleX(-1) scaleY(1);
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  display: inline-block
+}
+
+.purple-explosion-right {
+  width: calc(6000px / 15);
+  height: 397px;
+  background: url(./styling/purple-explosion.png);
+  animation: purple-explosion 0.5s steps(10) infinite;
+  transform: scaleX(1) scaleY(1);
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  display: inline-block
 }
 
 .leaves {
@@ -964,6 +995,8 @@ li {
     box-shadow: inset -3px -6px 4.5px;
   }
 }
+
+
 
 .lose-win {
   text-align: center;
