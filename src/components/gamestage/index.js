@@ -48,7 +48,11 @@ class GameStage extends React.Component {
       .then(problemRef => problemRef.get())
       .then(doc => {
         const problem = doc.data()
-        this.setState({problem, previousProblem: {}, userCode: `${problem.startingCode}\n  \n}`})
+        this.setState({
+          problem,
+          previousProblem: {},
+          userCode: `${problem.startingCode}\n  \n}`
+        })
       })
   }
 
@@ -86,7 +90,10 @@ class GameStage extends React.Component {
 
     // respond to correct/incorrect evaluations of code from WebWorker
     webWorker.onmessage = event => {
-      this.setState(state => ({result: event.data, previousProblem: {...state.problem}}))
+      this.setState(state => ({
+        result: event.data,
+        previousProblem: {...state.problem}
+      }))
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty])
         this.setState({
@@ -287,87 +294,56 @@ class GameStage extends React.Component {
     return (
       <div className="gamepage">
         <div
-          className="gamestage"
+          className="stage-and-spells"
           style={{
             backgroundImage: `url(${this.state.backgroundImage})`
           }}
         >
-          <div style={{transform: 'scale(0.2)'}}>
-            {this.state.battleInfo.player1 ? (
-              <div>
-                <img
-                  src={easySpell}
-                  alt="easy-Spell"
-                  onClick={() => this.getRandomProblem(1)}
-                ></img>
-                <img
-                  src={mediumSpell}
-                  alt="medium-Spell"
-                  onClick={() => this.getRandomProblem(2)}
-                ></img>
-                <img
-                  src={hardSpell}
-                  alt="medium-Spell"
-                  onClick={() => this.getRandomProblem(3)}
-                ></img>
+          <div className="gamestage">
+            <div className="gamebox">
+              <MessageLog message={this.state.message} />
+              <div className={this.state.battleInfo.attack_anim}>
+                <Attacking />
               </div>
-            ) : (
-              <img
-                src={firebutton}
-                onClick={() => this.getRandomProblem(1)}
-                alt="fireball!!!!" //what is alt for?
-              />
-            )}
-          </div>
-          <div className="gamebox">
-            <MessageLog message={this.state.message} />
-            <div className={this.state.battleInfo.attack_anim}>
-              <Attacking />
-            </div>
-            <div className="player">
-              <Player1
-                playerName={this.state.battleInfo.player1}
-                playerHP={this.state.battleInfo.player1_health}
-              />
-              <div
-                className={this.state.battleInfo.player1_anim}
-                style={convertDirection}
-              ></div>
-            </div>
-            <div className="player">
-              <Player2
-                playerName={this.state.battleInfo.player2}
-                playerHP={this.state.battleInfo.player2_health}
-              />
-              <div className={this.state.battleInfo.player2_anim}></div>
+              <div className="player">
+                <Player1
+                  playerName={this.state.battleInfo.player1}
+                  playerHP={this.state.battleInfo.player1_health}
+                />
+                <div
+                  className={this.state.battleInfo.player1_anim}
+                  style={convertDirection}
+                ></div>
+              </div>
+
+              <div className="player">
+                <Player2
+                  playerName={this.state.battleInfo.player2}
+                  playerHP={this.state.battleInfo.player2_health}
+                />
+                <div className={this.state.battleInfo.player2_anim}></div>
+              </div>
             </div>
           </div>
-          <div style={{transform: 'scale(0.2)'}}>
-            {this.state.battleInfo.player2 ? (
-              <div>
-                <img
-                  src={easyButton}
-                  alt="easy-Button"
-                  onClick={() => this.getRandomProblem(1)}
-                ></img>
-                <img
-                  src={mediumButton}
-                  alt="medium-Button"
-                  onClick={() => this.getRandomProblem(2)}
-                ></img>
-                <img
-                  src={hardButton}
-                  alt="medium-Button"
-                  onClick={() => this.getRandomProblem(3)}
-                ></img>
-              </div>
-            ) : (
-              <img
-                src={firebutton}
-                onClick={() => this.getRandomProblem(1)}
-                alt="fireball!!!!" //what is alt for?
-              />
-            )}
+          <div className="spells">
+            <img
+              className="spell-button"
+              src={easySpell}
+              alt="easy-Spell"
+              onClick={() => this.getRandomProblem(1)}
+            ></img>
+            <img
+              className="spell-button"
+              src={mediumSpell}
+              alt="medium-Spell"
+              onClick={() => this.getRandomProblem(2)}
+            ></img>
+            <img
+              className="spell-button"
+              src={hardSpell}
+              alt="medium-Spell"
+              onClick={() => this.getRandomProblem(3)}
+            ></img>
           </div>
         </div>
         <div className={this.taskboxClass}>
