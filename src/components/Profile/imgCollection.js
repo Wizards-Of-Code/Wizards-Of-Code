@@ -7,7 +7,6 @@ class ImgCollection extends Component {
   }
 
   render() {
-    console.log("this.propssssss", this.props);
     let avatarInfo;
     avatarInfo = this.props.avatars.map(avatar => {
       return avatar.data();

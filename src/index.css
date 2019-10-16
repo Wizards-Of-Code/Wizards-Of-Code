@@ -822,7 +822,7 @@ li {
   animation: fire-attack 1s steps(calc(13 * 100));
   position: absolute;
   border-radius: 70%;
-  top: 33%;
+  top: 28%;
   left: 35%;
 }
 
@@ -834,7 +834,7 @@ li {
   animation: fire-attack 1s steps(calc(13 * 100));
   position: absolute;
   border-radius: 70%;
-  top: 33%;
+  top: 28%;
   left: 35%;
 }
 
@@ -855,8 +855,8 @@ li {
   transform: scaleX(1) scaleY(1);
   position: absolute;
   /* border-radius: 70%; */
-  top: 25%;
-  left: 35%;
+  top: 20%;
+  left: 30%;
   display: inline-block;
 }
 
@@ -868,8 +868,8 @@ li {
   transform: scaleX(-1) scaleY(1);
   position: absolute;
   /* border-radius: 70%; */
-  top: 25%;
-  left: 35%;
+  top: 20%;
+  left: 30%;
   display: inline-block;
 }
 
@@ -888,7 +888,7 @@ li {
   animation: purple-explosion 0.5s steps(10) infinite;
   transform: scaleX(-1) scaleY(1);
   position: absolute;
-  top: 25%;
+  top: 20%;
   left: 35%;
   display: inline-block;
 }
@@ -900,7 +900,7 @@ li {
   animation: purple-explosion 0.5s steps(10) infinite;
   transform: scaleX(1) scaleY(1);
   position: absolute;
-  top: 25%;
+  top: 20%;
   left: 35%;
   display: inline-block;
 }
@@ -911,7 +911,6 @@ li {
   height: 408px;
   background: url(./styling/leaves.png);
   animation: figwit 5s steps(20) infinite;
-  margin-top: 35%;
 }
 
 .spell-button {
@@ -922,10 +921,7 @@ li {
 }
 
 .spells {
-  /* position: relative; */
   display: flex;
-  /* margin-bottom: 0%; */
-  /* align-items: flex-end; */
   justify-content: center;
   flex-direction: row;
 }
@@ -1085,18 +1081,6 @@ li {
 .hp-points2 {
   margin-block-start: 0;
 }
-
-/* .glow-fireball {
-  border-radius: 50%;
-  border: none;
-  color: white;
-  cursor: pointer;
-  background-image: url(./styling/easy-fireball-button.png);
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-} */
 
 @keyframes glowing {
   0% {

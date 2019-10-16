@@ -1,16 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import OpenBattles from "./OpenBattles";
-import { BATTLE } from "../../constants/routes";
+import React from 'react'
+import {Link} from 'react-router-dom'
+import OpenBattles from './OpenBattles'
+import {BATTLE} from '../../constants/routes'
 
 class BattlesPage extends React.Component {
   componentDidMount() {
-    this.props.getOpenBattles();
+    this.props.getOpenBattles()
   }
 
   render() {
-    console.log("PROOOPS", this.props);
-
     return (
       <div className="landing-page-container">
         {this.props.user.username ? (
@@ -22,7 +20,7 @@ class BattlesPage extends React.Component {
                     className="create-battle-btn"
                     onClick={() => {
                       if (this.props.user.username) {
-                        this.props.createBattle();
+                        this.props.createBattle()
                       }
                     }}
                     onMouseDown={this.props.pageSound}
@@ -35,7 +33,7 @@ class BattlesPage extends React.Component {
                 <button
                   onClick={() => {
                     if (this.props.user.username) {
-                      this.props.joinRandomBattle();
+                      this.props.joinRandomBattle()
                     }
                   }}
                   className="join-random-btl-btn"
@@ -68,8 +66,8 @@ class BattlesPage extends React.Component {
           </div>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default BattlesPage;
+export default BattlesPage
