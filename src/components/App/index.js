@@ -156,6 +156,7 @@ class App extends React.Component {
   
 
   componentDidMount() {
+    console.log("OPEN", this.state.openBattles)
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.login(authUser.uid);
@@ -164,7 +165,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("APP state", this.state);
     return (
       <Router>
         <div className="container">

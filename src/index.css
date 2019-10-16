@@ -174,7 +174,7 @@ li {
   border-width: 2px;
   margin: 30px;
   padding: 5px;
-  width: 300px;
+  width: 400px;
   height: 200px;
   align-content: flex-end;
   z-index: 500000;
@@ -334,7 +334,8 @@ li {
 .join-random-btl-btn,
 .openGame,
 .submit-result,
-.select-avatar {
+.select-avatar,
+.btn-back {
   font-size: 25px;
   color: rgb(12, 11, 11);
   border-radius: 10px;
@@ -362,7 +363,8 @@ li {
 .join-random-btl-btn:hover,
 .openGame:hover,
 .submit-result:hover,
-.select-avatar:hover {
+.select-avatar:hover,
+.btn-back:hover {
   color: #f8f4f4 !important;
   font-weight: 700 !important;
   letter-spacing: 3px;
@@ -527,7 +529,7 @@ li {
   background: url(./styling/elrond.png);
   animation: bounce infinite;
   animation-duration: 1s;
-  margin-top: 40%;
+  margin: 0 auto;
 }
 
 .galadriel-win {
@@ -536,7 +538,7 @@ li {
   background: url(./styling/galadriel.png);
   animation: bounce infinite;
   animation-duration: 1s;
-  margin-top: 40%;
+   margin: 0 auto;
 }
 
 .arwen-win {
@@ -545,7 +547,7 @@ li {
   background: url(./styling/arwen.png);
   animation: bounce infinite;
   animation-duration: 1s;
-  margin-top: 40%;
+  margin: 0 auto;
 }
 
 .figwit-win {
@@ -554,7 +556,7 @@ li {
   background: url(./styling/figwit.png);
   animation: bounce infinite;
   animation-duration: 1s;
-  margin-top: 40%;
+  margin: 0 auto;
 }
 
 @keyframes spin {
@@ -1030,7 +1032,7 @@ li {
   font-size: 80px;
   font-family: "Aladin";
   margin-block-start: 0%;
-  height: 30%;
+  height: 10%;
   padding-top: 30px;
 }
 
@@ -1146,6 +1148,23 @@ li {
   background: rgba(217, 255, 0, 0.5);
 }
 
+.hp-exp{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.hp-exp-text {
+  font-family: "Aladin";
+  color: rgb(30, 31, 29);
+  text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
+  font-size: 20px;
+}
+
+.btn-back{
+  margin: 0 auto;
+}
 #result-table {
   border-collapse: collapse;
   table-layout: fixed;

@@ -196,47 +196,27 @@ class GameStage extends React.Component {
   };
 
   addExp = () => {
-    this.props.userRef.set(
-      { experience: (this.props.user.experience += 100) },
-      { merge: true }
-    );
-    if (this.props.user.experience >= 2000) {
-      this.props.userRef.set(
-        {
-          maxHealth: (this.props.user.maxHealth += 20)
-        },
-        { merge: true }
-      );
-    } else if (this.props.user.experience >= 4000) {
-      this.props.userRef.set(
-        {
-          maxHealth: (this.props.user.maxHealth += 20)
-        },
-        { merge: true }
-      );
-    } else if (this.props.user.experience >= 6000) {
-      this.props.userRef.set(
-        {
-          maxHealth: (this.props.user.maxHealth += 20)
-        },
-        { merge: true }
-      );
-    } else if (this.props.user.experience >= 8000) {
-      this.props.userRef.set(
-        {
-          maxHealth: (this.props.user.maxHealth += 20)
-        },
-        { merge: true }
-      );
-    } else if (this.props.user.experience >= 10000) {
-      this.props.userRef.set(
-        {
-          maxHealth: (this.props.user.maxHealth += 20)
-        },
-        { merge: true }
-      );
+   this.props.userRef.set({ experience: this.props.user.experience += 100 }, { merge: true });
+   let helth = {
+     1000: 120,
+     2000: 140,
+     3000: 160,
+     4000: 180,
+     5000: 200
+   }
+    for (let k in helth) {
+        if (this.props.user.experience >= k) {
+          this.props.userRef.set(
+            {
+              maxHealth: helth[k],
+            },
+            { merge: true }
+          );
+        }
     }
+
   };
+
 
   isDead = () => {
     const { battleInfo } = this.state;
@@ -259,6 +239,10 @@ class GameStage extends React.Component {
   };
 
   componentDidMount() {
+    
+    // this.player1Avatar();
+    // this.player2Avatar();
+
     if (this.props.battleRef.id) {
       this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
       this.props.battleRef
@@ -282,8 +266,7 @@ class GameStage extends React.Component {
   }
 
   render() {
-    if (this.state.battleInfo.status === "completed") {
-      console.log("Battle Devided", this.state);
+    if (this.state.battleInfo.status === 'completed') {
       return (
         <GameOver
           battleInfo={this.state.battleInfo}
