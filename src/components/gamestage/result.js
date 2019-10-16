@@ -22,15 +22,18 @@ const Result = props => {
               <tr>
                 <th>Input</th>
                 <th>Your Output</th>
-                <th>Expected</th>
+                <th>Expected Output</th>
               </tr>
-              {inputs.map((input, index) => (
+              {inputs.map((input, index) => {
+                const inputString = JSON.stringify(input)
+                const formattedInput = inputString.slice(1, inputString.length - 1)
+                return (
                 <tr key={index}>
-                  <td>{JSON.stringify(input)}</td>
+                  <td>{formattedInput}</td>
                   <td>{JSON.stringify(userOutputs[index])}</td>
                   <td>{JSON.stringify(expectedOutputs[index])}</td>
                 </tr>
-              ))}
+              )})}
             </table>
           </div>
       ) : ''}

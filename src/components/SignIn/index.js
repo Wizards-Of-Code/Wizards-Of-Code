@@ -7,12 +7,7 @@ import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
 const SignInPage = props => (
-  <div>
-    <img
-      className="sign-up-img"
-      src="https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg"
-      alt=""
-    />
+  <div className="sign-in-page-container centerUp">
     <h1 className="sign-up-logo">Sign In</h1>
     <SignInForm login={props.login} />
 

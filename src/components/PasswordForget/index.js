@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import { withFirebase } from "../Firebase";
+import * as ROUTES from "../../constants/routes";
 
 const PasswordForgetPage = () => (
-  <div>
-    <img
-      className="sign-up-img"
-      src="https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg"
-      alt=""
-    />
-    <h1 className="sign-up-logo">PasswordForget</h1>
+  <div className="sign-in-page-container centerUp">
+    <h1 className="sign-up-logo">Forgot Password?</h1>
     <PasswordForgetForm />
   </div>
 );
 
 const INITIAL_STATE = {
-  email: '',
-  error: null,
+  email: "",
+  error: null
 };
 
 class PasswordForgetFormBase extends Component {
-
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -47,7 +41,7 @@ class PasswordForgetFormBase extends Component {
 
   render() {
     const { email, error } = this.state;
-    const isInvalid = email === ''; // consider using email.trim()
+    const isInvalid = email === ""; // consider using email.trim()
     return (
       <form onSubmit={this.onSubmit} className="sign-up-form">
         <input
@@ -65,7 +59,6 @@ class PasswordForgetFormBase extends Component {
       </form>
     );
   }
-
 }
 const PasswordForgetLink = () => (
   <p>
