@@ -614,7 +614,7 @@ li {
   background: url(./styling/figwit.png);
   animation: bounce infinite;
   animation-duration: 1s;
-  margin-top: 35%;
+  margin: 0 auto;
 }
 
 @keyframes spin {
