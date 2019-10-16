@@ -39,7 +39,6 @@ class Firebase {
 
   doSignInWithGoogle = () => {
     return this.auth.signInWithPopup(this.provider).then(authUser => {
-      console.log("AUTH USER", authUser);
       if (authUser.additionalUserInfo.isNewUser) {
         this.user(authUser.user.uid).set({
           username: authUser.user.email,

@@ -1,10 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import {Link} from 'react-router-dom'
 import Animation, {Character} from './utilities'
 
 export default function GameOver(props) {
-  console.log('Game-over', props)
-  
   return (
     <div className="game-over">
       {props.user.username === props.battleInfo.winner ? (
@@ -12,7 +10,7 @@ export default function GameOver(props) {
           style={{
             backgroundImage:
               'url(https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/dd4c80ed483c8f3c286cd44194f2e93b.jpg?alt=media&token=947c1ec2-63f2-4d98-849c-a48a111495ab)',
-            height: '100%',
+            height: '100%'
           }}
         >
           {/* <img
@@ -64,6 +62,5 @@ export default function GameOver(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
-

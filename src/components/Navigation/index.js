@@ -6,7 +6,6 @@ import * as ROUTES from "../../constants/routes";
 import { AuthUserContext } from "../Session";
 
 const Navigation = props => {
-    console.log(props);
   return (
     <div>
       <AuthUserContext.Consumer>

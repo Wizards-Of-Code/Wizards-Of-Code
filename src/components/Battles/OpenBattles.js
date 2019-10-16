@@ -1,11 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { BATTLE } from "../../constants/routes";
+import React from 'react'
+import {Link} from 'react-router-dom'
+import {BATTLE} from '../../constants/routes'
 
 const OpenBattles = props => {
-  const battles = props.openBattles;
-
-  console.log('MMMMMMMMM', props);
+  const battles = props.openBattles
 
   return (
     <ol className="join-btl container1">
@@ -22,7 +20,7 @@ const OpenBattles = props => {
                 className="openGame"
                 onClick={() => {
                   if (props.user.username) {
-                    props.joinOpenBattle(battle.id);
+                    props.joinOpenBattle(battle.id)
                   }
                 }}
                 onMouseDown={props.pageSound}
@@ -34,6 +32,6 @@ const OpenBattles = props => {
         </div>
       ))}
     </ol>
-  );
-};
-export default OpenBattles;
+  )
+}
+export default OpenBattles
