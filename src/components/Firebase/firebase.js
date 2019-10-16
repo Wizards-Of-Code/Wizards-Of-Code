@@ -87,6 +87,7 @@ class Firebase {
     return this.db.collection("battles").add({
       player1: user.username,
       player1_health: user.maxHealth,
+      player1_exp: user.experience,
       player1_anim: `${Character(user.imgUrl)}-idle`,
       player1_char: Character(user.imgUrl),
       player2_anim: "",

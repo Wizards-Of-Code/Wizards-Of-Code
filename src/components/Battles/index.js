@@ -9,7 +9,7 @@ class BattlesPage extends React.Component {
   }
 
   render() {
-    console.log(this.props.openBattles, this.props);
+    console.log('PROOOPS', this.props);
 
     return (
       <div className="landing-page-container">

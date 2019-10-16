@@ -190,42 +190,24 @@ class GameStage extends React.Component {
  
   addExp = () => {
    this.props.userRef.set({ experience: this.props.user.experience += 100 }, { merge: true });
-   if (this.props.user.experience >= 2000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   } else if (this.props.user.experience >= 4000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   } else if (this.props.user.experience >= 6000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   } else if (this.props.user.experience >= 8000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
-   } else if (this.props.user.experience >= 10000) {
-     this.props.userRef.set(
-       {
-         maxHealth: (this.props.user.maxHealth += 20),
-       },
-       { merge: true }
-     );
+   let helth = {
+     1000: 120,
+     2000: 140,
+     3000: 160,
+     4000: 180,
+     5000: 200
    }
+    for (let k in helth) {
+        if (this.props.user.experience >= k) {
+          this.props.userRef.set(
+            {
+              maxHealth: helth[k],
+            },
+            { merge: true }
+          );
+        }
+    }
+
   };
 
 
@@ -250,6 +232,7 @@ class GameStage extends React.Component {
   };
 
   componentDidMount() {
+      console.log('Battle INFO', this.state.battleInfo);
     // this.player1Avatar();
     // this.player2Avatar();
 
@@ -276,9 +259,7 @@ class GameStage extends React.Component {
   }
 
   render() {
-    console.log('MMMMMMMAAAAAXXX', this.props);
     if (this.state.battleInfo.status === 'completed') {
-      console.log('Battle Devided', this.state);
       return (
         <GameOver
           battleInfo={this.state.battleInfo}
