@@ -68,13 +68,17 @@ li {
   background-image: linear-gradient(orange, red);
 }
 
-.instructions,
-.result {
+.code-area {
+  width: 65%;
+}
+
+.instructions {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   height: 80%;
+  width: 30%;
   background-image: linear-gradient(rgb(212, 212, 207), rgb(108, 134, 115));
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   border: solid 5px rgb(44, 66, 47);
@@ -92,16 +96,62 @@ li {
   flex-direction: column;
 }
 
-.instructions {
-  width: 30%;
-}
-
 .result {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: flex-end;
   justify-content: space-between;
+  position: absolute;
   width: 40%;
+  bottom: 5rem;
+  right: 1.25rem;
+  z-index: 2;
+  background: rgb(241, 228, 170);
+  border: solid 3px #6d8773;
+  border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+  padding: 0.5rem;
+  box-shadow: 5px 5px 20px black;
+}
+
+.result small {
+  color: black;
+  padding-left: 0.25rem;
+  font-size: 0.5rem;
+}
+
+.result-hidden {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  justify-content: space-between;
+  position: absolute;
+  width: 40%;
+  bottom: 5rem;
+  right: 0.5rem;
+  z-index: 2;
+}
+
+#result-table {
+  border-collapse: separate;
+  border-spacing: 3px;
+  table-layout: fixed;
+  width: 100%;
+}
+#result-table td {
+  width: 32%;
+  word-wrap: break-word;
+  text-align: center;
+  background-color: #9aaf8f;
+  padding: 0.25rem;
+  border: 1px solid #6d8773;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+#result-table th {
+  border: solid 1px #6d8773;
+  background-color: #bcdcbc;
+  border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
 }
 
 .title,
@@ -116,11 +166,6 @@ li {
 
 .title-result + div {
   font-size: 1vw;
-  padding-left: 10%;
-}
-
-.title-result + div p {
-  margin: 0;
 }
 
 .buttonFont {
@@ -202,11 +247,26 @@ li {
 }
 .home-page-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  text-align: center;
   font-family: "Aladin";
   font-size: 1.5vw;
   background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
   background-size: cover;
+}
+
+.home-page-container h1 {
+  color: #f09b1c;
+  text-shadow: 2px 2px 5px #1b1b1b;
+  font-size: 7rem;
+}
+
+.home-page-details {
+  display: flex;
+  justify-content: space-between;
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #1b1b1b;
+  font-size: 1.5rem;
 }
 
 .notfound-page-container {
@@ -538,7 +598,7 @@ li {
   background: url(./styling/galadriel.png);
   animation: bounce infinite;
   animation-duration: 1s;
-   margin: 0 auto;
+  margin: 0 auto;
 }
 
 .arwen-win {
@@ -1112,8 +1172,8 @@ li {
   position: absolute;
   font-size: 6rem;
   font-family: "Aladin";
-  color: navy;
-  text-shadow: 2px 2px 2px rgb(118, 197, 118);
+  color: rgb(37, 37, 247);
+  text-shadow: 2px 2px 2px rgb(104, 228, 104);
   opacity: 0;
   animation-name: bottomFadeOut;
   animation-duration: 2s;
@@ -1147,8 +1207,7 @@ li {
 .winBackground {
   background: rgba(217, 255, 0, 0.5);
 }
-
-.hp-exp{
+.hp-exp {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1162,23 +1221,15 @@ li {
   font-size: 20px;
 }
 
-.btn-back{
+.btn-back {
   margin: 0 auto;
 }
-#result-table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 100%;
-}
-#result-table td {
-  border: solid 1px black;
-  width: 32%;
-  word-wrap: break-word;
-}
 
-#result-table th {
-  border: solid 1px black;
-  border-bottom: solid 3px black;
+.submit-button-box {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 2;
 }
 
 .single-avatar p {

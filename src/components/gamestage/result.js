@@ -13,8 +13,8 @@ const Result = props => {
   }
 
   return (
-    <div className="result">
-        {/* <div className="title-result">{!result.userOutputs ? 'Result:' : result.correct ? "CORRECT!" : "TRY AGAIN :("}</div>
+    <div className={result.userOutputs ? 'result' : 'result-hidden'}>
+        <div className="title-result">{result.correct ? "CORRECT!" : "TRY AGAIN :("}</div>
         <div className='result-box'>
           {result.userOutputs ? (
             <div>
@@ -22,41 +22,23 @@ const Result = props => {
               <tr>
                 <th>Input</th>
                 <th>Your Output</th>
-                <th>Expected</th>
+                <th>Expected Output</th>
               </tr>
-              {inputs.map((input, index) => (
+              {inputs.map((input, index) => {
+                const inputString = JSON.stringify(input)
+                const formattedInput = inputString.slice(1, inputString.length - 1)
+                return (
                 <tr key={index}>
-                  <td>{JSON.stringify(input)}</td>
+                  <td>{formattedInput}</td>
                   <td>{JSON.stringify(userOutputs[index])}</td>
                   <td>{JSON.stringify(expectedOutputs[index])}</td>
                 </tr>
-              ))}
+              )})}
             </table>
           </div>
-      ) : (
-          <table id='result-table'>
-            <tr>
-              <th>Input</th>
-              <th>Your Output</th>
-              <th>Expected</th>
-            </tr>
-          </table>
-        )}
-        </div> */}
-        <div>
-          <button
-            onClick={() =>
-              props.submitCode(
-                props.userCode,
-                props.problem.inputs,
-                props.problem.outputs
-              )
-            }
-            className="submit-result"
-          >
-            SUBMIT CODE
-          </button>
+      ) : ''}
         </div>
+        <small>(click in code area to close)</small>
     </div>
   );
 };

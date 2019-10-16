@@ -196,27 +196,28 @@ class GameStage extends React.Component {
   };
 
   addExp = () => {
-   this.props.userRef.set({ experience: this.props.user.experience += 100 }, { merge: true });
-   let helth = {
-     1000: 120,
-     2000: 140,
-     3000: 160,
-     4000: 180,
-     5000: 200
-   }
+    this.props.userRef.set(
+      { experience: (this.props.user.experience += 100) },
+      { merge: true }
+    );
+    let helth = {
+      1000: 120,
+      2000: 140,
+      3000: 160,
+      4000: 180,
+      5000: 200
+    };
     for (let k in helth) {
-        if (this.props.user.experience >= k) {
-          this.props.userRef.set(
-            {
-              maxHealth: helth[k],
-            },
-            { merge: true }
-          );
-        }
+      if (this.props.user.experience >= k) {
+        this.props.userRef.set(
+          {
+            maxHealth: helth[k]
+          },
+          { merge: true }
+        );
+      }
     }
-
   };
-
 
   isDead = () => {
     const { battleInfo } = this.state;
@@ -238,11 +239,11 @@ class GameStage extends React.Component {
     this.setState({ battleInfo: battleSnapshot.data() });
   };
 
-  componentDidMount() {
-    
-    // this.player1Avatar();
-    // this.player2Avatar();
+  closeResults = () => {
+    this.setState({ result: {} });
+  };
 
+  componentDidMount() {
     if (this.props.battleRef.id) {
       this.unsubscribe = this.props.battleRef.onSnapshot(this.onBattleUpdate);
       this.props.battleRef
@@ -266,7 +267,7 @@ class GameStage extends React.Component {
   }
 
   render() {
-    if (this.state.battleInfo.status === 'completed') {
+    if (this.state.battleInfo.status === "completed") {
       return (
         <GameOver
           battleInfo={this.state.battleInfo}
@@ -369,14 +370,26 @@ class GameStage extends React.Component {
             doDamage={this.doDamage}
             getRandomProblem={this.getRandomProblem}
           />
-          <CodeArea value={this.state.userCode} updateCode={this.updateCode} />
+          <CodeArea
+            value={this.state.userCode}
+            updateCode={this.updateCode}
+            closeResults={this.closeResults}
+          />
+          <div className="submit-button-box">
+            <button
+              onClick={() =>
+                this.submitCode(
+                  this.state.userCode,
+                  this.state.problem.inputs,
+                  this.state.problem.outputs
+                )
+              }
+              className="submit-result"
+            >
+              SUBMIT CODE
+            </button>
+          </div>
           <Result
-            submitCode={
-              this.state.problem.inputs
-                ? this.submitCode
-                : () => console.log("No opponent")
-            }
-            userCode={this.state.userCode}
             problem={this.state.problem}
             previousProblem={this.state.previousProblem}
             result={this.state.result}
