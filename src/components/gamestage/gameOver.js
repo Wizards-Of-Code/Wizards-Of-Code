@@ -8,7 +8,6 @@ export default function GameOver(props) {
     <div className="game-over">
       {props.user.username === props.battleInfo.winner ? (
         <div>
-      
           <img
             style={{ width: '100%' }}
             className="sign-up-img"
