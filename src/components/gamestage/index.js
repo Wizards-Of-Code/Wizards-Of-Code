@@ -28,6 +28,7 @@ class GameStage extends React.Component {
       problem: {
         prompt: ''
       },
+      previousProblem: {},
       result: {},
       userCode: '',
       backgroundImage: '',
@@ -47,7 +48,7 @@ class GameStage extends React.Component {
       .then(problemRef => problemRef.get())
       .then(doc => {
         const problem = doc.data()
-        this.setState({problem, userCode: `${problem.startingCode}\n  \n}`})
+        this.setState({problem, previousProblem: {}, userCode: `${problem.startingCode}\n  \n}`})
       })
   }
 
@@ -70,7 +71,7 @@ class GameStage extends React.Component {
     // timeout to protect against infinite loops etc.
     const timeoutId = setTimeout(() => {
       this.setState({
-        result: {userOutputs: 'Your function failed!  :(', correct: false}
+        result: {userOutputs: ['Your function failed!  :('], correct: false}
       })
       webWorker.terminate()
       this.selfDamage(5)
@@ -85,7 +86,7 @@ class GameStage extends React.Component {
 
     // respond to correct/incorrect evaluations of code from WebWorker
     webWorker.onmessage = event => {
-      this.setState({result: event.data})
+      this.setState(state => ({result: event.data, previousProblem: {...state.problem}}))
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty])
         this.setState({
@@ -371,7 +372,7 @@ class GameStage extends React.Component {
         </div>
         <div className={this.taskboxClass}>
           <Instructions
-            prompt={this.state.problem.prompt}
+            problem={this.state.problem}
             doDamage={this.doDamage}
             getRandomProblem={this.getRandomProblem}
           />
@@ -384,6 +385,7 @@ class GameStage extends React.Component {
             }
             userCode={this.state.userCode}
             problem={this.state.problem}
+            previousProblem={this.state.previousProblem}
             result={this.state.result}
           />
         </div>

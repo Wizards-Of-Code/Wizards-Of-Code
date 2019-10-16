@@ -72,13 +72,15 @@ li {
 .instructions,
 .result {
   display: flex;
-  width: 20%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   height: 80%;
   background-image: linear-gradient(rgb(212, 212, 207), rgb(108, 134, 115));
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   border: solid 5px rgb(44, 66, 47);
-  padding: 10px;
-  margin-top: 20px;
+  padding: 2%;
+  /* margin-top: 20px; */
 }
 
 .instructions p {
@@ -90,11 +92,17 @@ li {
   display: flex;
   flex-direction: column;
 }
+
+.instructions {
+  width: 30%;
+}
+
 .result {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 40%
 }
 
 .title,
@@ -105,10 +113,6 @@ li {
   font-weight: bolder;
   font-size: 20px;
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
-}
-
-.title-result {
-  height: 90%;
 }
 
 .title-result + div {
@@ -1024,6 +1028,7 @@ li {
 
 .result-box {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   align-items: center;
 }
@@ -1113,4 +1118,21 @@ li {
 }
 .winBackground {
   background: rgba(217, 255, 0, 0.5);
+}
+
+#result-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+
+}
+#result-table td {
+  border: solid 1px black;
+  width: 32%;
+  word-wrap: break-word;
+}
+
+#result-table th {
+  border: solid 1px black;
+  border-bottom: solid 3px black;
 }
