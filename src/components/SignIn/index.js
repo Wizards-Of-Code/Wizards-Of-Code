@@ -75,6 +75,10 @@ class SignInFormBase extends Component {
           <button disabled={isInvalid} type="submit" className="sign-up-btn">
             Sign In
           </button>
+
+          {error && <p className="error">{error.message}</p>}
+        </form>
+        <div className="sign-up-form">
           <button
             className="sign-up-btn"
             onClick={() => {
@@ -85,8 +89,7 @@ class SignInFormBase extends Component {
           >
             Sign In With Google
           </button>
-          {error && <p className="error">{error.message}</p>}
-        </form>
+        </div>
       </div>
     );
   }
