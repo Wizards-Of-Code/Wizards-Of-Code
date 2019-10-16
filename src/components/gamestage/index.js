@@ -49,7 +49,7 @@ class GameStage extends React.Component {
           userCode: `${problem.startingCode}\n  \n}`
         })
       })
-      console.log('PROPS',this.props, 'STATE', this.state)
+    console.log('PROPS', this.props, 'STATE', this.state)
   }
 
   updateCode = event => {
@@ -109,7 +109,6 @@ class GameStage extends React.Component {
   }
 
   updateHealth = (amount, player) => {
-
     const attacks = {
       10: 'thunder',
       25: 'purpleExplosion',
@@ -268,6 +267,8 @@ class GameStage extends React.Component {
   }
 
   render() {
+    let playerClass1 = ''
+    let playerClass2 = ''
     if (this.state.battleInfo.status === 'completed') {
       return (
         <GameOver
@@ -276,6 +277,11 @@ class GameStage extends React.Component {
           addExp={this.addExp}
         />
       )
+    }
+    if (this.props.user.role === 'player1') {
+      playerClass1 = 'highlightPlayer'
+    } else {
+      playerClass2 = 'highlightPlayer'
     }
 
     return (
@@ -290,13 +296,12 @@ class GameStage extends React.Component {
           <div className="gamestage">
             <div className="gamebox">
               <MessageLog message={this.state.message} />
-              <div className={this.state.battleInfo.attack_anim}>
-                {/* <Attacking /> */}
-              </div>
-              <div className="player">
+              <div className={this.state.battleInfo.attack_anim}></div>
+              <div className={`player ${playerClass1}`}>
                 <Player1
                   playerName={this.state.battleInfo.player1}
                   playerHP={this.state.battleInfo.player1_health}
+                
                 />
                 <div
                   className={this.state.battleInfo.player1_anim}
@@ -304,36 +309,41 @@ class GameStage extends React.Component {
                 ></div>
               </div>
 
-              <div className="player">
+              <div className={`player ${playerClass2}`}>
                 <Player2
                   playerName={this.state.battleInfo.player2}
                   playerHP={this.state.battleInfo.player2_health}
+                  
                 />
                 <div className={this.state.battleInfo.player2_anim}></div>
               </div>
             </div>
           </div>
           <div>
-            {this.state.battleInfo.status === 'closed' ? (<div className="spells">
-              <img
-                className="spell-button"
-                src={easySpell}
-                alt="easy-Spell"
-                onClick={() => this.getRandomProblem(1)}
-              ></img>
-              <img
-                className="spell-button"
-                src={mediumSpell}
-                alt="medium-Spell"
-                onClick={() => this.getRandomProblem(2)}
-              ></img>
-              <img
-                className="spell-button"
-                src={hardSpell}
-                alt="medium-Spell"
-                onClick={() => this.getRandomProblem(3)}
-              ></img>
-            </div>) : '' }
+            {this.state.battleInfo.status === 'closed' ? (
+              <div className="spells">
+                <img
+                  className="spell-button"
+                  src={easySpell}
+                  alt="easy-Spell"
+                  onClick={() => this.getRandomProblem(1)}
+                ></img>
+                <img
+                  className="spell-button"
+                  src={mediumSpell}
+                  alt="medium-Spell"
+                  onClick={() => this.getRandomProblem(2)}
+                ></img>
+                <img
+                  className="spell-button"
+                  src={hardSpell}
+                  alt="medium-Spell"
+                  onClick={() => this.getRandomProblem(3)}
+                ></img>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </div>
         <div className={this.taskboxClass}>
@@ -349,13 +359,16 @@ class GameStage extends React.Component {
           />
           <div className="submit-button-box">
             <button
-              onClick={this.state.problem.inputs ? () => {
-                this.submitCode(
-                  this.state.userCode,
-                  this.state.problem.inputs,
-                  this.state.problem.outputs
-                )
-              } : () => {}
+              onClick={
+                this.state.problem.inputs
+                  ? () => {
+                      this.submitCode(
+                        this.state.userCode,
+                        this.state.problem.inputs,
+                        this.state.problem.outputs
+                      )
+                    }
+                  : () => {}
               }
               className="submit-result"
             >
