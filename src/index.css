@@ -363,7 +363,7 @@ li {
 }
 
 .sign-up-form {
-  margin-left: 35%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   width: 30%;
@@ -1095,7 +1095,7 @@ li {
 }
 
 .highlightPlayer {
-  filter: drop-shadow(0 0 15px gold)
+  filter: drop-shadow(0 0 15px gold);
 }
 
 .lose-win {
