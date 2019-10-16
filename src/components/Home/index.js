@@ -3,7 +3,7 @@ import React from "react";
 const HomePage = () => {
   return (
     <div className="home-page-container">
-      <h1>Wizards of Code</h1>
+      <img src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/WizardsOfCode.png?alt=media&token=237b66f9-0179-4159-a019-a2f718cfeea1" alt='Wizards of Code' />
       <div className="home-page-details">
         <div className='details-left'>
           <p>

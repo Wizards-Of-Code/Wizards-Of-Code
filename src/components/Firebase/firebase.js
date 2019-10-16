@@ -42,7 +42,7 @@ class Firebase {
       console.log("AUTH USER", authUser);
       if (authUser.additionalUserInfo.isNewUser) {
         this.user(authUser.user.uid).set({
-          username: authUser.user.email,
+          username: authUser.user.email.split('@')[0],
           email: authUser.user.email,
           experience: 0,
           maxHealth: 100,

@@ -247,6 +247,7 @@ li {
 .home-page-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   text-align: center;
   font-family: "Aladin";
   font-size: 1.5vw;
@@ -254,10 +255,8 @@ li {
   background-size: cover;
 }
 
-.home-page-container h1 {
-  color: #f09b1c;
-  text-shadow: 2px 2px 5px #1b1b1b;
-  font-size: 7rem;
+.home-page-container img {
+  width: 80%;
 }
 
 .home-page-details {
@@ -945,7 +944,7 @@ li {
   justify-content: center;
   margin-left: 20%;
   margin-right: 20%;
-  margin-top: 15%;
+  margin-top: 20%;
 }
 
 .gamepage {
