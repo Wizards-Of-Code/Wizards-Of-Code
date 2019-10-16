@@ -802,6 +802,7 @@ li {
   margin-bottom: 0;
   flex: auto;
   justify-content: space-evenly;
+  pointer-events: none;
 }
 
 .player {
