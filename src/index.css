@@ -75,7 +75,6 @@ li {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 30%;
   height: 80%;
   background-image: linear-gradient(rgb(212, 212, 207), rgb(108, 134, 115));
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
@@ -93,11 +92,17 @@ li {
   display: flex;
   flex-direction: column;
 }
+
+.instructions {
+  width: 30%;
+}
+
 .result {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 40%
 }
 
 .title,
@@ -1085,12 +1090,12 @@ li {
 #result-table {
   border-collapse: collapse;
   table-layout: fixed;
-  width: 410px;
+  width: 100%;
 
 }
 #result-table td {
   border: solid 1px black;
-  width: 135px;
+  width: 32%;
   word-wrap: break-word;
 }
 

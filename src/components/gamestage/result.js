@@ -14,11 +14,10 @@ const Result = props => {
 
   return (
     <div className="result">
-        <div className="title-result">Result:</div>
+        <div className="title-result">{!result.userOutputs ? 'Result:' : result.correct ? "CORRECT!" : "TRY AGAIN :("}</div>
         <div className='result-box'>
           {result.userOutputs ? (
             <div>
-            <p><b>{result.correct ? "CORRECT!" : "TRY AGAIN :("}</b></p>
             <table id='result-table'>
               <tr>
                 <th>Input</th>
