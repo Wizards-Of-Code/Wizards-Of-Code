@@ -8,6 +8,7 @@ class Attacking extends Component {
   }
 
   render() {
+    console.log('atttak', this.props)
     return <div></div>;
   }
 }
