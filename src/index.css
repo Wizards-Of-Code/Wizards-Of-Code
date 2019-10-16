@@ -104,13 +104,18 @@ li {
   justify-content: space-between;
   position: absolute;
   width: 40%;
-  bottom: 3rem;
-  right: 0.5rem;
+  bottom: 5rem;
+  right: 1.25rem;
   z-index: 2;
+  background: rgb(241, 228, 170);
+  border: solid 3px #6d8773;
+  border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+  padding: 0.5rem;
+  box-shadow: 5px 5px 20px black;
 }
 
 .result small {
-  color: grey;
+  color: black;
   padding-left: .25rem;
   font-size: .5rem;
 }
@@ -123,7 +128,7 @@ li {
   justify-content: space-between;
   position: absolute;
   width: 40%;
-  top: 5rem;
+  bottom: 5rem;
   right: 0.5rem;
   z-index: 2;
 }
@@ -142,11 +147,13 @@ li {
   background-color: #9aaf8f;
   padding: .25rem;
   border: 1px solid #6d8773;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
 
 #result-table th {
   border: solid 1px #6d8773;
   background-color: #bcdcbc;
+  border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
 }
 
 .title,
@@ -1123,8 +1130,8 @@ li {
   position: absolute;
   font-size: 6rem;
   font-family: "Aladin";
-  color: navy;
-  text-shadow: 2px 2px 2px rgb(118, 197, 118);
+  color: rgb(37, 37, 247);
+  text-shadow: 2px 2px 2px rgb(104, 228, 104);
   opacity: 0;
   animation-name: bottomFadeOut;
   animation-duration: 2s;
