@@ -15,12 +15,7 @@ export default function GameOver(props) {
             height: '100%',
           }}
         >
-          {/* <img
-            style={{ width: '100%' }}
-            className="sign-up-img"
-            src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/dd4c80ed483c8f3c286cd44194f2e93b.jpg?alt=media&token=947c1ec2-63f2-4d98-849c-a48a111495ab"
-            alt=""
-          /> */}
+     
 
           <h1 className="lose-win">Congratulations</h1>
           <h1 className="lose-win">YOU WIN</h1>

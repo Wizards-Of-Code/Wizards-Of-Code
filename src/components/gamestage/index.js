@@ -12,23 +12,24 @@ import MessageLog from "./messageLog";
 import easySpell from "../../styling/easy-spell.png";
 import mediumSpell from "../../styling/medium-spell.png";
 import hardSpell from "../../styling/hard-spell.png";
+const AUDIO = document.createElement('audio');
 
 class GameStage extends React.Component {
   constructor(props) {
     super(props);
     this.unsubscribe = {};
-    this.taskboxClass = "taskbox";
+    this.taskboxClass = 'taskbox';
     this.state = {
       battleIsOver: false,
       battleInfo: {},
       problem: {
-        prompt: ""
+        prompt: '',
       },
       previousProblem: {},
       result: {},
-      userCode: "",
-      backgroundImage: "",
-      message: {}
+      userCode: '',
+      backgroundImage: '',
+      message: {},
     };
   }
 
@@ -49,31 +50,31 @@ class GameStage extends React.Component {
         this.setState({
           problem,
           previousProblem: {},
-          userCode: `${problem.startingCode}\n  \n}`
+          userCode: `${problem.startingCode}\n  \n}`,
         });
       });
   };
 
   updateCode = event => {
     this.setState({
-      userCode: event
+      userCode: event,
     });
   };
 
   submitCode = (code, inputs, expectedOutputs) => {
-    const webWorker = new Worker("webWorker.js");
+    const webWorker = new Worker('webWorker.js');
 
     // send user code to web worker with relevant data
     webWorker.postMessage({
       userFunction: code,
       inputs: inputs,
-      expectedOutputs: expectedOutputs
+      expectedOutputs: expectedOutputs,
     });
 
     // timeout to protect against infinite loops etc.
     const timeoutId = setTimeout(() => {
       this.setState({
-        result: { userOutputs: ["Your function failed!  :("], correct: false }
+        result: { userOutputs: ['Your function failed!  :('], correct: false },
       });
       webWorker.terminate();
       this.selfDamage(5);
@@ -83,26 +84,26 @@ class GameStage extends React.Component {
     const damageAmounts = {
       1: 10,
       2: 25,
-      3: 60
+      3: 60,
     };
 
     // respond to correct/incorrect evaluations of code from WebWorker
     webWorker.onmessage = event => {
       this.setState(state => ({
         result: event.data,
-        previousProblem: { ...state.problem }
+        previousProblem: { ...state.problem },
       }));
       if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty]);
         this.setState({
-          userCode: "",
-          problem: { prompt: "" },
-          message: { content: "Success!", type: "goodMessage" }
+          userCode: '',
+          problem: { prompt: '' },
+          message: { content: 'Success!', type: 'goodMessage' },
         });
       } else {
         this.selfDamage(this.state.problem.difficulty * 5);
         this.setState({
-          message: { content: "Incorrect", type: "badMessage" }
+          message: { content: 'Incorrect', type: 'badMessage' },
         });
       }
       webWorker.terminate();
@@ -118,7 +119,7 @@ class GameStage extends React.Component {
         ),
         player1_anim: Animation[this.state.battleInfo.player1_char].attack,
         player2_anim: Animation[this.state.battleInfo.player2_char].hurt,
-        attack_anim: Animation.spell.player1.purpleExplosion
+        attack_anim: Animation.spell.player1.purpleExplosion,
       },
       player2: {
         player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
@@ -126,8 +127,8 @@ class GameStage extends React.Component {
         ),
         player2_anim: Animation[this.state.battleInfo.player2_char].attack,
         player1_anim: Animation[this.state.battleInfo.player1_char].hurt,
-        attack_anim: Animation.spell.player2.purpleExplosion
-      }
+        attack_anim: Animation.spell.player2.purpleExplosion,
+      },
     };
 
     this.props.battleRef.update(updateObject[player]).then(() => {
@@ -137,14 +138,14 @@ class GameStage extends React.Component {
 
   doDamage = amount => {
     this.updateHealth(amount, this.props.user.role);
-
+    this.gettingDamageSound()
     // return to idle animations
     setTimeout(() => {
       this.props.battleRef.set(
         {
           player1_anim: Animation[this.state.battleInfo.player1_char].idle,
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
-          attack_anim: null
+          attack_anim: null,
         },
         { merge: true }
       );
@@ -153,14 +154,15 @@ class GameStage extends React.Component {
   };
 
   selfDamage = amount => {
-    this.taskboxClass = "taskbox red";
-    if (this.props.user.role === "player2") {
+    this.gettingDamageSound();
+    this.taskboxClass = 'taskbox red';
+    if (this.props.user.role === 'player2') {
       this.props.battleRef
         .update({
           player2_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
-          player2_anim: Animation[this.state.battleInfo.player2_char].spin
+          player2_anim: Animation[this.state.battleInfo.player2_char].spin,
         })
         .then(() => {
           this.isDead();
@@ -171,7 +173,7 @@ class GameStage extends React.Component {
           player1_health: this.props.firebase.db._firebaseApp.firebase_.firestore.FieldValue.increment(
             -1 * amount
           ),
-          player1_anim: Animation[this.state.battleInfo.player1_char].spin
+          player1_anim: Animation[this.state.battleInfo.player1_char].spin,
         })
         .then(() => {
           this.isDead();
@@ -182,11 +184,11 @@ class GameStage extends React.Component {
         {
           player1_anim: Animation[this.state.battleInfo.player1_char].idle,
           player2_anim: Animation[this.state.battleInfo.player2_char].idle,
-          attack_anim: null
+          attack_anim: null,
         },
         { merge: true }
       );
-      this.taskboxClass = "taskbox";
+      this.taskboxClass = 'taskbox';
       this.setState({ message: {} });
     }, 2000);
   };
@@ -201,13 +203,13 @@ class GameStage extends React.Component {
       2000: 140,
       3000: 160,
       4000: 180,
-      5000: 200
+      5000: 200,
     };
     for (let k in helth) {
       if (this.props.user.experience >= k) {
         this.props.userRef.set(
           {
-            maxHealth: helth[k]
+            maxHealth: helth[k],
           },
           { merge: true }
         );
@@ -220,12 +222,12 @@ class GameStage extends React.Component {
 
     if (battleInfo.player1_health <= 0) {
       this.props.battleRef.set(
-        { winner: battleInfo.player2, status: "completed" },
+        { winner: battleInfo.player2, status: 'completed' },
         { merge: true }
       );
     } else if (battleInfo.player2_health <= 0) {
       this.props.battleRef.set(
-        { winner: battleInfo.player1, status: "completed" },
+        { winner: battleInfo.player1, status: 'completed' },
         { merge: true }
       );
     }
@@ -237,6 +239,13 @@ class GameStage extends React.Component {
 
   closeResults = () => {
     this.setState({ result: {} });
+  };
+
+  gettingDamageSound = () => {
+    AUDIO.src =
+      'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/uh.wav?alt=media&token=547a7236-83cd-4b9e-8413-c955c553c563';
+    AUDIO.load();
+    AUDIO.play();
   };
 
   componentDidMount() {
@@ -252,10 +261,10 @@ class GameStage extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribe();
-    if (this.state.battleInfo.status === "completed") {
+    if (this.state.battleInfo.status === 'completed') {
       this.props.userRef.set(
         {
-          activeBattle: ""
+          activeBattle: '',
         },
         { merge: true }
       );
@@ -263,7 +272,7 @@ class GameStage extends React.Component {
   }
 
   render() {
-    if (this.state.battleInfo.status === "completed") {
+    if (this.state.battleInfo.status === 'completed') {
       return (
         <GameOver
           battleInfo={this.state.battleInfo}
@@ -279,7 +288,7 @@ class GameStage extends React.Component {
           className="stage-and-spells"
           style={{
             backgroundImage: `url(${this.state.backgroundImage})`,
-            backgroundSize: "cover"
+            backgroundSize: 'cover',
           }}
         >
           <div className="gamestage">
