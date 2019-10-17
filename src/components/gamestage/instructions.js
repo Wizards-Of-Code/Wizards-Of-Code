@@ -5,7 +5,7 @@ class Instructions extends Component {
     const problem = this.props.problem
 
     return (
-      <div className="instructions">
+      <div className= {problem.name ? 'instructions active' : 'instructions'}>
         <div className="flex-side">
           <div className="title">
             {problem.name ? problem.name : '...Awaiting Spell'}
