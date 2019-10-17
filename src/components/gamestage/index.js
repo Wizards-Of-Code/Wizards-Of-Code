@@ -92,19 +92,19 @@ class GameStage extends React.Component {
         result: event.data,
         previousProblem: { ...state.problem }
       }));
-      // if (event.data.correct) {
+      if (event.data.correct) {
         this.doDamage(damageAmounts[this.state.problem.difficulty]);
         this.setState({
           userCode: "",
           problem: { prompt: "" },
           message: { content: "Success!", type: "goodMessage" }
         });
-      // } else {
-      //   this.selfDamage(this.state.problem.difficulty * 5);
-      //   this.setState({
-      //     message: { content: "Incorrect", type: "badMessage" }
-      //   });
-      // }
+      } else {
+        this.selfDamage(this.state.problem.difficulty * 5);
+        this.setState({
+          message: { content: "Incorrect", type: "badMessage" }
+        });
+      }
       webWorker.terminate();
       clearTimeout(timeoutId);
     };
@@ -367,25 +367,16 @@ class GameStage extends React.Component {
           />
           <div className="submit-button-box">
             <button
-              // onClick={
-              //   this.state.problem.inputs
-              //     ? () => {
-              //         this.submitCode(
-              //           this.state.userCode,
-              //           this.state.problem.inputs,
-              //           this.state.problem.outputs
-              //         );
-              //       }
-              //     : () => {}
-              // }
-              // className="submit-result"
-              onClick={ () => {
+              onClick={
+                this.state.problem.inputs
+                  ? () => {
                       this.submitCode(
                         this.state.userCode,
                         this.state.problem.inputs,
                         this.state.problem.outputs
                       );
                     }
+                  : () => {}
               }
               className="submit-result"
             >
