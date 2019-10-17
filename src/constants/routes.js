@@ -10,3 +10,4 @@ export const GAMEOVER = "/gameover";
 export const SETAVATAR = "/avatars";
 export const BATTLEHISTORY = "/battle-history";
 export const PROFILE = "/profile";
+export const LEADERBOARD = "/leaderboard";

@@ -16,6 +16,7 @@ import { withAuthentication } from "../Session";
 import HomePage from "../Home";
 import NotFound from "../NotFound";
 import { Character } from "../gamestage/utilities";
+import Leaderboard from "../Leaderboard";
 
 const AUDIO = document.createElement("audio");
 class App extends React.Component {
@@ -194,6 +195,7 @@ class App extends React.Component {
             />
             <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
             <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+            <Route exact path={ROUTES.LEADERBOARD} component={Leaderboard} />
             {this.state.battleRef.id || this.state.user.activeBattle === "" ? (
               <Route
                 exact

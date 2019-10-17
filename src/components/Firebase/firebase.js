@@ -64,6 +64,7 @@ class Firebase {
   // User API
   user = uid => this.db.collection("users").doc(uid);
   users = () => this.db.collection("users");
+  topUsers = () => this.db.collection("users").orderBy('experience', 'desc').limit(50);
 
   // Problem API
   problem = probId => this.db.collection("problems").doc(probId);
