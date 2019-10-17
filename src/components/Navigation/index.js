@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import SignOutButton from "../SignOut";
 import * as ROUTES from "../../constants/routes";
 import { AuthUserContext } from "../Session";
 
 const Navigation = props => {
-    console.log(props);
   return (
     <div>
       <AuthUserContext.Consumer>
@@ -27,18 +26,34 @@ const Navigation = props => {
 
 const NavigationAuth = props => (
   <ul className="nav">
-    <Link to={ROUTES.HOME} onMouseDown={props.pageSound}>
+    <NavLink
+      to={ROUTES.HOME}
+      activeClassName="navbarHighlight"
+      onMouseDown={props.pageSound}
+    >
       Wizards of Code
-    </Link>
-    <Link to={ROUTES.BATTLE} onMouseDown={props.pageSound}>
+    </NavLink>
+    <NavLink
+      to={ROUTES.BATTLE}
+      activeClassName="navbarHighlight"
+      onMouseDown={props.pageSound}
+    >
       Battle
-    </Link>
-    <Link to={ROUTES.PROFILE} onMouseDown={props.pageSound}>
+    </NavLink>
+    <NavLink
+      to={ROUTES.PROFILE}
+      activeClassName="navbarHighlight"
+      onMouseDown={props.pageSound}
+    >
       Profile
-    </Link>
-    <Link to={ROUTES.ACCOUNT} onMouseDown={props.pageSound}>
+    </NavLink>
+    <NavLink
+      to={ROUTES.ACCOUNT}
+      activeClassName="navbarHighlight"
+      onMouseDown={props.pageSound}
+    >
       Account Info
-    </Link>
+    </NavLink>
     {/* <Link to={ROUTES.ADMIN}>Admin</Link> */}
     <SignOutButton
       updateState={props.updateState}
@@ -47,14 +62,22 @@ const NavigationAuth = props => (
   </ul>
 );
 
-const NavigationNonAuth = (props) => (
+const NavigationNonAuth = props => (
   <ul className="nav">
-    <Link to={ROUTES.HOME} onMouseDown={props.pageSound}>
+    <NavLink
+      to={ROUTES.HOME}
+      activeClassName="navbarHighlight"
+      onMouseDown={props.pageSound}
+    >
       Wizards of Code
-    </Link>
-    <Link to={ROUTES.SIGN_IN} onMouseDown={props.pageSound}>
+    </NavLink>
+    <NavLink
+      to={ROUTES.SIGN_IN}
+      activeClassName="navbarHighlight"
+      onMouseDown={props.pageSound}
+    >
       Sign In
-    </Link>
+    </NavLink>
   </ul>
 );
 

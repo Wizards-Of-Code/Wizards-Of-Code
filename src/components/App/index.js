@@ -16,8 +16,9 @@ import { withAuthentication } from "../Session";
 import HomePage from "../Home";
 import NotFound from "../NotFound";
 import { Character } from "../gamestage/utilities";
+import Leaderboard from "../Leaderboard";
 
-const AUDIO = document.createElement('audio')
+const AUDIO = document.createElement("audio");
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +30,8 @@ class App extends React.Component {
       battleRef: {},
       avatars: [],
       userRef: {},
-      closedBtl: []
+      closedBtl: [],
+      medals: []
     };
     this.setState = this.setState.bind(this);
   }
@@ -62,11 +64,17 @@ class App extends React.Component {
       .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
   };
 
+  getMedals = () => {
+    const medalsRef = this.props.firebase.myMedals();
+    medalsRef
+      .get()
+      .then(querySnapshot => this.setState({ medals: querySnapshot.docs }));
+  };
+
   setAvatar = imgUrl => {
-    console.log(this.state.userRef);
     this.state.userRef.set(
       {
-        imgUrl: imgUrl
+        imgUrl: imgUrl,
       },
       { merge: true }
     );
@@ -80,9 +88,9 @@ class App extends React.Component {
         let status = change.doc.data().status;
         let doc = change.doc.data();
         let id = change.doc.id;
-        if (change.type === "added" && status === "open") {
+        if (change.type === 'added' && status === 'open') {
           allOpenBattles.push({ ...doc, id });
-        } else if (change.type === "modified" && status === "closed") {
+        } else if (change.type === 'modified' && status === 'closed') {
           allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
         }
       });
@@ -102,7 +110,7 @@ class App extends React.Component {
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
-          role: "player1"
+          role: 'player1',
         },
         { merge: true }
       );
@@ -114,7 +122,7 @@ class App extends React.Component {
       if (battleRef) {
         this.joinBattle(battleRef);
       } else {
-        alert("NO OPEN BATTLE DUM DUM!");
+        alert('NO OPEN BATTLE DUM DUM!');
       }
     });
   };
@@ -132,7 +140,7 @@ class App extends React.Component {
         player2_health: user.maxHealth,
         status: "closed",
         player2_anim: `${Character(user.imgUrl)}-idle`,
-        player2_char: Character(user.imgUrl)
+        player2_char: Character(user.imgUrl),
       },
       { merge: true }
     );
@@ -140,7 +148,7 @@ class App extends React.Component {
     this.state.userRef.set(
       {
         activeBattle: battleRef.id,
-        role: "player2"
+        role: 'player2',
       },
       { merge: true }
     );
@@ -151,9 +159,7 @@ class App extends React.Component {
       'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/page-flip-01a.mp3?alt=media&token=8fdba966-a324-4c91-863f-18237b57852c';
     AUDIO.load();
     AUDIO.play();
-    
-  }
-  
+  };
 
   componentDidMount() {
     this.props.firebase.auth.onAuthStateChanged(authUser => {
@@ -164,7 +170,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("APP state", this.state);
     return (
       <Router>
         <div className="container">
@@ -173,12 +178,7 @@ class App extends React.Component {
             <Route
               exact
               path={ROUTES.SIGN_UP}
-              render={props => (
-                <SignUpPage
-                  {...props}
-                  login={this.login}
-                />
-              )}
+              render={props => <SignUpPage {...props} login={this.login} />}
             />
             <Route
               exact
@@ -198,11 +198,14 @@ class App extends React.Component {
                   {...props}
                   user={this.state.user}
                   pageSound={this.pageSound}
+                  medals={this.state.medals}
+                  getMedals={this.getMedals}
                 />
               )}
             />
             <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
             <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+            <Route exact path={ROUTES.LEADERBOARD} component={Leaderboard} />
             {this.state.battleRef.id || this.state.user.activeBattle === "" ? (
               <Route
                 exact

@@ -39,10 +39,9 @@ class Firebase {
 
   doSignInWithGoogle = () => {
     return this.auth.signInWithPopup(this.provider).then(authUser => {
-      console.log("AUTH USER", authUser);
       if (authUser.additionalUserInfo.isNewUser) {
         this.user(authUser.user.uid).set({
-          username: authUser.user.email,
+          username: authUser.user.email.split("@")[0],
           email: authUser.user.email,
           experience: 0,
           maxHealth: 100,
@@ -65,6 +64,7 @@ class Firebase {
   // User API
   user = uid => this.db.collection("users").doc(uid);
   users = () => this.db.collection("users");
+  topUsers = () => this.db.collection("users").orderBy('experience', 'desc').limit(50);
 
   // Problem API
   problem = probId => this.db.collection("problems").doc(probId);
@@ -87,6 +87,7 @@ class Firebase {
     return this.db.collection("battles").add({
       player1: user.username,
       player1_health: user.maxHealth,
+      player1_exp: user.experience,
       player1_anim: `${Character(user.imgUrl)}-idle`,
       player1_char: Character(user.imgUrl),
       player2_anim: "leaves",
@@ -96,8 +97,14 @@ class Firebase {
       background: randomBackgroundUrl
     });
   };
+
   openBattles = () => this.db.collection("battles");
+
   closedBattles = () => this.db.collection("battles");
+
+  myMedals = () => this.db.collection("medals");
+  
+
   findRandomBattle = () =>
     this.db
       .collection("battles")

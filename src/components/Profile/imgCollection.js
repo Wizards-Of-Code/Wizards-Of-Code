@@ -7,7 +7,6 @@ class ImgCollection extends Component {
   }
 
   render() {
-    console.log('this.propssssss',this.props)
     let avatarInfo;
     avatarInfo = this.props.avatars.map(avatar => {
       return avatar.data();
@@ -21,11 +20,7 @@ class ImgCollection extends Component {
           // autoPlay="{false}"
           type="audio/ogg"
         />
-        <img
-          className="home-img"
-          src="https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg"
-          alt=""
-        />
+
         {avatarInfo.map(avatar => (
           <div className="single-avatar">
             <a>{avatar.name}</a>

@@ -13,16 +13,18 @@ class CodeArea extends Component {
     };
 
     return (
-      <CodeMirror
-        value={this.props.value}
-        onBeforeChange={(editor, data, value) => {
-          this.props.updateCode(value);
-        }}
-        onChange={(editor, data, value) => {
-        }}
-        options={options}
-        className="CodeMirror"
-      />
+      <div className='code-area' onClick={this.props.closeResults}>
+        <CodeMirror
+          value={this.props.value}
+          onBeforeChange={(editor, data, value) => {
+            this.props.updateCode(value);
+          }}
+          onChange={(editor, data, value) => {
+          }}
+          options={options}
+          className={`CodeMirror ${this.props.highlightClass}`}
+        />
+      </div>
     );
   }
 }

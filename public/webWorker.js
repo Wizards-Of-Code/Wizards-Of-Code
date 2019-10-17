@@ -17,7 +17,7 @@ onmessage = function(event) {
     })
   } catch (error) {
     // return error as response if code fails to execute
-    postMessage({ correct: false, userOutputs: error.message})
+    postMessage({ correct: false, userOutputs: [error.message]})
   }
 
   // test if all outputs match the expected output

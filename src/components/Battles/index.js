@@ -1,25 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import OpenBattles from "./OpenBattles";
-import { BATTLE } from "../../constants/routes";
+import React from 'react'
+import {Link} from 'react-router-dom'
+import OpenBattles from './OpenBattles'
+import {BATTLE} from '../../constants/routes'
 
 class BattlesPage extends React.Component {
   componentDidMount() {
-    this.props.getOpenBattles();
+    this.props.getOpenBattles()
   }
 
   render() {
-    console.log(this.props.openBattles, this.props);
-
     return (
       <div className="landing-page-container">
-        <img
-          className="home-img"
-          src="https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg"
-          alt=""
-        />
         {this.props.user.username ? (
           <div className="battle-container">
+            <div className='open-battle-container'>
+              <button
+                  className="join-random-btl-btn"
+                  disabled
+                  onMouseDown={this.props.pageSound}
+                >
+                  Open Battles
+              </button>
+
+                <OpenBattles
+                  user={this.props.user}
+                  openBattles={this.props.openBattles}
+                  joinOpenBattle={this.props.joinOpenBattle}
+                  pageSound={this.pageSound}
+                />
+
+            </div>
             <div className="join-random-btl">
               <div className="create-battle">
                 <Link to={BATTLE}>
@@ -27,7 +37,7 @@ class BattlesPage extends React.Component {
                     className="create-battle-btn"
                     onClick={() => {
                       if (this.props.user.username) {
-                        this.props.createBattle();
+                        this.props.createBattle()
                       }
                     }}
                     onMouseDown={this.props.pageSound}
@@ -40,7 +50,7 @@ class BattlesPage extends React.Component {
                 <button
                   onClick={() => {
                     if (this.props.user.username) {
-                      this.props.joinRandomBattle();
+                      this.props.joinRandomBattle()
                     }
                   }}
                   className="join-random-btl-btn"
@@ -49,22 +59,6 @@ class BattlesPage extends React.Component {
                   Join A Random Battle
                 </button>
               </Link>
-
-              <button
-                className="join-random-btl-btn"
-                disabled
-                onMouseDown={this.props.pageSound}
-              >
-                Open Battles
-              </button>
-            </div>
-            <div className="battle-container">
-              <OpenBattles
-                user={this.props.user}
-                openBattles={this.props.openBattles}
-                joinOpenBattle={this.props.joinOpenBattle}
-                pageSound={this.pageSound}
-              />
             </div>
           </div>
         ) : (
@@ -73,8 +67,8 @@ class BattlesPage extends React.Component {
           </div>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default BattlesPage;
+export default BattlesPage

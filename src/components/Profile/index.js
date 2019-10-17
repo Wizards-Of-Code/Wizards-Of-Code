@@ -2,16 +2,12 @@ import React from "react";
 import { withAuthorization } from "../Session";
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
+import Medals from './medals'
 import { BATTLE } from "../../constants/routes";
 
 const ProfilePage = props => {
   return (
     <div className="profile-page-container">
-      <img
-        className="home-img"
-        src="https://wallpaperaccess.com/full/279729.jpg"
-        alt=""
-      />
       <div className="home-page-navbar">
         <div className="home-page-navbar-container">
           <h1 className="sign-up-logo">Profile Page</h1>
@@ -32,10 +28,12 @@ const ProfilePage = props => {
               </button>
             </Link>
           </div>
-          <div className="list-of-skills">
-            <button className="list-skills" onMouseDown={props.pageSound}>
-              My Skills
-            </button>
+          <div className="medals-container">
+            <Medals
+              getMedals={props.getMedals}
+              medals={props.medals}
+              user={props.user}
+            />
           </div>
         </div>
       </div>
