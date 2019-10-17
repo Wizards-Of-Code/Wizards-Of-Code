@@ -60,7 +60,7 @@ li {
   align-content: flex-start;
   width: 100%;
   height: 35%;
-  background-image: url(https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/solid-dark-wood-grain-texture-free.jpg?alt=media&token=a3a7317d-7e3f-4e88-8137-fda42d218778);
+  background-image: linear-gradient(rgb(212, 212, 207), rgb(108, 134, 115));
   border-top: 5px ridge rgb(219, 188, 32);
   border-radius: 3px 3px 0px 0px;
   padding-top: .5rem;
@@ -71,6 +71,7 @@ li {
 }
 
 .code-area {
+  border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
   width: 65%;
   height: 95%;
   margin: 0 .5rem;
@@ -83,7 +84,7 @@ li {
   text-align: center;
   height: 75%;
   width: 30%;
-  background-image: linear-gradient(rgb(212, 212, 207), rgb(108, 134, 115));
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(231, 233, 231));
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   border: solid 5px rgb(44, 66, 47);
   padding: 2%;
@@ -91,9 +92,33 @@ li {
   /* margin-top: 20px; */
 }
 
-.active {
-  box-shadow:         0 0 20px tomato;
-  border: solid 5px rgb(187, 44, 1);
+.medium-active {
+  box-shadow: 0 0 20px rgb(135, 71, 255);
+  border: solid 5px rgb(128, 1, 187);
+}
+
+.easy-active {
+  box-shadow: 0 0 20px rgb(184, 255, 71);
+  border: solid 5px rgb(116, 187, 1);
+}
+
+.hard-active {
+  box-shadow: 0 0 20px rgb(255, 71, 71);
+  border: solid 5px rgb(194, 31, 2);
+}
+
+#active-submit {
+  box-shadow: 0 0 20px rgb(255, 99, 71);
+  border: solid 1px rgb(187, 44, 1);
+}
+
+#inactive-submit {
+  background-image: linear-gradient(rgb(158, 158, 147), rgb(102, 107, 103));
+}
+
+#inactive-submit:hover {
+  letter-spacing: 0px;
+  color: rgb(83, 83, 83) !important;
 }
 
 .instructions p {
@@ -104,6 +129,7 @@ li {
 .flex-side {
   display: flex;
   flex-direction: column;
+  padding: 0 5%;
 }
 
 .result {
@@ -172,6 +198,11 @@ li {
   font-weight: bolder;
   font-size: 20px;
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
+}
+
+.prompt {
+  font-family: 'Aladin';
+  font-size: 18px !important;
 }
 
 .title-result + div {

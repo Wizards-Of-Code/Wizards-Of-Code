@@ -28,7 +28,8 @@ class GameStage extends React.Component {
       result: {},
       userCode: "",
       backgroundImage: "",
-      message: {}
+      message: {},
+      highlightClass: ''
     };
   }
 
@@ -40,7 +41,12 @@ class GameStage extends React.Component {
   };
 
   getRandomProblem = difficulty => {
-    this.setState({ result: {} });
+    const classes = {
+      1: 'easy-active',
+      2: 'medium-active',
+      3: 'hard-active'
+    }
+    this.setState({ result: {}, highlightClass: classes[difficulty] });
     this.props.firebase
       .getRandomProblem(difficulty)
       .then(problemRef => problemRef.get())
@@ -97,7 +103,8 @@ class GameStage extends React.Component {
         this.setState({
           userCode: "",
           problem: { prompt: "" },
-          message: { content: "Success!", type: "goodMessage" }
+          message: { content: "Success!", type: "goodMessage" },
+          highlightClass: ''
         });
       } else {
         this.selfDamage(this.state.problem.difficulty * 5);
@@ -359,11 +366,13 @@ class GameStage extends React.Component {
             problem={this.state.problem}
             doDamage={this.doDamage}
             getRandomProblem={this.getRandomProblem}
+            highlightClass={this.state.highlightClass}
           />
           <CodeArea
             value={this.state.userCode}
             updateCode={this.updateCode}
             closeResults={this.closeResults}
+            highlightClass={this.state.highlightClass}
           />
           <div className="submit-button-box">
             <button
@@ -379,6 +388,7 @@ class GameStage extends React.Component {
                   : () => {}
               }
               className="submit-result"
+              id={this.state.problem.inputs ? 'active-submit' : 'inactive-submit'}
             >
               SUBMIT CODE
             </button>
