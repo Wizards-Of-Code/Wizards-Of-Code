@@ -22,7 +22,7 @@ class CodeArea extends Component {
           onChange={(editor, data, value) => {
           }}
           options={options}
-          className="CodeMirror"
+          className={`CodeMirror ${this.props.highlightClass}`}
         />
       </div>
     );
