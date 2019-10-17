@@ -1139,7 +1139,7 @@ li {
 }
 
 .highlightPlayer {
-  filter: drop-shadow(0 0 15px gold);
+  filter: drop-shadow(0 0 10px gold);
 }
 
 .lose-win {
