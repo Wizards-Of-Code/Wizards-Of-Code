@@ -13,6 +13,23 @@ class BattlesPage extends React.Component {
       <div className="landing-page-container">
         {this.props.user.username ? (
           <div className="battle-container">
+            <div className='open-battle-container'>
+              <button
+                  className="join-random-btl-btn"
+                  disabled
+                  onMouseDown={this.props.pageSound}
+                >
+                  Open Battles
+              </button>
+
+                <OpenBattles
+                  user={this.props.user}
+                  openBattles={this.props.openBattles}
+                  joinOpenBattle={this.props.joinOpenBattle}
+                  pageSound={this.pageSound}
+                />
+
+            </div>
             <div className="join-random-btl">
               <div className="create-battle">
                 <Link to={BATTLE}>
@@ -42,22 +59,6 @@ class BattlesPage extends React.Component {
                   Join A Random Battle
                 </button>
               </Link>
-
-              <button
-                className="join-random-btl-btn"
-                disabled
-                onMouseDown={this.props.pageSound}
-              >
-                Open Battles
-              </button>
-            </div>
-            <div className="battle-container">
-              <OpenBattles
-                user={this.props.user}
-                openBattles={this.props.openBattles}
-                joinOpenBattle={this.props.joinOpenBattle}
-                pageSound={this.pageSound}
-              />
             </div>
           </div>
         ) : (
