@@ -210,23 +210,6 @@ class GameStage extends React.Component {
       { experience: (this.props.user.experience += 100) },
       { merge: true }
     );
-    let helth = {
-      1000: 120,
-      2000: 140,
-      3000: 160,
-      4000: 180,
-      5000: 200
-    };
-    for (let k in helth) {
-      if (this.props.user.experience >= k) {
-        this.props.userRef.set(
-          {
-            maxHealth: helth[k]
-          },
-          { merge: true }
-        );
-      }
-    }
   };
 
   isDead = () => {
