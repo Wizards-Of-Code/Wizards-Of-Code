@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Aladin|Berkshire+Swash|Aladin|Londrina+Solid|Aladin|Aladin|Aladin&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Aladin|Berkshire+Swash|Aladin|Londrina+Solid|Aladin|Aladin|Aladin&display=swap');
 html {
   width: 100%;
   height: 100%;
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,7 +18,7 @@ body {
   height: 100%;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 a {
@@ -26,7 +26,7 @@ a {
   text-decoration: none;
   text-shadow: 2px 2px 2px white;
   font-size: 30px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
 }
 
 a:hover {
@@ -45,7 +45,7 @@ li {
 .nav {
   display: flex;
   justify-content: space-around;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
 
   background-image: linear-gradient(rgb(197, 197, 153), rgb(150, 170, 155));
   margin: 0;
@@ -194,7 +194,7 @@ li {
 .title-result {
   color: rgb(30, 31, 29);
   text-align: center;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-weight: bolder;
   font-size: 20px;
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
@@ -210,16 +210,16 @@ li {
 }
 
 .buttonFont {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
 }
 .profile-page-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-size: 1.5vw;
-  background-image: url("https://wallpaperaccess.com/full/279729.jpg");
+  background-image: url('https://wallpaperaccess.com/full/279729.jpg');
   background-size: cover;
   height: 100%;
 }
@@ -227,7 +227,7 @@ li {
   display: flex;
   flex-direction: row;
   height: 100%;
-  background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
+  background-image: url('https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg');
   background-size: cover;
 }
 
@@ -291,9 +291,9 @@ li {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-size: 1.5vw;
-  background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
+  background-image: url('https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg');
   background-size: cover;
 }
 
@@ -311,10 +311,10 @@ li {
 
 .notfound-page-container {
   display: flex;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-size: 1.5vw;
   height: 100%;
-  background-image: url("http://www.photobackgroundhd.com/wp-content/uploads/2019/08/fantasy-desktop-backgrounds.jpg");
+  background-image: url('http://www.photobackgroundhd.com/wp-content/uploads/2019/08/fantasy-desktop-backgrounds.jpg');
   background-size: cover;
   justify-content: center;
   align-items: center;
@@ -323,10 +323,10 @@ li {
 .sign-in-page-container {
   display: flex;
   justify-content: center;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-size: 1.5vw;
   height: 100%;
-  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg");
+  background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg');
   background-size: cover;
 }
 
@@ -389,7 +389,7 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 4vw;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   margin-bottom: 0;
 }
 
@@ -397,7 +397,7 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 80px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   margin-bottom: 0;
 }
 .sign-in-box {
@@ -446,7 +446,7 @@ li {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
   margin-left: 15px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   border: none;
   font-weight: 100;
   border-radius: 6px;
@@ -499,7 +499,7 @@ li {
   text-decoration: none;
   text-shadow: 2px 2px 2px #1b1b1b;
   font-size: 25px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
 }
 
 .error {
@@ -511,7 +511,7 @@ li {
   color: rgb(250, 247, 246);
   text-decoration: none;
   font-size: 45px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
 }
 
@@ -551,7 +551,7 @@ li {
   color: white;
   border: 2px solid rgb(184, 180, 180);
   z-index: 10;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   padding: 5px;
   background-image: linear-gradient(rgb(58, 58, 28), rgb(29, 49, 34));
   height: 40px;
@@ -570,9 +570,6 @@ li {
 }
 
 .elrond-idle {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
@@ -582,26 +579,20 @@ li {
 }
 
 .elrond-casts-spell {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
-  animation: elrond 1.5s steps(20) infinite;
+  animation: elrond 2.5s steps(20) infinite;
   margin-top: 11%;
 }
 
 .elrond-hurt {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-hurt.png);
-  animation: elrond 1.5s steps(20) infinite;
+  animation: elrond 3s steps(20) infinite;
   margin-top: 11%;
 }
 
@@ -712,9 +703,6 @@ li {
 }
 
 .galadriel-idle {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
@@ -724,22 +712,15 @@ li {
 }
 
 .galadriel-casts-spell {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
-
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
-  animation: galadriel 1.5s steps(20) infinite;
+  animation: galadriel 3s steps(20) infinite;
   margin-top: 18%;
 }
 
 .galadriel-hurt {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(6840px / 20);
   height: 410px;
@@ -762,9 +743,6 @@ li {
 }
 
 .arwen-idle {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
@@ -774,26 +752,20 @@ li {
 }
 
 .arwen-casts-spell {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-casts-spell.png);
-  animation: arwen 1.5s steps(20) infinite;
+  animation: arwen 4s steps(20) infinite;
   margin-top: 40%;
 }
 
 .arwen-hurt {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-hurt.png);
-  animation: arwen 3s steps(20) infinite;
+  animation: arwen 3.8s steps(20) infinite;
   margin-top: 40%;
 }
 
@@ -811,9 +783,6 @@ li {
 }
 
 .figwit-idle {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
@@ -823,26 +792,20 @@ li {
 }
 
 .figwit-casts-spell {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-casts-spell.png);
-  animation: figwit 5s steps(20) infinite;
+  animation: figwit 4s steps(20) infinite;
   margin-top: 20%;
 }
 
 .figwit-hurt {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-hurt.png);
-  animation: figwit 3s steps(20) infinite;
+  animation: figwit 4s steps(20) infinite;
   margin-top: 20%;
 }
 
@@ -864,22 +827,23 @@ li {
   height: 110px;
   background: url(./styling/fireball.png);
   animation: fire-attack 1s steps(calc(13 * 100));
+  transform: scaleX(1.3) scaleY(1);
   position: absolute;
   border-radius: 70%;
-  top: 28%;
-  left: 35%;
+  top: 30%;
+  left: 32%;
 }
 
 .fireball-right {
   width: calc(6217px / 13);
   height: 110px;
   background: url(./styling/fireball.png);
-  transform: scaleX(-1) scaleY(1);
+  transform: scaleX(-1.3) scaleY(1);
   animation: fire-attack 1s steps(calc(13 * 100));
   position: absolute;
   border-radius: 70%;
-  top: 28%;
-  left: 35%;
+  top: 30%;
+  left: 40%;
 }
 
 @keyframes thunder-attack {
@@ -895,26 +859,22 @@ li {
   width: calc(6217px / 11);
   height: 279px;
   background: url(./styling/thunder.png);
-  animation: thunder-attack 1s steps(calc(11 * 100));
-  transform: scaleX(1) scaleY(1);
+  animation: thunder-attack 1s steps(11);
+  transform: scaleX(-1.5) scaleY(1);
   position: absolute;
-  /* border-radius: 70%; */
   top: 20%;
-  left: 30%;
-  display: inline-block;
+  left: 28%;
 }
 
 .thunder-right {
   width: calc(6217px / 11);
   height: 279px;
   background: url(./styling/thunder.png);
-  animation: thunder-attack 1s steps(calc(11 * 100));
-  transform: scaleX(-1) scaleY(1);
+  animation: thunder-attack 1s steps(11);
+  transform: scaleX(1.5) scaleY(1);
   position: absolute;
-  /* border-radius: 70%; */
   top: 20%;
-  left: 30%;
-  display: inline-block;
+  left: 40%;
 }
 
 @keyframes purple-explosion {
@@ -929,24 +889,22 @@ li {
   width: calc(6000px / 15);
   height: 397px;
   background: url(./styling/purple-explosion.png);
-  animation: purple-explosion 0.5s steps(10) infinite;
-  transform: scaleX(-1) scaleY(1);
+  animation: purple-explosion 1s steps(30);
+  transform: scaleX(-1.8) scaleY(1);
   position: absolute;
   top: 20%;
   left: 35%;
-  display: inline-block;
 }
 
 .purple-explosion-right {
   width: calc(6000px / 15);
   height: 397px;
   background: url(./styling/purple-explosion.png);
-  animation: purple-explosion 0.5s steps(10) infinite;
-  transform: scaleX(1) scaleY(1);
+  animation: purple-explosion 1s steps(30);
+  transform: scaleX(1.8) scaleY(1);
   position: absolute;
   top: 20%;
-  left: 35%;
-  display: inline-block;
+  left: 40%;
 }
 
 .leaves {
@@ -994,12 +952,10 @@ li {
 }
 .healthName {
   position: absolute;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-size: 1.5vw;
   line-height: 1;
   color: white;
-  /* margin-top: 4.5%; */
-  /* margin-bottom: 0%; */
 }
 
 .gamestage {
@@ -1035,7 +991,7 @@ li {
   flex-direction: row;
   overflow-y: auto;
   justify-content: center;
-  background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg");
+  background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2015/05/25/697747/ccbbdacd5fe59fe7c6c7c70d5e95158a.jpg');
   background-size: cover;
   height: 100%;
 }
@@ -1147,7 +1103,7 @@ li {
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 80px;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   margin-block-start: 0%;
   height: 10%;
   padding-top: 30px;
@@ -1201,7 +1157,7 @@ li {
 }
 
 .btl-text {
-  font-family: "Aladin";
+  font-family: 'Aladin';
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 30px;
@@ -1228,7 +1184,7 @@ li {
 .goodMessage {
   position: absolute;
   font-size: 6rem;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   color: rgb(37, 37, 247);
   text-shadow: 2px 2px 2px rgb(104, 228, 104);
   opacity: 0;
@@ -1238,7 +1194,7 @@ li {
 .badMessage {
   position: absolute;
   font-size: 6rem;
-  font-family: "Aladin";
+  font-family: 'Aladin';
   color: rgb(165, 37, 20);
   text-shadow: 2px 2px 2px rgb(231, 229, 223);
   opacity: 0;
@@ -1280,7 +1236,7 @@ li {
 }
 
 .hp-exp-text {
-  font-family: "Aladin";
+  font-family: 'Aladin';
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
   font-size: 20px;
@@ -1298,7 +1254,7 @@ li {
 }
 
 .single-avatar p {
-  font-family: "Aladin";
+  font-family: 'Aladin';
   font-size: 20px;
 }
 
