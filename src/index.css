@@ -83,7 +83,6 @@ li {
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   border: solid 5px rgb(44, 66, 47);
   padding: 2%;
-  /* margin-top: 20px; */
 }
 
 .instructions p {
@@ -528,9 +527,6 @@ li {
 }
 
 .elrond-idle {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
@@ -540,26 +536,20 @@ li {
 }
 
 .elrond-casts-spell {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-cast-spell.png);
-  animation: elrond 0.8s steps(20) infinite;
+  animation: elrond 2.5s steps(20) infinite;
   margin-top: 11%;
 }
 
 .elrond-hurt {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
   transform: scaleX(0.7) scaleY(0.7);
   width: calc(7960px / 20);
   height: 438px;
   background: url(./styling/elrond-hurt.png);
-  animation: elrond 1s steps(20) infinite;
+  animation: elrond 3s steps(20) infinite;
   margin-top: 11%;
 }
 
@@ -683,7 +673,7 @@ li {
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-cast-spell.png);
-  animation: galadriel 0.8s steps(20) infinite;
+  animation: galadriel 3s steps(20) infinite;
   margin-top: 18%;
 }
 
@@ -692,7 +682,7 @@ li {
   width: calc(6840px / 20);
   height: 410px;
   background: url(./styling/galadriel-hurt.png);
-  animation: galadriel 1s steps(20) infinite;
+  animation: galadriel 3s steps(20) infinite;
   margin-top: 18%;
 }
 
@@ -723,7 +713,7 @@ li {
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-casts-spell.png);
-  animation: arwen 0.8s steps(20) infinite;
+  animation: arwen 4s steps(20) infinite;
   margin-top: 40%;
 }
 
@@ -732,7 +722,7 @@ li {
   width: calc(5560px / 20);
   height: 347px;
   background: url(./styling/arwen-hurt.png);
-  animation: arwen 1s steps(20) infinite;
+  animation: arwen 3.8s steps(20) infinite;
   margin-top: 40%;
 }
 
@@ -763,7 +753,7 @@ li {
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-casts-spell.png);
-  animation: figwit 0.8s steps(20) infinite;
+  animation: figwit 4s steps(20) infinite;
   margin-top: 20%;
 }
 
@@ -772,7 +762,7 @@ li {
   width: calc(9640px / 20);
   height: 372px;
   background: url(./styling/figwit-hurt.png);
-  animation: figwit 1s steps(20) infinite;
+  animation: figwit 4s steps(20) infinite;
   margin-top: 20%;
 }
 
@@ -923,8 +913,6 @@ li {
   font-size: 1.5vw;
   line-height: 1;
   color: white;
-  /* margin-top: 4.5%; */
-  /* margin-bottom: 0%; */
 }
 
 .gamestage {
