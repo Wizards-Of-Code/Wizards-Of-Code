@@ -96,8 +96,14 @@ class Firebase {
       background: randomBackgroundUrl
     });
   };
+
   openBattles = () => this.db.collection("battles");
+
   closedBattles = () => this.db.collection("battles");
+
+  myMedals = () => this.db.collection("medals");
+  
+
   findRandomBattle = () =>
     this.db
       .collection("battles")

@@ -180,6 +180,7 @@ li {
   font-size: 1.5vw;
   background-image: url('https://wallpaperaccess.com/full/279729.jpg');
   background-size: cover;
+  height: 100%;
 }
 .landing-page-container {
   display: flex;
@@ -1261,4 +1262,27 @@ li {
   border-radius: 8%;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.medal-img {
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 15px rgb(197, 194, 34));
+}
+
+.container-medal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.single-medal {
+  display: flex;
+  flex-direction: column; 
+  align-content: center;
+  margin: 10px;
+  justify-content: center;
 }

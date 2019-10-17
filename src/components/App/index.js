@@ -20,7 +20,7 @@ import {Character} from '../gamestage/utilities'
 const AUDIO = document.createElement('audio')
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       user: {},
       battles: [],
@@ -29,135 +29,143 @@ class App extends React.Component {
       battleRef: {},
       avatars: [],
       userRef: {},
-      closedBtl: []
-    }
-    this.setState = this.setState.bind(this)
+      closedBtl: [],
+      medals: []
+    };
+    this.setState = this.setState.bind(this);
   }
 
   login = userId => {
-    let userRef = this.props.firebase.user(userId)
-    this.setState({userRef})
+    let userRef = this.props.firebase.user(userId);
+    this.setState({ userRef });
 
     // get user firebase reference
     userRef.get().then(user => {
-      const userData = user.data()
-      this.setState({user: userData})
+      const userData = user.data();
+      this.setState({ user: userData });
       // get battle firebase reference, if applicable
       if (userData.activeBattle !== '') {
-        let battleRef = this.props.firebase.battle(userData.activeBattle)
-        this.setState({battleRef})
+        let battleRef = this.props.firebase.battle(userData.activeBattle);
+        this.setState({ battleRef });
       }
-    })
+    });
 
     // subscribe to user updates
     userRef.onSnapshot(snapshot => {
-      this.setState({user: snapshot.data()})
-    })
-  }
+      this.setState({ user: snapshot.data() });
+    });
+  };
 
   getAvatars = () => {
-    const avatarsRef = this.props.firebase.avatars()
+    const avatarsRef = this.props.firebase.avatars();
     avatarsRef
       .get()
-      .then(querySnapshot => this.setState({avatars: querySnapshot.docs}))
-  }
+      .then(querySnapshot => this.setState({ avatars: querySnapshot.docs }));
+  };
+
+  getMedals = () => {
+    const medalsRef = this.props.firebase.myMedals();
+    medalsRef
+      .get()
+      .then(querySnapshot => this.setState({ medals: querySnapshot.docs }));
+  };
 
   setAvatar = imgUrl => {
     this.state.userRef.set(
       {
-        imgUrl: imgUrl
+        imgUrl: imgUrl,
       },
-      {merge: true}
-    )
-  }
+      { merge: true }
+    );
+  };
 
   getOpenBattles = () => {
-    const openBattlesRef = this.props.firebase.openBattles()
-    let allOpenBattles = []
+    const openBattlesRef = this.props.firebase.openBattles();
+    let allOpenBattles = [];
     openBattlesRef.onSnapshot(querySnapshot => {
       querySnapshot.docChanges().forEach(change => {
-        let status = change.doc.data().status
-        let doc = change.doc.data()
-        let id = change.doc.id
+        let status = change.doc.data().status;
+        let doc = change.doc.data();
+        let id = change.doc.id;
         if (change.type === 'added' && status === 'open') {
-          allOpenBattles.push({...doc, id})
+          allOpenBattles.push({ ...doc, id });
         } else if (change.type === 'modified' && status === 'closed') {
-          allOpenBattles = allOpenBattles.filter(battle => battle.id !== id)
+          allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
         }
-      })
-      this.setState({battles: allOpenBattles})
-    })
-  }
+      });
+      this.setState({ battles: allOpenBattles });
+    });
+  };
 
   getClosedBtls = () => {
-    const closedBattlesRef = this.props.firebase.closedBattles()
+    const closedBattlesRef = this.props.firebase.closedBattles();
     closedBattlesRef
       .get()
-      .then(querySnapshot => this.setState({closedBtl: querySnapshot.docs}))
-  }
+      .then(querySnapshot => this.setState({ closedBtl: querySnapshot.docs }));
+  };
   createBattle = () => {
     this.props.firebase.createBattle(this.state.user).then(battleRef => {
-      this.setState({battleRef})
+      this.setState({ battleRef });
       this.state.userRef.set(
         {
           activeBattle: battleRef.id,
-          role: 'player1'
+          role: 'player1',
         },
-        {merge: true}
-      )
-    })
-  }
+        { merge: true }
+      );
+    });
+  };
 
   joinRandomBattle = () => {
     this.props.firebase.findRandomBattle(this.state.user).then(battleRef => {
       if (battleRef) {
-        this.joinBattle(battleRef)
+        this.joinBattle(battleRef);
       } else {
-        alert('NO OPEN BATTLE DUM DUM!')
+        alert('NO OPEN BATTLE DUM DUM!');
       }
-    })
-  }
+    });
+  };
 
   joinOpenBattle = battleId => {
-    let battleRef = this.props.firebase.battle(battleId)
-    this.joinBattle(battleRef)
-  }
+    let battleRef = this.props.firebase.battle(battleId);
+    this.joinBattle(battleRef);
+  };
 
   joinBattle = battleRef => {
-    const user = this.state.user
+    const user = this.state.user;
     battleRef.set(
       {
         player2: user.username,
         player2_health: user.maxHealth,
         status: 'closed',
         player2_anim: `${Character(user.imgUrl)}-idle`,
-        player2_char: Character(user.imgUrl)
+        player2_char: Character(user.imgUrl),
       },
-      {merge: true}
-    )
-    this.setState({battleRef})
+      { merge: true }
+    );
+    this.setState({ battleRef });
     this.state.userRef.set(
       {
         activeBattle: battleRef.id,
-        role: 'player2'
+        role: 'player2',
       },
-      {merge: true}
-    )
-  }
+      { merge: true }
+    );
+  };
 
   pageSound = () => {
     AUDIO.src =
-      'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/page-flip-01a.mp3?alt=media&token=8fdba966-a324-4c91-863f-18237b57852c'
-    AUDIO.load()
-    AUDIO.play()
-  }
+      'https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/page-flip-01a.mp3?alt=media&token=8fdba966-a324-4c91-863f-18237b57852c';
+    AUDIO.load();
+    AUDIO.play();
+  };
 
   componentDidMount() {
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
-        this.login(authUser.uid)
+        this.login(authUser.uid);
       }
-    })
+    });
   }
 
   render() {
@@ -189,6 +197,8 @@ class App extends React.Component {
                   {...props}
                   user={this.state.user}
                   pageSound={this.pageSound}
+                  medals={this.state.medals}
+                  getMedals={this.getMedals}
                 />
               )}
             />
@@ -266,7 +276,7 @@ class App extends React.Component {
           </Switch>
         </div>
       </Router>
-    )
+    );
   }
 }
 
