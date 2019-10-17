@@ -81,7 +81,7 @@ li {
   display: flex;
   flex-direction: column;
   text-align: center;
-  height: 75%;
+  height: 70%;
   width: 30%;
   background-image: linear-gradient(rgb(255, 255, 255), rgb(231, 233, 231));
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
@@ -1104,7 +1104,6 @@ li {
 
 .highlightPlayer {
   filter: drop-shadow(0 0 15px gold);
-  border-bottom-width: 1px;
   border-bottom-color: rgb(255, 215, 0);
 }
 
