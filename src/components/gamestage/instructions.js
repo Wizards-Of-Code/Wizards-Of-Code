@@ -1,23 +1,50 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 
 class Instructions extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const battleRef = this.props.battleRef;
+    const battleInfo = this.props.battleInfo;
+    if (battleInfo.status === "open") {
+      battleRef.set({ status: "quit" }, { merge: true });
+      this.props.userRef.set({ activeBattle: "" }, { merge: true });
+    }
+  }
+
   render() {
-    const problem = this.props.problem
+    let visible;
+    if (this.props.battleInfo.status === "closed") {
+      visible = false;
+    } else {
+      visible = true;
+    }
+    let problem = this.props.problem;
 
     return (
       <div className="instructions">
         <div className="flex-side">
           <div className="title">
-            {problem.name ? problem.name : '...Awaiting Spell'}
+            {problem.name ? problem.name : "...Awaiting Spell"}
           </div>
           <p>
             {problem.prompt
               ? problem.prompt
-              : 'Select a spell to cast to receive a challenge!'}
+              : "Select a spell to cast to receive a challenge!"}
           </p>
         </div>
+        {visible ? (
+          <button className="quitGame" onClick={this.handleClick}>
+            Quit Game
+          </button>
+        ) : (
+          ""
+        )}
       </div>
-    )
+    );
   }
 }
-export default Instructions
+export default Instructions;

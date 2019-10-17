@@ -359,6 +359,9 @@ class GameStage extends React.Component {
             problem={this.state.problem}
             doDamage={this.doDamage}
             getRandomProblem={this.getRandomProblem}
+            battleRef={this.props.battleRef}
+            battleInfo={this.state.battleInfo}
+            userRef={this.props.userRef}
           />
           <CodeArea
             value={this.state.userCode}

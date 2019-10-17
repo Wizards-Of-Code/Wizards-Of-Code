@@ -75,7 +75,6 @@ li {
 .instructions {
   display: flex;
   flex-direction: column;
-  align-items: center;
   text-align: center;
   height: 80%;
   width: 30%;
@@ -298,6 +297,15 @@ li {
   filter: drop-shadow(2px 2px 4px #7d5100fa);
 }
 
+.quitGame {
+  position: absolute;
+  background-color: rgb(250, 60, 15);
+  color: white;
+  font-family: "Aladin";
+  font-size: 0.8vw;
+  border-radius: 8px;
+}
+
 .profile-info {
   display: flex;
   flex-direction: column;
@@ -461,7 +469,7 @@ li {
 }
 
 .error {
-  color: red;
+  background-image: linear-gradient(rgb(227, 23, 0), rgb(255, 0, 0));
 }
 
 .no-account {
@@ -1098,6 +1106,8 @@ li {
 
 .highlightPlayer {
   filter: drop-shadow(0 0 15px gold);
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(255, 215, 0);
 }
 
 .lose-win {

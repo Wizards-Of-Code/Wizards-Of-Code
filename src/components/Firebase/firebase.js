@@ -41,7 +41,7 @@ class Firebase {
     return this.auth.signInWithPopup(this.provider).then(authUser => {
       if (authUser.additionalUserInfo.isNewUser) {
         this.user(authUser.user.uid).set({
-          username: authUser.user.email.split('@')[0],
+          username: authUser.user.email.split("@")[0],
           email: authUser.user.email,
           experience: 0,
           maxHealth: 100,
