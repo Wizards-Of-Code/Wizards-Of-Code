@@ -3,7 +3,7 @@ import { withAuthorization } from "../Session";
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
 import Medals from './medals'
-import { BATTLE } from "../../constants/routes";
+import { BATTLE, ACCOUNT, BATTLEHISTORY } from "../../constants/routes";
 
 const ProfilePage = props => {
   return (
@@ -11,7 +11,7 @@ const ProfilePage = props => {
       <div className="home-page-navbar">
         <div className="home-page-navbar-container">
           <h1 className="sign-up-logo">Profile Page</h1>
-          <Link to={'/battle-history'}>
+          <Link to={BATTLEHISTORY}>
             <div className="user-history">
               <button
                 className="user-history-btn"
@@ -25,6 +25,13 @@ const ProfilePage = props => {
             <Link to={BATTLE}>
               <button className="go-to-battle" onMouseDown={props.pageSound}>
                 Go To Battle
+              </button>
+            </Link>
+          </div>
+          <div className="go-battle">
+            <Link to={ACCOUNT}>
+              <button className="go-to-battle" onMouseDown={props.pageSound}>
+                Account Settings
               </button>
             </Link>
           </div>
