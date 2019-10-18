@@ -245,10 +245,16 @@ li {
   justify-content: center;
   position: relative;
   top: 15px;
+  background-color: rgba(161, 159, 159, 0.5);
+  border-radius: 1rem;
+  box-shadow: rgba(249, 250, 248, 0.19);
+  height: 80%;
+  width: 100%;
 }
 
 .single-game {
-  background: rgba(161, 159, 159, 0.5);
+  background-image: linear-gradient(rgba(158, 158, 147, 0.9), rgba(102, 107, 103, 0.9));;
+  box-shadow: 5px 5px 10px black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1214,7 +1220,7 @@ li {
 .battle-container {
   display: flex;
   justify-content: space-between;
-  padding-right: 10%;
+  padding: 1rem 3rem;
   width: 100%;
 }
 .container1 {
@@ -1223,8 +1229,10 @@ li {
 
 .open-battle-container {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .highlight {
@@ -1284,17 +1292,37 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");;
+  background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
+  height: 100%;
+}
+
+.leaderboard {
+  padding: 2rem;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70vh;
+  background-color: rgba(249, 250, 248, 0.79);
+  border-radius: .5rem;
 }
 
 .leaderboard-entry {
   display: flex;
   justify-content: space-between;
   background-color: rgba(161, 159, 159, 0.5);
-  padding: .25rem;
+  border-radius: .25rem;
+  font-family: 'Aladin';
+  font-size: 1.5rem;
+  padding: .25rem 1rem;
   margin: .25rem;
   width: 100%;
 }
+
+.leaderboard-entry:hover {
+  background-color: rgba(228, 221, 221, 0.5);
+}
+
 .medal-img {
   height: 50px;
   width: 50px;

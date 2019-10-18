@@ -14,13 +14,7 @@ class BattlesPage extends React.Component {
         {this.props.user.username ? (
           <div className="battle-container">
             <div className='open-battle-container'>
-              <button
-                  className="join-random-btl-btn"
-                  disabled
-                  onMouseDown={this.props.pageSound}
-                >
-                  Open Battles
-              </button>
+              <div className='sign-up-logo'>Open Battles</div>
 
                 <OpenBattles
                   user={this.props.user}
