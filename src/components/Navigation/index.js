@@ -48,11 +48,11 @@ const NavigationAuth = props => (
       Profile
     </NavLink>
     <NavLink
-      to={ROUTES.ACCOUNT}
+      to={ROUTES.LEADERBOARD}
       activeClassName="navbarHighlight"
       onMouseDown={props.pageSound}
     >
-      Account Info
+      Leaderboard
     </NavLink>
     {/* <Link to={ROUTES.ADMIN}>Admin</Link> */}
     <SignOutButton
