@@ -7,13 +7,12 @@ class BattleHistory extends Component {
 
   render() {
     let btlInfo;
-    let wins = 0;
     let completedBtl = [];
     btlInfo = this.props.closedBtl.map(closedB => {
       return closedB.data();
     });
 
-    btlInfo.map(btl => {
+    btlInfo.foreach(btl => {
       if (
         btl.status === "completed" &&
         (btl.player1 === this.props.user.username ||

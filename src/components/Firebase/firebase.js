@@ -1,4 +1,4 @@
-import app, { auth } from "firebase/app";
+import app from "firebase/app";
 import "firebase/auth";
 // import 'firebase/database';
 import "firebase/firestore";
@@ -103,7 +103,7 @@ class Firebase {
   closedBattles = () => this.db.collection("battles");
 
   myMedals = () => this.db.collection("medals");
-  
+
 
   findRandomBattle = () =>
     this.db

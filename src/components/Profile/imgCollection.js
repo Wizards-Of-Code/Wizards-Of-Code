@@ -23,7 +23,7 @@ class ImgCollection extends Component {
 
         {avatarInfo.map(avatar => (
           <div className="single-avatar">
-            <a>{avatar.name}</a>
+            <p>{avatar.name}</p>
             <img src={avatar.imgUrl} alt="" className="img-avatar" />
             <p>{avatar.description}</p>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Animation, { Character } from "./utilities";
+import Animation from "./utilities";
 
 export default function GameOver(props) {
   return (
