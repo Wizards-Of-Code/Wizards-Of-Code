@@ -117,6 +117,19 @@ class App extends React.Component {
     });
   };
 
+  practiceBattle = () => {
+    this.props.firebase.practiceBattle(this.state.user).then(battleRef => {
+      this.setState({ battleRef });
+      this.state.userRef.set(
+        {
+          activeBattle: battleRef.id,
+          role: 'player1',
+        },
+        { merge: true }
+      );
+    });
+  };
+
   joinRandomBattle = () => {
     this.props.firebase.findRandomBattle(this.state.user).then(battleRef => {
       if (battleRef) {
@@ -226,6 +239,7 @@ class App extends React.Component {
                       joinOpenBattle={this.joinOpenBattle}
                       activeBattle={this.state.user.activeBattle}
                       pageSound={this.pageSound}
+                      practiceBattle={this.practiceBattle}
                     />
                   ) : (
                     <GameStage

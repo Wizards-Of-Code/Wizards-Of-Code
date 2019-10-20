@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Animation from "./utilities";
 
 export default function GameOver(props) {
+
   return (
     <div className="game-over">
       {props.user.username === props.battleInfo.winner ? (
@@ -28,7 +29,7 @@ export default function GameOver(props) {
           )}
 
           <Link to={"/home"}>
-            <button className="btn-back" onClick={props.addExp}>
+            <button className="btn-back" onClick={props.battleInfo.isPractice ? '' : props.addExp}>
               Play Again
             </button>
           </Link>

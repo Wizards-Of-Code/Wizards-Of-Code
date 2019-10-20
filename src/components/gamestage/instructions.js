@@ -1,19 +1,6 @@
 import React, { Component } from "react";
 
 class Instructions extends Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    const battleRef = this.props.battleRef;
-    const battleInfo = this.props.battleInfo;
-    if (battleInfo.status === "open") {
-      battleRef.set({ status: "quit" }, { merge: true });
-      this.props.userRef.set({ activeBattle: "" }, { merge: true });
-    }
-  }
 
   render() {
     let visible;
@@ -37,7 +24,7 @@ class Instructions extends Component {
           </p>
         </div>
         {visible ? (
-          <button className="quitGame" onClick={this.handleClick}>
+          <button className="quitGame" onClick={this.props.quitBattle}>
             Quit Game
           </button>
         ) : (

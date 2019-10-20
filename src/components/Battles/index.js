@@ -53,6 +53,19 @@ class BattlesPage extends React.Component {
                   Join A Random Battle
                 </button>
               </Link>
+              <Link to={BATTLE}>
+                <button
+                  onClick={() => {
+                    if (this.props.user.username) {
+                      this.props.practiceBattle()
+                    }
+                  }}
+                  className="join-random-btl-btn"
+                  onMouseDown={this.props.pageSound}
+                >
+                  Solo Practice
+                </button>
+              </Link>
             </div>
           </div>
         ) : (

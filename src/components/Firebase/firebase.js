@@ -98,6 +98,25 @@ class Firebase {
     });
   };
 
+  practiceBattle = user => {
+    let randomBackgroundUrl = randomizeUrls();
+    return this.db.collection("battles").add({
+      player1: user.username,
+      player1_health: user.maxHealth,
+      player1_exp: user.experience,
+      player1_anim: `${Character(user.imgUrl)}-idle`,
+      player1_char: Character(user.imgUrl),
+      player2_anim: "elrond-idle",
+      player2_char: "elrond",
+      player2: 'TARGET DUMMY',
+      player2_health: 100,
+      attack_anim: "",
+      status: "closed",
+      background: randomBackgroundUrl,
+      isPractice: true,
+    });
+  }
+
   openBattles = () => this.db.collection("battles");
 
   closedBattles = () => this.db.collection("battles");
