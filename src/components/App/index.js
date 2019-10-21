@@ -100,7 +100,6 @@ class App extends React.Component {
 
   getClosedBtls = () => {
     const closedBattlesRef = this.props.firebase.closedBattles();
-    console.log('trying to get battles', closedBattlesRef);
     closedBattlesRef
       .get()
       .then(querySnapshot => this.setState({ closedBtl: querySnapshot.docs }));
@@ -185,8 +184,6 @@ class App extends React.Component {
   }
 
   render() {
-
-    console.log(this.state);
 
     return (
       <Router>
