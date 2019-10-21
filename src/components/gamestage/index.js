@@ -41,7 +41,7 @@ class GameStage extends React.Component {
       this.props.userRef.set({ activeBattle: "" }, { merge: true });
     };
     this.unsubscribe();
-    this.setState({ battleInfo: {} });
+    this.setState({ battleInfo: {}, battleRef: {} });
   }
 
   getProblem = problemId => {
