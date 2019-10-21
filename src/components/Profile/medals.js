@@ -10,7 +10,7 @@ class Medals extends Component {
     medalInfo = this.props.medals.map(medal => {
         return medal.data();
     });
-     
+
 
     return (
       <div>
@@ -18,7 +18,7 @@ class Medals extends Component {
         <div className="container-medal">
           {medalInfo.map(medal =>
             this.props.user.experience >= medal.reqExp ? (
-              <div className="single-medal">
+              <div className="single-medal" key={medal.name}>
                 <p>{medal.name}</p>
                 <img src={medal.imgUrl} alt="" className="medal-img" />
               </div>

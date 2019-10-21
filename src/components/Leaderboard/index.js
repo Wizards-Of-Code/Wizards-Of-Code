@@ -31,7 +31,7 @@ class Leaderboard extends React.Component {
         <h1 className='sign-up-logo'>Wisest Wizards:</h1>
         <div className='leaderboard container1'>
           {this.state.users.map((user, index) => (
-            <div key ={user.uid} className='leaderboard-entry'>
+            <div key={index} className='leaderboard-entry'>
               <span>{index + 1}. {user.username}</span> <span>{user.experience}</span>
             </div>
           ))}

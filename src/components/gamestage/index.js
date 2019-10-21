@@ -33,6 +33,17 @@ class GameStage extends React.Component {
     };
   }
 
+  quitBattle = () => {
+    const battleRef = this.props.battleRef;
+    const battleInfo = this.state.battleInfo;
+    if (battleInfo.status === "open") {
+      battleRef.delete();
+      this.props.userRef.set({ activeBattle: "" }, { merge: true });
+    };
+    this.unsubscribe();
+    this.setState({ battleInfo: {} });
+  }
+
   getProblem = problemId => {
     const problemRef = this.props.firebase.problem(problemId);
     problemRef
@@ -255,8 +266,11 @@ class GameStage extends React.Component {
   }
 
   componentWillUnmount() {
+
+    let battleInfo = this.state.battleInfo
+
     this.unsubscribe();
-    if (this.state.battleInfo.status === "completed") {
+    if (battleInfo.status === "completed") {
       this.props.userRef.set(
         {
           activeBattle: ""
@@ -264,15 +278,23 @@ class GameStage extends React.Component {
         { merge: true }
       );
     }
+
+    if (battleInfo.isPractice) {
+      this.props.battleRef.delete();
+    }
   }
 
   render() {
     let playerClass1 = "";
     let playerClass2 = "";
+
+    console.log('game state:', this.state);
+
     if (this.state.battleInfo.status === "completed") {
       return (
         <GameOver
           battleInfo={this.state.battleInfo}
+          battleRef={this.props.battleRef}
           user={this.props.user}
           addExp={this.addExp}
         />
@@ -353,6 +375,7 @@ class GameStage extends React.Component {
             battleInfo={this.state.battleInfo}
             userRef={this.props.userRef}
             highlightClass={this.state.highlightClass}
+            quitBattle={this.quitBattle}
           />
           <CodeArea
             value={this.state.userCode}

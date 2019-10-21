@@ -100,12 +100,27 @@ class App extends React.Component {
 
   getClosedBtls = () => {
     const closedBattlesRef = this.props.firebase.closedBattles();
+    console.log('trying to get battles', closedBattlesRef);
     closedBattlesRef
       .get()
       .then(querySnapshot => this.setState({ closedBtl: querySnapshot.docs }));
   };
+
   createBattle = () => {
     this.props.firebase.createBattle(this.state.user).then(battleRef => {
+      this.setState({ battleRef });
+      this.state.userRef.set(
+        {
+          activeBattle: battleRef.id,
+          role: 'player1',
+        },
+        { merge: true }
+      );
+    });
+  };
+
+  practiceBattle = () => {
+    this.props.firebase.practiceBattle(this.state.user).then(battleRef => {
       this.setState({ battleRef });
       this.state.userRef.set(
         {
@@ -170,6 +185,9 @@ class App extends React.Component {
   }
 
   render() {
+
+    console.log(this.state);
+
     return (
       <Router>
         <div className="container">
@@ -223,6 +241,7 @@ class App extends React.Component {
                       joinOpenBattle={this.joinOpenBattle}
                       activeBattle={this.state.user.activeBattle}
                       pageSound={this.pageSound}
+                      practiceBattle={this.practiceBattle}
                     />
                   ) : (
                     <GameStage
