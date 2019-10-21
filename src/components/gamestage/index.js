@@ -288,8 +288,6 @@ class GameStage extends React.Component {
     let playerClass1 = "";
     let playerClass2 = "";
 
-    console.log('game state:', this.state);
-
     if (this.state.battleInfo.status === "completed") {
       return (
         <GameOver
