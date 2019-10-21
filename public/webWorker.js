@@ -7,9 +7,13 @@ onmessage = function(event) {
   const inputs = JSON.parse(event.data.inputs);
   const expectedOutputs = JSON.parse(event.data.expectedOutputs);
 
+  // trim whitespace and remove const and let that can cause glitches
+  let formattedFunction = event.data.userFunction.trim().replace(/^(const|let)/, '');
+
+
   try {
     // set user code to a callable function
-    eval('userFunction =' + event.data.userFunction);
+    eval('userFunction =' + formattedFunction);
 
     // run function on each input
     inputs.forEach(input => {
