@@ -7,8 +7,8 @@ const SignOutButton = props => (
   <button
     type="button"
     onClick={() => {
-      props.updateState({ user: {} });
       props.firebase.doSignOut();
+      props.updateState({ user: {} });
       props.history.push(ROUTES.HOME);
     }}
     onMouseDown={props.pageSound}

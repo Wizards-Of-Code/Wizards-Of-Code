@@ -4,9 +4,6 @@ const textTransform = {
   marginBottom: '0%'
 }
 class Player1 extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     let hp = this.props.playerHP
