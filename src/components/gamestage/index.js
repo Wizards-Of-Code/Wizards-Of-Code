@@ -41,7 +41,7 @@ class GameStage extends React.Component {
       this.props.userRef.set({ activeBattle: "" }, { merge: true });
     };
     this.unsubscribe();
-    this.setState({ battleInfo: {} });
+    this.setState({ battleInfo: {}, battleRef: {} });
   }
 
   getProblem = problemId => {
@@ -287,8 +287,6 @@ class GameStage extends React.Component {
   render() {
     let playerClass1 = "";
     let playerClass2 = "";
-
-    console.log('game state:', this.state);
 
     if (this.state.battleInfo.status === "completed") {
       return (
