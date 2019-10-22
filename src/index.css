@@ -1303,6 +1303,7 @@ li {
   flex-direction: column;
   align-items: center;
   background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
+  background-size: cover;
   height: 100%;
 }
 
