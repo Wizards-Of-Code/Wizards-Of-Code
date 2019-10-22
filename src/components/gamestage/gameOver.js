@@ -19,14 +19,20 @@ export default function GameOver(props) {
             justifyContent: "space-Evenly"
           }}
         >
-          <h2 className="lose-win">Congratulations</h2>
-          <h2 className="lose-win">YOU WIN</h2>
+          <div className="winOrLose">
+            <h1 className="lose-win">Congratulations</h1>
+            <h1 className="lose-win">YOU WIN</h1>
+          </div>
           {props.battleInfo.player1 === props.battleInfo.winner ? (
-            <div className={Animation[props.battleInfo.player1_char].win}>
+            <div
+              className={`${Animation[props.battleInfo.player1_char].win} center`}
+            >
               {" "}
             </div>
           ) : (
-            <div className={Animation[props.battleInfo.player2_char].win}>
+            <div
+              className={`${Animation[props.battleInfo.player2_char].win} center`}
+            >
               {" "}
             </div>
           )}
@@ -54,16 +60,24 @@ export default function GameOver(props) {
             justifyContent: "space-Evenly"
           }}
         >
-          <h1 className="lose-win">YOU LOSE...</h1>
-          <h1 className="lose-win">The winner is {props.battleInfo.winner}</h1>
-          <img
-            className="grave"
-            src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/galadriel-die.png?alt=media&token=9658752a-ec5f-40f3-adcf-642f5a0d5d24"
-            alt=""
-          />
-          <Link to={"/home"}>
-            <button className="btn-back">Play Again</button>
-          </Link>
+          <div className="winOrLose">
+            <h1 className="lose-win">YOU LOSE...</h1>
+            <h1 className="lose-win">
+              The winner is {props.battleInfo.winner}
+            </h1>
+          </div>
+
+          <div className="center">
+            <img
+              className="grave"
+              src="https://firebasestorage.googleapis.com/v0/b/wizards-of-code.appspot.com/o/galadriel-die.png?alt=media&token=9658752a-ec5f-40f3-adcf-642f5a0d5d24"
+              alt=""
+            />
+
+            <Link to={"/home"}>
+              <button className="btn-back">Play Again</button>
+            </Link>
+          </div>
         </div>
       )}
     </div>

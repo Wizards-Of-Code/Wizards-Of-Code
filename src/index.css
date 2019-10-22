@@ -1131,6 +1131,16 @@ li {
   height: 100%;
 }
 
+.game-over h1 {
+  font-size: 3.5vw;
+  line-height: 0.5;
+}
+.game-over .winOrLose {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
 .grave {
   align-self: center;
 }
