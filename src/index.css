@@ -27,6 +27,7 @@ a {
   text-shadow: 2px 2px 2px white;
   font-size: 30px;
   font-family: "Aladin";
+  align-self: center;
 }
 
 a:hover {
@@ -1127,14 +1128,11 @@ li {
 }
 
 .game-over {
-  display: flex;
-  flex-direction: column;
   height: 100%;
 }
 
 .grave {
-  position: relative;
-  left: 45%;
+  align-self: center;
 }
 
 .center {
