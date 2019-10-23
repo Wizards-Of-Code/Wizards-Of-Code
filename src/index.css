@@ -1316,6 +1316,7 @@ li {
   height: 70vh;
   background-color: rgba(249, 250, 248, 0.79);
   border-radius: 0.5rem;
+  margin-bottom: 3%;
 }
 
 .leaderboard-entry {
