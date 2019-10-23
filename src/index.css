@@ -219,7 +219,7 @@ li {
   font-family: "Aladin";
   font-size: 1.5vw;
   background-image: url("https://wallpaperaccess.com/full/279729.jpg");
-  background-size: cover;
+  /* background-size: cover; */
   height: 100%;
 }
 .landing-page-container {
@@ -402,7 +402,7 @@ li {
   text-align: center;
   color: rgb(30, 31, 29);
   text-shadow: 2px 2px 2px #ecf0ea, 4px 4px 4px #fefffa;
-  font-size: 4vw;
+  font-size: 3vw;
   font-family: "Aladin";
   margin-bottom: 0;
 }
@@ -455,7 +455,7 @@ li {
   font-size: 25px;
   color: rgb(12, 11, 11);
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
   background-image: linear-gradient(rgb(197, 197, 127), rgb(108, 134, 115));
