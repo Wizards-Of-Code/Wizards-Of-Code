@@ -80,7 +80,7 @@ class App extends React.Component {
   };
 
   getOpenBattles = () => {
-    const openBattlesRef = this.props.firebase.battles();
+    const openBattlesRef = this.props.firebase.battles().where('status', '==', 'open');
     let allOpenBattles = [];
     openBattlesRef.onSnapshot(querySnapshot => {
       querySnapshot.docChanges().forEach(change => {
@@ -89,7 +89,7 @@ class App extends React.Component {
         let id = change.doc.id;
         if (change.type === 'added' && status === 'open') {
           allOpenBattles.push({ ...doc, id });
-        } else if (change.type === 'modified' && status === 'closed') {
+        } else if (change.type === 'removed') {
           allOpenBattles = allOpenBattles.filter(battle => battle.id !== id);
         }
       });
