@@ -27,6 +27,7 @@ a {
   text-shadow: 2px 2px 2px white;
   font-size: 30px;
   font-family: "Aladin";
+  align-self: center;
 }
 
 a:hover {
@@ -220,7 +221,6 @@ li {
   font-size: 1.5vw;
   background-image: url("https://wallpaperaccess.com/full/279729.jpg");
   background-size: cover;
-  height: 100%;
 }
 .landing-page-container {
   display: flex;
@@ -253,7 +253,10 @@ li {
 }
 
 .single-game {
-  background-image: linear-gradient(rgba(158, 158, 147, 0.9), rgba(102, 107, 103, 0.9));;
+  background-image: linear-gradient(
+    rgba(158, 158, 147, 0.9),
+    rgba(102, 107, 103, 0.9)
+  );
   box-shadow: 5px 5px 10px black;
   display: flex;
   flex-direction: column;
@@ -1125,14 +1128,21 @@ li {
 }
 
 .game-over {
-  display: flex;
-  flex-direction: column;
   height: 100%;
 }
 
+.game-over h1 {
+  font-size: 3.5vw;
+  line-height: 0.5;
+}
+.game-over .winOrLose {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
 .grave {
-  position: relative;
-  left: 45%;
+  align-self: center;
 }
 
 .center {
@@ -1293,6 +1303,7 @@ li {
   flex-direction: column;
   align-items: center;
   background-image: url("https://wallpapermemory.com/uploads/489/wizard-background-hd-1080p-74705.jpg");
+  background-size: cover;
   height: 100%;
 }
 
@@ -1304,18 +1315,19 @@ li {
   align-items: center;
   height: 70vh;
   background-color: rgba(249, 250, 248, 0.79);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 3%;
 }
 
 .leaderboard-entry {
   display: flex;
   justify-content: space-between;
   background-color: rgba(161, 159, 159, 0.5);
-  border-radius: .25rem;
-  font-family: 'Aladin';
+  border-radius: 0.25rem;
+  font-family: "Aladin";
   font-size: 1.5rem;
-  padding: .25rem 1rem;
-  margin: .25rem;
+  padding: 0.25rem 1rem;
+  margin: 0.25rem;
   width: 100%;
 }
 
