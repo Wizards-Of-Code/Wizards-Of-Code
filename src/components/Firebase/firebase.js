@@ -117,12 +117,7 @@ class Firebase {
     });
   }
 
-  openBattles = () => this.db.collection("battles");
-
-  closedBattles = () => this.db.collection("battles");
-
-  myMedals = () => this.db.collection("medals");
-
+  battles = () => this.db.collection("battles");
 
   findRandomBattle = () =>
     this.db
@@ -139,6 +134,8 @@ class Firebase {
           return null;
         }
       });
+
+  myMedals = () => this.db.collection("medals");
 
   // avatars API
   avatars = () => {

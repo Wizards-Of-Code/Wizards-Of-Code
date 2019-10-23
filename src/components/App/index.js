@@ -30,7 +30,6 @@ class App extends React.Component {
       battleRef: {},
       avatars: [],
       userRef: {},
-      closedBtl: [],
       medals: []
     };
     this.setState = this.setState.bind(this);
@@ -81,7 +80,7 @@ class App extends React.Component {
   };
 
   getOpenBattles = () => {
-    const openBattlesRef = this.props.firebase.openBattles();
+    const openBattlesRef = this.props.firebase.battles();
     let allOpenBattles = [];
     openBattlesRef.onSnapshot(querySnapshot => {
       querySnapshot.docChanges().forEach(change => {
@@ -96,13 +95,6 @@ class App extends React.Component {
       });
       this.setState({ battles: allOpenBattles });
     });
-  };
-
-  getClosedBtls = () => {
-    const closedBattlesRef = this.props.firebase.closedBattles();
-    closedBattlesRef
-      .get()
-      .then(querySnapshot => this.setState({ closedBtl: querySnapshot.docs }));
   };
 
   createBattle = () => {
@@ -218,6 +210,16 @@ class App extends React.Component {
                 />
               )}
             />
+            <Route
+              exact
+              path={ROUTES.BATTLEHISTORY}
+              render={props => (
+                <BattleHistory
+                  {...props}
+                  user={this.state.user}
+                />
+              )}
+            />
             <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
             <Route exact path={ROUTES.ADMIN} component={AdminPage} />
             <Route exact path={ROUTES.LEADERBOARD} component={Leaderboard} />
@@ -279,17 +281,6 @@ class App extends React.Component {
               )}
             />
 
-            <Route
-              path={ROUTES.BATTLEHISTORY}
-              render={props => (
-                <BattleHistory
-                  {...props}
-                  user={this.state.user}
-                  closedBtl={this.state.closedBtl}
-                  getClosedBtls={this.getClosedBtls}
-                />
-              )}
-            />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
