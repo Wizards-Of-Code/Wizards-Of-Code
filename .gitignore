@@ -16,6 +16,8 @@ firestore.indexes.json
 firebase.json
 
 # misc
+.vscode/
+.idea/
 .DS_Store
 .env.local
 .env.development.local
