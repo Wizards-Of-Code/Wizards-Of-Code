@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "codemirror": "^5.49.0",
-    "firebase": "^7.0.0",
+    "firebase": "^10.9.0",
     "react": "^16.10.1",
     "react-codemirror": "^1.0.0",
     "react-codemirror2": "^6.0.0",
